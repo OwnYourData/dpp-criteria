@@ -1,0 +1,28 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install check-jsonschema==0.29.4
+      - name: Criteria
+        run: check-jsonschema --schemafile schema/criterion.schema.json criteria/*/*.yaml
+      - name: Services
+        run: check-jsonschema --schemafile schema/service.schema.json services/*.yaml
+      - name: File name matches id
+        run: |
+          fail=0
+          for f in criteria/*/*.yaml services/*.yaml; do
+            id=$(grep -m1 '^id:' "$f" | awk '{print $2}')
+            [ "$(basename "$f" .yaml)" = "$id" ] || { echo "::error file=$f::file name does not match id $id"; fail=1; }
+          done
+          exit $fail

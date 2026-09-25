@@ -1,0 +1,21 @@
+id: DPP-DEX-003
+version: 1
+status: proposed
+title: TLS 1.2 or higher, older versions refused
+statement: >-
+  DPP communication MUST support at least TLS 1.2 and MUST NOT accept older
+  TLS versions.
+level: MUST
+basis:
+  - source: EN 18216:2026
+    clause: "4"
+    kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: tls
+  min_version: "1.2"
+  reject_versions: ["1.0", "1.1"]
+  https_redirect: true
+catalogue_ref: DPP-DEX-003

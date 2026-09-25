@@ -1,0 +1,24 @@
+id: DPP-DAT-014
+version: 1
+status: proposed
+title: Passport attributes use the EN 18223 names
+statement: >-
+  The attributes of the DigitalProductPassport class MUST use the names of the
+  published data model (digitalProductPassportId, uniqueProductIdentifier,
+  granularity, dppSchemaVersion, dppStatus, lastUpdated, economicOperatorId,
+  facilityId, contentSpecificationIds).
+level: MUST
+basis:
+  - source: EN 18223:2026
+    clause: "4.1, Table 1"
+    kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: shacl
+  shapes: shapes/en18223-dpp-core.ttl
+notes: >-
+  Not in catalogue v2. Draft-era names (ProductID, DPPStatus, …) fail this
+  check. Which attributes are mandatory per Table 1 is fixed in the shapes
+  file, checked against the standard text.

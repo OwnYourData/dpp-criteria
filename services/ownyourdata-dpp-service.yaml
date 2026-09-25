@@ -1,0 +1,14 @@
+id: ownyourdata-dpp-service
+name: OwnYourData DPP Service
+operator:
+  name: OwnYourData
+  url: https://www.ownyourdata.eu
+contact: TODO
+api_base: https://dpp-service.ownyourdata.eu/dpp/v1
+features: [fine-granular-api, write-api, historical-versions]
+test_data:
+  productId: https://dpp.oydapp.eu/01/09520123456788/21/000001
+  dppId: did:oyd:zQmTMPiMZ6mUg5bVXQxkuZ1JCgmtKE9QNu514EdMUydq9zL
+credentials: none
+declarations: []
+listed_since: 2026-10-01

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OwnYourData/dpp-criteria/schema/service.schema.json",
+  "title": "Listed DPP service",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "operator", "contact", "api_base", "features", "test_data", "credentials", "listed_since"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "name": { "type": "string" },
+    "operator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": { "name": { "type": "string" }, "url": { "type": "string", "format": "uri" } }
+    },
+    "contact": { "type": "string" },
+    "api_base": { "type": "string", "pattern": "^https://" },
+    "features": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["fine-granular-api", "write-api", "historical-versions", "access-levels", "backup-provider", "registry-integration", "battery", "pcds"] }
+    },
+    "test_data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["productId", "dppId"],
+      "properties": { "productId": { "type": "string" }, "dppId": { "type": "string" } }
+    },
+    "credentials": { "type": "string", "pattern": "^(none|secret:[A-Z][A-Z0-9_]*)$" },
+    "declarations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["criterion", "statement", "evidence"],
+        "properties": {
+          "criterion": { "type": "string", "pattern": "^DPP-[A-Z]{2,5}-[0-9]{3}$" },
+          "statement": { "type": "string" },
+          "evidence": { "type": "string", "pattern": "^https://" }
+        }
+      }
+    },
+    "consent": { "type": "string", "description": "Link to the operator's consent if the PR is not opened by the operator." },
+    "listed_since": { "type": "string", "format": "date" }
+  }
+}
