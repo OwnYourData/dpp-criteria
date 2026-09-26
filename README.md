@@ -9,7 +9,7 @@ standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 - `soya/` – SOyA structures with the SHACL shapes of the passport checks, see [soya/README.md](soya/README.md)
 - `tests/soya/` – test vectors for the structures
 - `schema/` – JSON Schemas for both file types
-- `scripts/` – test runner for the structures
+- `scripts/` – build and test the structures with the SOyA web-cli
 
 The format is described in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md).
 

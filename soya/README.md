@@ -56,10 +56,16 @@ by syntax only.
 Test vectors live in `tests/soya/<structure>/<criterion>/`: `valid/` gives no
 result for the criterion, `warning/` at least one warning and no violation,
 `invalid/` at least one violation. Each invalid vector contains exactly one
-fault. The runner uses soya-js, the library behind `soya acquire` and
-`soya validate`, with the local structure (Node.js 20):
+fault.
+
+The tests run in the image `oydeu/soya-web-cli`, the same SOyA version that
+dpplint uses, and need only Docker:
 
 ```
-npm install --no-save soya-js@0.8.12
-node scripts/test_structures.js
+sh scripts/run_structure_tests.sh
 ```
+
+The script builds every structure with `soya init` into `build/structures/`,
+embeds the imported SOyA context, serves the result as a local repository
+inside the container and sends each vector through the web-cli endpoints
+`acquire` and `validate`. Nothing is loaded from soya.ownyourdata.eu.
