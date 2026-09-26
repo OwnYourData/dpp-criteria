@@ -1,0 +1,126 @@
+meta:
+  name: DigitalProductPassport
+
+content:
+  bases:
+    - name: DigitalProductPassport # EN 18223:2026 4.1.2.1, Table 1
+      attributes:
+        digitalProductPassportId: String
+        uniqueProductIdentifier: String
+        granularity: String
+        dppSchemaVersion: String
+        dppStatus: String
+        lastUpdated: String
+        economicOperatorId: String
+        facilityId: String
+        contentSpecificationIds: set<String>
+        elements: set<DataElement>
+    - name: DataElement # EN 18223:2026 4.1.2.3, Table 2
+      attributes:
+        elementId: String
+        dictionaryReference: String
+      subClasses:
+        - name: DataElementCollection # 4.1.2.4
+          attributes:
+            elements: set<DataElement>
+        - name: SingleValuedDataElement # 4.1.2.5, Table 3
+          attributes:
+            value: String
+            valueDataType: String
+        - name: MultiValuedDataElement # 4.1.2.6, Table 4
+          attributes:
+            valueDataType: String
+            elements: set<DataElement>
+        - name: RelatedResource # 4.1.2.7, Table 5
+          attributes:
+            contentType: String
+            url: String
+            language: String
+            resourceTitle: String
+        - name: MultiLanguageDataElement # 4.1.2.8
+          attributes:
+            value: set<MultiLanguageValue>
+    - name: MultiLanguageValue # 4.1.2.8.2, Table 6
+      attributes:
+        value: String
+        language: String
+
+  overlays:
+    - type: OverlayAnnotation
+      base: DigitalProductPassport
+      name: DigitalProductPassportAnnotationOverlay
+      class:
+        label:
+          en: Digital Product Passport
+          de: Digitaler Produktpass
+        comment:
+          en: Header of a digital product passport following the attributes of EN 18223:2026, Table 1. Data elements follow the classes of EN 18223:2026 4.1.2.3 to 4.1.2.8.
+      attributes:
+        digitalProductPassportId:
+          label:
+            en: Passport ID
+            de: Pass-ID
+        uniqueProductIdentifier:
+          label:
+            en: Unique product identifier
+            de: Eindeutige Produktkennung
+        granularity:
+          label:
+            en: Granularity
+            de: Granularität
+        dppSchemaVersion:
+          label:
+            en: Schema version
+            de: Schemaversion
+        dppStatus:
+          label:
+            en: Passport status
+            de: Passstatus
+        lastUpdated:
+          label:
+            en: Last updated
+            de: Zuletzt geändert
+        economicOperatorId:
+          label:
+            en: Economic operator ID
+            de: Kennung des Wirtschaftsteilnehmers
+        facilityId:
+          label:
+            en: Facility ID
+            de: Kennung der Betriebsstätte
+        contentSpecificationIds:
+          label:
+            en: Content specifications
+            de: Inhaltsspezifikationen
+
+    - type: OverlayValidation
+      base: DigitalProductPassport
+      name: DigitalProductPassportValidationOverlay
+      attributes:
+        digitalProductPassportId:
+          cardinality: "1..1"
+          message: "there must be exactly one 'digitalProductPassportId'"
+        uniqueProductIdentifier:
+          cardinality: "1..1"
+          message: "there must be exactly one 'uniqueProductIdentifier'"
+        granularity:
+          cardinality: "1..1"
+          message: "there must be exactly one 'granularity'"
+        dppSchemaVersion:
+          cardinality: "1..1"
+          message: "there must be exactly one 'dppSchemaVersion'"
+        dppStatus:
+          cardinality: "1..1"
+          message: "there must be exactly one 'dppStatus'"
+        lastUpdated:
+          cardinality: "1..1"
+          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$"
+          message: "there must be exactly one 'lastUpdated' as UTC timestamp"
+        economicOperatorId:
+          cardinality: "1..1"
+          message: "there must be exactly one 'economicOperatorId'"
+        facilityId:
+          cardinality: "0..1"
+          message: "there may be at most one 'facilityId'"
+        contentSpecificationIds:
+          cardinality: "0..n"

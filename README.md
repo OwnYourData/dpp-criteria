@@ -10,6 +10,7 @@ standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 - `tests/shapes/` – test vectors for the shapes
 - `schema/` – JSON Schemas for both file types
 - `scripts/` – test runner for the shapes
+- `soya/` – SOyA structure `DigitalProductPassport`, published at soya.ownyourdata.eu; its namespace is used by the shapes
 
 The format is described in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md).
 
