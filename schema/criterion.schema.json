@@ -6,7 +6,7 @@
   "additionalProperties": false,
   "required": ["id", "version", "status", "title", "statement", "level", "basis", "target", "method"],
   "properties": {
-    "id": { "type": "string", "pattern": "^DPP-[A-Z]{2,5}-[0-9]{3}$" },
+    "id": { "$ref": "#/$defs/criterionId" },
     "version": { "type": "integer", "minimum": 1 },
     "status": { "enum": ["proposed", "active", "deprecated"] },
     "title": { "type": "string", "minLength": 5, "maxLength": 120 },
@@ -22,7 +22,7 @@
         "properties": {
           "source": { "type": "string" },
           "clause": { "type": "string" },
-          "kind": { "enum": ["regulation", "harmonised-standard", "draft-standard", "guidance", "derived"] },
+          "kind": { "enum": ["regulation", "harmonised-standard", "draft-standard", "standard", "guidance", "derived"] },
           "url": { "type": "string", "format": "uri" }
         }
       }
@@ -34,9 +34,19 @@
       "uniqueItems": true,
       "items": { "$ref": "#/$defs/feature" }
     },
+    "applies_if": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/assertion" }
+    },
     "check": { "$ref": "#/$defs/check" },
-    "catalogue_ref": { "type": "string" },
-    "replaced_by": { "type": "string", "pattern": "^DPP-[A-Z]{2,5}-[0-9]{3}$" },
+    "catalogue_ref": {
+      "oneOf": [
+        { "$ref": "#/$defs/criterionId" },
+        { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/criterionId" } }
+      ]
+    },
+    "replaced_by": { "$ref": "#/$defs/criterionId" },
     "notes": { "type": "string" }
   },
   "allOf": [
@@ -62,22 +72,56 @@
     {
       "if": { "properties": { "status": { "const": "deprecated" } } },
       "then": { "required": ["notes"] }
+    },
+    {
+      "if": { "required": ["applies_if"] },
+      "then": { "properties": { "target": { "const": "passport" } } }
     }
   ],
   "$defs": {
+    "criterionId": { "type": "string", "pattern": "^DPP-[A-Z]{2,5}-[0-9]{3}$" },
     "feature": {
       "enum": ["fine-granular-api", "write-api", "historical-versions", "access-levels", "backup-provider", "registry-integration", "battery", "pcds"]
     },
+    "severity": { "enum": ["error", "warning"] },
+    "statusList": { "type": "array", "minItems": 1, "items": { "type": "integer", "minimum": 100, "maximum": 599 } },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^\\$" },
+        "equals": {},
+        "exists": { "type": "boolean" },
+        "in": { "type": "array", "minItems": 1 },
+        "in_ci": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "matches": { "type": "string" },
+        "severity": { "$ref": "#/$defs/severity" }
+      }
+    },
+    "expect": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": { "$ref": "#/$defs/statusList" },
+        "content_type": { "type": "string" },
+        "json": { "type": "array", "items": { "$ref": "#/$defs/assertion" } },
+        "body_equals_step": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "productScheme": { "enum": ["web-path-query", "identification-link", "did", "product-group", "doi"] },
+    "operatorScheme": { "enum": ["iso-iec-6523", "iso-iec-15418", "did", "doi"] },
     "check": {
       "type": "object",
       "required": ["type"],
-      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "declaration"] } },
+      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "identifier", "did", "proof", "links", "declaration"] } },
       "allOf": [
         {
           "if": { "properties": { "type": { "const": "http" } } },
           "then": {
             "required": ["steps"],
             "properties": {
+              "base_matches": { "type": "string" },
               "steps": {
                 "type": "array",
                 "minItems": 1,
@@ -92,34 +136,16 @@
                       "required": ["method", "path"],
                       "properties": {
                         "method": { "enum": ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE"] },
-                        "path": { "type": "string" },
+                        "path": { "type": "string", "pattern": "^/" },
                         "headers": { "type": "object", "additionalProperties": { "type": "string" } },
                         "body": {},
                         "auth": { "enum": ["none", "token"] }
                       }
                     },
-                    "expect": {
-                      "type": "object",
-                      "additionalProperties": false,
-                      "properties": {
-                        "status": { "type": "array", "items": { "type": "integer", "minimum": 100, "maximum": 599 } },
-                        "content_type": { "type": "string" },
-                        "json": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": ["path"],
-                            "properties": {
-                              "path": { "type": "string", "pattern": "^\\$" },
-                              "equals": {},
-                              "exists": { "type": "boolean" },
-                              "in": { "type": "array" },
-                              "matches": { "type": "string" }
-                            }
-                          }
-                        }
-                      }
-                    }
+                    "expect": { "$ref": "#/$defs/expect" },
+                    "skip_if_status": { "$ref": "#/$defs/statusList" },
+                    "warn_if_status": { "$ref": "#/$defs/statusList" },
+                    "severity": { "$ref": "#/$defs/severity" }
                   }
                 }
               }
@@ -131,14 +157,88 @@
           "then": {
             "properties": {
               "min_version": { "enum": ["1.2", "1.3"] },
-              "reject_versions": { "type": "array", "items": { "enum": ["1.0", "1.1", "1.2"] } },
-              "https_redirect": { "type": "boolean" }
+              "reject_versions": { "type": "array", "items": { "enum": ["ssl3", "1.0", "1.1", "1.2"] } },
+              "recommend_versions": { "type": "array", "items": { "enum": ["1.3"] } },
+              "https_redirect": { "type": "boolean" },
+              "valid_certificate": { "type": "boolean" },
+              "http_versions": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "require": { "type": "array", "items": { "enum": ["2", "3"] } },
+                  "reject": { "type": "array", "items": { "enum": ["1.0", "1.1"] } }
+                }
+              }
             }
           }
         },
         {
           "if": { "properties": { "type": { "const": "shacl" } } },
-          "then": { "required": ["shapes"], "properties": { "shapes": { "type": "string", "pattern": "^shapes/.+\\.ttl$" } } }
+          "then": {
+            "oneOf": [ { "required": ["shapes"] }, { "required": ["shapes_select"] } ],
+            "properties": {
+              "shapes": { "type": "string", "pattern": "^shapes/.+\\.ttl$" },
+              "shapes_select": { "enum": ["content-specification", "semantic-repository"] }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "resolve" } } },
+          "then": {
+            "properties": {
+              "accept": { "type": "string" },
+              "expect": { "$ref": "#/$defs/expect" },
+              "history": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["fail_after_consecutive_days"],
+                "properties": { "fail_after_consecutive_days": { "type": "integer", "minimum": 1 } }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "identifier" } } },
+          "then": {
+            "required": ["path"],
+            "properties": {
+              "path": { "type": "string", "pattern": "^\\$" },
+              "schemes": { "type": "array", "minItems": 1, "items": { "anyOf": [ { "$ref": "#/$defs/productScheme" }, { "$ref": "#/$defs/operatorScheme" } ] } },
+              "url_or_conversion": { "type": "boolean" },
+              "granularity_path": { "type": "string", "pattern": "^\\$" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "did" } } },
+          "then": {
+            "required": ["paths"],
+            "properties": {
+              "paths": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^\\$" } },
+              "vc_data_model": { "enum": ["2.0"] }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "proof" } } },
+          "then": {
+            "required": ["key_from", "formats"],
+            "properties": {
+              "key_from": { "type": "string", "pattern": "^\\$" },
+              "formats": { "type": "array", "minItems": 1, "items": { "enum": ["vc-data-integrity", "vc-jose-cose", "did-oyd-log"] } }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "links" } } },
+          "then": {
+            "required": ["element_type", "required"],
+            "properties": {
+              "element_type": { "const": "RelatedResource" },
+              "required": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+              "unreachable": { "$ref": "#/$defs/severity" }
+            }
+          }
         }
       ]
     }

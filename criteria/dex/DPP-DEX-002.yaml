@@ -1,0 +1,22 @@
+id: DPP-DEX-002
+version: 1
+status: proposed
+title: HTTPS with a valid certificate
+statement: >-
+  Standardised DPP access MUST use HTTPS with a valid certificate; plain HTTP MUST
+  be redirected to HTTPS or refused.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: '4'
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: tls
+  https_redirect: true
+  valid_certificate: true
+catalogue_ref:
+- DPP-DEX-002
+- DPP-DEX-001

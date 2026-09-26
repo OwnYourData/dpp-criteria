@@ -1,0 +1,33 @@
+id: DPP-DAT-015
+version: 1
+status: proposed
+title: Granularity uses the EN 18223 values
+statement: >-
+  The attribute granularity MUST take one of the values model, batch or item.
+level: MUST
+basis:
+- source: EN 18223:2026
+  clause: 4.1.2.2
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  expect:
+    json:
+    - path: $.granularity
+      in_ci:
+      - model
+      - batch
+      - item
+    - path: $.granularity
+      in:
+      - model
+      - batch
+      - item
+      severity: warning
+catalogue_ref: DPP-DAT-008
+notes: >-
+  The standard lists the values in lower case, its serialization example writes
+  "Model". Other capitalisation therefore only gives a warning.

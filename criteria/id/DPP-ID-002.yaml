@@ -1,0 +1,38 @@
+id: DPP-ID-002
+version: 1
+status: proposed
+title: Product identifier stays resolvable over time
+statement: >-
+  The unique product identifier MUST keep resolving to its passport for as long
+  as the passport has to be available.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(1)(a)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 9(2)(i)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18219:2026
+  clause: 4.2.2
+  kind: harmonised-standard
+- source: EN 18221:2026
+  clause: '4.1'
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  history:
+    fail_after_consecutive_days: 3
+catalogue_ref:
+- DPP-ID-002
+- DPP-BCK-001
+- DPP-BCK-003
+notes: >-
+  Rated only by the validator from its daily runs against the test data of a listed
+  service; single failures appear in the history. A single linter run does not rate
+  this criterion (see DPP-ID-001).

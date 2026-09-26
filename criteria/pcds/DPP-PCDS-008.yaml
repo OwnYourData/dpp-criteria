@@ -1,0 +1,25 @@
+id: DPP-PCDS-008
+version: 1
+status: proposed
+title: Embedded PCDS are machine-readable with template ID
+statement: >-
+  Product circularity data sheets (PCDS) MUST be machine-readable and contain their
+  unique template ID and references to the standards used.
+level: MUST
+basis:
+- source: ISO 59040:2025
+  clause: 7.2.1
+  kind: standard
+target: passport
+method: automated
+requires_features: []
+applies_if:
+- path: $.contentSpecificationIds[?search(@, '59040|PCDS|pcds')]
+  exists: true
+check:
+  type: shacl
+  shapes: shapes/pcds-iso59040.ttl
+catalogue_ref: DPP-PCDS-008
+notes: >-
+  Applies only to passports that embed a PCDS. The rule that recognises a PCDS is
+  fixed together with the linter.

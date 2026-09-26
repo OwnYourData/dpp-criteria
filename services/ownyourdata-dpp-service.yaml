@@ -9,6 +9,7 @@ features: [fine-granular-api, write-api, historical-versions]
 test_data:
   productId: https://dpp.oydapp.eu/01/09520123456788/21/000001
   dppId: did:oyd:zQmTMPiMZ6mUg5bVXQxkuZ1JCgmtKE9QNu514EdMUydq9zL
+  elementIdPath: $.ProductIdentification.ModelIdentifier
 credentials: none
 declarations: []
 listed_since: 2026-10-01

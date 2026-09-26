@@ -1,0 +1,42 @@
+id: DPP-API-019
+version: 1
+status: proposed
+title: Lifecycle API provides ReadDPPVersionByIdAndDate
+statement: >-
+  A DPP service SHOULD provide historical passport versions by passport ID and date
+  through ReadDPPVersionByIdAndDate.
+level: SHOULD
+basis:
+- source: EN 18222:2026
+  clause: 4.1, 4.4, 8.2
+  kind: harmonised-standard
+- source: EN 18221:2026
+  clause: '4.2'
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features:
+- historical-versions
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dppsByIdAndDate/{dppId}?date={now}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.digitalProductPassportId
+        equals: '{dppId}'
+    skip_if_status:
+    - 401
+    - 403
+catalogue_ref: DPP-API-019
+notes: >-
+  EN 18221 4.2 lets archived versions be restricted to authenticated and authorised
+  actors; 401 or 403 therefore skips the check. EN 18222 4.1 still lists the draft
+  name ReadDPPVersionByProductIdAndDate; the check follows 4.4 and 8.2, which key
+  on the passport ID.

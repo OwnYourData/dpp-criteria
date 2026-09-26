@@ -1,0 +1,26 @@
+id: DPP-BAT-002
+version: 1
+status: proposed
+title: Battery passport exposes the public Annex XIII data
+statement: >-
+  A battery passport MUST make the information that Annex XIII lists as public accessible
+  to everyone.
+level: MUST
+basis:
+- source: Regulation (EU) 2023/1542 (Batteries)
+  clause: Art. 77; Annex XIII (1)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2023/1542/oj
+target: passport
+method: automated
+requires_features: []
+applies_if:
+- path: $.contentSpecificationIds[?search(@, '[Bb]atter')]
+  exists: true
+check:
+  type: shacl
+  shapes: shapes/battery-annex-xiii.ttl
+catalogue_ref: DPP-BAT-002
+notes: >-
+  Shapes come from the OpenEPCIS validator resources (Apache 2.0). The rule that
+  recognises a battery passport is fixed together with the linter.

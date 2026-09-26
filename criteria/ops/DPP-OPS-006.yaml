@@ -2,12 +2,11 @@ id: DPP-OPS-006
 version: 1
 status: proposed
 title: Separate test and production environments
-statement: >-
-  Test and production environments SHOULD be separated.
+statement: Test and production environments SHOULD be separated.
 level: SHOULD
 basis:
-  - source: European Commission – DPP Registry testing environment
-    kind: guidance
+- source: European Commission – DPP Registry testing environment
+  kind: guidance
 target: operator
 method: self-declared
 requires_features: []

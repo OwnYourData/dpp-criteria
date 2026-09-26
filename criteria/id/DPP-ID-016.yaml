@@ -1,0 +1,26 @@
+id: DPP-ID-016
+version: 1
+status: proposed
+title: DID identifiers follow DID Core, DID Resolution and VC 2.0
+statement: >-
+  Where the economic operator or facility identifier is a DID, it MUST conform to
+  DID Core 1.0 and be resolvable with DID Resolution, and credentials associated
+  with it MUST follow the VC Data Model 2.0.
+level: MUST
+basis:
+- source: EN 18219:2026
+  clause: 6.4.2 a)–c)
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: did
+  paths:
+  - $.economicOperatorId
+  - $.facilityId
+  vc_data_model: '2.0'
+notes: >-
+  Values that are not DIDs are skipped. Resolution uses didlint. Associated credentials
+  are not required; if there are none, a warning is given. No issuer is prescribed
+  (EN 18219 6.4.3 lists registries only as an option).

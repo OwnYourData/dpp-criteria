@@ -1,24 +1,30 @@
 id: DPP-DAT-014
 version: 1
 status: proposed
-title: Passport attributes use the EN 18223 names
+title: Passport header uses the EN 18223 attributes
 statement: >-
-  The attributes of the DigitalProductPassport class MUST use the names of the
-  published data model (digitalProductPassportId, uniqueProductIdentifier,
-  granularity, dppSchemaVersion, dppStatus, lastUpdated, economicOperatorId,
-  facilityId, contentSpecificationIds).
+  A DPP MUST carry the attributes of the DigitalProductPassport class under their
+  published names, including all mandatory ones (digitalProductPassportId, uniqueProductIdentifier,
+  granularity, dppSchemaVersion, dppStatus, lastUpdated, economicOperatorId).
 level: MUST
 basis:
-  - source: EN 18223:2026
-    clause: "4.1, Table 1"
-    kind: harmonised-standard
+- source: EN 18223:2026
+  clause: 4.1.2.1, Table 1; 5.2.2
+  kind: harmonised-standard
 target: passport
 method: automated
 requires_features: []
 check:
   type: shacl
   shapes: shapes/en18223-dpp-core.ttl
+catalogue_ref:
+- DPP-CRT-009
+- DPP-DAT-007
+- DPP-DAT-009
 notes: >-
-  Not in catalogue v2. Draft-era names (ProductID, DPPStatus, …) fail this
-  check. Which attributes are mandatory per Table 1 is fixed in the shapes
-  file, checked against the standard text.
+  facilityId is optional (0..1), contentSpecificationIds may repeat (0..*). lastUpdated
+  is an ISO 8601 UTC timestamp. dppStatus is a free string; values outside the examples
+  active, inactive, archived, invalid give a warning, independent of capitalisation.
+  dppSchemaVersion and contentSpecificationIds are strings and are not resolved.
+  A passport ID that is not a URI gives a warning. Draft-era names (ProductID, DPPStatus,
+  …) fail.

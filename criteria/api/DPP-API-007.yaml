@@ -1,0 +1,54 @@
+id: DPP-API-007
+version: 1
+status: proposed
+title: Errors use the EN 18222 status codes
+statement: >-
+  A DPP service MUST answer faulty requests with the status codes of EN 18222 and
+  MUST NOT answer them with a server error.
+level: MUST
+basis:
+- source: EN 18222:2026
+  clause: 7.2, Table 15
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{randomId}
+      auth: none
+    expect:
+      status:
+      - 404
+      json:
+      - path: $.message
+        exists: true
+        severity: warning
+  - request:
+      method: POST
+      path: /dppsByProductIds
+      auth: none
+      headers:
+        Content-Type: application/json
+      body: '{not json'
+    expect:
+      status:
+      - 400
+  - request:
+      method: POST
+      path: /dppsByProductIds
+      auth: none
+      headers:
+        Content-Type: application/json
+      body:
+        productId: 42
+    expect:
+      status:
+      - 400
+catalogue_ref: DPP-API-007
+notes: >-
+  The result object of Tables 12 to 14 is recommended, not required; a missing one
+  gives a warning.

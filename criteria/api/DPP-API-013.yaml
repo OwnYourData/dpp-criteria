@@ -3,22 +3,38 @@ version: 1
 status: proposed
 title: Lifecycle API provides ReadDPPById
 statement: >-
-  The DPP lifecycle API MUST provide the method ReadDPPById.
+  The DPP lifecycle API MUST provide the method ReadDPPById without requiring credentials
+  for public data.
 level: MUST
 basis:
-  - source: EN 18222:2026
-    clause: "4.2"
-    kind: harmonised-standard
+- source: EN 18222:2026
+  clause: 4.1, 4.2, 8.2
+  kind: harmonised-standard
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(1)(d)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18219:2026
+  clause: 4.6.2 (3)
+  kind: harmonised-standard
 target: service
 method: automated
 requires_features: []
 check:
   type: http
   steps:
-    - request: { method: GET, path: "/dpps/{dppId}", auth: none }
-      expect:
-        status: [200]
-        content_type: application/json
-        json:
-          - { path: "$.digitalProductPassportId", equals: "{dppId}" }
-catalogue_ref: DPP-API-013
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.digitalProductPassportId
+        equals: '{dppId}'
+catalogue_ref:
+- DPP-API-013
+- DPP-API-001
+- DPP-API-002

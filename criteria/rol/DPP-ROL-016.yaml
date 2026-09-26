@@ -1,0 +1,30 @@
+id: DPP-ROL-016
+version: 1
+status: proposed
+title: Passport names its economic operator
+statement: >-
+  A DPP MUST identify the responsible economic operator in the attribute economicOperatorId.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III (g), (h), (k)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18223:2026
+  clause: 4.1.2.1, Table 1
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  expect:
+    json:
+    - path: $.economicOperatorId
+      exists: true
+    - path: $.economicOperatorId
+      matches: \S
+catalogue_ref: DPP-ROL-016
+notes: >-
+  The syntax of the identifier is checked by DPP-ID-009, DID-specific requirements
+  by DPP-ID-016.

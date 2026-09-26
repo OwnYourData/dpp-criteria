@@ -1,0 +1,22 @@
+id: DPP-INT-005
+version: 1
+status: proposed
+title: Passport body follows the EN 18223 data model
+statement: >-
+  The data elements of a DPP MUST follow the semantic model and the serialization
+  of EN 18223.
+level: MUST
+basis:
+- source: EN 18223:2026
+  clause: 4.1.2.3–4.1.2.9, 5.2
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: shacl
+  shapes: shapes/en18223-dpp-model.ttl
+catalogue_ref: DPP-INT-005
+notes: >-
+  Covers the DataElement classes, unique elementId per level and the value types
+  of Table 7. Header attributes are checked by DPP-DAT-014.

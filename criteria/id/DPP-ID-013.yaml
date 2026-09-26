@@ -1,0 +1,30 @@
+id: DPP-ID-013
+version: 1
+status: proposed
+title: Passport readable without registration or credentials
+statement: >-
+  Public DPP information MUST be retrievable through the product identifier without
+  registration, DPP-specific software or user credentials.
+level: MUST
+basis:
+- source: EN 18219:2026
+  clause: 4.6.2 (2), (3)
+  kind: harmonised-standard
+- source: EN 18220:2026
+  clause: 5.3.4
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  expect:
+    status:
+    - 200
+catalogue_ref:
+- DPP-CFG-006
+- DPP-ACC-005
+- DPP-BAT-006
+notes: >-
+  The request is a plain HTTPS GET without authorization or special headers. This
+  also covers the absence of vendor lock-in as far as it can be observed.

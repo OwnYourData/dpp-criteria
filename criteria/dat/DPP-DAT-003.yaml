@@ -1,0 +1,36 @@
+id: DPP-DAT-003
+version: 1
+status: proposed
+title: Passport is delivered as structured JSON
+statement: >-
+  DPP data MUST be machine-readable and structured, delivered as a JSON object based
+  on open standards.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(1)(d)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18216:2026
+  clause: 5 a)
+  kind: harmonised-standard
+- source: EN 18223:2026
+  clause: 5.2.4
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  expect:
+    status:
+    - 200
+    content_type: application/json
+catalogue_ref:
+- DPP-DAT-003
+- DPP-DAT-001
+- DPP-DAT-002
+- DPP-DAT-004
+notes: >-
+  The response has to parse as a single JSON object. Attribute names are checked
+  by DPP-DAT-014.

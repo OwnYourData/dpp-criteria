@@ -1,0 +1,24 @@
+id: DPP-DAT-016
+version: 1
+status: proposed
+title: Passport is available as HTML
+statement: >-
+  A DPP MUST also be provided as HTML through HTTP content negotiation.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: 5 d)
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  accept: text/html
+  expect:
+    status:
+    - 200
+    content_type: text/html
+notes: >-
+  The accessibility requirements of the same clause (EN 301 549) are not checked
+  automatically.

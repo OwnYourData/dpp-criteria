@@ -1,0 +1,19 @@
+id: DPP-ID-014
+version: 1
+status: proposed
+title: Product identifier is a URL or convertible to one
+statement: >-
+  The unique product identifier MUST be a URL or be convertible into a URL by a
+  specified method.
+level: MUST
+basis:
+- source: EN 18219:2026
+  clause: 4.3.2 (2)
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: identifier
+  path: $.uniqueProductIdentifier
+  url_or_conversion: true

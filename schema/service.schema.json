@@ -25,7 +25,11 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["productId", "dppId"],
-      "properties": { "productId": { "type": "string" }, "dppId": { "type": "string" } }
+      "properties": {
+        "productId": { "type": "string" },
+        "dppId": { "type": "string" },
+        "elementIdPath": { "type": "string", "pattern": "^\\$", "description": "RFC 9535 JSONPath of a data element in the test passport; needed for fine-granular-api checks." }
+      }
     },
     "credentials": { "type": "string", "pattern": "^(none|secret:[A-Z][A-Z0-9_]*)$" },
     "declarations": {

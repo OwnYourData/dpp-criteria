@@ -1,0 +1,35 @@
+id: DPP-CAR-002
+version: 1
+status: proposed
+title: Product identifier follows an EN 18219 product scheme
+statement: >-
+  The unique product identifier MUST follow one of the product ID schemes of EN
+  18219.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(1)(c)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18219:2026
+  clause: 4.3.2, Clause 5
+  kind: harmonised-standard
+- source: EN 18220:2026
+  clause: 5.2.2
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: identifier
+  path: $.uniqueProductIdentifier
+  schemes:
+  - web-path-query
+  - identification-link
+  - did
+  - product-group
+  - doi
+catalogue_ref: DPP-CAR-002
+notes: >-
+  Only the identifier is checked. Conformity of the physical data carrier (EN 18220)
+  cannot be observed.

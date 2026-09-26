@@ -1,0 +1,41 @@
+id: DPP-API-021
+version: 1
+status: proposed
+title: elementIdPath uses RFC 9535 JSONPath
+statement: >-
+  The value of elementIdPath in the fine-granular API MUST follow RFC 9535 (JSONPath).
+level: MUST
+basis:
+- source: EN 18222:2026
+  clause: 8.1, 8.4, Table 18
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features:
+- fine-granular-api
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}/elements/{elementIdPath}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.elementId
+        exists: true
+  - request:
+      method: GET
+      path: /dpps/{dppId}/elements/%24%5B
+      auth: none
+    expect:
+      status:
+      - 400
+      - 404
+notes: >-
+  The fine-granular API itself is optional (EN 18222 6.1); the criterion applies
+  only to services that declare it. The test data of the service names a JSONPath
+  to a known data element. The second step sends the invalid expression "$[".

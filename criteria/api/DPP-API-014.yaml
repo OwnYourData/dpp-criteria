@@ -1,0 +1,30 @@
+id: DPP-API-014
+version: 1
+status: proposed
+title: Lifecycle API provides ReadDPPByProductId
+statement: >-
+  The DPP lifecycle API MUST provide the method ReadDPPByProductId, returning the
+  current passport for a product identifier.
+level: MUST
+basis:
+- source: EN 18222:2026
+  clause: 4.1, 4.3, 8.2
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dppsByProductId/{productId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.uniqueProductIdentifier
+        equals: '{productId}'
+catalogue_ref: DPP-API-014

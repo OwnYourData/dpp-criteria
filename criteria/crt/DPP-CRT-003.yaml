@@ -1,0 +1,27 @@
+id: DPP-CRT-003
+version: 1
+status: proposed
+title: Passport contains the product-specific mandatory data
+statement: >-
+  A DPP MUST contain all data elements that the applicable product-specific rules
+  make mandatory.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 9(1)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18221:2026
+  clause: '4.1'
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: shacl
+  shapes_select: content-specification
+catalogue_ref: DPP-CRT-003
+notes: >-
+  Shapes are selected through contentSpecificationIds. If no shapes exist for the
+  specifications of a passport, the result is skipped. Header attributes are checked
+  by DPP-DAT-014.

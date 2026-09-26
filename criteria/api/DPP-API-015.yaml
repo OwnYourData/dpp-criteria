@@ -1,0 +1,47 @@
+id: DPP-API-015
+version: 1
+status: proposed
+title: Lifecycle API provides ReadDPPIdsByProductIds
+statement: >-
+  The DPP lifecycle API MUST provide the method ReadDPPIdsByProductIds, so that
+  passports can be found by product identifier.
+level: MUST
+basis:
+- source: EN 18222:2026
+  clause: 4.1, 4.5, 8.2
+  kind: harmonised-standard
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(1)(d)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+target: service
+method: automated
+requires_features: []
+check:
+  type: http
+  steps:
+  - request:
+      method: POST
+      path: /dppsByProductIds
+      auth: none
+      headers:
+        Content-Type: application/json
+      body:
+      - '{productId}'
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $..[?@ == '{dppId}']
+        exists: true
+    warn_if_status:
+    - 400
+catalogue_ref:
+- DPP-API-015
+- DPP-DAT-005
+notes: >-
+  The standard does not fix the JSON form of the request body; the check sends an
+  array of product identifiers. If a service rejects that form with 400, a warning
+  is given instead of a failure. The ID is accepted in a bare array or in a wrapping
+  object.

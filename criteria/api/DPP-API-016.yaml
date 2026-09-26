@@ -3,35 +3,41 @@ version: 1
 status: proposed
 title: Lifecycle API provides UpdateDPPById
 statement: >-
-  If authorised parties may update parts of a DPP, the lifecycle API MUST
-  provide the method UpdateDPPById.
+  If authorised parties may update parts of a DPP, the lifecycle API MUST provide
+  the method UpdateDPPById.
 level: MUST
 basis:
-  - source: EN 18222:2026
-    clause: "4.7"
-    kind: harmonised-standard
+- source: EN 18222:2026
+  clause: 4.1, 4.7
+  kind: harmonised-standard
 target: service
 method: automated-auth
-requires_features: [write-api]
+requires_features:
+- write-api
 check:
   type: http
   steps:
-    - request:
-        method: PATCH
-        path: "/dpps/{dppId}"
-        auth: none
-        body: { dppStatus: "Active" }
-      expect:
-        status: [401, 403]
-    - request:
-        method: PATCH
-        path: "/dpps/{dppId}"
-        auth: token
-        body: { dppStatus: "Active" }
-      expect:
-        status: [200, 204]
+  - request:
+      method: PATCH
+      path: /dpps/{dppId}
+      auth: none
+      body:
+        dppStatus: Active
+    expect:
+      status:
+      - 401
+      - 403
+  - request:
+      method: PATCH
+      path: /dpps/{dppId}
+      auth: token
+      body:
+        dppStatus: Active
+    expect:
+      status:
+      - 200
+      - 204
 catalogue_ref: DPP-API-016
 notes: >-
-  Catalogue v2 names the method UpdateDPP (draft name). The request body is a
-  placeholder; the runner PR that implements write checks fixes a harmless
-  update against the test passport.
+  The request body is a placeholder; the runner change that implements write checks
+  fixes a harmless update against the test passport.

@@ -1,0 +1,22 @@
+id: DPP-DEX-006
+version: 1
+status: proposed
+title: HTTP versions below HTTP/2 are not used
+statement: >-
+  DPP communication MUST NOT use HTTP versions older than HTTP/2.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: '4'
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: tls
+  http_versions:
+    reject:
+    - '1.0'
+    - '1.1'
+notes: >-
+  Checked on the HTTPS port. The redirect from plain HTTP (DPP-DEX-002) is not affected.

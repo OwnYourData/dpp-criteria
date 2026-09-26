@@ -1,0 +1,37 @@
+id: DPP-ID-010
+version: 1
+status: proposed
+title: Facility identifier follows an EN 18219 scheme
+statement: >-
+  Where a facility identifier is given, it MUST follow one of the ID schemes of
+  EN 18219 Clause 6.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III (i)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18219:2026
+  clause: '6.1'
+  kind: harmonised-standard
+- source: EN 18223:2026
+  clause: 4.1.2.1, Table 1
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+applies_if:
+- path: $.facilityId
+  exists: true
+check:
+  type: identifier
+  path: $.facilityId
+  schemes:
+  - iso-iec-6523
+  - iso-iec-15418
+  - did
+  - doi
+catalogue_ref: DPP-ID-010
+notes: >-
+  facilityId is optional in EN 18223 (cardinality 0..1); without it the criterion
+  is skipped.

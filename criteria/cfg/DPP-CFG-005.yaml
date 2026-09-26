@@ -1,0 +1,30 @@
+id: DPP-CFG-005
+version: 1
+status: proposed
+title: Granularity matches the product identifier
+statement: >-
+  The granularity of a DPP MUST match the level (model, batch or item) that its
+  unique product identifier identifies.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 9(2)(d)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18223:2026
+  clause: 4.1.2.2
+  kind: harmonised-standard
+- source: EN 18219:2026
+  clause: 4.4.2 (1)
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: identifier
+  path: $.uniqueProductIdentifier
+  granularity_path: $.granularity
+catalogue_ref: DPP-CFG-005
+notes: >-
+  Only for identifier schemes that encode the level (Identification Link, EN 18219
+  5.3); other schemes are skipped. The allowed values are checked by DPP-DAT-015.

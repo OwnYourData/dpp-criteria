@@ -1,0 +1,29 @@
+id: DPP-DEX-004
+version: 1
+status: proposed
+title: API responses are JSON
+statement: >-
+  The DPP API MUST support JSON as data format for its responses.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: 5 a)
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+catalogue_ref: DPP-DEX-004
+notes: >-
+  The format of the passport retrieved through the product identifier is checked
+  by DPP-DAT-003.

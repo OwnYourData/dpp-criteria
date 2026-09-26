@@ -3,23 +3,29 @@ version: 1
 status: proposed
 title: Product identifier resolves to its passport
 statement: >-
-  A DPP MUST be connected to a persistent unique product identifier that
-  resolves to this passport.
+  A DPP MUST be connected to a persistent unique product identifier that resolves
+  to exactly this passport.
 level: MUST
 basis:
-  - source: Regulation (EU) 2024/1781 (ESPR)
-    clause: Art. 10(1)(a)
-    kind: regulation
-    url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
-  - source: EN 18219:2026
-    clause: "4.5.2 (1)"
-    kind: harmonised-standard
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(1)(a)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: EN 18219:2026
+  clause: 4.5.2 (1)
+  kind: harmonised-standard
+- source: EN 18220:2026
+  clause: 5.2.1
+  kind: harmonised-standard
 target: passport
 method: automated
 requires_features: []
 check:
   type: resolve
-catalogue_ref: DPP-ID-001
+catalogue_ref:
+- DPP-ID-001
+- DPP-CAR-004
 notes: >-
-  Only the digital half is testable: that the identifier resolves. Whether the
-  physical data carrier is on the product is out of scope.
+  Only the digital half is testable: the identifier resolves to one passport object
+  (not a list) whose uniqueProductIdentifier equals the input. Whether the physical
+  data carrier is on the product is out of scope.

@@ -1,0 +1,69 @@
+id: DPP-SEC-001
+version: 1
+status: proposed
+title: Passport cannot be changed without authorisation
+statement: >-
+  A DPP service MUST reject attempts to create or change passports without valid
+  authorisation.
+level: MUST
+basis:
+- source: EN 18221:2026
+  clause: '4.1'
+  kind: harmonised-standard
+- source: EN 18222:2026
+  clause: 4.6, 4.7, 4.8, Table 15
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: none
+    expect:
+      status:
+      - 200
+  - request:
+      method: PATCH
+      path: /dpps/{dppId}
+      auth: none
+      headers:
+        Content-Type: application/json
+      body: {}
+    expect:
+      status:
+      - 401
+      - 403
+      - 405
+      - 501
+  - request:
+      method: POST
+      path: /dpps
+      auth: none
+      headers:
+        Content-Type: application/json
+      body: {}
+    expect:
+      status:
+      - 401
+      - 403
+      - 405
+      - 501
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: none
+    expect:
+      status:
+      - 200
+      body_equals_step: 1
+catalogue_ref:
+- DPP-SEC-001
+- DPP-API-005
+notes: >-
+  The PATCH body changes nothing, so a wrongly accepted request leaves the test
+  passport intact. No DELETE is sent against the test passport. 405 and 501 count
+  for services without a write API.

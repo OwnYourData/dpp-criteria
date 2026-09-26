@@ -1,0 +1,29 @@
+id: DPP-DAT-006
+version: 1
+status: proposed
+title: Passport follows the Commission's semantic data models
+statement: >-
+  DPP data MUST be structured according to the common data models and semantic definitions
+  of the semantic repository.
+level: MUST
+basis:
+- source: Implementing Regulation (EU) 2026/1778 (DPP registry)
+  clause: Art. 11(3); Art. 2(12)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj
+- source: EN 18223:2026
+  clause: '4.3'
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: shacl
+  shapes_select: semantic-repository
+catalogue_ref:
+- DPP-DAT-006
+- DPP-ENT-012
+notes: >-
+  Data elements link to their definitions through dictionaryReference. Includes
+  value ranges, units, formats and vocabularies defined there. No semantic catalogue
+  is published yet, so the result is skipped until one exists.

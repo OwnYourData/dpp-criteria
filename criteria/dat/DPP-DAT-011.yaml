@@ -1,0 +1,34 @@
+id: DPP-DAT-011
+version: 1
+status: proposed
+title: Related resources are typed and reachable
+statement: >-
+  Links from a DPP to other passports or resources MUST carry a content type and
+  a resolvable URL.
+level: MUST
+basis:
+- source: Implementing Regulation (EU) 2026/1778 (DPP registry)
+  clause: Art. 12(1)(a)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj
+- source: EN 18223:2026
+  clause: 4.1.2.7
+  kind: harmonised-standard
+- source: EN 18221:2026
+  clause: 4.1, 4.4
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: links
+  element_type: RelatedResource
+  required:
+  - contentType
+  - url
+  unreachable: warning
+catalogue_ref: DPP-DAT-011
+notes: >-
+  A URL that does not answer is reported as a warning, so that outages of third-party
+  sites do not fail the passport. Without RelatedResource elements the result is
+  skipped.
