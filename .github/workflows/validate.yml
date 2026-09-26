@@ -27,13 +27,13 @@ jobs:
           done
           exit $fail
 
-  shapes:
+  structures:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
-      - run: pip install pyshacl==0.30.1
-      - name: SHACL shapes against test vectors
-        run: python scripts/test_shapes.py
+          node-version: "20"
+      - run: npm install --no-save soya-js@0.8.12
+      - name: SOyA structures against test vectors
+        run: node scripts/test_structures.js

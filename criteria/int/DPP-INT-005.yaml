@@ -15,11 +15,12 @@ method: automated
 requires_features: []
 check:
   type: shacl
-  shapes: shapes/en18223-dpp-model.ttl
+  structure: DigitalProductPassport
 catalogue_ref: DPP-INT-005
 notes: >-
-  Covers the DataElement classes, unique elementId per level and the value types
-  of Table 7 in the expanded full serialization (Annex A), in which every data
-  element carries objectType. Passports in the compressed serialization (5.2.5 to
-  5.2.9) are skipped until shapes for that form exist. Header attributes are
-  checked by DPP-DAT-014.
+  Covers the DataElement classes (objectType), the attributes of Tables 2 to 6 and
+  the value types of Table 7 in the expanded full serialization (Annex A). Whether
+  an elementId is unique at its level is not checked: SOyA validates with SHACL
+  Core, which cannot compare sibling nodes. Passports in the compressed
+  serialization (5.2.5 to 5.2.9) are skipped until a structure for that form
+  exists. Header attributes are checked by DPP-DAT-014.

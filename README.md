@@ -6,11 +6,10 @@ standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 
 - `criteria/` – one YAML file per criterion
 - `services/` – one YAML file per listed DPP service
-- `shapes/` – SHACL shapes used by passport checks, see [shapes/README.md](shapes/README.md)
-- `tests/shapes/` – test vectors for the shapes
+- `soya/` – SOyA structures with the SHACL shapes of the passport checks, see [soya/README.md](soya/README.md)
+- `tests/soya/` – test vectors for the structures
 - `schema/` – JSON Schemas for both file types
-- `scripts/` – test runner for the shapes
-- `soya/` – SOyA structure `DigitalProductPassport`, published at soya.ownyourdata.eu; its namespace is used by the shapes
+- `scripts/` – test runner for the structures
 
 The format is described in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md).
 

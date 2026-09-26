@@ -175,9 +175,9 @@
         {
           "if": { "properties": { "type": { "const": "shacl" } } },
           "then": {
-            "oneOf": [ { "required": ["shapes"] }, { "required": ["shapes_select"] } ],
+            "oneOf": [ { "required": ["structure"] }, { "required": ["shapes_select"] } ],
             "properties": {
-              "shapes": { "type": "string", "pattern": "^shapes/.+\\.ttl$" },
+              "structure": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*$" },
               "shapes_select": { "enum": ["content-specification", "semantic-repository"] }
             }
           }

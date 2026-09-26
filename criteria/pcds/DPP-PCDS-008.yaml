@@ -18,8 +18,9 @@ applies_if:
   exists: true
 check:
   type: shacl
-  shapes: shapes/pcds-iso59040.ttl
+  structure: DigitalProductPassportPcds
 catalogue_ref: DPP-PCDS-008
 notes: >-
-  Applies only to passports that embed a PCDS. The rule that recognises a PCDS is
-  fixed together with the linter.
+  Applies only to passports that embed a PCDS; checked with the SOyA structure
+  DigitalProductPassportPcds. The rule that recognises a PCDS is fixed together
+  with the linter.

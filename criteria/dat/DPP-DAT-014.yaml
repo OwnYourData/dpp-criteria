@@ -16,7 +16,7 @@ method: automated
 requires_features: []
 check:
   type: shacl
-  shapes: shapes/en18223-dpp-core.ttl
+  structure: DigitalProductPassport
 catalogue_ref:
 - DPP-CRT-009
 - DPP-DAT-007
@@ -27,4 +27,4 @@ notes: >-
   active, inactive, archived, invalid give a warning, independent of capitalisation.
   dppSchemaVersion and contentSpecificationIds are strings and are not resolved.
   A passport ID that is not a URI gives a warning. Draft-era names (ProductID, DPPStatus,
-  …) fail.
+  …) fail because the published attribute is missing.

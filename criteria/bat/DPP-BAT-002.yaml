@@ -19,8 +19,9 @@ applies_if:
   exists: true
 check:
   type: shacl
-  shapes: shapes/battery-annex-xiii.ttl
+  structure: DigitalProductPassportBattery
 catalogue_ref: DPP-BAT-002
 notes: >-
-  Shapes come from the OpenEPCIS validator resources (Apache 2.0). The rule that
-  recognises a battery passport is fixed together with the linter.
+  The SOyA structure DigitalProductPassportBattery takes its shapes from the
+  OpenEPCIS validator resources (Apache 2.0). The rule that recognises a battery
+  passport is fixed together with the linter.

@@ -71,11 +71,14 @@ UTC). Placeholders used in a path are percent-encoded.
 - **tls** — `min_version`, `reject_versions` (`ssl3`, `1.0`, …),
   `recommend_versions` (warning if missing), `https_redirect`,
   `valid_certificate`, `http_versions` with `require` and `reject` lists.
-- **shacl** — `shapes`: path to a Turtle file under `shapes/`, or
-  `shapes_select: content-specification | semantic-repository` to pick shapes
-  by the passport's `contentSpecificationIds` or from the Commission's semantic
-  repository (no shapes found → `skipped`). Input is the passport fetched via
-  `{productId}`.
+- **shacl** — `structure`: name of a SOyA structure under `soya/`, published on
+  soya.ownyourdata.eu. The passport fetched via `{productId}` is validated with
+  `soya validate <structure>`; the results whose message starts with the
+  criterion ID in brackets belong to the criterion (see
+  [soya/README.md](soya/README.md)). Alternatively
+  `shapes_select: content-specification | semantic-repository` picks shapes by
+  the passport's `contentSpecificationIds` or from the Commission's semantic
+  repository (none found → `skipped`).
 - **resolve** — follow `{productId}` like a phone scanning a data carrier
   (plain HTTPS GET, no special headers). Without `expect` it expects a single
   passport object whose `uniqueProductIdentifier` equals the input; with

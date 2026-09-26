@@ -1,126 +1,733 @@
+# SOyA structure for EN 18223:2026 (Digital Product Passport – System interoperability).
+# Bases: classes and attributes of 4.1.2. Overlays: annotations, and the SHACL shapes of the
+# criteria DPP-DAT-014 (header, Table 1) and DPP-INT-005 (data elements, expanded full
+# serialization of Annex A). Every validation message starts with the criterion ID in brackets.
+# Overlays of type OverlayShacl carry SHACL Core as JSON-LD; soya init takes them over unchanged.
 meta:
   name: DigitalProductPassport
-
 content:
   bases:
-    - name: DigitalProductPassport # EN 18223:2026 4.1.2.1, Table 1
+  - name: DigitalProductPassport
+    attributes:
+      digitalProductPassportId: String
+      uniqueProductIdentifier: String
+      granularity: String
+      dppSchemaVersion: String
+      dppStatus: String
+      lastUpdated: String
+      economicOperatorId: String
+      facilityId: String
+      contentSpecificationIds: set<String>
+      elements: set<DataElement>
+  - name: DataElement
+    attributes:
+      elementId: String
+      dictionaryReference: String
+    subClasses:
+    - name: DataElementCollection
       attributes:
-        digitalProductPassportId: String
-        uniqueProductIdentifier: String
-        granularity: String
-        dppSchemaVersion: String
-        dppStatus: String
-        lastUpdated: String
-        economicOperatorId: String
-        facilityId: String
-        contentSpecificationIds: set<String>
         elements: set<DataElement>
-    - name: DataElement # EN 18223:2026 4.1.2.3, Table 2
-      attributes:
-        elementId: String
-        dictionaryReference: String
-      subClasses:
-        - name: DataElementCollection # 4.1.2.4
-          attributes:
-            elements: set<DataElement>
-        - name: SingleValuedDataElement # 4.1.2.5, Table 3
-          attributes:
-            value: String
-            valueDataType: String
-        - name: MultiValuedDataElement # 4.1.2.6, Table 4
-          attributes:
-            valueDataType: String
-            elements: set<DataElement>
-        - name: RelatedResource # 4.1.2.7, Table 5
-          attributes:
-            contentType: String
-            url: String
-            language: String
-            resourceTitle: String
-        - name: MultiLanguageDataElement # 4.1.2.8
-          attributes:
-            value: set<MultiLanguageValue>
-    - name: MultiLanguageValue # 4.1.2.8.2, Table 6
+    - name: SingleValuedDataElement
       attributes:
         value: String
+        valueDataType: String
+    - name: MultiValuedDataElement
+      attributes:
+        valueDataType: String
+        elements: set<DataElement>
+    - name: RelatedResource
+      attributes:
+        contentType: String
+        url: String
         language: String
-
+        resourceTitle: String
+    - name: MultiLanguageDataElement
+      attributes:
+        value: set<MultiLanguageValue>
+  - name: MultiLanguageValue
+    attributes:
+      value: String
+      language: String
   overlays:
-    - type: OverlayAnnotation
-      base: DigitalProductPassport
-      name: DigitalProductPassportAnnotationOverlay
-      class:
+  - type: OverlayAnnotation
+    base: DigitalProductPassport
+    name: DigitalProductPassportAnnotationOverlay
+    class:
+      label:
+        en: Digital Product Passport
+        de: Digitaler Produktpass
+      comment:
+        en: Header of a digital product passport following the attributes of EN 18223:2026, Table 1. Data
+          elements follow the classes of EN 18223:2026 4.1.2.3 to 4.1.2.8.
+    attributes:
+      digitalProductPassportId:
         label:
-          en: Digital Product Passport
-          de: Digitaler Produktpass
-        comment:
-          en: Header of a digital product passport following the attributes of EN 18223:2026, Table 1. Data elements follow the classes of EN 18223:2026 4.1.2.3 to 4.1.2.8.
-      attributes:
-        digitalProductPassportId:
-          label:
-            en: Passport ID
-            de: Pass-ID
-        uniqueProductIdentifier:
-          label:
-            en: Unique product identifier
-            de: Eindeutige Produktkennung
-        granularity:
-          label:
-            en: Granularity
-            de: Granularität
-        dppSchemaVersion:
-          label:
-            en: Schema version
-            de: Schemaversion
-        dppStatus:
-          label:
-            en: Passport status
-            de: Passstatus
-        lastUpdated:
-          label:
-            en: Last updated
-            de: Zuletzt geändert
-        economicOperatorId:
-          label:
-            en: Economic operator ID
-            de: Kennung des Wirtschaftsteilnehmers
-        facilityId:
-          label:
-            en: Facility ID
-            de: Kennung der Betriebsstätte
-        contentSpecificationIds:
-          label:
-            en: Content specifications
-            de: Inhaltsspezifikationen
-
-    - type: OverlayValidation
-      base: DigitalProductPassport
-      name: DigitalProductPassportValidationOverlay
-      attributes:
-        digitalProductPassportId:
-          cardinality: "1..1"
-          message: "there must be exactly one 'digitalProductPassportId'"
-        uniqueProductIdentifier:
-          cardinality: "1..1"
-          message: "there must be exactly one 'uniqueProductIdentifier'"
-        granularity:
-          cardinality: "1..1"
-          message: "there must be exactly one 'granularity'"
-        dppSchemaVersion:
-          cardinality: "1..1"
-          message: "there must be exactly one 'dppSchemaVersion'"
-        dppStatus:
-          cardinality: "1..1"
-          message: "there must be exactly one 'dppStatus'"
-        lastUpdated:
-          cardinality: "1..1"
-          pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$"
-          message: "there must be exactly one 'lastUpdated' as UTC timestamp"
-        economicOperatorId:
-          cardinality: "1..1"
-          message: "there must be exactly one 'economicOperatorId'"
-        facilityId:
-          cardinality: "0..1"
-          message: "there may be at most one 'facilityId'"
-        contentSpecificationIds:
-          cardinality: "0..n"
+          en: Passport ID
+          de: Pass-ID
+      uniqueProductIdentifier:
+        label:
+          en: Unique product identifier
+          de: Eindeutige Produktkennung
+      granularity:
+        label:
+          en: Granularity
+          de: Granularität
+      dppSchemaVersion:
+        label:
+          en: Schema version
+          de: Schemaversion
+      dppStatus:
+        label:
+          en: Passport status
+          de: Passstatus
+      lastUpdated:
+        label:
+          en: Last updated
+          de: Zuletzt geändert
+      economicOperatorId:
+        label:
+          en: Economic operator ID
+          de: Kennung des Wirtschaftsteilnehmers
+      facilityId:
+        label:
+          en: Facility ID
+          de: Kennung der Betriebsstätte
+      contentSpecificationIds:
+        label:
+          en: Content specifications
+          de: Inhaltsspezifikationen
+  - type: OverlayValidation
+    base: DigitalProductPassport
+    name: DigitalProductPassportValidationOverlay
+    attributes:
+      digitalProductPassportId:
+        cardinality: 1..1
+        pattern: \S
+        message: '[DPP-DAT-014] digitalProductPassportId is mandatory, occurs once and is not empty (Table
+          1).'
+      uniqueProductIdentifier:
+        cardinality: 1..1
+        pattern: \S
+        message: '[DPP-DAT-014] uniqueProductIdentifier is mandatory, occurs once and is not empty (Table
+          1).'
+      granularity:
+        cardinality: 1..1
+        pattern: \S
+        message: '[DPP-DAT-014] granularity is mandatory, occurs once and is not empty (Table 1).'
+      dppSchemaVersion:
+        cardinality: 1..1
+        pattern: \S
+        message: '[DPP-DAT-014] dppSchemaVersion is mandatory, occurs once and is not empty (Table 1).'
+      dppStatus:
+        cardinality: 1..1
+        pattern: \S
+        message: '[DPP-DAT-014] dppStatus is mandatory, occurs once and is not empty (Table 1).'
+      lastUpdated:
+        cardinality: 1..1
+        pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?Z$
+        message: '[DPP-DAT-014] lastUpdated is mandatory, occurs once and is a UTC timestamp per ISO 8601-1
+          (Table 1).'
+      economicOperatorId:
+        cardinality: 1..1
+        pattern: \S
+        message: '[DPP-DAT-014] economicOperatorId is mandatory, occurs once and is not empty (Table 1).'
+      facilityId:
+        cardinality: 0..1
+        pattern: \S
+        message: '[DPP-DAT-014] facilityId is optional, occurs at most once and is not empty (Table 1).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppHeaderDatatypes
+    '@id': DppHeaderDatatypes
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: digitalProductPassportId
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] digitalProductPassportId is a string (Table 1).'
+    - sh:path: uniqueProductIdentifier
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] uniqueProductIdentifier is a string (Table 1).'
+    - sh:path: granularity
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] granularity is a string (Table 1).'
+    - sh:path: dppSchemaVersion
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] dppSchemaVersion is a string (Table 1).'
+    - sh:path: dppStatus
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] dppStatus is a string (Table 1).'
+    - sh:path: lastUpdated
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] lastUpdated is a string (Table 1).'
+    - sh:path: economicOperatorId
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] economicOperatorId is a string (Table 1).'
+    - sh:path: facilityId
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] facilityId is a string (Table 1).'
+    - sh:path: contentSpecificationIds
+      sh:datatype:
+        '@id': xsd:string
+      sh:message: '[DPP-DAT-014] contentSpecificationIds is a string (Table 1).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppHeaderRecommendations
+    '@id': DppHeaderRecommendations
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: digitalProductPassportId
+      sh:pattern: '^[A-Za-z][A-Za-z0-9+.-]*:'
+      sh:severity:
+        '@id': sh:Warning
+      sh:message: '[DPP-DAT-014] digitalProductPassportId should be based on a URI (4.1.2.1).'
+    - sh:path: dppStatus
+      sh:pattern: ^(active|inactive|archived|invalid)$
+      sh:flags: i
+      sh:severity:
+        '@id': sh:Warning
+      sh:message: '[DPP-DAT-014] dppStatus is none of the example values active, inactive, archived, invalid
+        (allowed if a legal act defines it).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppElementType
+    '@id': DppElementType
+    sh:targetObjectsOf:
+      '@id': elements
+    sh:nodeKind:
+      '@id': sh:BlankNodeOrIRI
+    sh:property:
+      sh:path: rdf:type
+      sh:minCount: 1
+      sh:maxCount: 1
+      sh:in:
+        '@list':
+        - '@id': DataElementCollection
+        - '@id': SingleValuedDataElement
+        - '@id': MultiValuedDataElement
+        - '@id': RelatedResource
+        - '@id': MultiLanguageDataElement
+      sh:message: '[DPP-INT-005] objectType is one of DataElementCollection, SingleValuedDataElement,
+        MultiValuedDataElement, RelatedResource, MultiLanguageDataElement (4.1.2.3, Annex A).'
+    sh:message: '[DPP-INT-005] Every entry of an elements array is a JSON object with objectType (Annex
+      A).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppElementId
+    '@id': DppElementId
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:or:
+            '@list':
+            - sh:class:
+                '@id': DataElementCollection
+            - sh:class:
+                '@id': SingleValuedDataElement
+            - sh:class:
+                '@id': MultiValuedDataElement
+            - sh:class:
+                '@id': RelatedResource
+            - sh:class:
+                '@id': MultiLanguageDataElement
+      - sh:property:
+          sh:path: elementId
+          sh:minCount: 1
+          sh:maxCount: 1
+          sh:datatype:
+            '@id': xsd:string
+          sh:pattern: \S
+    sh:message: '[DPP-INT-005] elementId is mandatory, occurs once and is a non-empty string (Table 2).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppDictionaryReference
+    '@id': DppDictionaryReference
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:or:
+            '@list':
+            - sh:class:
+                '@id': DataElementCollection
+            - sh:class:
+                '@id': SingleValuedDataElement
+            - sh:class:
+                '@id': MultiValuedDataElement
+            - sh:class:
+                '@id': RelatedResource
+            - sh:class:
+                '@id': MultiLanguageDataElement
+      - sh:property:
+          sh:path: dictionaryReference
+          sh:maxCount: 1
+          sh:datatype:
+            '@id': xsd:string
+    sh:message: '[DPP-INT-005] dictionaryReference is a string and occurs at most once (Table 2).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppCollectionElements
+    '@id': DppCollectionElements
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': DataElementCollection
+      - sh:property:
+          sh:path: elements
+          sh:minCount: 1
+    sh:message: '[DPP-INT-005] A DataElementCollection contains at least one data element (4.1.2.4).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppSingleValue
+    '@id': DppSingleValue
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:property:
+          sh:path: value
+          sh:minCount: 1
+          sh:maxCount: 1
+    sh:message: '[DPP-INT-005] A SingleValuedDataElement has exactly one value (Table 3).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueDataType
+    '@id': DppValueDataType
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:or:
+            '@list':
+            - sh:class:
+                '@id': SingleValuedDataElement
+            - sh:class:
+                '@id': MultiValuedDataElement
+      - sh:property:
+          sh:path: valueDataType
+          sh:maxCount: 1
+          sh:datatype:
+            '@id': xsd:string
+          sh:pattern: ^xsd:[A-Za-z]+$
+    sh:message: '[DPP-INT-005] valueDataType occurs at most once and names an XSD type such as xsd:integer
+      (Tables 3 and 4, 4.1.2.9).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueInteger
+    '@id': DppValueInteger
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:hasValue: xsd:integer
+      - sh:property:
+          sh:path: value
+          sh:or:
+            '@list':
+            - sh:datatype:
+                '@id': xsd:integer
+            - sh:datatype:
+                '@id': xsd:string
+    sh:message: '[DPP-INT-005] value of type xsd:integer is a JSON number without fractional part (Table
+      7).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueNumber
+    '@id': DppValueNumber
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:in:
+              '@list':
+              - xsd:float
+              - xsd:double
+              - xsd:decimal
+      - sh:property:
+          sh:path: value
+          sh:or:
+            '@list':
+            - sh:datatype:
+                '@id': xsd:double
+            - sh:datatype:
+                '@id': xsd:integer
+            - sh:datatype:
+                '@id': xsd:string
+    sh:message: '[DPP-INT-005] value of type xsd:float, xsd:double or xsd:decimal is a JSON number (Table
+      7).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueBoolean
+    '@id': DppValueBoolean
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:hasValue: xsd:boolean
+      - sh:property:
+          sh:path: value
+          sh:or:
+            '@list':
+            - sh:datatype:
+                '@id': xsd:boolean
+            - sh:datatype:
+                '@id': xsd:string
+    sh:message: '[DPP-INT-005] value of type xsd:boolean is true or false (Table 7).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueString
+    '@id': DppValueString
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:in:
+              '@list':
+              - xsd:string
+              - xsd:date
+              - xsd:dateTime
+              - xsd:anyURI
+              - xsd:base64Binary
+      - sh:property:
+          sh:path: value
+          sh:datatype:
+            '@id': xsd:string
+    sh:message: '[DPP-INT-005] value of this valueDataType is a JSON string (Table 7).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueDate
+    '@id': DppValueDate
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:hasValue: xsd:date
+      - sh:property:
+          sh:path: value
+          sh:pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
+    sh:message: '[DPP-INT-005] value of type xsd:date has the form YYYY-MM-DD (Table 7).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueDateTime
+    '@id': DppValueDateTime
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:hasValue: xsd:dateTime
+      - sh:property:
+          sh:path: value
+          sh:pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?Z$
+    sh:message: '[DPP-INT-005] value of type xsd:dateTime has the form YYYY-MM-DDThh:mm:ssZ (Table 7).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueAnyUri
+    '@id': DppValueAnyUri
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:hasValue: xsd:anyURI
+      - sh:property:
+          sh:path: value
+          sh:pattern: '^[A-Za-z][A-Za-z0-9+.-]*:'
+    sh:message: '[DPP-INT-005] value of type xsd:anyURI is a URI (Table 7).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueNativeType
+    '@id': DppValueNativeType
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': SingleValuedDataElement
+      - sh:not:
+          sh:property:
+            sh:path: valueDataType
+            sh:minCount: 1
+            sh:in:
+              '@list':
+              - xsd:integer
+              - xsd:float
+              - xsd:double
+              - xsd:decimal
+              - xsd:boolean
+      - sh:property:
+          sh:path: value
+          sh:not:
+            sh:datatype:
+              '@id': xsd:string
+    sh:message: '[DPP-INT-005] value is a string although its valueDataType has a native JSON type; allowed,
+      but native types are recommended (5.2.3).'
+    sh:severity:
+      '@id': sh:Warning
+  - type: OverlayShacl
+    base: DataElement
+    name: DppMultiNotEmpty
+    '@id': DppMultiNotEmpty
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': MultiValuedDataElement
+      - sh:property:
+          sh:path:
+            sh:alternativePath:
+              '@list':
+              - '@id': elements
+              - '@id': value
+          sh:minCount: 1
+    sh:message: '[DPP-INT-005] A MultiValuedDataElement contains no data element (4.1.2.6 says at least
+      one, Table 4 allows none).'
+    sh:severity:
+      '@id': sh:Warning
+  - type: OverlayShacl
+    base: DataElement
+    name: DppMultiValueItems
+    '@id': DppMultiValueItems
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': MultiValuedDataElement
+      - sh:property:
+          sh:path: value
+          sh:or:
+            '@list':
+            - sh:nodeKind:
+                '@id': sh:Literal
+            - sh:class:
+                '@id': DataElementCollection
+            - sh:class:
+                '@id': SingleValuedDataElement
+            - sh:class:
+                '@id': MultiValuedDataElement
+            - sh:class:
+                '@id': RelatedResource
+            - sh:class:
+                '@id': MultiLanguageDataElement
+    sh:message: '[DPP-INT-005] Objects in the value array of a MultiValuedDataElement are data elements
+      with objectType (Annex A, Example 4).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppRelatedContentType
+    '@id': DppRelatedContentType
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': RelatedResource
+      - sh:property:
+          sh:path: contentType
+          sh:minCount: 1
+          sh:maxCount: 1
+          sh:datatype:
+            '@id': xsd:string
+          sh:pattern: ^[A-Za-z0-9!#$&^_.+-]+/[A-Za-z0-9!#$&^_.+-]+(\s*;.*)?\s*$
+    sh:message: '[DPP-INT-005] contentType is mandatory, occurs once and is a media type such as application/pdf
+      (Table 5).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppRelatedUrl
+    '@id': DppRelatedUrl
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': RelatedResource
+      - sh:property:
+          sh:path: url
+          sh:minCount: 1
+          sh:maxCount: 1
+          sh:datatype:
+            '@id': xsd:string
+          sh:pattern: ^[A-Za-z][A-Za-z0-9+.-]*://
+    sh:message: '[DPP-INT-005] url is mandatory, occurs once and is a URL (Table 5).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppRelatedLanguage
+    '@id': DppRelatedLanguage
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': RelatedResource
+      - sh:property:
+          sh:path: language
+          sh:maxCount: 1
+          sh:datatype:
+            '@id': xsd:string
+          sh:pattern: ^[a-z]{2}(-[a-z]{2})?$
+          sh:flags: i
+    sh:message: '[DPP-INT-005] language occurs at most once and is a language tag such as en-GB (Table
+      5).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppRelatedTitle
+    '@id': DppRelatedTitle
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': RelatedResource
+      - sh:property:
+          sh:path: resourceTitle
+          sh:maxCount: 1
+          sh:datatype:
+            '@id': xsd:string
+    sh:message: '[DPP-INT-005] resourceTitle is a string and occurs at most once (Table 5).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppMultiLanguageValues
+    '@id': DppMultiLanguageValues
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': MultiLanguageDataElement
+      - sh:property:
+          sh:path: value
+          sh:minCount: 1
+          sh:node:
+            sh:property:
+            - sh:path: value
+              sh:minCount: 1
+              sh:maxCount: 1
+              sh:datatype:
+                '@id': xsd:string
+            - sh:path: language
+              sh:minCount: 1
+              sh:maxCount: 1
+              sh:datatype:
+                '@id': xsd:string
+              sh:pattern: ^[a-z]{2}(-[a-z]{2})?$
+              sh:flags: i
+    sh:message: '[DPP-INT-005] A MultiLanguageDataElement contains at least one value, each with a string
+      value and a language tag (4.1.2.8, Table 6).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppMultiLanguageCountry
+    '@id': DppMultiLanguageCountry
+    sh:targetObjectsOf:
+    - '@id': elements
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:class:
+            '@id': MultiLanguageDataElement
+      - sh:property:
+          sh:path:
+            '@list':
+            - '@id': value
+            - '@id': language
+          sh:pattern: ^[a-z]{2}-[a-z]{2}$
+          sh:flags: i
+    sh:message: '[DPP-INT-005] language has no country part; Table 6 describes a language code plus a
+      country code such as de-AT.'
+    sh:severity:
+      '@id': sh:Warning
