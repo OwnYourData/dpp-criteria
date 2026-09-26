@@ -8,7 +8,9 @@ A passport is served as plain JSON (EN 18223:2026 5.2). Before validation the
 runner turns it into JSON-LD:
 
 1. add the context from `en18223-context.jsonld`, which maps every JSON key to
-   the namespace `https://github.com/OwnYourData/dpp-criteria/ns/en18223#`;
+   the namespace of the SOyA structure `DigitalProductPassport`
+   (`https://soya.ownyourdata.eu/DigitalProductPassport/`, the same pattern as didlint uses for `Did`) and
+   reads `objectType` as the RDF type of a data element;
 2. add `"@type": "DigitalProductPassport"` to the top-level object.
 
 Keys keep their spelling, so a key that differs from a published attribute name
@@ -20,6 +22,7 @@ Keys keep their spelling, so a key that differs from a published attribute name
 |---|---|---|
 | `en18223-context.jsonld` | – | JSON-LD context for the input preparation |
 | `en18223-dpp-core.ttl` | DPP-DAT-014 | Header attributes of EN 18223:2026 Table 1: names, cardinality, types, UTC timestamp |
+| `en18223-dpp-model.ttl` | DPP-INT-005 | Data elements in the expanded full serialization (Annex A): objectType, Tables 2 to 6, unique elementId per level, values against valueDataType (Table 7) |
 
 ## Tests
 

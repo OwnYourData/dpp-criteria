@@ -1,7 +1,7 @@
 @prefix sh:   <http://www.w3.org/ns/shacl#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix dpp:  <https://github.com/OwnYourData/dpp-criteria/ns/en18223#> .
+@prefix dpp:  <https://soya.ownyourdata.eu/DigitalProductPassport/> .
 @prefix crit: <https://github.com/OwnYourData/dpp-criteria/shapes/en18223-dpp-core#> .
 
 # Header attributes of the DigitalProductPassport class, EN 18223:2026 4.1.2.1, Table 1.
@@ -102,5 +102,5 @@ crit:DigitalProductPassportShape
 crit:prefixes
     sh:declare [
         sh:prefix "dpp" ;
-        sh:namespace "https://github.com/OwnYourData/dpp-criteria/ns/en18223#"^^xsd:anyURI ;
+        sh:namespace "https://soya.ownyourdata.eu/DigitalProductPassport/"^^xsd:anyURI ;
     ] .

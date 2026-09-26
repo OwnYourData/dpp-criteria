@@ -1,0 +1,82 @@
+{
+  "digitalProductPassportId": "https://dpp.example.org/dpp/4711",
+  "uniqueProductIdentifier": "https://dpp.example.org/01/09520123456788/21/0001",
+  "granularity": "item",
+  "dppSchemaVersion": "EN 18223:2026",
+  "dppStatus": "active",
+  "lastUpdated": "2026-09-01T08:00:00Z",
+  "economicOperatorId": "did:example:operator",
+  "elements": [
+    {
+      "elementId": "performance",
+      "objectType": "DataElementCollection",
+      "dictionaryReference": "https://dictionary.example.org/performance",
+      "elements": [
+        {
+          "elementId": "maxPressure",
+          "objectType": "SingleValuedDataElement",
+          "valueDataType": "xsd:float",
+          "value": 2.5
+        },
+        {
+          "objectType": "SingleValuedDataElement",
+          "valueDataType": "xsd:integer",
+          "value": 1200
+        },
+        {
+          "elementId": "fireResistant",
+          "objectType": "SingleValuedDataElement",
+          "valueDataType": "xsd:boolean",
+          "value": true
+        },
+        {
+          "elementId": "producedOn",
+          "objectType": "SingleValuedDataElement",
+          "valueDataType": "xsd:date",
+          "value": "2026-08-30"
+        },
+        {
+          "elementId": "ratings",
+          "objectType": "MultiValuedDataElement",
+          "valueDataType": "xsd:float",
+          "elements": [
+            {
+              "elementId": "rating1",
+              "objectType": "SingleValuedDataElement",
+              "valueDataType": "xsd:float",
+              "value": 0.95
+            },
+            {
+              "elementId": "rating2",
+              "objectType": "SingleValuedDataElement",
+              "valueDataType": "xsd:float",
+              "value": 0.92
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elementId": "userManual",
+      "objectType": "RelatedResource",
+      "contentType": "application/pdf",
+      "url": "https://data.example.org/manual.pdf",
+      "language": "en-GB",
+      "resourceTitle": "User manual"
+    },
+    {
+      "elementId": "productDescription",
+      "objectType": "MultiLanguageDataElement",
+      "value": [
+        {
+          "language": "en-IE",
+          "value": "A product."
+        },
+        {
+          "language": "de-AT",
+          "value": "Ein Produkt."
+        }
+      ]
+    }
+  ]
+}

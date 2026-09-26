@@ -1,0 +1,39 @@
+{
+  "digitalProductPassportId": "https://dpp.example.org/dpp/4711",
+  "uniqueProductIdentifier": "https://dpp.example.org/01/09520123456788/21/0001",
+  "granularity": "item",
+  "dppSchemaVersion": "EN 18223:2026",
+  "dppStatus": "active",
+  "lastUpdated": "2026-09-01T08:00:00Z",
+  "economicOperatorId": "did:example:operator",
+  "elements": [
+    {
+      "elementId": "performance",
+      "objectType": "DataElementCollection",
+      "dictionaryReference": "https://dictionary.example.org/performance",
+      "elements": []
+    },
+    {
+      "elementId": "userManual",
+      "objectType": "RelatedResource",
+      "contentType": "application/pdf",
+      "url": "https://data.example.org/manual.pdf",
+      "language": "en-GB",
+      "resourceTitle": "User manual"
+    },
+    {
+      "elementId": "productDescription",
+      "objectType": "MultiLanguageDataElement",
+      "value": [
+        {
+          "language": "en-IE",
+          "value": "A product."
+        },
+        {
+          "language": "de-AT",
+          "value": "Ein Produkt."
+        }
+      ]
+    }
+  ]
+}

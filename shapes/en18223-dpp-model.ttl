@@ -1,0 +1,221 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dpp:  <https://soya.ownyourdata.eu/DigitalProductPassport/> .
+@prefix crit: <https://github.com/OwnYourData/dpp-criteria/shapes/en18223-dpp-model#> .
+
+# Data elements of a DPP in the expanded full serialization, EN 18223:2026
+# 4.1.2.3 to 4.1.2.9, 5.2.3 (Table 7) and Annex A. Used by criterion DPP-INT-005.
+# Input preparation: see shapes/README.md. objectType is read as rdf:type.
+
+crit:prefixes
+    sh:declare [ sh:prefix "dpp" ; sh:namespace "https://soya.ownyourdata.eu/DigitalProductPassport/"^^xsd:anyURI ] ;
+    sh:declare [ sh:prefix "xsd" ; sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ] .
+
+# Every entry of an "elements" array is a data element of a known type.
+crit:ElementShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf dpp:elements ;
+    rdfs:comment "Entries of an elements array (4.1.2.3, Annex A)." ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:message "Every entry of an elements array is a JSON object (Annex A)." ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:in ( dpp:DataElementCollection dpp:SingleValuedDataElement dpp:MultiValuedDataElement dpp:RelatedResource dpp:MultiLanguageDataElement ) ;
+        sh:message "objectType is one of DataElementCollection, SingleValuedDataElement, MultiValuedDataElement, RelatedResource, MultiLanguageDataElement (4.1.2.3, Annex A)." ;
+    ] .
+
+# Attributes every data element inherits (Table 2).
+crit:DataElementShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:DataElementCollection , dpp:SingleValuedDataElement , dpp:MultiValuedDataElement , dpp:RelatedResource , dpp:MultiLanguageDataElement ;
+    sh:property [
+        sh:path dpp:elementId ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "elementId is mandatory and occurs once (Table 2)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:dictionaryReference ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "dictionaryReference is a string and occurs at most once (Table 2)." ;
+    ] .
+
+# elementId is unique within its location (Table 2).
+crit:UniqueElementIdShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:DigitalProductPassport , dpp:DataElementCollection , dpp:MultiValuedDataElement ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "elementId {?id} occurs more than once at the same level (Table 2)." ;
+        sh:prefixes crit:prefixes ;
+        sh:select """
+            SELECT $this ?id WHERE {
+                $this dpp:elements|dpp:value ?child .
+                ?child dpp:elementId ?id .
+            }
+            GROUP BY $this ?id
+            HAVING (COUNT(DISTINCT ?child) > 1)
+        """ ;
+    ] .
+
+crit:DataElementCollectionShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:DataElementCollection ;
+    sh:property [
+        sh:path dpp:elements ;
+        sh:minCount 1 ;
+        sh:message "A DataElementCollection contains at least one data element (4.1.2.4)." ;
+    ] .
+
+crit:SingleValuedDataElementShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:SingleValuedDataElement ;
+    sh:property [
+        sh:path dpp:value ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "value is mandatory and occurs once (Table 3)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:valueDataType ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^xsd:[A-Za-z]+$" ;
+        sh:message "valueDataType occurs at most once and names an XSD type such as xsd:integer (Table 3, 4.1.2.9)." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "value does not match valueDataType {?vdt} (Table 7)." ;
+        sh:prefixes crit:prefixes ;
+        sh:select """
+            SELECT $this ?vdt ?value WHERE {
+                $this dpp:valueDataType ?vdt ;
+                      dpp:value ?value .
+                FILTER (isLiteral(?value))
+                BIND (DATATYPE(?value) AS ?dt)
+                FILTER (
+                    (?dt != xsd:string && (
+                        (?vdt = "xsd:integer" && ?dt != xsd:integer) ||
+                        (?vdt IN ("xsd:float", "xsd:double", "xsd:decimal") && !(?dt IN (xsd:integer, xsd:double))) ||
+                        (?vdt = "xsd:boolean" && ?dt != xsd:boolean) ||
+                        (?vdt IN ("xsd:string", "xsd:date", "xsd:dateTime", "xsd:anyURI", "xsd:base64Binary"))
+                    )) ||
+                    (?dt = xsd:string && (
+                        (?vdt = "xsd:date" && !REGEX(STR(?value), "^[0-9]{4}-[0-9]{2}-[0-9]{2}$")) ||
+                        (?vdt = "xsd:dateTime" && !REGEX(STR(?value), "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?Z$")) ||
+                        (?vdt = "xsd:anyURI" && !REGEX(STR(?value), "^[A-Za-z][A-Za-z0-9+.-]*:"))
+                    ))
+                )
+            }
+        """ ;
+    ] .
+
+# Numbers and booleans as strings are allowed (5.2.3) but reported.
+crit:SingleValuedStringFallbackShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:SingleValuedDataElement ;
+    sh:severity sh:Warning ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "value is a string although valueDataType {?vdt} has a native JSON type; allowed, but native types are recommended (5.2.3)." ;
+        sh:prefixes crit:prefixes ;
+        sh:select """
+            SELECT $this ?vdt WHERE {
+                $this dpp:valueDataType ?vdt ;
+                      dpp:value ?value .
+                FILTER (isLiteral(?value) && DATATYPE(?value) = xsd:string)
+                FILTER (?vdt IN ("xsd:integer", "xsd:float", "xsd:double", "xsd:decimal", "xsd:boolean"))
+            }
+        """ ;
+    ] .
+
+crit:MultiValuedDataElementShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:MultiValuedDataElement ;
+    sh:property [
+        sh:path dpp:valueDataType ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^xsd:[A-Za-z]+$" ;
+        sh:message "valueDataType occurs at most once and names an XSD type (Table 4, 4.1.2.9)." ;
+    ] ;
+    sh:property [
+        sh:path [ sh:alternativePath ( dpp:elements dpp:value ) ] ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "A MultiValuedDataElement contains no data element (4.1.2.6 says at least one, Table 4 allows none)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:value ;
+        sh:or ( [ sh:nodeKind sh:Literal ] [ sh:class dpp:SingleValuedDataElement ] [ sh:class dpp:DataElementCollection ] [ sh:class dpp:MultiValuedDataElement ] [ sh:class dpp:RelatedResource ] [ sh:class dpp:MultiLanguageDataElement ] ) ;
+        sh:message "Objects in the value array of a MultiValuedDataElement are data elements with objectType (Annex A, Example 4)." ;
+    ] .
+
+crit:RelatedResourceShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:RelatedResource ;
+    sh:property [
+        sh:path dpp:contentType ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[A-Za-z0-9!#$&^_.+-]+/[A-Za-z0-9!#$&^_.+-]+(\\s*;.*)?\\s*$" ;
+        sh:message "contentType is mandatory, occurs once and is a media type such as application/pdf (Table 5)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:url ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[A-Za-z][A-Za-z0-9+.-]*://" ;
+        sh:message "url is mandatory, occurs once and is a URL (Table 5)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:language ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[a-z]{2}(-[a-z]{2})?$" ; sh:flags "i" ;
+        sh:message "language occurs at most once and is a language tag such as en-GB (Table 5)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:resourceTitle ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "resourceTitle is a string and occurs at most once (Table 5)." ;
+    ] .
+
+crit:MultiLanguageDataElementShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:MultiLanguageDataElement ;
+    sh:property [
+        sh:path dpp:value ;
+        sh:minCount 1 ;
+        sh:node crit:MultiLanguageValueShape ;
+        sh:message "A MultiLanguageDataElement contains at least one MultiLanguageValue with value and language (4.1.2.8, Table 6)." ;
+    ] .
+
+crit:MultiLanguageValueShape
+    a sh:NodeShape ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:property [
+        sh:path dpp:value ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path dpp:language ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[a-z]{2}(-[a-z]{2})?$" ; sh:flags "i" ;
+    ] .
+
+crit:MultiLanguageValueCountryShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:MultiLanguageDataElement ;
+    sh:property [
+        sh:path ( dpp:value dpp:language ) ;
+        sh:pattern "^[a-z]{2}-[a-z]{2}$" ; sh:flags "i" ;
+        sh:severity sh:Warning ;
+        sh:message "language has no country part; Table 6 describes a language code plus a country code such as de-AT." ;
+    ] .

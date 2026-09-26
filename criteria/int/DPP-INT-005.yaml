@@ -19,4 +19,7 @@ check:
 catalogue_ref: DPP-INT-005
 notes: >-
   Covers the DataElement classes, unique elementId per level and the value types
-  of Table 7. Header attributes are checked by DPP-DAT-014.
+  of Table 7 in the expanded full serialization (Annex A), in which every data
+  element carries objectType. Passports in the compressed serialization (5.2.5 to
+  5.2.9) are skipped until shapes for that form exist. Header attributes are
+  checked by DPP-DAT-014.
