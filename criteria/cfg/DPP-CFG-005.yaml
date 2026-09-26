@@ -15,16 +15,17 @@ basis:
   clause: 4.1.2.2
   kind: harmonised-standard
 - source: EN 18219:2026
-  clause: 4.4.2 (1)
+  clause: 4.4.2 (1), 5.2.2.1
   kind: harmonised-standard
 target: passport
 method: automated
 requires_features: []
 check:
-  type: identifier
-  path: $.uniqueProductIdentifier
-  granularity_path: $.granularity
+  type: shacl
+  structure: DigitalProductPassport
 catalogue_ref: DPP-CFG-005
 notes: >-
-  Only for identifier schemes that encode the level (Identification Link, EN 18219
-  5.3); other schemes are skipped. The allowed values are checked by DPP-DAT-015.
+  Checked in the SOyA structure DigitalProductPassport for identifiers in GS1
+  Digital Link form (ID scheme 1, EN 18219 5.2.2.1): /21/ means item, /10/ batch,
+  otherwise model. Other schemes do not encode the level and are not rated. The
+  allowed values are checked by DPP-DAT-015.

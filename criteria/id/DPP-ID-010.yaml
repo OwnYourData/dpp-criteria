@@ -24,14 +24,10 @@ applies_if:
 - path: $.facilityId
   exists: true
 check:
-  type: identifier
-  path: $.facilityId
-  schemes:
-  - iso-iec-6523
-  - iso-iec-15418
-  - did
-  - doi
+  type: shacl
+  structure: DigitalProductPassport
 catalogue_ref: DPP-ID-010
 notes: >-
-  facilityId is optional in EN 18223 (cardinality 0..1); without it the criterion
-  is skipped.
+  Checked in the SOyA structure DigitalProductPassport by syntax, with the same
+  schemes as DPP-ID-009. facilityId is optional in EN 18223 (cardinality 0..1);
+  without it the criterion is skipped.

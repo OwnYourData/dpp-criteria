@@ -94,7 +94,6 @@
         "equals": {},
         "exists": { "type": "boolean" },
         "in": { "type": "array", "minItems": 1 },
-        "in_ci": { "type": "array", "minItems": 1, "items": { "type": "string" } },
         "matches": { "type": "string" },
         "severity": { "$ref": "#/$defs/severity" }
       }
@@ -109,12 +108,10 @@
         "body_equals_step": { "type": "integer", "minimum": 1 }
       }
     },
-    "productScheme": { "enum": ["web-path-query", "identification-link", "did", "product-group", "doi"] },
-    "operatorScheme": { "enum": ["iso-iec-6523", "iso-iec-15418", "did", "doi"] },
     "check": {
       "type": "object",
       "required": ["type"],
-      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "identifier", "did", "proof", "links", "declaration"] } },
+      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "did", "proof", "links", "declaration"] } },
       "allOf": [
         {
           "if": { "properties": { "type": { "const": "http" } } },
@@ -194,18 +191,6 @@
                 "required": ["fail_after_consecutive_days"],
                 "properties": { "fail_after_consecutive_days": { "type": "integer", "minimum": 1 } }
               }
-            }
-          }
-        },
-        {
-          "if": { "properties": { "type": { "const": "identifier" } } },
-          "then": {
-            "required": ["path"],
-            "properties": {
-              "path": { "type": "string", "pattern": "^\\$" },
-              "schemes": { "type": "array", "minItems": 1, "items": { "anyOf": [ { "$ref": "#/$defs/productScheme" }, { "$ref": "#/$defs/operatorScheme" } ] } },
-              "url_or_conversion": { "type": "boolean" },
-              "granularity_path": { "type": "string", "pattern": "^\\$" }
             }
           }
         },

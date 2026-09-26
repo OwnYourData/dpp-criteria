@@ -21,15 +21,11 @@ target: passport
 method: automated
 requires_features: []
 check:
-  type: identifier
-  path: $.uniqueProductIdentifier
-  schemes:
-  - web-path-query
-  - identification-link
-  - did
-  - product-group
-  - doi
+  type: shacl
+  structure: DigitalProductPassport
 catalogue_ref: DPP-CAR-002
 notes: >-
-  Only the identifier is checked. Conformity of the physical data carrier (EN 18220)
+  Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL
+  (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the
+  identifier is checked; conformity of the physical data carrier (EN 18220)
   cannot be observed.

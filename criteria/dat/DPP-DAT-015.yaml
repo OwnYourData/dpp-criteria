@@ -13,21 +13,10 @@ target: passport
 method: automated
 requires_features: []
 check:
-  type: resolve
-  expect:
-    json:
-    - path: $.granularity
-      in_ci:
-      - model
-      - batch
-      - item
-    - path: $.granularity
-      in:
-      - model
-      - batch
-      - item
-      severity: warning
+  type: shacl
+  structure: DigitalProductPassport
 catalogue_ref: DPP-DAT-008
 notes: >-
-  The standard lists the values in lower case, its serialization example writes
-  "Model". Other capitalisation therefore only gives a warning.
+  Checked in the SOyA structure DigitalProductPassport. The standard lists the
+  values in lower case, its serialization example writes "Model". Other
+  capitalisation therefore only gives a warning.

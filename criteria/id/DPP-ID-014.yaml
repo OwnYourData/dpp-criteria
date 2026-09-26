@@ -14,6 +14,9 @@ target: passport
 method: automated
 requires_features: []
 check:
-  type: identifier
-  path: $.uniqueProductIdentifier
-  url_or_conversion: true
+  type: shacl
+  structure: DigitalProductPassport
+notes: >-
+  Checked in the SOyA structure DigitalProductPassport by syntax: an HTTP(S) URL,
+  a DID (resolved by DID Resolution), an EPC URN (converted per the GS1 EPC Tag
+  Data Standard) or an ISO/IEC 15434 message (converted per ISO/IEC 18975).

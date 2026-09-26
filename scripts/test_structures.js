@@ -1,5 +1,6 @@
 // Validates the test vectors in tests/soya/<Structure>/<Criterion>/ against the
-// SOyA structures in soya/, the same way `soya validate` does (soya-js).
+// SOyA structures in soya/, the same way `soya acquire <Structure> | soya validate
+// <Structure>` does, but with the local structure instead of the published one.
 //
 //   valid/    no result for this criterion
 //   warning/  at least one warning and no violation for this criterion
@@ -9,21 +10,11 @@
 const fs = require('fs');
 const path = require('path');
 const { Soya, Overlays } = require('soya-js');
+const { flat2ld } = require('soya-js/dist/system/flat2ld');
 
 const ROOT = path.resolve(__dirname, '..');
 const SH = 'http://www.w3.org/ns/shacl#';
 const silent = { debug() {}, info() {}, warn() {}, error() {}, child() { return silent; } };
-
-// Input preparation as in dpplint: every key in the structure's namespace,
-// objectType read as the RDF type of a data element.
-const prepare = (structure, passport) => ({
-  '@context': {
-    '@version': 1.1,
-    '@vocab': `https://soya.ownyourdata.eu/${structure}/`,
-    objectType: '@type',
-  },
-  '@graph': [{ '@type': structure, ...passport }],
-});
 
 const main = async () => {
   const soya = new Soya({ logger: silent });
@@ -38,7 +29,7 @@ const main = async () => {
         if (!fs.existsSync(dir)) continue;
         for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort()) {
           const passport = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
-          const { data } = await new Overlays.SoyaValidate().run(doc, prepare(structure, passport));
+          const { data } = await new Overlays.SoyaValidate().run(doc, await flat2ld(passport, doc));
           const own = data.results
             .map((r) => ({ severity: r.severity.value, message: [].concat(r.message)[0]?.value ?? '' }))
             .filter((r) => r.message.startsWith(`[${criterion}]`));

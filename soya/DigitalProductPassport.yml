@@ -1,8 +1,10 @@
 # SOyA structure for EN 18223:2026 (Digital Product Passport – System interoperability).
-# Bases: classes and attributes of 4.1.2. Overlays: annotations, and the SHACL shapes of the
-# criteria DPP-DAT-014 (header, Table 1) and DPP-INT-005 (data elements, expanded full
-# serialization of Annex A). Every validation message starts with the criterion ID in brackets.
+# Bases: classes and attributes of 4.1.2. The attribute value is left untyped, because its type
+# depends on the kind of data element (any JSON value, a list of data elements or a list of
+# language values). Overlays: annotations and the SHACL shapes of the passport criteria.
+# Every validation message starts with the criterion ID in brackets.
 # Overlays of type OverlayShacl carry SHACL Core as JSON-LD; soya init takes them over unchanged.
+# Input: the passport as returned by `soya acquire DigitalProductPassport`.
 meta:
   name: DigitalProductPassport
 content:
@@ -22,6 +24,7 @@ content:
   - name: DataElement
     attributes:
       elementId: String
+      objectType: String
       dictionaryReference: String
     subClasses:
     - name: DataElementCollection
@@ -29,7 +32,6 @@ content:
         elements: set<DataElement>
     - name: SingleValuedDataElement
       attributes:
-        value: String
         valueDataType: String
     - name: MultiValuedDataElement
       attributes:
@@ -42,11 +44,8 @@ content:
         language: String
         resourceTitle: String
     - name: MultiLanguageDataElement
-      attributes:
-        value: set<MultiLanguageValue>
   - name: MultiLanguageValue
     attributes:
-      value: String
       language: String
   overlays:
   - type: OverlayAnnotation
@@ -174,10 +173,15 @@ content:
       sh:datatype:
         '@id': xsd:string
       sh:message: '[DPP-DAT-014] facilityId is a string (Table 1).'
-    - sh:path: contentSpecificationIds
+    - sh:path:
+        '@list':
+        - '@id': contentSpecificationIds
+        - sh:zeroOrMorePath:
+            '@id': rdf:rest
+        - '@id': rdf:first
       sh:datatype:
         '@id': xsd:string
-      sh:message: '[DPP-DAT-014] contentSpecificationIds is a string (Table 1).'
+      sh:message: '[DPP-DAT-014] contentSpecificationIds are strings (Table 1).'
   - type: OverlayShacl
     base: DigitalProductPassport
     name: DppHeaderRecommendations
@@ -198,50 +202,251 @@ content:
       sh:message: '[DPP-DAT-014] dppStatus is none of the example values active, inactive, archived, invalid
         (allowed if a legal act defines it).'
   - type: OverlayShacl
-    base: DataElement
-    name: DppElementType
-    '@id': DppElementType
-    sh:targetObjectsOf:
-      '@id': elements
-    sh:nodeKind:
-      '@id': sh:BlankNodeOrIRI
+    base: DigitalProductPassport
+    name: DppResponsibleOperator
+    '@id': DppResponsibleOperator
+    sh:targetClass:
+      '@id': DigitalProductPassport
     sh:property:
-      sh:path: rdf:type
+    - sh:path: economicOperatorId
       sh:minCount: 1
-      sh:maxCount: 1
+      sh:pattern: \S
+      sh:message: '[DPP-ROL-016] The passport names its economic operator in economicOperatorId.'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppGranularityValues
+    '@id': DppGranularityValues
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: granularity
+      sh:pattern: ^(model|batch|item)$
+      sh:flags: i
+      sh:message: '[DPP-DAT-015] granularity is one of model, batch, item (4.1.2.2).'
+    - sh:path: granularity
       sh:in:
         '@list':
-        - '@id': DataElementCollection
-        - '@id': SingleValuedDataElement
-        - '@id': MultiValuedDataElement
-        - '@id': RelatedResource
-        - '@id': MultiLanguageDataElement
-      sh:message: '[DPP-INT-005] objectType is one of DataElementCollection, SingleValuedDataElement,
-        MultiValuedDataElement, RelatedResource, MultiLanguageDataElement (4.1.2.3, Annex A).'
-    sh:message: '[DPP-INT-005] Every entry of an elements array is a JSON object with objectType (Annex
-      A).'
+        - model
+        - batch
+        - item
+      sh:severity:
+        '@id': sh:Warning
+      sh:message: '[DPP-DAT-015] granularity uses other capitalisation than model, batch, item (4.1.2.2).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppProductIdUrl
+    '@id': DppProductIdUrl
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: uniqueProductIdentifier
+      sh:pattern: ^(https?://\S+|did:[a-z0-9]+:\S+|urn:epc:id:\S+|\[\)>\S.*)$
+      sh:message: '[DPP-ID-014] uniqueProductIdentifier is a URL or has a defined conversion into a URL:
+        DID, EPC URN or ISO/IEC 15434 message (EN 18219 4.3.2).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppProductIdScheme
+    '@id': DppProductIdScheme
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: uniqueProductIdentifier
+      sh:pattern: ^(https://\S+|did:[a-z0-9]+:\S+|urn:epc:id:\S+|\[\)>\S.*)$
+      sh:message: '[DPP-CAR-002] uniqueProductIdentifier follows a product ID scheme of EN 18219 Clause
+        5: HTTPS URL (schemes 1, 2, 5), DID (scheme 3) or RFID/2D encoding (scheme 4).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppOperatorIdScheme
+    '@id': DppOperatorIdScheme
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: economicOperatorId
+      sh:pattern: ^(https://\S+|did:[a-z0-9]+:\S+|doi:10\.\S+|(iso6523-actorid-upis::)?[0-9]{4}:\S+|\(41[0-7]\)[0-9]{13}|urn:epc:id:sgln:\S+)$
+      sh:message: '[DPP-ID-009] economicOperatorId follows an ID scheme of EN 18219 Clause 6: ISO/IEC
+        6523, ISO/IEC 15418 (GS1 or MH10.8.2), DID or DOI.'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppFacilityIdScheme
+    '@id': DppFacilityIdScheme
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: facilityId
+      sh:pattern: ^(https://\S+|did:[a-z0-9]+:\S+|doi:10\.\S+|(iso6523-actorid-upis::)?[0-9]{4}:\S+|\(41[0-7]\)[0-9]{13}|urn:epc:id:sgln:\S+)$
+      sh:message: '[DPP-ID-010] facilityId follows an ID scheme of EN 18219 Clause 6: ISO/IEC 6523, ISO/IEC
+        15418 (GS1 or MH10.8.2), DID or DOI.'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppGranularityMatchesIdentifier
+    '@id': DppGranularityMatchesIdentifier
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:property:
+            sh:path: uniqueProductIdentifier
+            sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/[0-9]{8,14}
+      - sh:and:
+          '@list':
+          - sh:property:
+              sh:path: uniqueProductIdentifier
+              sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/[0-9]{8,14}.*/21/
+          - sh:property:
+              sh:path: granularity
+              sh:pattern: ^item$
+              sh:flags: i
+      - sh:and:
+          '@list':
+          - sh:property:
+              sh:path: uniqueProductIdentifier
+              sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/[0-9]{8,14}.*/10/
+          - sh:not:
+              sh:property:
+                sh:path: uniqueProductIdentifier
+                sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/[0-9]{8,14}.*/21/
+          - sh:property:
+              sh:path: granularity
+              sh:pattern: ^batch$
+              sh:flags: i
+      - sh:and:
+          '@list':
+          - sh:not:
+              sh:property:
+                sh:path: uniqueProductIdentifier
+                sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/[0-9]{8,14}.*/(10|21)/
+          - sh:property:
+              sh:path: granularity
+              sh:pattern: ^model$
+              sh:flags: i
+    sh:message: '[DPP-CFG-005] granularity matches the level of the GS1 Digital Link identifier: /21/
+      item, /10/ batch, otherwise model (EN 18219 5.2, 4.4.2).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppTopElementTypes
+    '@id': DppTopElementTypes
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path:
+        '@list':
+        - '@id': elements
+        - sh:zeroOrMorePath:
+            '@id': rdf:rest
+        - '@id': rdf:first
+      sh:node:
+        sh:nodeKind:
+          '@id': sh:BlankNodeOrIRI
+        sh:property:
+          sh:path: objectType
+          sh:minCount: 1
+          sh:maxCount: 1
+          sh:in:
+            '@list':
+            - DataElementCollection
+            - SingleValuedDataElement
+            - MultiValuedDataElement
+            - RelatedResource
+            - MultiLanguageDataElement
+      sh:message: '[DPP-INT-005] Every data element is a JSON object whose objectType is one of DataElementCollection,
+        SingleValuedDataElement, MultiValuedDataElement, RelatedResource, MultiLanguageDataElement (4.1.2.3,
+        Annex A).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppNestedElementTypes
+    '@id': DppNestedElementTypes
+    sh:targetObjectsOf:
+    - '@id': rdf:first
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:property:
+            sh:path: objectType
+            sh:minCount: 1
+            sh:in:
+              '@list':
+              - DataElementCollection
+              - MultiValuedDataElement
+      - sh:property:
+          sh:path:
+            '@list':
+            - '@id': elements
+            - sh:zeroOrMorePath:
+                '@id': rdf:rest
+            - '@id': rdf:first
+          sh:node:
+            sh:nodeKind:
+              '@id': sh:BlankNodeOrIRI
+            sh:property:
+              sh:path: objectType
+              sh:minCount: 1
+              sh:maxCount: 1
+              sh:in:
+                '@list':
+                - DataElementCollection
+                - SingleValuedDataElement
+                - MultiValuedDataElement
+                - RelatedResource
+                - MultiLanguageDataElement
+    sh:message: '[DPP-INT-005] Every data element is a JSON object whose objectType is one of DataElementCollection,
+      SingleValuedDataElement, MultiValuedDataElement, RelatedResource, MultiLanguageDataElement (4.1.2.3,
+      Annex A).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppMultiValueItems
+    '@id': DppMultiValueItems
+    sh:targetObjectsOf:
+    - '@id': rdf:first
+    - '@id': value
+    sh:or:
+      '@list':
+      - sh:not:
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: MultiValuedDataElement
+      - sh:property:
+          sh:path: value
+          sh:or:
+            '@list':
+            - sh:nodeKind:
+                '@id': sh:Literal
+            - sh:nodeKind:
+                '@id': sh:BlankNodeOrIRI
+              sh:property:
+                sh:path: objectType
+                sh:minCount: 1
+                sh:maxCount: 1
+                sh:in:
+                  '@list':
+                  - DataElementCollection
+                  - SingleValuedDataElement
+                  - MultiValuedDataElement
+                  - RelatedResource
+                  - MultiLanguageDataElement
+    sh:message: '[DPP-INT-005] Objects in the value array of a MultiValuedDataElement are data elements
+      with objectType (Annex A, Example 4).'
   - type: OverlayShacl
     base: DataElement
     name: DppElementId
     '@id': DppElementId
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:or:
-            '@list':
-            - sh:class:
-                '@id': DataElementCollection
-            - sh:class:
-                '@id': SingleValuedDataElement
-            - sh:class:
-                '@id': MultiValuedDataElement
-            - sh:class:
-                '@id': RelatedResource
-            - sh:class:
-                '@id': MultiLanguageDataElement
+          sh:property:
+            sh:path: objectType
+            sh:minCount: 1
+            sh:in:
+              '@list':
+              - DataElementCollection
+              - SingleValuedDataElement
+              - MultiValuedDataElement
+              - RelatedResource
+              - MultiLanguageDataElement
       - sh:property:
           sh:path: elementId
           sh:minCount: 1
@@ -255,23 +460,21 @@ content:
     name: DppDictionaryReference
     '@id': DppDictionaryReference
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:or:
-            '@list':
-            - sh:class:
-                '@id': DataElementCollection
-            - sh:class:
-                '@id': SingleValuedDataElement
-            - sh:class:
-                '@id': MultiValuedDataElement
-            - sh:class:
-                '@id': RelatedResource
-            - sh:class:
-                '@id': MultiLanguageDataElement
+          sh:property:
+            sh:path: objectType
+            sh:minCount: 1
+            sh:in:
+              '@list':
+              - DataElementCollection
+              - SingleValuedDataElement
+              - MultiValuedDataElement
+              - RelatedResource
+              - MultiLanguageDataElement
       - sh:property:
           sh:path: dictionaryReference
           sh:maxCount: 1
@@ -283,15 +486,21 @@ content:
     name: DppCollectionElements
     '@id': DppCollectionElements
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': DataElementCollection
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: DataElementCollection
       - sh:property:
-          sh:path: elements
+          sh:path:
+            '@list':
+            - '@id': elements
+            - sh:zeroOrMorePath:
+                '@id': rdf:rest
+            - '@id': rdf:first
           sh:minCount: 1
     sh:message: '[DPP-INT-005] A DataElementCollection contains at least one data element (4.1.2.4).'
   - type: OverlayShacl
@@ -299,13 +508,14 @@ content:
     name: DppSingleValue
     '@id': DppSingleValue
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:property:
           sh:path: value
           sh:minCount: 1
@@ -316,17 +526,18 @@ content:
     name: DppValueDataType
     '@id': DppValueDataType
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:or:
-            '@list':
-            - sh:class:
-                '@id': SingleValuedDataElement
-            - sh:class:
-                '@id': MultiValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:minCount: 1
+            sh:in:
+              '@list':
+              - SingleValuedDataElement
+              - MultiValuedDataElement
       - sh:property:
           sh:path: valueDataType
           sh:maxCount: 1
@@ -340,13 +551,14 @@ content:
     name: DppValueInteger
     '@id': DppValueInteger
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -367,13 +579,14 @@ content:
     name: DppValueNumber
     '@id': DppValueNumber
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -400,13 +613,14 @@ content:
     name: DppValueBoolean
     '@id': DppValueBoolean
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -426,13 +640,14 @@ content:
     name: DppValueString
     '@id': DppValueString
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -454,13 +669,14 @@ content:
     name: DppValueDate
     '@id': DppValueDate
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -475,13 +691,14 @@ content:
     name: DppValueDateTime
     '@id': DppValueDateTime
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -496,13 +713,14 @@ content:
     name: DppValueAnyUri
     '@id': DppValueAnyUri
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -517,13 +735,14 @@ content:
     name: DppValueNativeType
     '@id': DppValueNativeType
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': SingleValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: SingleValuedDataElement
       - sh:not:
           sh:property:
             sh:path: valueDataType
@@ -549,18 +768,23 @@ content:
     name: DppMultiNotEmpty
     '@id': DppMultiNotEmpty
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': MultiValuedDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: MultiValuedDataElement
       - sh:property:
           sh:path:
             sh:alternativePath:
               '@list':
-              - '@id': elements
+              - '@list':
+                - '@id': elements
+                - sh:zeroOrMorePath:
+                    '@id': rdf:rest
+                - '@id': rdf:first
               - '@id': value
           sh:minCount: 1
     sh:message: '[DPP-INT-005] A MultiValuedDataElement contains no data element (4.1.2.6 says at least
@@ -569,46 +793,17 @@ content:
       '@id': sh:Warning
   - type: OverlayShacl
     base: DataElement
-    name: DppMultiValueItems
-    '@id': DppMultiValueItems
-    sh:targetObjectsOf:
-    - '@id': elements
-    - '@id': value
-    sh:or:
-      '@list':
-      - sh:not:
-          sh:class:
-            '@id': MultiValuedDataElement
-      - sh:property:
-          sh:path: value
-          sh:or:
-            '@list':
-            - sh:nodeKind:
-                '@id': sh:Literal
-            - sh:class:
-                '@id': DataElementCollection
-            - sh:class:
-                '@id': SingleValuedDataElement
-            - sh:class:
-                '@id': MultiValuedDataElement
-            - sh:class:
-                '@id': RelatedResource
-            - sh:class:
-                '@id': MultiLanguageDataElement
-    sh:message: '[DPP-INT-005] Objects in the value array of a MultiValuedDataElement are data elements
-      with objectType (Annex A, Example 4).'
-  - type: OverlayShacl
-    base: DataElement
     name: DppRelatedContentType
     '@id': DppRelatedContentType
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': RelatedResource
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: RelatedResource
       - sh:property:
           sh:path: contentType
           sh:minCount: 1
@@ -623,13 +818,14 @@ content:
     name: DppRelatedUrl
     '@id': DppRelatedUrl
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': RelatedResource
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: RelatedResource
       - sh:property:
           sh:path: url
           sh:minCount: 1
@@ -643,13 +839,14 @@ content:
     name: DppRelatedLanguage
     '@id': DppRelatedLanguage
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': RelatedResource
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: RelatedResource
       - sh:property:
           sh:path: language
           sh:maxCount: 1
@@ -664,13 +861,14 @@ content:
     name: DppRelatedTitle
     '@id': DppRelatedTitle
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': RelatedResource
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: RelatedResource
       - sh:property:
           sh:path: resourceTitle
           sh:maxCount: 1
@@ -682,17 +880,20 @@ content:
     name: DppMultiLanguageValues
     '@id': DppMultiLanguageValues
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': MultiLanguageDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: MultiLanguageDataElement
       - sh:property:
           sh:path: value
           sh:minCount: 1
           sh:node:
+            sh:nodeKind:
+              '@id': sh:BlankNodeOrIRI
             sh:property:
             - sh:path: value
               sh:minCount: 1
@@ -713,13 +914,14 @@ content:
     name: DppMultiLanguageCountry
     '@id': DppMultiLanguageCountry
     sh:targetObjectsOf:
-    - '@id': elements
+    - '@id': rdf:first
     - '@id': value
     sh:or:
       '@list':
       - sh:not:
-          sh:class:
-            '@id': MultiLanguageDataElement
+          sh:property:
+            sh:path: objectType
+            sh:hasValue: MultiLanguageDataElement
       - sh:property:
           sh:path:
             '@list':

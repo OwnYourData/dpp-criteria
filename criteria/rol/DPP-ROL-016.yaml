@@ -17,14 +17,9 @@ target: passport
 method: automated
 requires_features: []
 check:
-  type: resolve
-  expect:
-    json:
-    - path: $.economicOperatorId
-      exists: true
-    - path: $.economicOperatorId
-      matches: \S
+  type: shacl
+  structure: DigitalProductPassport
 catalogue_ref: DPP-ROL-016
 notes: >-
-  The syntax of the identifier is checked by DPP-ID-009, DID-specific requirements
-  by DPP-ID-016.
+  Checked in the SOyA structure DigitalProductPassport. The syntax of the
+  identifier is checked by DPP-ID-009, DID-specific requirements by DPP-ID-016.

@@ -63,7 +63,7 @@ UTC). Placeholders used in a path are percent-encoded.
 - **http** — ordered `steps`, each with `request` (`method`, `path` relative to
   `{base}`, optional `headers`, `body`, `auth: none | token`) and `expect`
   (`status` list, `content_type`, `json` assertions with RFC 9535 JSONPath:
-  `equals`, `exists`, `in`, `in_ci` (case-insensitive), `matches`, each with
+  `equals`, `exists`, `in`, `matches`, each with
   optional `severity: warning`; `body_equals_step: n` compares the body with that
   of step n). A string `body` is sent as is, any other value as JSON. A step may
   list `skip_if_status` (result `skipped`) and `warn_if_status` (result
@@ -85,10 +85,6 @@ UTC). Placeholders used in a path are percent-encoded.
   `expect` those assertions apply instead. `accept` sets the Accept header.
   `history.fail_after_consecutive_days` rates the criterion from the
   validator's daily runs only.
-- **identifier** — checks the value at `path` against EN 18219: `schemes` it
-  may follow, `url_or_conversion` (URL or convertible into one), or
-  `granularity_path` (granularity matches the level the identifier encodes;
-  skipped for schemes that encode no level).
 - **did** — resolves the DIDs found at `paths` (non-DID values are skipped) and
   checks DID Core, DID Resolution and associated credentials against
   `vc_data_model`.

@@ -21,15 +21,12 @@ applies_if:
 - path: $.economicOperatorId
   exists: true
 check:
-  type: identifier
-  path: $.economicOperatorId
-  schemes:
-  - iso-iec-6523
-  - iso-iec-15418
-  - did
-  - doi
+  type: shacl
+  structure: DigitalProductPassport
 catalogue_ref: DPP-ID-009
 notes: >-
-  Whether the identifier is present is checked by DPP-ROL-016; DID-specific requirements
-  by DPP-ID-016. The EU DPP registry accepts only NTR, LEI, VAT and eID identifiers
+  Checked in the SOyA structure DigitalProductPassport by syntax: ISO/IEC 6523
+  (ICD prefix), GS1 GLN or Digital Link (ISO/IEC 15418), DID or DOI. Whether the
+  identifier is present is checked by DPP-ROL-016; DID-specific requirements by
+  DPP-ID-016. The EU DPP registry accepts only NTR, LEI, VAT and eID identifiers
   for economic operators.
