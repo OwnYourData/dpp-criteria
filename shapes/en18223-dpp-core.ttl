@@ -1,0 +1,106 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dpp:  <https://github.com/OwnYourData/dpp-criteria/ns/en18223#> .
+@prefix crit: <https://github.com/OwnYourData/dpp-criteria/shapes/en18223-dpp-core#> .
+
+# Header attributes of the DigitalProductPassport class, EN 18223:2026 4.1.2.1, Table 1.
+# Used by criterion DPP-DAT-014. Input preparation: see shapes/README.md.
+
+crit:DigitalProductPassportShape
+    a sh:NodeShape ;
+    sh:targetClass dpp:DigitalProductPassport ;
+    rdfs:comment "Header attributes of a DPP (EN 18223:2026 4.1.2.1, Table 1)." ;
+
+    sh:property [
+        sh:path dpp:digitalProductPassportId ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "digitalProductPassportId is mandatory and occurs once (Table 1, cardinality 1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:digitalProductPassportId ;
+        sh:pattern "^[A-Za-z][A-Za-z0-9+.-]*:" ;
+        sh:severity sh:Warning ;
+        sh:message "digitalProductPassportId should be based on a URI (EN 18223:2026 4.1.2.1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:uniqueProductIdentifier ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "uniqueProductIdentifier is mandatory and occurs once (Table 1, cardinality 1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:granularity ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "granularity is mandatory and occurs once (Table 1, cardinality 1); its values are checked by DPP-DAT-015." ;
+    ] ;
+    sh:property [
+        sh:path dpp:dppSchemaVersion ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "dppSchemaVersion is mandatory and occurs once (Table 1, cardinality 1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:dppStatus ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "dppStatus is mandatory and occurs once (Table 1, cardinality 1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:dppStatus ;
+        sh:pattern "^(active|inactive|archived|invalid)$" ;
+        sh:flags "i" ;
+        sh:severity sh:Warning ;
+        sh:message "dppStatus is none of the example values active, inactive, archived, invalid (allowed if a legal act defines it)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:lastUpdated ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$" ;
+        sh:message "lastUpdated is mandatory, occurs once and is a UTC timestamp per ISO 8601-1 (Table 1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:economicOperatorId ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "economicOperatorId is mandatory and occurs once (Table 1, cardinality 1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:facilityId ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "facilityId is optional and occurs at most once (Table 1, cardinality 0..1)." ;
+    ] ;
+    sh:property [
+        sh:path dpp:contentSpecificationIds ;
+        sh:datatype xsd:string ; sh:minLength 1 ;
+        sh:message "contentSpecificationIds are strings (Table 1, cardinality 0..*)." ;
+    ] ;
+
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Attribute {?name} differs from an EN 18223 attribute name only in spelling; use the published camelCase name (5.2.2)." ;
+        sh:prefixes crit:prefixes ;
+        sh:select """
+            SELECT $this ?path ?name WHERE {
+                $this ?path ?value .
+                FILTER (STRSTARTS(STR(?path), STR(dpp:)))
+                BIND (STRAFTER(STR(?path), STR(dpp:)) AS ?name)
+                FILTER (LCASE(?name) IN ("digitalproductpassportid", "uniqueproductidentifier", "granularity",
+                                         "dppschemaversion", "dppstatus", "lastupdated", "economicoperatorid",
+                                         "facilityid", "contentspecificationids"))
+                FILTER (?name NOT IN ("digitalProductPassportId", "uniqueProductIdentifier", "granularity",
+                                      "dppSchemaVersion", "dppStatus", "lastUpdated", "economicOperatorId",
+                                      "facilityId", "contentSpecificationIds"))
+            }
+        """ ;
+    ] .
+
+crit:prefixes
+    sh:declare [
+        sh:prefix "dpp" ;
+        sh:namespace "https://github.com/OwnYourData/dpp-criteria/ns/en18223#"^^xsd:anyURI ;
+    ] .

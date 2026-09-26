@@ -26,3 +26,14 @@ jobs:
             [ "$(basename "$f" .yaml)" = "$id" ] || { echo "::error file=$f::file name does not match id $id"; fail=1; }
           done
           exit $fail
+
+  shapes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyshacl==0.30.1
+      - name: SHACL shapes against test vectors
+        run: python scripts/test_shapes.py

@@ -1,0 +1,6 @@
+{
+  "@context": {
+    "@vocab": "https://github.com/OwnYourData/dpp-criteria/ns/en18223#",
+    "DigitalProductPassport": "https://github.com/OwnYourData/dpp-criteria/ns/en18223#DigitalProductPassport"
+  }
+}
