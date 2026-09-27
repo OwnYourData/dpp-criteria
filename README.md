@@ -8,8 +8,9 @@ standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 - `services/` – one YAML file per listed DPP service
 - `soya/` – SOyA structures with the SHACL shapes of the passport checks, see [soya/README.md](soya/README.md)
 - `tests/soya/` – test vectors for the structures
+- `tests/schema/` – valid and invalid examples for the JSON Schemas
 - `schema/` – JSON Schemas for both file types
-- `scripts/` – build and test the structures with the SOyA web-cli
+- `scripts/` – build and test the structures with the SOyA web-cli, run the schema test vectors
 
 The format is described in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md).
 

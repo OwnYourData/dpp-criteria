@@ -1,0 +1,17 @@
+id: DPP-TST-103
+version: 1
+status: proposed
+title: Schema test vector
+statement: A test vector MUST validate as described in its file name.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: "5"
+  kind: harmonised-standard
+target: passport
+method: automated
+check:
+  type: resolve
+  expect:
+    headers:
+    - { name: Vary, value: Accept }
