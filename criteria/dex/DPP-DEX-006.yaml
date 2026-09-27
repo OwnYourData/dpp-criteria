@@ -19,4 +19,9 @@ check:
     - '1.0'
     - '1.1'
 notes: >-
-  Checked on the HTTPS port. The redirect from plain HTTP (DPP-DEX-002) is not affected.
+  Checked on the HTTPS port of the API base only; port 80 (redirect to HTTPS,
+  ACME HTTP-01) is not tested and stays covered by DPP-DEX-002. A request forced
+  to HTTP/1.0 or HTTP/1.1 over TLS counts as rejected if it gets no successful
+  response: aborted connection or TLS handshake, or a status of 400 or higher
+  (505 HTTP Version Not Supported recommended). A 2xx or 3xx answer at either
+  version fails the criterion. See the tls check type in CRITERIA-FORMAT.md.

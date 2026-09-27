@@ -1,5 +1,5 @@
 id: DPP-API-021
-version: 1
+version: 2
 status: proposed
 title: elementIdPath uses RFC 9535 JSONPath
 statement: >-
@@ -7,7 +7,7 @@ statement: >-
 level: MUST
 basis:
 - source: EN 18222:2026
-  clause: 8.1, 8.4, Table 18
+  clause: 7.2, 8.1, 8.4, Tables 15 and 18
   kind: harmonised-standard
 target: service
 method: automated
@@ -24,9 +24,6 @@ check:
       status:
       - 200
       content_type: application/json
-      json:
-      - path: $.elementId
-        exists: true
   - request:
       method: GET
       path: /dpps/{dppId}/elements/%24%5B
@@ -34,8 +31,13 @@ check:
     expect:
       status:
       - 400
-      - 404
 notes: >-
   The fine-granular API itself is optional (EN 18222 6.1); the criterion applies
   only to services that declare it. The test data of the service names a JSONPath
-  to a known data element. The second step sends the invalid expression "$[".
+  to a known data element. Step 1 requests it without the representation query
+  flag, so the service answers in the default compressed representation (EN 18222
+  8.1, EN 18223 5.2), where the element may be a bare value, array or object
+  without an elementId; step 1 therefore checks only status and content type.
+  Step 2 sends the syntactically invalid expression "$[". EN 18222 Table 15 maps
+  a malformed request to ClientErrorBadRequest (400); 404 is not accepted, since a
+  service that does not evaluate JSONPath at all would also answer 404.

@@ -64,13 +64,28 @@ UTC). Placeholders used in a path are percent-encoded.
   `{base}`, optional `headers`, `body`, `auth: none | token`) and `expect`
   (`status` list, `content_type`, `json` assertions with RFC 9535 JSONPath:
   `equals`, `exists`, `in`, `matches`, each with
-  optional `severity: warning`; `body_equals_step: n` compares the body with that
-  of step n). A string `body` is sent as is, any other value as JSON. A step may
-  list `skip_if_status` (result `skipped`) and `warn_if_status` (result
-  `warning`). `base_matches` is a regular expression the API base must match.
+  optional `severity: warning`; `headers` assertions on response header fields,
+  see below; `body_equals_step: n` compares the body with that of step n). A
+  string `body` is sent as is, any other value as JSON. A step may list
+  `skip_if_status` (result `skipped`) and `warn_if_status` (result `warning`);
+  `severity: warning` on a step turns any failure of that step into a
+  `warning`. `base_matches` is a regular expression the API base must match.
 - **tls** — `min_version`, `reject_versions` (`ssl3`, `1.0`, …),
   `recommend_versions` (warning if missing), `https_redirect`,
   `valid_certificate`, `http_versions` with `require` and `reject` lists.
+  `http_versions` is tested on the HTTPS port of the API base only; plain HTTP
+  on port 80 (redirect to HTTPS, ACME HTTP-01 challenges) is out of scope and
+  covered by `https_redirect`. For each version in `reject` the runner sends
+  `GET {base}/dpps/{dppId}` over TLS, forced to that version (ALPN offers only
+  that protocol, no upgrade to another version). The version counts as
+  **rejected** if no successful response comes back: the connection or the TLS
+  handshake is aborted (including an ALPN `no_application_protocol` alert), the
+  connection is closed or times out without a response, or the status is 400 or
+  higher (505 HTTP Version Not Supported is the recommended answer). A 2xx or
+  3xx status means the version is **not rejected**. As a reference, the same
+  request is sent once with the runner's default negotiation; if that does not
+  answer 2xx or 3xx, a 4xx or 5xx at the forced version says nothing about the
+  version and the result is `skipped`.
 - **shacl** — `structure`: name of a SOyA structure under `soya/`, published on
   soya.ownyourdata.eu. The passport fetched via `{productId}` is validated with
   `soya validate <structure>`; the results whose message starts with the
@@ -83,8 +98,31 @@ UTC). Placeholders used in a path are percent-encoded.
   (plain HTTPS GET, no special headers). Without `expect` it expects a single
   passport object whose `uniqueProductIdentifier` equals the input; with
   `expect` those assertions apply instead. `accept` sets the Accept header.
+  `further_requests` lists more requests to the same identifier, each with its
+  own `accept` and `expect` and an optional `severity: warning` that turns any
+  failure of that request into a `warning`; they run after the first request
+  and are evaluated independently of it.
   `history.fail_after_consecutive_days` rates the criterion from the
   validator's daily runs only.
+  Example (the first request must succeed; the header assertion and the second
+  request only give warnings):
+
+  ```yaml
+  check:
+    type: resolve
+    accept: text/html
+    expect:
+      status: [200]
+      content_type: text/html
+      headers:
+        - { name: Vary, contains: Accept, severity: warning }
+    further_requests:
+      - accept: "*/*"
+        severity: warning
+        expect:
+          status: [200]
+          content_type: application/json
+  ```
 - **did** — resolves the DIDs found at `paths` (non-DID values are skipped) and
   checks DID Core, DID Resolution and associated credentials against
   `vc_data_model`.
@@ -95,6 +133,18 @@ UTC). Placeholders used in a path are percent-encoded.
 - **declaration** — for `self-declared`: the service file must contain an entry
   under `declarations` with this criterion's ID, a `statement` and an
   `evidence` URL. The runner only checks presence and that the URL answers.
+
+### Header assertions
+
+`expect.headers` (in `http` and `resolve`) is a list of assertions on response
+header fields. `name` is the field name, matched case-insensitively; several
+fields with the same name are combined into one comma-separated value
+(RFC 9110 5.3). Each assertion has at least one of: `exists` (true/false),
+`equals` (whole value, exact), `contains` (the value, split at commas and
+trimmed, has a member equal to this string, compared case-insensitively),
+`matches` (regular expression on the whole value). A missing field fails every
+assertion except `exists: false`. `severity: warning` works as for JSON
+assertions.
 
 ### Results
 

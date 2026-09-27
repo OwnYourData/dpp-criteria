@@ -18,6 +18,8 @@ jobs:
         run: check-jsonschema --schemafile schema/criterion.schema.json criteria/*/*.yaml
       - name: Services
         run: check-jsonschema --schemafile schema/service.schema.json services/*.yaml
+      - name: Schema test vectors
+        run: sh scripts/test_schema.sh
       - name: File name matches id
         run: |
           fail=0

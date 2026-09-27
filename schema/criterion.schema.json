@@ -105,7 +105,27 @@
         "status": { "$ref": "#/$defs/statusList" },
         "content_type": { "type": "string" },
         "json": { "type": "array", "items": { "$ref": "#/$defs/assertion" } },
+        "headers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/headerAssertion" } },
         "body_equals_step": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "headerAssertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "anyOf": [
+        { "required": ["exists"] },
+        { "required": ["equals"] },
+        { "required": ["contains"] },
+        { "required": ["matches"] }
+      ],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[A-Za-z0-9!#$%&'*+.^_`|~-]+$" },
+        "exists": { "type": "boolean" },
+        "equals": { "type": "string" },
+        "contains": { "type": "string", "minLength": 1 },
+        "matches": { "type": "string" },
+        "severity": { "$ref": "#/$defs/severity" }
       }
     },
     "check": {
@@ -185,6 +205,20 @@
             "properties": {
               "accept": { "type": "string" },
               "expect": { "$ref": "#/$defs/expect" },
+              "further_requests": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["accept", "expect"],
+                  "properties": {
+                    "accept": { "type": "string" },
+                    "expect": { "$ref": "#/$defs/expect" },
+                    "severity": { "$ref": "#/$defs/severity" }
+                  }
+                }
+              },
               "history": {
                 "type": "object",
                 "additionalProperties": false,
