@@ -1,5 +1,5 @@
 id: DPP-SEC-002
-version: 1
+version: 2
 status: proposed
 title: Integrity of the passport version is verifiable
 statement: The integrity of a DPP version MUST be verifiable.
@@ -9,15 +9,17 @@ basis:
   clause: Art. 2 (hash of the version); Art. 8(9)
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj
+- source: EN 18221:2026
+  clause: 4.1, 4.2
+  kind: harmonised-standard
 - source: prEN 18246:2025
-  clause: 4.7, 4.8
+  clause: '4.7'
   kind: draft-standard
 target: passport
 method: automated
 requires_features: []
 check:
   type: proof
-  key_from: $.economicOperatorId
   formats:
   - vc-data-integrity
   - vc-jose-cose
@@ -26,6 +28,12 @@ catalogue_ref:
 - DPP-SEC-002
 - DPP-BAT-008
 notes: >-
-  If the passport carries an integrity proof, it is verified against the key of
-  the economic operator; without a proof the result is skipped. The version hash
-  under Art. 8(9) is held by the EU DPP registry, which has no public API.
+  EN 18221:2026 requires DPP service providers to ensure the integrity and
+  authenticity of stored passports and of archived versions, following EN 18246;
+  prEN 18246:2025 4.7 asks that a DPP be verifiable in integrity and
+  authenticity, free of charge for the verifier. Every proof found is verified
+  with the key it names (verificationMethod, JWS kid) or, for did-oyd-log, against
+  the payloadHash in the DID document of the passport identifier; who holds the
+  key is assessed in DPP-SEC-013. Only the current version is checked. Without a
+  proof the result is skipped. The version hash under Art. 8(9) of the
+  Implementing Regulation is held by the EU DPP registry, which has no public API.

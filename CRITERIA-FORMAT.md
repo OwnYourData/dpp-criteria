@@ -126,8 +126,10 @@ UTC). Placeholders used in a path are percent-encoded.
 - **did** — resolves the DIDs found at `paths` (non-DID values are skipped) and
   checks DID Core, DID Resolution and associated credentials against
   `vc_data_model`.
-- **proof** — verifies an integrity proof of the passport in one of `formats`
-  against the key of the identifier at `key_from`; no proof → `skipped`.
+- **proof** — verifies the integrity proofs of the passport in `formats`
+  (`vc-data-integrity`, `vc-jose-cose`, `did-oyd-log`), each with the key it
+  names; no proof → `skipped`. With `key_from`, at least one verified proof has
+  to be issued with a key of the DID at that path; otherwise a warning.
 - **links** — checks every element of `element_type` for the `required`
   attributes and whether its URL answers; `unreachable` sets the severity.
 - **declaration** — for `self-declared`: the service file must contain an entry

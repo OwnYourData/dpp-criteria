@@ -252,7 +252,7 @@
           "if": { "properties": { "type": { "const": "proof" } } },
           "then": {
             "additionalProperties": false,
-            "required": ["key_from", "formats"],
+            "required": ["formats"],
             "properties": {
               "type": true,
               "key_from": { "type": "string", "pattern": "^\\$" },

@@ -1,0 +1,38 @@
+id: DPP-SEC-013
+version: 1
+status: proposed
+title: Integrity proof is issued by the economic operator
+statement: >-
+  The integrity proof of a DPP SHOULD be issued with a key of the responsible
+  economic operator or its authorised representative.
+level: SHOULD
+basis:
+- source: prEN 18246:2025
+  clause: 4.8.3
+  kind: draft-standard
+- source: EN 18219:2026
+  clause: 6.4.1
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: proof
+  key_from: $.economicOperatorId
+  formats:
+  - vc-data-integrity
+  - vc-jose-cose
+  - did-oyd-log
+catalogue_ref: DPP-SEC-004
+notes: >-
+  prEN 18246:2025 4.8.3 names the economic operator placing the product on the
+  market, or its authorised representative, as the signer of core passport data;
+  EN 18219:2026 6.4.1 describes economic operator DIDs as the means to sign
+  passports, with the public key in the DID document. Passed if at least one proof
+  verified under DPP-SEC-002 is issued with a key of the DID in economicOperatorId.
+  A proof by another key gives a warning, because an authorised representative
+  cannot be recognised automatically. For did-oyd-log the content is attested with
+  the key of the passport identifier, which is not linked to the economic
+  operator, so it gives a warning. Without a verified proof, or if
+  economicOperatorId is not a DID, the result is skipped. Basis is a draft
+  standard; the level follows its "should".
