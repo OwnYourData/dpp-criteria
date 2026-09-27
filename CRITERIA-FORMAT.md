@@ -49,7 +49,7 @@ notes: ""
 | `requires_features` | Feature flags from the controlled list below. Empty means "applies to every service". |
 | `applies_if` | Passport criteria only. A list of JSON assertions (see `http`) on the fetched passport. If one does not hold, the result is `skipped`. |
 | `catalogue_ref` | Catalogue rows whose check this criterion carries. Several rows that lead to the same check share one criterion, so a check counts only once in "N of M". |
-| `check.type` | One of `http`, `tls`, `shacl`, `resolve`, `declaration`. Each type is implemented once in the runner; a pull request that needs a new type adds it to the runner in the same PR. |
+| `check.type` | One of `http`, `tls`, `shacl`, `resolve`, `did`, `proof`, `links`, `declaration`. Each type is implemented once in the runner; a pull request that needs a new type adds it to the runner in the same PR. A check accepts only the fields listed for its type below; any other key, including a misspelt one, is a schema error. |
 
 ### Placeholders in checks
 
@@ -69,7 +69,7 @@ UTC). Placeholders used in a path are percent-encoded.
   string `body` is sent as is, any other value as JSON. A step may list
   `skip_if_status` (result `skipped`) and `warn_if_status` (result `warning`);
   `severity: warning` on a step turns any failure of that step into a
-  `warning`. `base_matches` is a regular expression the API base must match.
+  `warning` (`error` is the default and need not be written). `base_matches` is a regular expression the API base must match.
 - **tls** — `min_version`, `reject_versions` (`ssl3`, `1.0`, …),
   `recommend_versions` (warning if missing), `https_redirect`,
   `valid_certificate`, `http_versions` with `require` and `reject` lists.
