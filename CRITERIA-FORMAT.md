@@ -185,6 +185,15 @@ rules apply to `matches` in `applies_if`, which uses JSON assertions.
 Regular expressions inside a JSONPath expression, i.e. the arguments of the
 RFC 9535 functions `match()` (whole value) and `search()` (anywhere in the
 value), follow RFC 9535 and therefore I-Regexp (RFC 9485), not ECMA-262.
+Such patterns must be valid I-Regexp and must not contain `^` or `$` outside a
+character class: use `match()` for a whole-value match and `search()` for a
+match anywhere. A runner checks these patterns before evaluating the JSONPath;
+an invalid pattern, or one with `^` or `$`, is treated as unusable (see
+"Results") instead of letting the function return false.
+
+`matches` holds only if the value is a JSON string in which the pattern is
+found. A number, boolean, `null`, array or object never satisfies `matches`
+and is not converted to a string; use `equals` or `in` for those.
 
 ### Results
 
@@ -193,7 +202,8 @@ Each run gives every applicable criterion one result: `passed`, `failed`,
 declared or data not available). Only `passed` and `failed` enter "N of M".
 
 A regular expression that the runner cannot evaluate as specified above
-(invalid, or valid but outside the portable subset) makes the criterion
+(invalid, or valid but outside the portable subset; for JSONPath functions an
+invalid I-Regexp or one containing `^` or `$`) makes the criterion
 `skipped` with that reason, before any request is sent. It never leads to
 `failed`. CI already rejects patterns that are not valid ECMA-262.
 
