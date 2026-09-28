@@ -94,7 +94,7 @@
         "equals": {},
         "exists": { "type": "boolean" },
         "in": { "type": "array", "minItems": 1 },
-        "matches": { "type": "string" },
+        "matches": { "type": "string", "format": "regex" },
         "severity": { "$ref": "#/$defs/severity" }
       }
     },
@@ -124,7 +124,7 @@
         "exists": { "type": "boolean" },
         "equals": { "type": "string" },
         "contains": { "type": "string", "minLength": 1 },
-        "matches": { "type": "string" },
+        "matches": { "type": "string", "format": "regex" },
         "severity": { "$ref": "#/$defs/severity" }
       }
     },
@@ -140,7 +140,7 @@
             "required": ["steps"],
             "properties": {
               "type": true,
-              "base_matches": { "type": "string" },
+              "base_matches": { "type": "string", "format": "regex" },
               "steps": {
                 "type": "array",
                 "minItems": 1,

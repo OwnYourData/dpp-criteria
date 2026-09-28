@@ -63,13 +63,14 @@ UTC). Placeholders used in a path are percent-encoded.
 - **http** — ordered `steps`, each with `request` (`method`, `path` relative to
   `{base}`, optional `headers`, `body`, `auth: none | token`) and `expect`
   (`status` list, `content_type`, `json` assertions with RFC 9535 JSONPath:
-  `equals`, `exists`, `in`, `matches`, each with
+  `equals`, `exists`, `in`, `matches` (see "Regular expressions"), each with
   optional `severity: warning`; `headers` assertions on response header fields,
   see below; `body_equals_step: n` compares the body with that of step n). A
   string `body` is sent as is, any other value as JSON. A step may list
   `skip_if_status` (result `skipped`) and `warn_if_status` (result `warning`);
   `severity: warning` on a step turns any failure of that step into a
-  `warning` (`error` is the default and need not be written). `base_matches` is a regular expression the API base must match.
+  `warning` (`error` is the default and need not be written). `base_matches` is a regular expression (see "Regular expressions") that must
+  be found in the API base.
 - **tls** — `min_version`, `reject_versions` (`ssl3`, `1.0`, …),
   `recommend_versions` (warning if missing), `https_redirect`,
   `valid_certificate`, `http_versions` with `require` and `reject` lists.
@@ -144,9 +145,30 @@ fields with the same name are combined into one comma-separated value
 (RFC 9110 5.3). Each assertion has at least one of: `exists` (true/false),
 `equals` (whole value, exact), `contains` (the value, split at commas and
 trimmed, has a member equal to this string, compared case-insensitively),
-`matches` (regular expression on the whole value). A missing field fails every
-assertion except `exists: false`. `severity: warning` works as for JSON
-assertions.
+`matches` (regular expression searched in the combined value, see "Regular
+expressions"). A missing field fails every assertion except `exists: false`.
+`severity: warning` works as for JSON assertions.
+
+### Order of evaluation within a request
+
+For each request (an `http` step, the first `resolve` request or one of its
+`further_requests`), `status` and `content_type` are evaluated first. Only if
+both hold are `headers`, `json` and `body_equals_step` of the same `expect`
+evaluated; otherwise they are not evaluated and give no message of their own,
+because they would describe a different response than the one the criterion
+is about. The failed `status` or `content_type` alone decides the outcome of
+that request.
+
+### Regular expressions
+
+`matches` in JSON and header assertions and `base_matches` use ECMA-262
+(JavaScript) regular expression syntax, the same dialect as the JSON Schema
+keyword `pattern`, without flags; CI rejects patterns that are not valid
+ECMA-262. The pattern is searched anywhere in the value, not implicitly
+anchored: write `^` and `$` to match the whole value. Matching is
+case-sensitive. To stay portable across runners, use only literals, character
+classes, quantifiers, alternation, groups and the anchors `^` and `$`; no
+inline flags such as `(?i)`, lookaround, backreferences or named groups.
 
 ### Results
 
