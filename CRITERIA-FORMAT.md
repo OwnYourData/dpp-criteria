@@ -159,6 +159,14 @@ because they would describe a different response than the one the criterion
 is about. The failed `status` or `content_type` alone decides the outcome of
 that request.
 
+`content_type` compares the media type of the response without its parameters
+(`charset` and the like), case-insensitively. If it names a JSON media type
+(`application/json` or a `+json` type), the body must also parse as JSON, and
+this belongs to the `content_type` check. In `resolve` the body must moreover
+be a single JSON object, since the request fetches one passport; in `http` any
+JSON value is accepted (a data element in the compressed representation may be
+a bare value, see DPP-API-021).
+
 ### Regular expressions
 
 `matches` in JSON and header assertions and `base_matches` use ECMA-262
@@ -169,12 +177,25 @@ anchored: write `^` and `$` to match the whole value. Matching is
 case-sensitive. To stay portable across runners, use only literals, character
 classes, quantifiers, alternation, groups and the anchors `^` and `$`; no
 inline flags such as `(?i)`, lookaround, backreferences or named groups.
+Patterns must not depend on how characters outside the Basic Multilingual
+Plane are counted (ECMA-262 without flags counts UTF-16 code units, other
+engines count code points); results in such cases are not defined. The same
+rules apply to `matches` in `applies_if`, which uses JSON assertions.
+
+Regular expressions inside a JSONPath expression, i.e. the arguments of the
+RFC 9535 functions `match()` (whole value) and `search()` (anywhere in the
+value), follow RFC 9535 and therefore I-Regexp (RFC 9485), not ECMA-262.
 
 ### Results
 
 Each run gives every applicable criterion one result: `passed`, `failed`,
 `warning` (passed, with a remark) or `skipped` (condition not met, feature not
 declared or data not available). Only `passed` and `failed` enter "N of M".
+
+A regular expression that the runner cannot evaluate as specified above
+(invalid, or valid but outside the portable subset) makes the criterion
+`skipped` with that reason, before any request is sent. It never leads to
+`failed`. CI already rejects patterns that are not valid ECMA-262.
 
 ### Controlled feature flags
 
