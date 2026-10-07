@@ -108,22 +108,56 @@ Where placeholders are substituted, and how:
   `severity: warning` on a step turns any failure of that step into a
   `warning` (`error` is the default and need not be written). `base_matches` is a regular expression (see "Regular expressions") that must
   be found in the API base.
-- **tls** — `min_version`, `reject_versions` (`ssl3`, `1.0`, …),
-  `recommend_versions` (warning if missing), `https_redirect`,
-  `valid_certificate`, `http_versions` with `require` and `reject` lists.
-  `http_versions` is tested on the HTTPS port of the API base only; plain HTTP
-  on port 80 (redirect to HTTPS, ACME HTTP-01 challenges) is out of scope and
-  covered by `https_redirect`. For each version in `reject` the runner sends
-  `GET {base}/dpps/{dppId}` over TLS, forced to that version (ALPN offers only
-  that protocol, no upgrade to another version). The version counts as
-  **rejected** if no successful response comes back: the connection or the TLS
-  handshake is aborted (including an ALPN `no_application_protocol` alert), the
-  connection is closed or times out without a response, or the status is 400 or
-  higher (505 HTTP Version Not Supported is the recommended answer). A 2xx or
-  3xx status means the version is **not rejected**. As a reference, the same
-  request is sent once with the runner's default negotiation; if that does not
-  answer 2xx or 3xx, a 4xx or 5xx at the forced version says nothing about the
-  version and the result is `skipped`.
+- **tls** — properties of TLS and HTTP versions on the host and HTTPS port of
+  the API base. `{base}` must be an `https` URL; otherwise the criterion fails.
+  Each key below is one part of the check:
+  - `valid_certificate: true` — a TLS handshake that verifies the certificate
+    chain and the host name against the runner's trust store (the common
+    public CA set, as shipped with the runner's operating system) succeeds.
+  - `https_redirect: true` — `GET http://<host>:80<base path>/dpps/{dppId}`,
+    without following redirects. Holds if the connection is refused or closed
+    without a response, if the answer is a redirect (3xx) whose `Location`
+    starts with `https://`, or if the status is 400 or higher (nothing is
+    served over plain HTTP). Fails on 2xx, and on a redirect without
+    `Location` or to a URL that is not `https`.
+  - `min_version` — a handshake in which the runner offers every version it
+    can, older ones included, must negotiate at least this version.
+  - `reject_versions` (`ssl3`, `1.0`, `1.1`, `1.2`) — a handshake in which the
+    runner offers only that version must fail.
+  - `recommend_versions` (`1.3`) — a handshake in which the runner offers only
+    that version should succeed; otherwise a `warning`.
+  - `http_versions` with `require` and `reject` lists, tested with
+    `GET {base}/dpps/{dppId}` on the HTTPS port of the API base only; plain
+    HTTP on port 80 (redirect to HTTPS, ACME HTTP-01 challenges) is out of
+    scope and covered by `https_redirect`. As a reference, the request is sent
+    once with the runner's default negotiation; if that does not answer 2xx
+    or 3xx, the versions in `require` and `reject` cannot be judged and are
+    not tested. For each version the request is then sent over TLS forced to
+    that version (ALPN offers only that protocol, no upgrade to another
+    version).
+    - **require**: the server must select that protocol in ALPN and answer
+      2xx or 3xx.
+    - **reject**: the version counts as **rejected** if no successful
+      response comes back: the connection or the TLS handshake is aborted
+      (including an ALPN `no_application_protocol` alert), the connection is
+      closed or times out without a response, or the status is 400 or higher
+      (505 HTTP Version Not Supported is the recommended answer). A 2xx or 3xx
+      status means the version is **not rejected**.
+
+  Certificate verification is off in every part except `valid_certificate`,
+  so that protocol behaviour is judged independently of the certificate.
+
+  A runner should be able to test every value it may meet here. For versions
+  its TLS library no longer offers (such as SSL 3.0 in OpenSSL 3), it may send
+  a minimal ClientHello of its own and judge the server's first answer. A part
+  the runner cannot test (a version it cannot offer, HTTP/3 without QUIC, a
+  failed reference request) is **not tested**.
+
+  Result: `failed` if any part fails. Otherwise `skipped`, with the reason, if
+  any part was not tested: a criterion is never `passed` with an untested
+  part. Otherwise `warning` if a recommended version is missing, otherwise
+  `passed`. If the host does not accept a TCP connection on the HTTPS port at
+  all, the criterion is `skipped`; availability is rated by DPP-ID-002.
 - **shacl** — `structure`: name of a SOyA structure under `soya/`, published on
   soya.ownyourdata.eu. The passport fetched via `{productId}` is validated with
   `soya validate <structure>`; the results whose message starts with the
