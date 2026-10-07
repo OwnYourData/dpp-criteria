@@ -53,10 +53,47 @@ notes: ""
 
 ### Placeholders in checks
 
-`{base}` API base URL of the service · `{dppId}` test passport ID · `{productId}`
-test product identifier · `{elementIdPath}` JSONPath of a data element in the test
-passport · `{randomId}` an ID that does not exist · `{now}` run time (ISO 8601,
-UTC). Placeholders used in a path are percent-encoded.
+| Placeholder | Value |
+|---|---|
+| `{base}` | `api_base` of the service entry |
+| `{dppId}` | `test_data.dppId` |
+| `{productId}` | `test_data.productId` |
+| `{elementIdPath}` | `test_data.elementIdPath`, the JSONPath of a data element in the test passport |
+| `{randomId}` | An ID that no service has issued: the runner's name, `-` and 32 random lowercase hexadecimal digits (128 bits), e.g. `dpp-validator-3f9c…`. It uses only unreserved characters (RFC 3986), so encoding never changes it. |
+| `{now}` | Run time in UTC as `YYYY-MM-DDThh:mm:ssZ` (RFC 3339, whole seconds) |
+
+`{randomId}` and `{now}` are fixed once per run and are the same in every
+criterion of that run. Only these six names are placeholders; any other text in
+braces stays as written (e.g. the body `{not json` of DPP-API-007).
+
+If a criterion uses a placeholder that has no value for the service (e.g.
+`{elementIdPath}` without `test_data.elementIdPath`), the criterion is
+`skipped` with that reason before any request is sent.
+
+Where placeholders are substituted, and how:
+
+- **Request `path`** (`http`): the value is percent-encoded. Every octet of
+  its UTF-8 form outside the unreserved characters of RFC 3986
+  (`A-Z a-z 0-9 - . _ ~`) is written as `%XX` with capital hex digits, so the
+  value stays one path segment or one query value (`:`, `/`, `$`, `[` and `?`
+  included). Text around the placeholders is sent as written in the
+  criterion, so a criterion can contain encoded characters of its own (e.g.
+  `%24%5B` in DPP-API-021).
+- **Request `headers` and `body`**: the value is inserted as it is. In a body
+  that is not a string, placeholders are substituted in the strings of the
+  JSON value (member names and values) before it is serialised, so the value
+  ends up correctly escaped as a JSON string. A string body is sent with the
+  value inserted literally.
+- **JSON assertions** (`path`, `equals`, `in`): in
+  `equals` and `in` the value is inserted as it is. In a JSONPath a
+  placeholder may stand only inside a string literal (`'…'` or `"…"`); the
+  value is inserted escaped as RFC 9535 requires for that literal (`\` as
+  `\\`, the enclosing quote with a backslash, control characters as
+  `\uXXXX`), so it is compared literally whatever characters it contains. A
+  placeholder outside a string literal makes the JSONPath unusable and the
+  criterion `skipped` (see "Results").
+- **Not substituted**: regular expressions (`matches`, `base_matches`) and
+  header assertions (`expect.headers`) are used as written.
 
 ### Check types
 
@@ -205,7 +242,9 @@ A regular expression that the runner cannot evaluate as specified above
 (invalid, or valid but outside the portable subset; for JSONPath functions an
 invalid I-Regexp or one containing `^` or `$`) makes the criterion
 `skipped` with that reason, before any request is sent. It never leads to
-`failed`. CI already rejects patterns that are not valid ECMA-262.
+`failed`. CI already rejects patterns that are not valid ECMA-262. The same
+holds for a JSONPath that is not valid RFC 9535 after substitution, or that
+has a placeholder outside a string literal (see "Placeholders in checks").
 
 ### Controlled feature flags
 
