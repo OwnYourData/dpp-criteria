@@ -1,6 +1,6 @@
 id: DPP-DAT-003
 version: 1
-status: proposed
+status: active
 title: Passport is delivered as structured JSON
 statement: >-
   DPP data MUST be machine-readable and structured, delivered as a JSON object based

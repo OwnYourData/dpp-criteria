@@ -1,6 +1,6 @@
 id: DPP-SEC-001
 version: 1
-status: proposed
+status: active
 title: Passport cannot be changed without authorisation
 statement: >-
   A DPP service MUST reject attempts to create or change passports without valid

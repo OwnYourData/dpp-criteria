@@ -1,6 +1,6 @@
 id: DPP-API-019
 version: 1
-status: proposed
+status: active
 title: Lifecycle API provides ReadDPPVersionByIdAndDate
 statement: >-
   A DPP service SHOULD provide historical passport versions by passport ID and date

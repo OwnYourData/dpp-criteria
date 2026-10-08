@@ -1,6 +1,6 @@
 id: DPP-DAT-016
 version: 2
-status: proposed
+status: active
 title: Passport is available as HTML
 statement: >-
   A DPP MUST also be provided as HTML through HTTP content negotiation.

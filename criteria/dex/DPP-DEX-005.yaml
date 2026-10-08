@@ -1,6 +1,6 @@
 id: DPP-DEX-005
 version: 1
-status: proposed
+status: active
 title: HTTP/2 is supported
 statement: DPP communication MUST support HTTP/2.
 level: MUST

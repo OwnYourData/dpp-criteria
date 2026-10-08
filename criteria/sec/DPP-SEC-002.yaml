@@ -1,6 +1,6 @@
 id: DPP-SEC-002
 version: 2
-status: proposed
+status: active
 title: Integrity of the passport version is verifiable
 statement: The integrity of a DPP version MUST be verifiable.
 level: MUST

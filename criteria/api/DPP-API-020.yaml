@@ -1,6 +1,6 @@
 id: DPP-API-020
 version: 1
-status: proposed
+status: active
 title: API paths carry the version prefix v1/
 statement: The paths of the DPP API MUST carry the version prefix v1/.
 level: MUST
