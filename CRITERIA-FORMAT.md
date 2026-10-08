@@ -208,6 +208,46 @@ Where placeholders are substituted, and how:
   under `declarations` with this criterion's ID, a `statement` and an
   `evidence` URL. The runner only checks presence and that the URL answers.
 
+### Requests and steps (`http`)
+
+Each request of an `http` step is sent on a new connection, with the runner's
+default negotiation (HTTP/2 or HTTP/1.1 via ALPN) and certificate verification
+on. Redirects are not followed: a 3xx answer is the response the step is
+evaluated on. Unless the criterion sets them, the runner sends
+`Accept: */*` and a `User-Agent` that names the runner; a header in
+`request.headers` replaces the default of the same name (compared
+case-insensitively). A `body` that is not a string is sent as JSON with
+`Content-Type: application/json` unless the criterion sets `Content-Type`; a
+string body is sent without a `Content-Type` of its own. A request that gets
+no complete response within the runner's timeout fails its step.
+
+The steps run in order, and every step runs even if an earlier one failed, so
+that the result lists all failures. Per step:
+
+- the status is in `skip_if_status`: if no earlier step has failed, the
+  criterion is `skipped` and the remaining steps are not sent; if an earlier
+  step has failed, the criterion is `failed`;
+- the status is in `warn_if_status`: a `warning`, and `expect` is not
+  evaluated;
+- otherwise `expect` is evaluated (see "Order of evaluation within a
+  request"), and `severity: warning` on the step turns its failures into
+  warnings.
+
+If the service cannot be reached at all, i.e. no TCP connection can be opened
+(name not resolvable, connection refused or timed out), the criterion is
+`skipped`, whatever earlier steps gave: availability is rated only by
+DPP-ID-002. A failed TLS handshake or certificate is not "not reachable"; it
+fails the step.
+
+### JSON assertions
+
+The `path` of a JSON assertion (RFC 9535) selects a node list. `exists: true`
+holds if the list is not empty, `exists: false` if it is empty. `equals`, `in`
+and `matches` hold if at least one selected value satisfies them, so a path
+with several matches (e.g. `$..[?@ == '{dppId}']`) only needs one; an empty
+list fails them. Values are compared as JSON values: `1` equals `1.0`, and
+objects are equal regardless of member order.
+
 ### Header assertions
 
 `expect.headers` (in `http` and `resolve`) is a list of assertions on response
