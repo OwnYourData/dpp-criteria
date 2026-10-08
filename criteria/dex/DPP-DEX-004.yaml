@@ -1,6 +1,6 @@
 id: DPP-DEX-004
 version: 1
-status: proposed
+status: active
 title: API responses are JSON
 statement: >-
   The DPP API MUST support JSON as data format for its responses.

@@ -1,6 +1,6 @@
 id: DPP-ID-001
 version: 1
-status: proposed
+status: active
 title: Product identifier resolves to its passport
 statement: >-
   A DPP MUST be connected to a persistent unique product identifier that resolves

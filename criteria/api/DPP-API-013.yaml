@@ -1,6 +1,6 @@
 id: DPP-API-013
 version: 1
-status: proposed
+status: active
 title: Lifecycle API provides ReadDPPById
 statement: >-
   The DPP lifecycle API MUST provide the method ReadDPPById without requiring credentials

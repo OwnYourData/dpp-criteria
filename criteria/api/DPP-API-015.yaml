@@ -1,6 +1,6 @@
 id: DPP-API-015
 version: 1
-status: proposed
+status: active
 title: Lifecycle API provides ReadDPPIdsByProductIds
 statement: >-
   The DPP lifecycle API MUST provide the method ReadDPPIdsByProductIds, so that

@@ -1,6 +1,6 @@
 id: DPP-DEX-003
 version: 1
-status: proposed
+status: active
 title: TLS 1.2 or higher, older versions refused
 statement: >-
   DPP communication MUST support at least TLS 1.2 and MUST NOT accept TLS 1.0, TLS

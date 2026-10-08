@@ -1,6 +1,6 @@
 id: DPP-DEX-006
 version: 1
-status: proposed
+status: active
 title: HTTP versions below HTTP/2 are not used
 statement: >-
   DPP communication MUST NOT use HTTP versions older than HTTP/2.

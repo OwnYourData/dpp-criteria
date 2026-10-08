@@ -1,6 +1,6 @@
 id: DPP-DEX-002
 version: 1
-status: proposed
+status: active
 title: HTTPS with a valid certificate
 statement: >-
   Standardised DPP access MUST use HTTPS with a valid certificate; plain HTTP MUST

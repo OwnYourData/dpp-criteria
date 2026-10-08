@@ -1,6 +1,6 @@
 id: DPP-API-014
 version: 1
-status: proposed
+status: active
 title: Lifecycle API provides ReadDPPByProductId
 statement: >-
   The DPP lifecycle API MUST provide the method ReadDPPByProductId, returning the

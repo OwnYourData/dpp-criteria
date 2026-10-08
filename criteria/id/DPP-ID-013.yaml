@@ -1,6 +1,6 @@
 id: DPP-ID-013
 version: 1
-status: proposed
+status: active
 title: Passport readable without registration or credentials
 statement: >-
   Public DPP information MUST be retrievable through the product identifier without

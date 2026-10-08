@@ -1,6 +1,6 @@
 id: DPP-API-007
 version: 1
-status: proposed
+status: active
 title: Errors use the EN 18222 status codes
 statement: >-
   A DPP service MUST answer faulty requests with the status codes of EN 18222 and

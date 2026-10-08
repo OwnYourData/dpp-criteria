@@ -1,6 +1,6 @@
 id: DPP-API-021
 version: 2
-status: proposed
+status: active
 title: elementIdPath uses RFC 9535 JSONPath
 statement: >-
   The value of elementIdPath in the fine-granular API MUST follow RFC 9535 (JSONPath).

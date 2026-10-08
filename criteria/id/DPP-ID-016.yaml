@@ -1,6 +1,6 @@
 id: DPP-ID-016
 version: 1
-status: proposed
+status: active
 title: DID identifiers follow DID Core, DID Resolution and VC 2.0
 statement: >-
   Where the economic operator or facility identifier is a DID, it MUST conform to
