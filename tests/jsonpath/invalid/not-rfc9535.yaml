@@ -1,0 +1,3 @@
+applies_if:
+  - path: "$.a["
+    exists: true

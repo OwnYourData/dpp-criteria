@@ -1,0 +1,7 @@
+applies_if:
+  - path: "$.a[?search(@, 'x\\\\^y')]"
+    exists: true
+  - path: "$.a[?match(@, '[$]|[^a]b')]"
+    exists: true
+  - path: "$..[?@ == '{dppId}']"
+    exists: true
