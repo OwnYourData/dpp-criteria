@@ -1,0 +1,3 @@
+applies_if:
+  - path: "$.a[?search(@, '^x')]"
+    exists: true
