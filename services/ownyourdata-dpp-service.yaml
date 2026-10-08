@@ -3,7 +3,7 @@ name: OwnYourData DPP Service
 operator:
   name: OwnYourData
   url: https://www.ownyourdata.eu
-contact: TODO
+contact: office@ownyourdata.eu
 api_base: https://dpp-service.ownyourdata.eu/dpp/v1
 features: [fine-granular-api, write-api, historical-versions]
 test_data:
@@ -12,4 +12,4 @@ test_data:
   elementIdPath: $.ProductIdentification.ModelIdentifier
 credentials: none
 declarations: []
-listed_since: 2026-10-01
+listed_since: 2026-10-08
