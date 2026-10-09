@@ -1,5 +1,5 @@
 id: DPP-SEC-001
-version: 1
+version: 2
 status: active
 title: Passport cannot be changed without authorisation
 statement: >-
@@ -35,8 +35,10 @@ check:
       body: {}
     expect:
       status:
+      - 400
       - 401
       - 403
+      - 404
       - 405
       - 501
   - request:
@@ -48,8 +50,10 @@ check:
       body: {}
     expect:
       status:
+      - 400
       - 401
       - 403
+      - 404
       - 405
       - 501
   - request:
@@ -65,5 +69,8 @@ catalogue_ref:
 - DPP-API-005
 notes: >-
   The PATCH body changes nothing, so a wrongly accepted request leaves the test
-  passport intact. No DELETE is sent against the test passport. 405 and 501 count
-  for services without a write API.
+  passport intact. No DELETE is sent against the test passport. Steps 2 and 3
+  accept every client error of EN 18222 Table 15 that refuses the request without
+  creating or changing anything (400, 401, 403, 404, 405) and 501, because a
+  service without a write API may reject the empty body or the route before any
+  authorisation check. Whether the passport stayed unchanged is decided by step 4.

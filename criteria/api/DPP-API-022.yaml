@@ -1,0 +1,35 @@
+id: DPP-API-022
+version: 1
+status: active
+title: Unknown passport ID is answered with 404
+statement: >-
+  A DPP service MUST answer a request for a passport ID it does not hold with the
+  status code ClientErrorResourceNotFound (404) of EN 18222.
+level: MUST
+basis:
+- source: EN 18222:2026
+  clause: 7.2, Table 15
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{randomId}
+      auth: none
+    expect:
+      status:
+      - 404
+      json:
+      - path: $.message
+        exists: true
+        severity: warning
+catalogue_ref: DPP-API-007
+notes: >-
+  Taken over from version 1 of DPP-API-007, so that it is also assessed in a
+  read-only run. Table 15 lists a result object for 404; a missing one gives a
+  warning. 200 or 204 with an empty body is not accepted: the client could not
+  tell an unknown passport from an empty answer.

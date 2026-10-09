@@ -11,9 +11,9 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 | | active | proposed | total |
 |---|---:|---:|---:|
 | Published passport (dpplint) | 6 | 16 | 22 |
-| DPP service (dpp-validator) | 13 | 1 | 14 |
+| DPP service (dpp-validator) | 14 | 2 | 16 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 19 | 18 | 37 |
+| **All criteria** | 20 | 19 | 39 |
 
 How to read the entries:
 
@@ -84,6 +84,8 @@ How to read the entries:
 | [DPP-API-019](#dpp-api-019) | Lifecycle API provides ReadDPPVersionByIdAndDate | SHOULD | DPP service | active |
 | [DPP-API-020](#dpp-api-020) | API paths carry the version prefix v1/ | MUST | DPP service | active |
 | [DPP-API-021](#dpp-api-021) | elementIdPath uses RFC 9535 JSONPath | MUST | DPP service | active |
+| [DPP-API-022](#dpp-api-022) | Unknown passport ID is answered with 404 | MUST | DPP service | active |
+| [DPP-API-023](#dpp-api-023) | API honours the representation query flag | MUST | DPP service | proposed |
 | [DPP-DEX-002](#dpp-dex-002) | HTTPS with a valid certificate | MUST | DPP service | active |
 | [DPP-DEX-003](#dpp-dex-003) | TLS 1.2 or higher, older versions refused | MUST | DPP service | active |
 | [DPP-DEX-004](#dpp-dex-004) | API responses are JSON | MUST | DPP service | active |
@@ -171,7 +173,7 @@ Catalogue rows: DPP-ROL-016 · Source: [rol/DPP-ROL-016.yaml](rol/DPP-ROL-016.ya
 
 **Product identifier resolves to its passport**
 
-**MUST** · checked on: published passport · automated · status: active · version 1
+**MUST** · checked on: published passport · automated · status: active · version 2
 
 > A DPP MUST be connected to a persistent unique product identifier that resolves to exactly this passport.
 
@@ -181,9 +183,9 @@ Catalogue rows: DPP-ROL-016 · Source: [rol/DPP-ROL-016.yaml](rol/DPP-ROL-016.ya
 - EN 18219:2026, 4.5.2 (1) (harmonised standard)
 - EN 18220:2026, 5.2.1 (harmonised standard)
 
-**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET). Expected: a single passport object whose `uniqueProductIdentifier` equals the identifier.
+**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET with `Accept: application/json`). Expected: a single passport object whose `uniqueProductIdentifier` equals the identifier.
 
-**Notes** Only the digital half is testable: the identifier resolves to one passport object (not a list) whose uniqueProductIdentifier equals the input. Whether the physical data carrier is on the product is out of scope.
+**Notes** Only the digital half is testable: the identifier resolves to one passport object (not a list) whose uniqueProductIdentifier equals the input. Whether the physical data carrier is on the product is out of scope. The request states Accept application/json, so that the result does not depend on which format the service returns without a stated preference (assessed by DPP-DAT-016).
 
 Catalogue rows: DPP-ID-001, DPP-CAR-004 · Source: [id/DPP-ID-001.yaml](id/DPP-ID-001.yaml)
 
@@ -357,7 +359,7 @@ Catalogue rows: DPP-CRT-003 · Source: [crt/DPP-CRT-003.yaml](crt/DPP-CRT-003.ya
 
 **Passport is delivered as structured JSON**
 
-**MUST** · checked on: published passport · automated · status: active · version 1
+**MUST** · checked on: published passport · automated · status: active · version 2
 
 > DPP data MUST be machine-readable and structured, delivered as a JSON object based on open standards.
 
@@ -367,9 +369,9 @@ Catalogue rows: DPP-CRT-003 · Source: [crt/DPP-CRT-003.yaml](crt/DPP-CRT-003.ya
 - EN 18216:2026, 5 a) (harmonised standard)
 - EN 18223:2026, 5.2.4 (harmonised standard)
 
-**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET). Expected: status 200; content type `application/json`.
+**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET with `Accept: application/json`). Expected: status 200; content type `application/json`.
 
-**Notes** The response has to parse as a single JSON object. Attribute names are checked by DPP-DAT-014.
+**Notes** The response has to parse as a single JSON object. Attribute names are checked by DPP-DAT-014. The request states Accept application/json: the criterion asks whether the passport is available as JSON, not which format a client without a stated preference receives; that is assessed by DPP-DAT-016.
 
 Catalogue rows: DPP-DAT-003, DPP-DAT-001, DPP-DAT-002, DPP-DAT-004 · Source: [dat/DPP-DAT-003.yaml](dat/DPP-DAT-003.yaml)
 
@@ -452,7 +454,7 @@ Catalogue rows: DPP-DAT-008 · Source: [dat/DPP-DAT-015.yaml](dat/DPP-DAT-015.ya
 
 **Passport is available as HTML**
 
-**MUST** · checked on: published passport · automated · status: active · version 2
+**MUST** · checked on: published passport · automated · status: active · version 3
 
 > A DPP MUST also be provided as HTML through HTTP content negotiation.
 
@@ -460,12 +462,14 @@ Catalogue rows: DPP-DAT-008 · Source: [dat/DPP-DAT-015.yaml](dat/DPP-DAT-015.ya
 
 - EN 18216:2026, 5 a), 5 d) (harmonised standard)
 - [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-vary), 12.5.5 (standard)
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-accept), 12.5.1 (standard)
 
 **How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET with `Accept: text/html`). Expected: status 200; content type `text/html`; header `Vary` lists `Accept` (warning only).
 
 - Further request with `Accept: */*`: expect status 200; content type `application/json` (warning only).
+- Further request with `Accept: application/json, text/html;q=0.1`: expect status 200; content type `application/json` (warning only).
 
-**Notes** Only the HTML request decides pass or fail. Two further checks give at most a warning. (1) The HTML response lists Accept in its Vary header (RFC 9110 12.5.5), so that caches do not hand the HTML variant to JSON clients or the other way round; "Vary: \*" does not count. (2) A request with Accept \*/\* still returns application/json: JSON is the required format of EN 18216 Clause 5 and HTML is added only through content negotiation, so a client that states no preference keeps receiving JSON. The accessibility requirements of the same clause (EN 301 549) are not checked automatically.
+**Notes** Only the HTML request decides pass or fail. Three further checks give at most a warning. (1) The HTML response lists Accept in its Vary header (RFC 9110 12.5.5), so that caches do not hand the HTML variant to JSON clients or the other way round; "Vary: \*" does not count. (2) A request with Accept \*/\* still returns application/json: JSON is the required format of EN 18216 Clause 5 and HTML is added only through content negotiation, so a client that states no preference keeps receiving JSON. (3) A request that prefers JSON and accepts HTML only with a low quality value (RFC 9110 12.5.1) returns application/json, so that the service weighs quality values instead of only looking for media types in the header. The accessibility requirements of the same clause (EN 301 549) are not checked automatically.
 
 Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
 
@@ -475,7 +479,7 @@ Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
 
 **Errors use the EN 18222 status codes**
 
-**MUST** · checked on: DPP service · automated · status: active · version 1
+**MUST** · checked on: DPP service · automated · status: active · version 2
 
 > A DPP service MUST answer faulty requests with the status codes of EN 18222 and MUST NOT answer them with a server error.
 
@@ -485,11 +489,10 @@ Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
 
 **How it is checked** Requests to the API base of the service, in this order:
 
-1. `GET /dpps/{randomId}`, without credentials → expect status 404; `$.message` exists (warning only)
-2. `POST /dppsByProductIds`, without credentials, header `Content-Type: application/json`, body `{not json` → expect status 400
-3. `POST /dppsByProductIds`, without credentials, header `Content-Type: application/json`, body `{"productId": 42}` → expect status 400
+1. `POST /dppsByProductIds`, without credentials, header `Content-Type: application/json`, body `{not json` → expect status 400
+2. `POST /dppsByProductIds`, without credentials, header `Content-Type: application/json`, body `{"productId": 42}` → expect status 400
 
-**Notes** The result object of Tables 12 to 14 is recommended, not required; a missing one gives a warning.
+**Notes** Checks malformed requests to ReadDPPIdsByProductIds. The answer to an unknown passport ID (404) is checked by DPP-API-022, so that it is also assessed in a read-only run.
 
 Catalogue rows: DPP-API-007 · Source: [api/DPP-API-007.yaml](api/DPP-API-007.yaml)
 
@@ -642,6 +645,50 @@ Catalogue rows: DPP-API-011 · Source: [api/DPP-API-020.yaml](api/DPP-API-020.ya
 
 Source: [api/DPP-API-021.yaml](api/DPP-API-021.yaml)
 
+### DPP-API-022
+
+**Unknown passport ID is answered with 404**
+
+**MUST** · checked on: DPP service · automated · status: active · version 1
+
+> A DPP service MUST answer a request for a passport ID it does not hold with the status code ClientErrorResourceNotFound (404) of EN 18222.
+
+**Basis**
+
+- EN 18222:2026, 7.2, Table 15 (harmonised standard)
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dpps/{randomId}`, without credentials → expect status 404; `$.message` exists (warning only)
+
+**Notes** Taken over from version 1 of DPP-API-007, so that it is also assessed in a read-only run. Table 15 lists a result object for 404; a missing one gives a warning. 200 or 204 with an empty body is not accepted: the client could not tell an unknown passport from an empty answer.
+
+Catalogue rows: DPP-API-007 · Source: [api/DPP-API-022.yaml](api/DPP-API-022.yaml)
+
+### DPP-API-023
+
+**API honours the representation query flag**
+
+**MUST** · checked on: DPP service · automated · status: proposed · version 1
+
+> The DPP API MUST return the compressed representation when the representation query flag is absent or set to compressed, and the full representation when it is set to full.
+
+**Basis**
+
+- EN 18222:2026, 8.1 (harmonised standard)
+- EN 18223:2026, 5.2.2, Annex A (harmonised standard)
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dpps/{dppId}`, without credentials → expect status 200; content type `application/json`; `$.digitalProductPassportId` equals `{dppId}`; `$.elements` does not exist
+2. `GET /dpps/{dppId}?representation=compressed`, without credentials → expect status 200; content type `application/json`; `$.elements` does not exist
+3. `GET /dpps/{dppId}?representation=full`, without credentials → expect status 200; content type `application/json`; `$.elements[0].elementId` exists
+4. `GET /dpps/{dppId}?representation=dpp-validator-unknown`, without credentials → expect status 400 (a failure of this step gives only a warning)
+
+**Notes** In the compressed representation (EN 18223 5.2.2) data elements are keyed by their elementId and the metadata is left out, so the passport has no elements array; the full representation (Annex A) lists them under elements with elementId and objectType. The check relies on that difference and assumes that no data element of the test passport has the elementId "elements". EN 18222 8.1 defines only the two values; another value is a malformed request (Table 15, 400), which gives at most a warning.
+
+Source: [api/DPP-API-023.yaml](api/DPP-API-023.yaml)
+
 ### DPP-DEX-002
 
 **HTTPS with a valid certificate**
@@ -749,7 +796,7 @@ Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
 **Passport cannot be changed without authorisation**
 
-**MUST** · checked on: DPP service · automated · status: active · version 1
+**MUST** · checked on: DPP service · automated · status: active · version 2
 
 > A DPP service MUST reject attempts to create or change passports without valid authorisation.
 
@@ -761,11 +808,11 @@ Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 **How it is checked** Requests to the API base of the service, in this order:
 
 1. `GET /dpps/{dppId}`, without credentials → expect status 200
-2. `PATCH /dpps/{dppId}`, without credentials, header `Content-Type: application/json`, body `{}` → expect status 401, 403, 405 or 501
-3. `POST /dpps`, without credentials, header `Content-Type: application/json`, body `{}` → expect status 401, 403, 405 or 501
+2. `PATCH /dpps/{dppId}`, without credentials, header `Content-Type: application/json`, body `{}` → expect status 400, 401, 403, 404, 405 or 501
+3. `POST /dpps`, without credentials, header `Content-Type: application/json`, body `{}` → expect status 400, 401, 403, 404, 405 or 501
 4. `GET /dpps/{dppId}`, without credentials → expect status 200; body identical to step 1
 
-**Notes** The PATCH body changes nothing, so a wrongly accepted request leaves the test passport intact. No DELETE is sent against the test passport. 405 and 501 count for services without a write API.
+**Notes** The PATCH body changes nothing, so a wrongly accepted request leaves the test passport intact. No DELETE is sent against the test passport. Steps 2 and 3 accept every client error of EN 18222 Table 15 that refuses the request without creating or changing anything (400, 401, 403, 404, 405) and 501, because a service without a write API may reject the empty body or the route before any authorisation check. Whether the passport stayed unchanged is decided by step 4.
 
 Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/DPP-SEC-001.yaml)
 

@@ -1,5 +1,5 @@
 id: DPP-ID-001
-version: 1
+version: 2
 status: active
 title: Product identifier resolves to its passport
 statement: >-
@@ -22,10 +22,13 @@ method: automated
 requires_features: []
 check:
   type: resolve
+  accept: application/json
 catalogue_ref:
 - DPP-ID-001
 - DPP-CAR-004
 notes: >-
   Only the digital half is testable: the identifier resolves to one passport object
   (not a list) whose uniqueProductIdentifier equals the input. Whether the physical
-  data carrier is on the product is out of scope.
+  data carrier is on the product is out of scope. The request states Accept
+  application/json, so that the result does not depend on which format the
+  service returns without a stated preference (assessed by DPP-DAT-016).

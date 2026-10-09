@@ -1,5 +1,5 @@
 id: DPP-DAT-003
-version: 1
+version: 2
 status: active
 title: Passport is delivered as structured JSON
 statement: >-
@@ -22,6 +22,7 @@ method: automated
 requires_features: []
 check:
   type: resolve
+  accept: application/json
   expect:
     status:
     - 200
@@ -33,4 +34,6 @@ catalogue_ref:
 - DPP-DAT-004
 notes: >-
   The response has to parse as a single JSON object. Attribute names are checked
-  by DPP-DAT-014.
+  by DPP-DAT-014. The request states Accept application/json: the criterion asks
+  whether the passport is available as JSON, not which format a client without a
+  stated preference receives; that is assessed by DPP-DAT-016.
