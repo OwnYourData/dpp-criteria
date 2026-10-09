@@ -29,102 +29,104 @@ How to read the entries:
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-CFG-005](#dpp-cfg-005-granularity-matches-the-product-identifier) | Granularity matches the product identifier | MUST | published passport | proposed |
+| [DPP-CFG-005](#dpp-cfg-005) | Granularity matches the product identifier | MUST | published passport | proposed |
 
 **Governance and roles**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-ROL-016](#dpp-rol-016-passport-names-its-economic-operator) | Passport names its economic operator | MUST | published passport | proposed |
+| [DPP-ROL-016](#dpp-rol-016) | Passport names its economic operator | MUST | published passport | proposed |
 
 **Identification**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-ID-001](#dpp-id-001-product-identifier-resolves-to-its-passport) | Product identifier resolves to its passport | MUST | published passport | active |
-| [DPP-ID-002](#dpp-id-002-product-identifier-stays-resolvable-over-time) | Product identifier stays resolvable over time | MUST | published passport | proposed |
-| [DPP-ID-009](#dpp-id-009-economic-operator-identifier-follows-an-en-18219-scheme) | Economic operator identifier follows an EN 18219 scheme | MUST | published passport | proposed |
-| [DPP-ID-010](#dpp-id-010-facility-identifier-follows-an-en-18219-scheme) | Facility identifier follows an EN 18219 scheme | MUST | published passport | proposed |
-| [DPP-ID-013](#dpp-id-013-passport-readable-without-registration-or-credentials) | Passport readable without registration or credentials | MUST | published passport | active |
-| [DPP-ID-014](#dpp-id-014-product-identifier-is-a-url-or-convertible-to-one) | Product identifier is a URL or convertible to one | MUST | published passport | proposed |
-| [DPP-ID-016](#dpp-id-016-did-identifiers-follow-did-core-did-resolution-and-vc-20) | DID identifiers follow DID Core, DID Resolution and VC 2.0 | MUST | published passport | active |
+| [DPP-ID-001](#dpp-id-001) | Product identifier resolves to its passport | MUST | published passport | active |
+| [DPP-ID-002](#dpp-id-002) | Product identifier stays resolvable over time | MUST | published passport | proposed |
+| [DPP-ID-009](#dpp-id-009) | Economic operator identifier follows an EN 18219 scheme | MUST | published passport | proposed |
+| [DPP-ID-010](#dpp-id-010) | Facility identifier follows an EN 18219 scheme | MUST | published passport | proposed |
+| [DPP-ID-013](#dpp-id-013) | Passport readable without registration or credentials | MUST | published passport | active |
+| [DPP-ID-014](#dpp-id-014) | Product identifier is a URL or convertible to one | MUST | published passport | proposed |
+| [DPP-ID-016](#dpp-id-016) | DID identifiers follow DID Core, DID Resolution and VC 2.0 | MUST | published passport | active |
 
 **Data carrier**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-CAR-002](#dpp-car-002-product-identifier-follows-an-en-18219-product-scheme) | Product identifier follows an EN 18219 product scheme | MUST | published passport | proposed |
+| [DPP-CAR-002](#dpp-car-002) | Product identifier follows an EN 18219 product scheme | MUST | published passport | proposed |
 
 **DPP creation and validation**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-CRT-003](#dpp-crt-003-passport-contains-the-product-specific-mandatory-data) | Passport contains the product-specific mandatory data | MUST | published passport | proposed |
+| [DPP-CRT-003](#dpp-crt-003) | Passport contains the product-specific mandatory data | MUST | published passport | proposed |
 
 **Data model and semantics**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-DAT-003](#dpp-dat-003-passport-is-delivered-as-structured-json) | Passport is delivered as structured JSON | MUST | published passport | active |
-| [DPP-DAT-006](#dpp-dat-006-passport-follows-the-commissions-semantic-data-models) | Passport follows the Commission's semantic data models | MUST | published passport | proposed |
-| [DPP-DAT-011](#dpp-dat-011-related-resources-are-typed-and-reachable) | Related resources are typed and reachable | MUST | published passport | proposed |
-| [DPP-DAT-014](#dpp-dat-014-passport-header-uses-the-en-18223-attributes) | Passport header uses the EN 18223 attributes | MUST | published passport | proposed |
-| [DPP-DAT-015](#dpp-dat-015-granularity-uses-the-en-18223-values) | Granularity uses the EN 18223 values | MUST | published passport | proposed |
-| [DPP-DAT-016](#dpp-dat-016-passport-is-available-as-html) | Passport is available as HTML | MUST | published passport | active |
+| [DPP-DAT-003](#dpp-dat-003) | Passport is delivered as structured JSON | MUST | published passport | active |
+| [DPP-DAT-006](#dpp-dat-006) | Passport follows the Commission's semantic data models | MUST | published passport | proposed |
+| [DPP-DAT-011](#dpp-dat-011) | Related resources are typed and reachable | MUST | published passport | proposed |
+| [DPP-DAT-014](#dpp-dat-014) | Passport header uses the EN 18223 attributes | MUST | published passport | proposed |
+| [DPP-DAT-015](#dpp-dat-015) | Granularity uses the EN 18223 values | MUST | published passport | proposed |
+| [DPP-DAT-016](#dpp-dat-016) | Passport is available as HTML | MUST | published passport | active |
 
 **APIs and data exchange**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-API-007](#dpp-api-007-errors-use-the-en-18222-status-codes) | Errors use the EN 18222 status codes | MUST | DPP service | active |
-| [DPP-API-013](#dpp-api-013-lifecycle-api-provides-readdppbyid) | Lifecycle API provides ReadDPPById | MUST | DPP service | active |
-| [DPP-API-014](#dpp-api-014-lifecycle-api-provides-readdppbyproductid) | Lifecycle API provides ReadDPPByProductId | MUST | DPP service | active |
-| [DPP-API-015](#dpp-api-015-lifecycle-api-provides-readdppidsbyproductids) | Lifecycle API provides ReadDPPIdsByProductIds | MUST | DPP service | active |
-| [DPP-API-016](#dpp-api-016-lifecycle-api-provides-updatedppbyid) | Lifecycle API provides UpdateDPPById | MUST | DPP service | proposed |
-| [DPP-API-019](#dpp-api-019-lifecycle-api-provides-readdppversionbyidanddate) | Lifecycle API provides ReadDPPVersionByIdAndDate | SHOULD | DPP service | active |
-| [DPP-API-020](#dpp-api-020-api-paths-carry-the-version-prefix-v1) | API paths carry the version prefix v1/ | MUST | DPP service | active |
-| [DPP-API-021](#dpp-api-021-elementidpath-uses-rfc-9535-jsonpath) | elementIdPath uses RFC 9535 JSONPath | MUST | DPP service | active |
-| [DPP-DEX-002](#dpp-dex-002-https-with-a-valid-certificate) | HTTPS with a valid certificate | MUST | DPP service | active |
-| [DPP-DEX-003](#dpp-dex-003-tls-12-or-higher-older-versions-refused) | TLS 1.2 or higher, older versions refused | MUST | DPP service | active |
-| [DPP-DEX-004](#dpp-dex-004-api-responses-are-json) | API responses are JSON | MUST | DPP service | active |
-| [DPP-DEX-005](#dpp-dex-005-http2-is-supported) | HTTP/2 is supported | MUST | DPP service | active |
-| [DPP-DEX-006](#dpp-dex-006-http-versions-below-http2-are-not-used) | HTTP versions below HTTP/2 are not used | MUST | DPP service | active |
+| [DPP-API-007](#dpp-api-007) | Errors use the EN 18222 status codes | MUST | DPP service | active |
+| [DPP-API-013](#dpp-api-013) | Lifecycle API provides ReadDPPById | MUST | DPP service | active |
+| [DPP-API-014](#dpp-api-014) | Lifecycle API provides ReadDPPByProductId | MUST | DPP service | active |
+| [DPP-API-015](#dpp-api-015) | Lifecycle API provides ReadDPPIdsByProductIds | MUST | DPP service | active |
+| [DPP-API-016](#dpp-api-016) | Lifecycle API provides UpdateDPPById | MUST | DPP service | proposed |
+| [DPP-API-019](#dpp-api-019) | Lifecycle API provides ReadDPPVersionByIdAndDate | SHOULD | DPP service | active |
+| [DPP-API-020](#dpp-api-020) | API paths carry the version prefix v1/ | MUST | DPP service | active |
+| [DPP-API-021](#dpp-api-021) | elementIdPath uses RFC 9535 JSONPath | MUST | DPP service | active |
+| [DPP-DEX-002](#dpp-dex-002) | HTTPS with a valid certificate | MUST | DPP service | active |
+| [DPP-DEX-003](#dpp-dex-003) | TLS 1.2 or higher, older versions refused | MUST | DPP service | active |
+| [DPP-DEX-004](#dpp-dex-004) | API responses are JSON | MUST | DPP service | active |
+| [DPP-DEX-005](#dpp-dex-005) | HTTP/2 is supported | MUST | DPP service | active |
+| [DPP-DEX-006](#dpp-dex-006) | HTTP versions below HTTP/2 are not used | MUST | DPP service | active |
 
 **Security, integrity and privacy**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-SEC-001](#dpp-sec-001-passport-cannot-be-changed-without-authorisation) | Passport cannot be changed without authorisation | MUST | DPP service | active |
-| [DPP-SEC-002](#dpp-sec-002-integrity-of-the-passport-version-is-verifiable) | Integrity of the passport version is verifiable | MUST | published passport | active |
-| [DPP-SEC-013](#dpp-sec-013-integrity-proof-is-issued-by-the-economic-operator) | Integrity proof is issued by the economic operator | SHOULD | published passport | proposed |
+| [DPP-SEC-001](#dpp-sec-001) | Passport cannot be changed without authorisation | MUST | DPP service | active |
+| [DPP-SEC-002](#dpp-sec-002) | Integrity of the passport version is verifiable | MUST | published passport | active |
+| [DPP-SEC-013](#dpp-sec-013) | Integrity proof is issued by the economic operator | SHOULD | published passport | proposed |
 
 **Interoperability and standards**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-INT-005](#dpp-int-005-passport-body-follows-the-en-18223-data-model) | Passport body follows the EN 18223 data model | MUST | published passport | proposed |
+| [DPP-INT-005](#dpp-int-005) | Passport body follows the EN 18223 data model | MUST | published passport | proposed |
 
 **Operations and change management**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-OPS-006](#dpp-ops-006-separate-test-and-production-environments) | Separate test and production environments | SHOULD | economic operator | proposed |
+| [DPP-OPS-006](#dpp-ops-006) | Separate test and production environments | SHOULD | economic operator | proposed |
 
 **Product-specific: batteries**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-BAT-002](#dpp-bat-002-battery-passport-exposes-the-public-annex-xiii-data) | Battery passport exposes the public Annex XIII data | MUST | published passport | proposed |
+| [DPP-BAT-002](#dpp-bat-002) | Battery passport exposes the public Annex XIII data | MUST | published passport | proposed |
 
 **Circularity and environmental data**
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
-| [DPP-PCDS-008](#dpp-pcds-008-embedded-pcds-are-machine-readable-with-template-id) | Embedded PCDS are machine-readable with template ID | MUST | published passport | proposed |
+| [DPP-PCDS-008](#dpp-pcds-008) | Embedded PCDS are machine-readable with template ID | MUST | published passport | proposed |
 
 ## Scope and configuration
 
-### DPP-CFG-005: Granularity matches the product identifier
+### DPP-CFG-005
+
+**Granularity matches the product identifier**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -144,7 +146,9 @@ Catalogue rows: DPP-CFG-005 · Source: [cfg/DPP-CFG-005.yaml](cfg/DPP-CFG-005.ya
 
 ## Governance and roles
 
-### DPP-ROL-016: Passport names its economic operator
+### DPP-ROL-016
+
+**Passport names its economic operator**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -163,7 +167,9 @@ Catalogue rows: DPP-ROL-016 · Source: [rol/DPP-ROL-016.yaml](rol/DPP-ROL-016.ya
 
 ## Identification
 
-### DPP-ID-001: Product identifier resolves to its passport
+### DPP-ID-001
+
+**Product identifier resolves to its passport**
 
 **MUST** · checked on: published passport · automated · status: active · version 1
 
@@ -181,7 +187,9 @@ Catalogue rows: DPP-ROL-016 · Source: [rol/DPP-ROL-016.yaml](rol/DPP-ROL-016.ya
 
 Catalogue rows: DPP-ID-001, DPP-CAR-004 · Source: [id/DPP-ID-001.yaml](id/DPP-ID-001.yaml)
 
-### DPP-ID-002: Product identifier stays resolvable over time
+### DPP-ID-002
+
+**Product identifier stays resolvable over time**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -202,7 +210,9 @@ Rated only from the validator's daily runs: fails after 3 consecutive days witho
 
 Catalogue rows: DPP-ID-002, DPP-BCK-001, DPP-BCK-003 · Source: [id/DPP-ID-002.yaml](id/DPP-ID-002.yaml)
 
-### DPP-ID-009: Economic operator identifier follows an EN 18219 scheme
+### DPP-ID-009
+
+**Economic operator identifier follows an EN 18219 scheme**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -221,7 +231,9 @@ Catalogue rows: DPP-ID-002, DPP-BCK-001, DPP-BCK-003 · Source: [id/DPP-ID-002.y
 
 Catalogue rows: DPP-ID-009 · Source: [id/DPP-ID-009.yaml](id/DPP-ID-009.yaml)
 
-### DPP-ID-010: Facility identifier follows an EN 18219 scheme
+### DPP-ID-010
+
+**Facility identifier follows an EN 18219 scheme**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -241,7 +253,9 @@ Catalogue rows: DPP-ID-009 · Source: [id/DPP-ID-009.yaml](id/DPP-ID-009.yaml)
 
 Catalogue rows: DPP-ID-010 · Source: [id/DPP-ID-010.yaml](id/DPP-ID-010.yaml)
 
-### DPP-ID-013: Passport readable without registration or credentials
+### DPP-ID-013
+
+**Passport readable without registration or credentials**
 
 **MUST** · checked on: published passport · automated · status: active · version 1
 
@@ -258,7 +272,9 @@ Catalogue rows: DPP-ID-010 · Source: [id/DPP-ID-010.yaml](id/DPP-ID-010.yaml)
 
 Catalogue rows: DPP-CFG-006, DPP-ACC-005, DPP-BAT-006 · Source: [id/DPP-ID-013.yaml](id/DPP-ID-013.yaml)
 
-### DPP-ID-014: Product identifier is a URL or convertible to one
+### DPP-ID-014
+
+**Product identifier is a URL or convertible to one**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -274,7 +290,9 @@ Catalogue rows: DPP-CFG-006, DPP-ACC-005, DPP-BAT-006 · Source: [id/DPP-ID-013.
 
 Source: [id/DPP-ID-014.yaml](id/DPP-ID-014.yaml)
 
-### DPP-ID-016: DID identifiers follow DID Core, DID Resolution and VC 2.0
+### DPP-ID-016
+
+**DID identifiers follow DID Core, DID Resolution and VC 2.0**
 
 **MUST** · checked on: published passport · automated · status: active · version 1
 
@@ -292,7 +310,9 @@ Source: [id/DPP-ID-016.yaml](id/DPP-ID-016.yaml)
 
 ## Data carrier
 
-### DPP-CAR-002: Product identifier follows an EN 18219 product scheme
+### DPP-CAR-002
+
+**Product identifier follows an EN 18219 product scheme**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -312,7 +332,9 @@ Catalogue rows: DPP-CAR-002 · Source: [car/DPP-CAR-002.yaml](car/DPP-CAR-002.ya
 
 ## DPP creation and validation
 
-### DPP-CRT-003: Passport contains the product-specific mandatory data
+### DPP-CRT-003
+
+**Passport contains the product-specific mandatory data**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -331,7 +353,9 @@ Catalogue rows: DPP-CRT-003 · Source: [crt/DPP-CRT-003.yaml](crt/DPP-CRT-003.ya
 
 ## Data model and semantics
 
-### DPP-DAT-003: Passport is delivered as structured JSON
+### DPP-DAT-003
+
+**Passport is delivered as structured JSON**
 
 **MUST** · checked on: published passport · automated · status: active · version 1
 
@@ -349,7 +373,9 @@ Catalogue rows: DPP-CRT-003 · Source: [crt/DPP-CRT-003.yaml](crt/DPP-CRT-003.ya
 
 Catalogue rows: DPP-DAT-003, DPP-DAT-001, DPP-DAT-002, DPP-DAT-004 · Source: [dat/DPP-DAT-003.yaml](dat/DPP-DAT-003.yaml)
 
-### DPP-DAT-006: Passport follows the Commission's semantic data models
+### DPP-DAT-006
+
+**Passport follows the Commission's semantic data models**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -366,7 +392,9 @@ Catalogue rows: DPP-DAT-003, DPP-DAT-001, DPP-DAT-002, DPP-DAT-004 · Source: [d
 
 Catalogue rows: DPP-DAT-006, DPP-ENT-012 · Source: [dat/DPP-DAT-006.yaml](dat/DPP-DAT-006.yaml)
 
-### DPP-DAT-011: Related resources are typed and reachable
+### DPP-DAT-011
+
+**Related resources are typed and reachable**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -384,7 +412,9 @@ Catalogue rows: DPP-DAT-006, DPP-ENT-012 · Source: [dat/DPP-DAT-006.yaml](dat/D
 
 Catalogue rows: DPP-DAT-011 · Source: [dat/DPP-DAT-011.yaml](dat/DPP-DAT-011.yaml)
 
-### DPP-DAT-014: Passport header uses the EN 18223 attributes
+### DPP-DAT-014
+
+**Passport header uses the EN 18223 attributes**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -400,7 +430,9 @@ Catalogue rows: DPP-DAT-011 · Source: [dat/DPP-DAT-011.yaml](dat/DPP-DAT-011.ya
 
 Catalogue rows: DPP-CRT-009, DPP-DAT-007, DPP-DAT-009 · Source: [dat/DPP-DAT-014.yaml](dat/DPP-DAT-014.yaml)
 
-### DPP-DAT-015: Granularity uses the EN 18223 values
+### DPP-DAT-015
+
+**Granularity uses the EN 18223 values**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -416,7 +448,9 @@ Catalogue rows: DPP-CRT-009, DPP-DAT-007, DPP-DAT-009 · Source: [dat/DPP-DAT-01
 
 Catalogue rows: DPP-DAT-008 · Source: [dat/DPP-DAT-015.yaml](dat/DPP-DAT-015.yaml)
 
-### DPP-DAT-016: Passport is available as HTML
+### DPP-DAT-016
+
+**Passport is available as HTML**
 
 **MUST** · checked on: published passport · automated · status: active · version 2
 
@@ -437,7 +471,9 @@ Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
 
 ## APIs and data exchange
 
-### DPP-API-007: Errors use the EN 18222 status codes
+### DPP-API-007
+
+**Errors use the EN 18222 status codes**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -457,7 +493,9 @@ Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
 
 Catalogue rows: DPP-API-007 · Source: [api/DPP-API-007.yaml](api/DPP-API-007.yaml)
 
-### DPP-API-013: Lifecycle API provides ReadDPPById
+### DPP-API-013
+
+**Lifecycle API provides ReadDPPById**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -475,7 +513,9 @@ Catalogue rows: DPP-API-007 · Source: [api/DPP-API-007.yaml](api/DPP-API-007.ya
 
 Catalogue rows: DPP-API-013, DPP-API-001, DPP-API-002 · Source: [api/DPP-API-013.yaml](api/DPP-API-013.yaml)
 
-### DPP-API-014: Lifecycle API provides ReadDPPByProductId
+### DPP-API-014
+
+**Lifecycle API provides ReadDPPByProductId**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -491,7 +531,9 @@ Catalogue rows: DPP-API-013, DPP-API-001, DPP-API-002 · Source: [api/DPP-API-01
 
 Catalogue rows: DPP-API-014 · Source: [api/DPP-API-014.yaml](api/DPP-API-014.yaml)
 
-### DPP-API-015: Lifecycle API provides ReadDPPIdsByProductIds
+### DPP-API-015
+
+**Lifecycle API provides ReadDPPIdsByProductIds**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -510,7 +552,9 @@ Catalogue rows: DPP-API-014 · Source: [api/DPP-API-014.yaml](api/DPP-API-014.ya
 
 Catalogue rows: DPP-API-015, DPP-DAT-005 · Source: [api/DPP-API-015.yaml](api/DPP-API-015.yaml)
 
-### DPP-API-016: Lifecycle API provides UpdateDPPById
+### DPP-API-016
+
+**Lifecycle API provides UpdateDPPById**
 
 **MUST** · checked on: DPP service · automated, with test credentials · status: proposed · version 1
 
@@ -531,7 +575,9 @@ Catalogue rows: DPP-API-015, DPP-DAT-005 · Source: [api/DPP-API-015.yaml](api/D
 
 Catalogue rows: DPP-API-016 · Source: [api/DPP-API-016.yaml](api/DPP-API-016.yaml)
 
-### DPP-API-019: Lifecycle API provides ReadDPPVersionByIdAndDate
+### DPP-API-019
+
+**Lifecycle API provides ReadDPPVersionByIdAndDate**
 
 **SHOULD** · checked on: DPP service · automated · status: active · version 1
 
@@ -552,7 +598,9 @@ Catalogue rows: DPP-API-016 · Source: [api/DPP-API-016.yaml](api/DPP-API-016.ya
 
 Catalogue rows: DPP-API-019 · Source: [api/DPP-API-019.yaml](api/DPP-API-019.yaml)
 
-### DPP-API-020: API paths carry the version prefix v1/
+### DPP-API-020
+
+**API paths carry the version prefix v1/**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -571,7 +619,9 @@ Requests to the API base of the service, in this order:
 
 Catalogue rows: DPP-API-011 · Source: [api/DPP-API-020.yaml](api/DPP-API-020.yaml)
 
-### DPP-API-021: elementIdPath uses RFC 9535 JSONPath
+### DPP-API-021
+
+**elementIdPath uses RFC 9535 JSONPath**
 
 **MUST** · checked on: DPP service · automated · status: active · version 2
 
@@ -592,7 +642,9 @@ Catalogue rows: DPP-API-011 · Source: [api/DPP-API-020.yaml](api/DPP-API-020.ya
 
 Source: [api/DPP-API-021.yaml](api/DPP-API-021.yaml)
 
-### DPP-DEX-002: HTTPS with a valid certificate
+### DPP-DEX-002
+
+**HTTPS with a valid certificate**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -609,7 +661,9 @@ Source: [api/DPP-API-021.yaml](api/DPP-API-021.yaml)
 
 Catalogue rows: DPP-DEX-002, DPP-DEX-001 · Source: [dex/DPP-DEX-002.yaml](dex/DPP-DEX-002.yaml)
 
-### DPP-DEX-003: TLS 1.2 or higher, older versions refused
+### DPP-DEX-003
+
+**TLS 1.2 or higher, older versions refused**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -629,7 +683,9 @@ Catalogue rows: DPP-DEX-002, DPP-DEX-001 · Source: [dex/DPP-DEX-002.yaml](dex/D
 
 Catalogue rows: DPP-DEX-003 · Source: [dex/DPP-DEX-003.yaml](dex/DPP-DEX-003.yaml)
 
-### DPP-DEX-004: API responses are JSON
+### DPP-DEX-004
+
+**API responses are JSON**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -647,7 +703,9 @@ Catalogue rows: DPP-DEX-003 · Source: [dex/DPP-DEX-003.yaml](dex/DPP-DEX-003.ya
 
 Catalogue rows: DPP-DEX-004 · Source: [dex/DPP-DEX-004.yaml](dex/DPP-DEX-004.yaml)
 
-### DPP-DEX-005: HTTP/2 is supported
+### DPP-DEX-005
+
+**HTTP/2 is supported**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -665,7 +723,9 @@ Catalogue rows: DPP-DEX-004 · Source: [dex/DPP-DEX-004.yaml](dex/DPP-DEX-004.ya
 
 Source: [dex/DPP-DEX-005.yaml](dex/DPP-DEX-005.yaml)
 
-### DPP-DEX-006: HTTP versions below HTTP/2 are not used
+### DPP-DEX-006
+
+**HTTP versions below HTTP/2 are not used**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -685,7 +745,9 @@ Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
 ## Security, integrity and privacy
 
-### DPP-SEC-001: Passport cannot be changed without authorisation
+### DPP-SEC-001
+
+**Passport cannot be changed without authorisation**
 
 **MUST** · checked on: DPP service · automated · status: active · version 1
 
@@ -707,7 +769,9 @@ Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
 Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/DPP-SEC-001.yaml)
 
-### DPP-SEC-002: Integrity of the passport version is verifiable
+### DPP-SEC-002
+
+**Integrity of the passport version is verifiable**
 
 **MUST** · checked on: published passport · automated · status: active · version 2
 
@@ -725,7 +789,9 @@ Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/D
 
 Catalogue rows: DPP-SEC-002, DPP-BAT-008 · Source: [sec/DPP-SEC-002.yaml](sec/DPP-SEC-002.yaml)
 
-### DPP-SEC-013: Integrity proof is issued by the economic operator
+### DPP-SEC-013
+
+**Integrity proof is issued by the economic operator**
 
 **SHOULD** · checked on: published passport · automated · status: proposed · version 1
 
@@ -744,7 +810,9 @@ Catalogue rows: DPP-SEC-004 · Source: [sec/DPP-SEC-013.yaml](sec/DPP-SEC-013.ya
 
 ## Interoperability and standards
 
-### DPP-INT-005: Passport body follows the EN 18223 data model
+### DPP-INT-005
+
+**Passport body follows the EN 18223 data model**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -762,7 +830,9 @@ Catalogue rows: DPP-INT-005 · Source: [int/DPP-INT-005.yaml](int/DPP-INT-005.ya
 
 ## Operations and change management
 
-### DPP-OPS-006: Separate test and production environments
+### DPP-OPS-006
+
+**Separate test and production environments**
 
 **SHOULD** · checked on: economic operator · self-declared · status: proposed · version 1
 
@@ -778,7 +848,9 @@ Catalogue rows: DPP-OPS-006 · Source: [ops/DPP-OPS-006.yaml](ops/DPP-OPS-006.ya
 
 ## Product-specific: batteries
 
-### DPP-BAT-002: Battery passport exposes the public Annex XIII data
+### DPP-BAT-002
+
+**Battery passport exposes the public Annex XIII data**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
@@ -798,7 +870,9 @@ Catalogue rows: DPP-BAT-002 · Source: [bat/DPP-BAT-002.yaml](bat/DPP-BAT-002.ya
 
 ## Circularity and environmental data
 
-### DPP-PCDS-008: Embedded PCDS are machine-readable with template ID
+### DPP-PCDS-008
+
+**Embedded PCDS are machine-readable with template ID**
 
 **MUST** · checked on: published passport · automated · status: proposed · version 1
 
