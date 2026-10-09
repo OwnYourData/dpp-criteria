@@ -11,7 +11,6 @@ Needs: pip install pyyaml
 import glob
 import json
 import os
-import re
 import sys
 
 import yaml
@@ -91,11 +90,15 @@ def code(v):
     return f"{fence}{pad}{s}{pad}{fence}"
 
 
-def slug(heading):
-    """Anchor GitHub generates for a heading."""
-    s = heading.strip().lower()
-    s = re.sub(r"[^\w\- ]", "", s)
-    return s.replace(" ", "-")
+def anchor(c):
+    """Anchor of a criterion: its ID in lower case.
+
+    Each criterion's heading is the bare ID, so GitHub generates this anchor
+    and it stays stable when the title changes. dpplint and dpp-validator
+    link to criteria/README.md#<anchor>; do not change the heading format
+    without changing them.
+    """
+    return c["id"].lower()
 
 
 def either(items, word="or"):
@@ -326,10 +329,6 @@ def grouped(criteria):
     return groups
 
 
-def heading(c):
-    return f"{c['id']}: {c['title']}"
-
-
 def basis_line(b):
     src = text(b["source"])
     if b.get("url"):
@@ -339,7 +338,7 @@ def basis_line(b):
 
 
 def criterion_section(c):
-    out = [f"### {text(heading(c))}", ""]
+    out = [f"### {c['id']}", "", f"**{text(c['title'])}**", ""]
     out.append(" · ".join([
         f"**{c['level']}**",
         f"checked on: {TARGET.get(c['target'], c['target'])}",
@@ -454,7 +453,7 @@ def render(criteria):
                 "| ID | Title | Level | Checked on | Status |",
                 "|---|---|---|---|---|"]
         for c in items:
-            out.append(f"| [{c['id']}](#{slug(heading(c))}) | {text(c['title'])} | "
+            out.append(f"| [{c['id']}](#{anchor(c)}) | {text(c['title'])} | "
                        f"{c['level']} | {TARGET.get(c['target'], c['target'])} | {c['status']} |")
         out.append("")
     for name, items in groups:
