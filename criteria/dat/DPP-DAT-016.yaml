@@ -1,5 +1,5 @@
 id: DPP-DAT-016
-version: 2
+version: 3
 status: active
 title: Passport is available as HTML
 statement: >-
@@ -13,6 +13,10 @@ basis:
   clause: 12.5.5
   kind: standard
   url: https://www.rfc-editor.org/rfc/rfc9110.html#name-vary
+- source: RFC 9110
+  clause: 12.5.1
+  kind: standard
+  url: https://www.rfc-editor.org/rfc/rfc9110.html#name-accept
 target: passport
 method: automated
 requires_features: []
@@ -34,12 +38,21 @@ check:
       status:
       - 200
       content_type: application/json
+  - accept: application/json, text/html;q=0.1
+    severity: warning
+    expect:
+      status:
+      - 200
+      content_type: application/json
 notes: >-
-  Only the HTML request decides pass or fail. Two further checks give at most a
+  Only the HTML request decides pass or fail. Three further checks give at most a
   warning. (1) The HTML response lists Accept in its Vary header (RFC 9110
   12.5.5), so that caches do not hand the HTML variant to JSON clients or the
   other way round; "Vary: *" does not count. (2) A request with Accept */* still
   returns application/json: JSON is the required format of EN 18216 Clause 5 and
   HTML is added only through content negotiation, so a client that states no
-  preference keeps receiving JSON. The accessibility requirements of the same
+  preference keeps receiving JSON. (3) A request that prefers JSON and accepts
+  HTML only with a low quality value (RFC 9110 12.5.1) returns application/json,
+  so that the service weighs quality values instead of only looking for media
+  types in the header. The accessibility requirements of the same
   clause (EN 301 549) are not checked automatically.

@@ -1,0 +1,73 @@
+id: DPP-API-023
+version: 1
+status: proposed
+title: API honours the representation query flag
+statement: >-
+  The DPP API MUST return the compressed representation when the representation
+  query flag is absent or set to compressed, and the full representation when it
+  is set to full.
+level: MUST
+basis:
+- source: EN 18222:2026
+  clause: '8.1'
+  kind: harmonised-standard
+- source: EN 18223:2026
+  clause: 5.2.2, Annex A
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features: []
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.digitalProductPassportId
+        equals: '{dppId}'
+      - path: $.elements
+        exists: false
+  - request:
+      method: GET
+      path: /dpps/{dppId}?representation=compressed
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.elements
+        exists: false
+  - request:
+      method: GET
+      path: /dpps/{dppId}?representation=full
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.elements[0].elementId
+        exists: true
+  - request:
+      method: GET
+      path: /dpps/{dppId}?representation=dpp-validator-unknown
+      auth: none
+    severity: warning
+    expect:
+      status:
+      - 400
+notes: >-
+  In the compressed representation (EN 18223 5.2.2) data elements are keyed by
+  their elementId and the metadata is left out, so the passport has no elements
+  array; the full representation (Annex A) lists them under elements with
+  elementId and objectType. The check relies on that difference and assumes that
+  no data element of the test passport has the elementId "elements". EN 18222 8.1
+  defines only the two values; another value is a malformed request (Table 15,
+  400), which gives at most a warning.

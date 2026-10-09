@@ -1,5 +1,5 @@
 id: DPP-API-007
-version: 1
+version: 2
 status: active
 title: Errors use the EN 18222 status codes
 statement: >-
@@ -16,17 +16,6 @@ requires_features: []
 check:
   type: http
   steps:
-  - request:
-      method: GET
-      path: /dpps/{randomId}
-      auth: none
-    expect:
-      status:
-      - 404
-      json:
-      - path: $.message
-        exists: true
-        severity: warning
   - request:
       method: POST
       path: /dppsByProductIds
@@ -50,5 +39,6 @@ check:
       - 400
 catalogue_ref: DPP-API-007
 notes: >-
-  The result object of Tables 12 to 14 is recommended, not required; a missing one
-  gives a warning.
+  Checks malformed requests to ReadDPPIdsByProductIds. The answer to an unknown
+  passport ID (404) is checked by DPP-API-022, so that it is also assessed in a
+  read-only run.
