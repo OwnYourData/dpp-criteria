@@ -321,6 +321,30 @@ Each run gives every applicable criterion one result: `passed`, `failed`,
 `warning` (passed, with a remark) or `skipped` (condition not met, feature not
 declared or data not available). Only `passed` and `failed` enter "N of M".
 
+A `skipped` result carries a `reason` (text for people) and a `reason_code`
+(for grouping and display). Each skip described in this document maps to
+exactly one code:
+
+| `reason_code` | Meaning | Examples |
+|---|---|---|
+| `not_applicable` | The criterion does not concern this service or passport. | a feature in `requires_features` the service neither declares nor lists under `not_implemented`; an `applies_if` assertion does not hold; no DID at the `did` paths; a status in `skip_if_status` |
+| `not_implemented` | The service lists a feature in `requires_features` under `not_implemented` (see "Service"). | `write-api` of a read-only service |
+| `no_evidence` | The check needs evidence that the passport or service does not provide. | `proof` without any integrity proof |
+| `needs_credentials` | The check needs test credentials the runner does not have. | `method: automated-auth`; a step with `auth: token` |
+| `not_sent` | A read-only run (see below) does not send a step of the check. | a step with `POST` or `PATCH` |
+| `unreachable` | No TCP connection to the service (see "Requests and steps"). | name not resolvable, connection refused |
+| `not_evaluated` | The runner cannot evaluate the check as specified. | check type not implemented; self-declarations not evaluated; a placeholder without value; an unusable regular expression or JSONPath; a part the `tls` check cannot test; no shapes available; a criterion file that does not match the schema; an error in the runner |
+
+`not_applicable` and `not_implemented` describe the service; `not_sent`,
+`needs_credentials`, `unreachable` and `not_evaluated` describe the run. The
+results list each code separately; none of them enters "N of M".
+
+**Read-only run.** A runner may offer a run that sends only `GET`, `HEAD` and
+`OPTIONS` requests. A criterion with a step that uses another method is then
+`skipped` with `not_sent` before any of its requests is sent, so that no
+partial result is reported. Listed services are always checked in full; the
+read-only run is meant for a check before listing (see "Service").
+
 A regular expression that the runner cannot evaluate as specified above
 (invalid, or valid but outside the portable subset; for JSONPath functions an
 invalid I-Regexp or one with an unescaped `^` or `$` outside a character
@@ -346,6 +370,7 @@ operator:
 contact: TODO                          # address for questions about results
 api_base: https://dpp-service.ownyourdata.eu/dpp/v1
 features: [fine-granular-api, write-api, historical-versions]
+not_implemented: []                   # optional, e.g. [access-levels]
 test_data:
   productId: https://dpp.oydapp.eu/01/09520123456788/21/000001
   dppId: did:oyd:zQmTMPiMZ6mUg5bVXQxkuZ1JCgmtKE9QNu514EdMUydq9zL
@@ -362,7 +387,14 @@ Rules:
 
 - Services are listed **only by pull request from the operator** (or with the
   operator's written consent linked in the PR). No third party is tested
-  without that.
+  regularly without that. Before asking an operator, maintainers may check a
+  publicly reachable service once with a read-only run (see "Results"); such
+  a run is not published and the entry is not added to `services/`.
+- `features` lists what the service offers. `not_implemented` (optional)
+  lists feature flags the service does not offer yet although they concern
+  it, e.g. a write API that is planned. Criteria that require such a feature
+  are `skipped` with `not_implemented` instead of `not_applicable`. A flag
+  may not appear in both lists.
 - `test_data` must point to a passport that stays online for as long as the
   service is listed. It is ideally a passport made for this purpose.
 - Credentials are never stored in the repository. An operator who wants

@@ -1,0 +1,13 @@
+id: example-dpp-service
+name: Example DPP Service
+operator:
+  name: Example Operator
+contact: dpp@example.org
+api_base: https://dpp.example.org/v1
+test_data:
+  productId: https://dpp.example.org/01/09520123456788
+  dppId: "09520123456788"
+credentials: none
+listed_since: 2026-10-09
+features: [fine-granular-api]
+not_implemented: [write-api, historical-versions, access-levels]
