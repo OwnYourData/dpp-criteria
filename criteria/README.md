@@ -11,9 +11,9 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 | | active | proposed | total |
 |---|---:|---:|---:|
 | Published passport (dpplint) | 6 | 16 | 22 |
-| DPP service (dpp-validator) | 14 | 2 | 16 |
+| DPP service (dpp-validator) | 15 | 1 | 16 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 20 | 19 | 39 |
+| **All criteria** | 21 | 18 | 39 |
 
 How to read the entries:
 
@@ -85,7 +85,7 @@ How to read the entries:
 | [DPP-API-020](#dpp-api-020) | API paths carry the version prefix v1/ | MUST | DPP service | active |
 | [DPP-API-021](#dpp-api-021) | elementIdPath uses RFC 9535 JSONPath | MUST | DPP service | active |
 | [DPP-API-022](#dpp-api-022) | Unknown passport ID is answered with 404 | MUST | DPP service | active |
-| [DPP-API-023](#dpp-api-023) | API honours the representation query flag | MUST | DPP service | proposed |
+| [DPP-API-023](#dpp-api-023) | API honours the representation query flag | MUST | DPP service | active |
 | [DPP-DEX-002](#dpp-dex-002) | HTTPS with a valid certificate | MUST | DPP service | active |
 | [DPP-DEX-003](#dpp-dex-003) | TLS 1.2 or higher, older versions refused | MUST | DPP service | active |
 | [DPP-DEX-004](#dpp-dex-004) | API responses are JSON | MUST | DPP service | active |
@@ -669,7 +669,7 @@ Catalogue rows: DPP-API-007 · Source: [api/DPP-API-022.yaml](api/DPP-API-022.ya
 
 **API honours the representation query flag**
 
-**MUST** · checked on: DPP service · automated · status: proposed · version 1
+**MUST** · checked on: DPP service · automated · status: active · version 1
 
 > The DPP API MUST return the compressed representation when the representation query flag is absent or set to compressed, and the full representation when it is set to full.
 
