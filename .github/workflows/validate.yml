@@ -42,6 +42,17 @@ jobs:
       - name: JSONPath test vectors
         run: sh scripts/test_jsonpath_patterns.sh
 
+  catalogue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml==6.0.2
+      - name: criteria/README.md matches the criteria files
+        run: python3 scripts/render_criteria_md.py --check
+
   structures:
     runs-on: ubuntu-latest
     steps:
