@@ -24,7 +24,8 @@ After changing a criterion, run `python3 scripts/render_criteria_md.py` (needs
 that it matches the YAML files.
 
 A DPP service is listed only by a pull request from its operator, or with the
-operator's consent linked in the pull request.
+operator's consent linked in the pull request. How to add a service to the
+daily checks, step by step: [services/README.md](services/README.md).
 
 ## What results mean
 
