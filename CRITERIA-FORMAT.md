@@ -140,9 +140,11 @@ Where placeholders are substituted, and how:
     - **reject**: the version counts as **rejected** if no successful
       response comes back: the connection or the TLS handshake is aborted
       (including an ALPN `no_application_protocol` alert), the connection is
-      closed or times out without a response, or the status is 400 or higher
-      (505 HTTP Version Not Supported is the recommended answer). A 2xx or 3xx
-      status means the version is **not rejected**.
+      closed or times out without a response, or the status is 400 or higher.
+      A 2xx or 3xx status means the version is **not rejected**. Recommended
+      for a DPP API: refuse the version already in ALPN, or answer 400 with
+      the EN 18222 result object; 505 HTTP Version Not Supported is not among
+      the status codes of EN 18222:2026 Table 15.
 
   Certificate verification is off in every part except `valid_certificate`,
   so that protocol behaviour is judged independently of the certificate.

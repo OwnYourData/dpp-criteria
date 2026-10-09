@@ -22,6 +22,9 @@ notes: >-
   Checked on the HTTPS port of the API base only; port 80 (redirect to HTTPS,
   ACME HTTP-01) is not tested and stays covered by DPP-DEX-002. A request forced
   to HTTP/1.0 or HTTP/1.1 over TLS counts as rejected if it gets no successful
-  response: aborted connection or TLS handshake, or a status of 400 or higher
-  (505 HTTP Version Not Supported recommended). A 2xx or 3xx answer at either
-  version fails the criterion. See the tls check type in CRITERIA-FORMAT.md.
+  response: aborted connection or TLS handshake, or a status of 400 or higher.
+  A 2xx or 3xx answer at either version fails the criterion. Recommended answer:
+  refuse HTTP/1.x already in the TLS handshake (ALPN offers only h2), or answer
+  400 (ClientErrorBadRequest) with the result object of EN 18222. 505 HTTP Version
+  Not Supported is not recommended, since it is not among the status codes that
+  EN 18222:2026 Table 15 allows. See the tls check type in CRITERIA-FORMAT.md.
