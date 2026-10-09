@@ -1,6 +1,6 @@
 id: DPP-API-023
 version: 1
-status: proposed
+status: active
 title: API honours the representation query flag
 statement: >-
   The DPP API MUST return the compressed representation when the representation
