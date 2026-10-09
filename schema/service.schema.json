@@ -21,6 +21,12 @@
       "uniqueItems": true,
       "items": { "enum": ["fine-granular-api", "write-api", "historical-versions", "access-levels", "backup-provider", "registry-integration", "battery", "pcds"] }
     },
+    "not_implemented": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Feature flags the service does not offer yet although they concern it; criteria requiring them are skipped with reason_code not_implemented. A flag may not also be in features.",
+      "items": { "enum": ["fine-granular-api", "write-api", "historical-versions", "access-levels", "backup-provider", "registry-integration", "battery", "pcds"] }
+    },
     "test_data": {
       "type": "object",
       "additionalProperties": false,
@@ -47,5 +53,16 @@
     },
     "consent": { "type": "string", "description": "Link to the operator's consent if the PR is not opened by the operator." },
     "listed_since": { "type": "string", "format": "date" }
-  }
+  },
+  "$comment": "A feature flag may not be in both features and not_implemented.",
+  "allOf": [
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "fine-granular-api" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "fine-granular-api" } } } } } },
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "write-api" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "write-api" } } } } } },
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "historical-versions" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "historical-versions" } } } } } },
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "access-levels" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "access-levels" } } } } } },
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "backup-provider" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "backup-provider" } } } } } },
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "registry-integration" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "registry-integration" } } } } } },
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "battery" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "battery" } } } } } },
+    { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "pcds" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "pcds" } } } } } }
+  ]
 }

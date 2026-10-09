@@ -30,7 +30,10 @@ operator's consent linked in the pull request.
 
 Results state how many automated checks a service passed on a given day and
 which self-declarations it made. They are not a certification and do not
-establish a presumption of conformity.
+establish a presumption of conformity. Criteria that were not checked are
+listed as `skipped` with a reason code, e.g. `not_applicable` or
+`not_implemented` (see "Results" in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md)),
+and never count.
 
 ## License
 
