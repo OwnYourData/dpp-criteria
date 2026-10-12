@@ -1,5 +1,5 @@
 id: DPP-ID-013
-version: 1
+version: 2
 status: active
 title: Passport readable without registration or credentials
 statement: >-
@@ -13,6 +13,12 @@ basis:
 - source: EN 18220:2026
   clause: 5.3.4
   kind: harmonised-standard
+- source: EN 18239:2026
+  clause: 5.2 (2), 6.1
+  kind: standard
+- source: EN 18246:2026
+  clause: '4.3'
+  kind: standard
 target: passport
 method: automated
 requires_features: []
@@ -28,3 +34,5 @@ catalogue_ref:
 notes: >-
   The request is a plain HTTPS GET without authorization or special headers. This
   also covers the absence of vendor lock-in as far as it can be observed.
+  EN 18239:2026 and EN 18246:2026 likewise require read access to public DPP
+  data without authentication and without additional software.

@@ -1,5 +1,5 @@
 id: DPP-SEC-001
-version: 2
+version: 3
 status: active
 title: Passport cannot be changed without authorisation
 statement: >-
@@ -13,6 +13,12 @@ basis:
 - source: EN 18222:2026
   clause: 4.6, 4.7, 4.8, Table 15
   kind: harmonised-standard
+- source: EN 18239:2026
+  clause: '6.1'
+  kind: standard
+- source: EN 18246:2026
+  clause: '4.7'
+  kind: standard
 target: service
 method: automated
 requires_features: []
@@ -74,3 +80,6 @@ notes: >-
   creating or changing anything (400, 401, 403, 404, 405) and 501, because a
   service without a write API may reject the empty body or the route before any
   authorisation check. Whether the passport stayed unchanged is decided by step 4.
+  EN 18239:2026 6.1 requires authentication to amend controlled data, and
+  EN 18246:2026 4.7 binds every creation, modification and deletion to an
+  authenticated actor.
