@@ -259,7 +259,7 @@ Catalogue rows: DPP-ID-010 · Source: [id/DPP-ID-010.yaml](id/DPP-ID-010.yaml)
 
 **Passport readable without registration or credentials**
 
-**MUST** · checked on: published passport · automated · status: active · version 1
+**MUST** · checked on: published passport · automated · status: active · version 2
 
 > Public DPP information MUST be retrievable through the product identifier without registration, DPP-specific software or user credentials.
 
@@ -267,10 +267,12 @@ Catalogue rows: DPP-ID-010 · Source: [id/DPP-ID-010.yaml](id/DPP-ID-010.yaml)
 
 - EN 18219:2026, 4.6.2 (2), (3) (harmonised standard)
 - EN 18220:2026, 5.3.4 (harmonised standard)
+- EN 18239:2026, 5.2 (2), 6.1 (standard)
+- EN 18246:2026, 4.3 (standard)
 
 **How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET). Expected: status 200.
 
-**Notes** The request is a plain HTTPS GET without authorization or special headers. This also covers the absence of vendor lock-in as far as it can be observed.
+**Notes** The request is a plain HTTPS GET without authorization or special headers. This also covers the absence of vendor lock-in as far as it can be observed. EN 18239:2026 and EN 18246:2026 likewise require read access to public DPP data without authentication and without additional software.
 
 Catalogue rows: DPP-CFG-006, DPP-ACC-005, DPP-BAT-006 · Source: [id/DPP-ID-013.yaml](id/DPP-ID-013.yaml)
 
@@ -796,7 +798,7 @@ Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
 **Passport cannot be changed without authorisation**
 
-**MUST** · checked on: DPP service · automated · status: active · version 2
+**MUST** · checked on: DPP service · automated · status: active · version 3
 
 > A DPP service MUST reject attempts to create or change passports without valid authorisation.
 
@@ -804,6 +806,8 @@ Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
 - EN 18221:2026, 4.1 (harmonised standard)
 - EN 18222:2026, 4.6, 4.7, 4.8, Table 15 (harmonised standard)
+- EN 18239:2026, 6.1 (standard)
+- EN 18246:2026, 4.7 (standard)
 
 **How it is checked** Requests to the API base of the service, in this order:
 
@@ -812,7 +816,7 @@ Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 3. `POST /dpps`, without credentials, header `Content-Type: application/json`, body `{}` → expect status 400, 401, 403, 404, 405 or 501
 4. `GET /dpps/{dppId}`, without credentials → expect status 200; body identical to step 1
 
-**Notes** The PATCH body changes nothing, so a wrongly accepted request leaves the test passport intact. No DELETE is sent against the test passport. Steps 2 and 3 accept every client error of EN 18222 Table 15 that refuses the request without creating or changing anything (400, 401, 403, 404, 405) and 501, because a service without a write API may reject the empty body or the route before any authorisation check. Whether the passport stayed unchanged is decided by step 4.
+**Notes** The PATCH body changes nothing, so a wrongly accepted request leaves the test passport intact. No DELETE is sent against the test passport. Steps 2 and 3 accept every client error of EN 18222 Table 15 that refuses the request without creating or changing anything (400, 401, 403, 404, 405) and 501, because a service without a write API may reject the empty body or the route before any authorisation check. Whether the passport stayed unchanged is decided by step 4. EN 18239:2026 6.1 requires authentication to amend controlled data, and EN 18246:2026 4.7 binds every creation, modification and deletion to an authenticated actor.
 
 Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/DPP-SEC-001.yaml)
 
@@ -820,7 +824,7 @@ Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/D
 
 **Integrity of the passport version is verifiable**
 
-**MUST** · checked on: published passport · automated · status: active · version 2
+**MUST** · checked on: published passport · automated · status: active · version 3
 
 > The integrity of a DPP version MUST be verifiable.
 
@@ -828,11 +832,11 @@ Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/D
 
 - [Implementing Regulation (EU) 2026/1778 (DPP registry)](https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj), Art. 2 (hash of the version); Art. 8(9) (regulation)
 - EN 18221:2026, 4.1, 4.2 (harmonised standard)
-- prEN 18246:2025, 4.7 (draft standard)
+- EN 18246:2026, 4.1, 4.7 (standard)
 
 **How it is checked** The integrity proofs of the passport are verified (formats: `vc-data-integrity`, `vc-jose-cose` and `did-oyd-log`). Without a proof the result is skipped.
 
-**Notes** EN 18221:2026 requires DPP service providers to ensure the integrity and authenticity of stored passports and of archived versions, following EN 18246; prEN 18246:2025 4.7 asks that a DPP be verifiable in integrity and authenticity, free of charge for the verifier. Every proof found is verified with the key it names (verificationMethod, JWS kid) or, for did-oyd-log, against the payloadHash in the DID document of the passport identifier; who holds the key is assessed in DPP-SEC-013. Only the current version is checked. Without a proof the result is skipped. The version hash under Art. 8(9) of the Implementing Regulation is held by the EU DPP registry, which has no public API.
+**Notes** EN 18221:2026 requires DPP service providers to ensure the integrity and authenticity of stored passports and of archived versions, following EN 18246. EN 18246:2026 4.1 requires DPP data to be protected against unauthorised modification and attributable to a verifiable source, by mechanisms that do not depend on the security of the transport channel; 4.7 requires a DPP to be verifiable in integrity and authenticity, free of charge and without limitations for the verifier. Every proof found is verified with the key it names (verificationMethod, JWS kid) or, for did-oyd-log, against the payloadHash in the DID document of the passport identifier; who holds the key is assessed in DPP-SEC-013. Only the current version is checked. Without a proof the result is skipped, because verification may rely on means that are not visible in the response. The version hash under Art. 8(9) of the Implementing Regulation is held by the EU DPP registry, which has no public API.
 
 Catalogue rows: DPP-SEC-002, DPP-BAT-008 · Source: [sec/DPP-SEC-002.yaml](sec/DPP-SEC-002.yaml)
 
@@ -840,18 +844,18 @@ Catalogue rows: DPP-SEC-002, DPP-BAT-008 · Source: [sec/DPP-SEC-002.yaml](sec/D
 
 **Integrity proof is issued by the economic operator**
 
-**SHOULD** · checked on: published passport · automated · status: proposed · version 1
+**SHOULD** · checked on: published passport · automated · status: proposed · version 2
 
 > The integrity proof of a DPP SHOULD be issued with a key of the responsible economic operator or its authorised representative.
 
 **Basis**
 
-- prEN 18246:2025, 4.8.3 (draft standard)
+- EN 18246:2026, Annex A, A.3 (standard)
 - EN 18219:2026, 6.4.1 (harmonised standard)
 
 **How it is checked** The integrity proofs of the passport are verified (formats: `vc-data-integrity`, `vc-jose-cose` and `did-oyd-log`). Without a proof the result is skipped. At least one verified proof must be issued with a key of the DID at `$.economicOperatorId`; otherwise a warning.
 
-**Notes** prEN 18246:2025 4.8.3 names the economic operator placing the product on the market, or its authorised representative, as the signer of core passport data; EN 18219:2026 6.4.1 describes economic operator DIDs as the means to sign passports, with the public key in the DID document. Passed if at least one proof verified under DPP-SEC-002 is issued with a key of the DID in economicOperatorId. A proof by another key gives a warning, because an authorised representative cannot be recognised automatically. For did-oyd-log the content is attested with the key of the passport identifier, which is not linked to the economic operator, so it gives a warning. Without a verified proof, or if economicOperatorId is not a DID, the result is skipped. Basis is a draft standard; the level follows its "should".
+**Notes** EN 18246:2026 Annex A (normative), A.3, names the economic operator placing the product on the market as the typical issuer of core passport data and describes the DPP signed data construct as carrying the electronic signature of the responsible economic operator or its authorised representative; EN 18219:2026 6.4.1 describes economic operator DIDs as the means to sign passports, with the public key in the DID document. Passed if at least one proof verified under DPP-SEC-002 is issued with a key of the DID in economicOperatorId. A proof by another key gives a warning, because an authorised representative cannot be recognised automatically. For did-oyd-log the content is attested with the key of the passport identifier, which is not linked to the economic operator, so it gives a warning. Without a verified proof, or if economicOperatorId is not a DID, the result is skipped. The level stays SHOULD because other authorised actors may sign attestations and an authorised representative cannot be recognised automatically.
 
 Catalogue rows: DPP-SEC-004 · Source: [sec/DPP-SEC-013.yaml](sec/DPP-SEC-013.yaml)
 
