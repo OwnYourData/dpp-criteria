@@ -158,8 +158,11 @@
                         "path": { "type": "string", "pattern": "^/" },
                         "headers": { "type": "object", "additionalProperties": { "type": "string" } },
                         "body": {},
-                        "auth": { "enum": ["none", "token"] }
-                      }
+                        "auth": { "enum": ["none", "token"] },
+                        "role": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" }
+                      },
+                      "if": { "required": ["role"] },
+                      "then": { "required": ["auth"], "properties": { "auth": { "const": "token" } } }
                     },
                     "expect": { "$ref": "#/$defs/expect" },
                     "skip_if_status": { "$ref": "#/$defs/statusList" },

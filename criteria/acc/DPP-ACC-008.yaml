@@ -1,0 +1,30 @@
+id: DPP-ACC-008
+version: 1
+status: proposed
+title: Access policy defines element-level rights, granting and revocation
+statement: >-
+  The access policy of a DPP service MUST define access rights per data element
+  and MUST document how access rights are granted, changed and revoked,
+  including revocation in an emergency.
+level: MUST
+basis:
+- source: EN 18239:2026
+  clause: 5.2 (10), (17), (19), 6.3
+  kind: standard
+target: service
+method: self-declared
+requires_features:
+- access-levels
+check:
+  type: declaration
+catalogue_ref:
+- DPP-ACC-008
+- DPP-ROL-019
+notes: >-
+  EN 18239:2026 asks for access rights terms at data element level, documented
+  processes for granting, changing and revoking access rights, a mechanism for
+  emergency changes and a revocation policy (5.2 (10), (17), (19); 6.3).
+  Controlled vocabularies may be used for the access rights terms. One possible
+  implementation is the vocabulary https://w3id.org/soya/dpp-access/v1 with the
+  classes public, legitimateInterest and authority; the criterion does not
+  require any particular vocabulary.

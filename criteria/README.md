@@ -11,9 +11,9 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 | | active | proposed | total |
 |---|---:|---:|---:|
 | Published passport (dpplint) | 6 | 17 | 23 |
-| DPP service (dpp-validator) | 15 | 1 | 16 |
+| DPP service (dpp-validator) | 15 | 8 | 23 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 21 | 19 | 40 |
+| **All criteria** | 21 | 26 | 47 |
 
 How to read the entries:
 
@@ -92,6 +92,16 @@ How to read the entries:
 | [DPP-DEX-005](#dpp-dex-005) | HTTP/2 is supported | MUST | DPP service | active |
 | [DPP-DEX-006](#dpp-dex-006) | HTTP versions below HTTP/2 are not used | MUST | DPP service | active |
 
+**Access control**
+
+| ID | Title | Level | Checked on | Status |
+|---|---|---|---|---|
+| [DPP-ACC-003](#dpp-acc-003) | Controlled data elements are delivered per role | MUST | DPP service | proposed |
+| [DPP-ACC-006](#dpp-acc-006) | Controlled data elements are not delivered without authorisation | MUST | DPP service | proposed |
+| [DPP-ACC-008](#dpp-acc-008) | Access policy defines element-level rights, granting and revocation | MUST | DPP service | proposed |
+| [DPP-ACC-012](#dpp-acc-012) | Fine-granular read of a controlled element without credentials is refused | MUST | DPP service | proposed |
+| [DPP-ACC-014](#dpp-acc-014) | Access to controlled data is logged tamper-evidently | MUST | DPP service | proposed |
+
 **Security, integrity and privacy**
 
 | ID | Title | Level | Checked on | Status |
@@ -100,6 +110,12 @@ How to read the entries:
 | [DPP-SEC-002](#dpp-sec-002) | Integrity of the passport version is verifiable | MUST | published passport | active |
 | [DPP-SEC-013](#dpp-sec-013) | Integrity proof is issued by the economic operator | SHOULD | published passport | proposed |
 | [DPP-SEC-014](#dpp-sec-014) | HTML view loads no external components | MUST | published passport | proposed |
+
+**Storage, backup and persistence**
+
+| ID | Title | Level | Checked on | Status |
+|---|---|---|---|---|
+| [DPP-STO-017](#dpp-sto-017) | Archived versions keep the access restrictions | MUST | DPP service | proposed |
 
 **Interoperability and standards**
 
@@ -118,6 +134,7 @@ How to read the entries:
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
 | [DPP-BAT-002](#dpp-bat-002) | Battery passport exposes the public Annex XIII data | MUST | published passport | proposed |
+| [DPP-BAT-004](#dpp-bat-004) | Battery passport releases restricted Annex XIII data only to its access groups | MUST | DPP service | proposed |
 
 **Circularity and environmental data**
 
@@ -793,6 +810,119 @@ Source: [dex/DPP-DEX-005.yaml](dex/DPP-DEX-005.yaml)
 
 Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
+## Access control
+
+### DPP-ACC-003
+
+**Controlled data elements are delivered per role**
+
+**MUST** · checked on: DPP service · automated, with test credentials · status: proposed · version 1
+
+> A DPP service MUST deliver a controlled data element to an authenticated actor whose role grants access to it, and MUST NOT deliver it to an authenticated actor whose role does not.
+
+**Basis**
+
+- EN 18239:2026, 5.2 (20), (22), (23), 6.2 (standard)
+
+**Applies only if** the service declares the feature `access-levels`.
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dpps/{dppId}`, with the operator's test token for the role `granted` → expect status 200; content type `application/json`; `$..['{controlledElementId}']` exists
+2. `GET /dpps/{dppId}`, with the operator's test token for the role `not-granted` → expect status 200; content type `application/json`; `$..['{controlledElementId}']` does not exist
+
+**Notes** EN 18239:2026 bases the authorisation on the role of the requesting actor and requires access rights to be enforceable per controlled data element (5.2 (20), (23)). The operator provides test tokens for two roles: "granted" may read the controlled test element (test\_data.controlledElementId), "not-granted" is authenticated but may not. The second actor still receives the public part of the passport. Which roles exist is up to the product-specific legal act and the economic operator (5.2 (7)); the criterion does not prescribe role names.
+
+Catalogue rows: DPP-ACC-003 · Source: [acc/DPP-ACC-003.yaml](acc/DPP-ACC-003.yaml)
+
+### DPP-ACC-006
+
+**Controlled data elements are not delivered without authorisation**
+
+**MUST** · checked on: DPP service · automated · status: proposed · version 1
+
+> A DPP service MUST NOT include controlled data elements in a passport that it returns to a request without credentials.
+
+**Basis**
+
+- EN 18239:2026, 5.2 (22), 6.1, 6.2 (standard)
+- EN 18222:2026, 4.2, 4.3 (harmonised standard)
+
+**Applies only if** the service declares the feature `access-levels`.
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dpps/{dppId}`, without credentials → expect status 200; content type `application/json`; `$.digitalProductPassportId` equals `{dppId}`; `$..['{controlledElementId}']` does not exist
+2. `GET /dpps/{dppId}?representation=full`, without credentials → expect status 200; content type `application/json`; `$.elements` exists; `$..[?@.elementId == '{controlledElementId}']` does not exist
+3. `GET /dppsByProductId/{productId}`, without credentials → expect status 200; content type `application/json`; `$..['{controlledElementId}']` does not exist
+
+**Notes** EN 18239:2026 separates public DPP data, readable without authentication, from controlled DPP data, which is released only after authentication and authorisation (5.2 (2), (22); 6.1, 6.2). EN 18222:2026 lets access rules decide which data elements a read returns (4.2, 4.3), so a request without credentials is answered with the public part (200, see DPP-ID-013) and without the controlled elements, not refused. The test data of the service names the elementId of one controlled data element of the test passport (test\_data.controlledElementId). Steps 1 and 3 look for it as a member name in the default compressed representation (EN 18223 5.2), step 2 as an elementId in the full representation; step 2 also requires the elements array, so that a service ignoring the representation flag cannot pass by accident. The HTML view is not checked.
+
+Catalogue rows: DPP-ACC-006 · Source: [acc/DPP-ACC-006.yaml](acc/DPP-ACC-006.yaml)
+
+### DPP-ACC-008
+
+**Access policy defines element-level rights, granting and revocation**
+
+**MUST** · checked on: DPP service · self-declared · status: proposed · version 1
+
+> The access policy of a DPP service MUST define access rights per data element and MUST document how access rights are granted, changed and revoked, including revocation in an emergency.
+
+**Basis**
+
+- EN 18239:2026, 5.2 (10), (17), (19), 6.3 (standard)
+
+**Applies only if** the service declares the feature `access-levels`.
+
+**How it is checked** The service entry must contain a self-declaration for this criterion with a statement and an evidence URL. Only its presence and that the URL answers are checked; the result is shown separately and never as passed.
+
+**Notes** EN 18239:2026 asks for access rights terms at data element level, documented processes for granting, changing and revoking access rights, a mechanism for emergency changes and a revocation policy (5.2 (10), (17), (19); 6.3). Controlled vocabularies may be used for the access rights terms. One possible implementation is the vocabulary https://w3id.org/soya/dpp-access/v1 with the classes public, legitimateInterest and authority; the criterion does not require any particular vocabulary.
+
+Catalogue rows: DPP-ACC-008, DPP-ROL-019 · Source: [acc/DPP-ACC-008.yaml](acc/DPP-ACC-008.yaml)
+
+### DPP-ACC-012
+
+**Fine-granular read of a controlled element without credentials is refused**
+
+**MUST** · checked on: DPP service · automated · status: proposed · version 1
+
+> A DPP service MUST refuse a fine-granular read of a controlled data element that is sent without credentials.
+
+**Basis**
+
+- EN 18239:2026, 5.2 (22), 6.2 (standard)
+- EN 18222:2026, 6.2, 7.2, Table 15 (harmonised standard)
+
+**Applies only if** the service declares the feature `access-levels` and `fine-granular-api`.
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dpps/{dppId}/elements/{controlledElementIdPath}`, without credentials → expect status 401 or 403
+
+**Notes** ReadDataElement (EN 18222 6.2) addresses one element directly, so there is no public part to fall back on. EN 18222 Table 15 has ClientNotAuthorized (401) for missing or wrong credentials and ClientForbidden (403) for a refused operation; the standard does not say which of the two answers a request without credentials, so both pass. 200 fails, and so does 404, because it does not tell a refused read from a missing element. The test data names the JSONPath of the controlled element in the compressed representation (test\_data.controlledElementIdPath).
+
+Catalogue rows: DPP-ACC-001 · Source: [acc/DPP-ACC-012.yaml](acc/DPP-ACC-012.yaml)
+
+### DPP-ACC-014
+
+**Access to controlled data is logged tamper-evidently**
+
+**MUST** · checked on: DPP service · self-declared · status: proposed · version 1
+
+> A DPP service MUST log every access to controlled data and every change to roles and access rights, and MUST protect the log against alteration and deletion.
+
+**Basis**
+
+- EN 18239:2026, 5.2 (5), (16) (standard)
+
+**Applies only if** the service declares the feature `access-levels`.
+
+**How it is checked** The service entry must contain a self-declaration for this criterion with a statement and an evidence URL. Only its presence and that the URL answers are checked; the result is shown separately and never as passed.
+
+**Notes** EN 18239:2026 requires accountability for every access to controlled DPP data (5.2 (5)) and an auditable, tamper-protected log of all access and of all changes to roles, rights and controlled data whose integrity can be shown over time (5.2 (16)). No standard defines an interface to read such a log, so the criterion is self-declared; the evidence describes what is logged, who can read the log and how it is protected.
+
+Catalogue rows: DPP-LCM-010 · Source: [acc/DPP-ACC-014.yaml](acc/DPP-ACC-014.yaml)
+
 ## Security, integrity and privacy
 
 ### DPP-SEC-001
@@ -878,6 +1008,31 @@ Catalogue rows: DPP-SEC-004 · Source: [sec/DPP-SEC-013.yaml](sec/DPP-SEC-013.ya
 
 Catalogue rows: DPP-SEC-005 · Source: [sec/DPP-SEC-014.yaml](sec/DPP-SEC-014.yaml)
 
+## Storage, backup and persistence
+
+### DPP-STO-017
+
+**Archived versions keep the access restrictions**
+
+**MUST** · checked on: DPP service · automated · status: proposed · version 1
+
+> A DPP service MUST apply the access restrictions of the current passport to its archived versions.
+
+**Basis**
+
+- EN 18221:2026, 4.2 (harmonised standard)
+- EN 18239:2026, 5.2 (22) (standard)
+
+**Applies only if** the service declares the feature `access-levels` and `historical-versions`.
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dppsByIdAndDate/{dppId}?date={now}`, without credentials → expect status 200; content type `application/json`; `$.digitalProductPassportId` equals `{dppId}`; `$..['{controlledElementId}']` does not exist; status 401 or 403 → skipped
+
+**Notes** EN 18221:2026 4.2 subjects the attributes of archived versions to the same access restrictions as the corresponding attributes of the passport. The check reads the version valid now (ReadDPPVersionByIdAndDate, EN 18222 4.4) without credentials and expects the controlled test element (test\_data.controlledElementId) to be missing, as for the current passport in DPP-ACC-006. If the archive answers 401 or 403, the check is skipped, as in DPP-API-019.
+
+Catalogue rows: DPP-STO-017 · Source: [sto/DPP-STO-017.yaml](sto/DPP-STO-017.yaml)
+
 ## Interoperability and standards
 
 ### DPP-INT-005
@@ -937,6 +1092,31 @@ Catalogue rows: DPP-OPS-006 · Source: [ops/DPP-OPS-006.yaml](ops/DPP-OPS-006.ya
 **Notes** The SOyA structure DigitalProductPassportBattery takes its shapes from the OpenEPCIS validator resources (Apache 2.0). The rule that recognises a battery passport is fixed together with the linter.
 
 Catalogue rows: DPP-BAT-002 · Source: [bat/DPP-BAT-002.yaml](bat/DPP-BAT-002.yaml)
+
+### DPP-BAT-004
+
+**Battery passport releases restricted Annex XIII data only to its access groups**
+
+**MUST** · checked on: DPP service · automated, with test credentials · status: proposed · version 1
+
+> A DPP service for battery passports MUST release the information that Annex XIII of the Batteries Regulation reserves for authorities only to that access group, and not to persons with a legitimate interest or the public.
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77; Annex XIII (2), (3) (regulation)
+- EN 18239:2026, 5.2 (7) (standard)
+
+**Applies only if** the service declares the feature `battery` and `access-levels`.
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dpps/{dppId}`, without credentials → expect status 200; content type `application/json`; `$..['{controlledElementId}']` does not exist
+2. `GET /dpps/{dppId}`, with the operator's test token for the role `legitimate-interest` → expect status 200; content type `application/json`; `$..['{controlledElementId}']` does not exist
+3. `GET /dpps/{dppId}`, with the operator's test token for the role `authority` → expect status 200; content type `application/json`; `$..['{controlledElementId}']` exists
+
+**Notes** Annex XIII of the Batteries Regulation sorts the battery passport information into three access groups: public (1), persons with a legitimate interest and the Commission (2), and notified bodies, market surveillance authorities and the Commission (3). EN 18239:2026 5.2 (7) leaves such roles to the legal act of the product group. For battery services the test passport is a battery passport and the controlled test element (test\_data.controlledElementId) is an element of Annex XIII (3). The operator provides test tokens for the roles "legitimate-interest" (group 2) and "authority" (group 3). Group 2 data are covered by DPP-ACC-003. DPP-BAT-002 checks the public data of Annex XIII (1).
+
+Catalogue rows: DPP-BAT-004, DPP-BAT-007, DPP-BAT-001 · Source: [bat/DPP-BAT-004.yaml](bat/DPP-BAT-004.yaml)
 
 ## Circularity and environmental data
 

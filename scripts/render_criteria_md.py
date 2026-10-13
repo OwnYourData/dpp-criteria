@@ -158,7 +158,9 @@ def expectation(e):
 def request_line(r):
     s = code(f"{r['method']} {r['path']}")
     extra = []
-    if r.get("auth") == "token":
+    if r.get("auth") == "token" and r.get("role"):
+        extra.append(f"with the operator's test token for the role {code(r['role'])}")
+    elif r.get("auth") == "token":
         extra.append("with the operator's test token")
     elif r.get("auth") == "none":
         extra.append("without credentials")

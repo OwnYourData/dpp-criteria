@@ -123,6 +123,8 @@ A real entry: [ownyourdata-dpp-service.yaml](ownyourdata-dpp-service.yaml).
 | `test_data.productId` | yes | Exactly the value of `uniqueProductIdentifier` in the test passport. Ideally an HTTPS URL that resolves to the passport (EN 18219). Used in `ReadDPPByProductId`. | `https://dpp.example.org/01/09520123456788/21/000001` |
 | `test_data.dppId` | yes | Exactly the value of `digitalProductPassportId` in the test passport. Used in `ReadDPPById`; the run percent-encodes it in the path. | `https://dpp.example.org/dpp/000001` or `did:example:123` |
 | `test_data.elementIdPath` | with `fine-granular-api` | RFC 9535 JSONPath of one data element of the test passport, in the compressed representation (EN 18223 5.2: element IDs as keys). | `$.ProductIdentification.ModelIdentifier` |
+| `test_data.controlledElementId` | with `access-levels` | `elementId` of one controlled data element of the test passport: an element that a request without credentials must not receive. For battery passports an element of Annex XIII (3). | `DismantlingInformation` |
+| `test_data.controlledElementIdPath` | with `access-levels` and `fine-granular-api` | RFC 9535 JSONPath of that controlled element in the compressed representation. | `$.DismantlingInformation` |
 | `credentials` | yes | Always `none` for now: checks that need test credentials are not run yet. Never put secrets into this repository. | `none` |
 | `declarations` | no | Self-declarations for criteria with `method: self-declared`, each with `criterion`, `statement` and an `evidence` URL. They are listed, never counted as passed. | see below |
 | `consent` | if the PR is not opened by the operator | Link to the operator's written consent. | `https://github.com/OwnYourData/dpp-criteria/issues/42` |
@@ -135,10 +137,10 @@ Feature flags:
 | `fine-granular-api` | ReadDataElement: `GET {api_base}/dpps/{dppId}/elements/{elementIdPath}` (EN 18222 6.1) | DPP-API-021 |
 | `write-api` | Create and update passports (UpdateDPPById, …) | DPP-API-016 (needs credentials, not run yet) |
 | `historical-versions` | ReadDPPVersionByIdAndDate (EN 18222 4.4) | DPP-API-019 |
-| `access-levels` | Restricted data elements with access levels | – |
+| `access-levels` | Controlled data elements that only authorised roles receive | DPP-ACC-006, DPP-ACC-012, DPP-STO-017; DPP-ACC-003 (needs credentials, not run yet); DPP-ACC-008, DPP-ACC-014 (self-declared) |
 | `backup-provider` | The service acts as backup DPP service provider | – |
 | `registry-integration` | Registration with the EU DPP registry | – |
-| `battery` | Battery passports | – |
+| `battery` | Battery passports | DPP-BAT-004 (with `access-levels`, needs credentials, not run yet) |
 | `pcds` | Product circularity data sheets (ISO 59040) in passports | – |
 
 Example of a self-declaration:

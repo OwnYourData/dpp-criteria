@@ -59,11 +59,13 @@ notes: ""
 | `{dppId}` | `test_data.dppId` |
 | `{productId}` | `test_data.productId` |
 | `{elementIdPath}` | `test_data.elementIdPath`, the JSONPath of a data element in the test passport |
+| `{controlledElementId}` | `test_data.controlledElementId`, the elementId of a controlled data element in the test passport (one that a request without credentials must not receive) |
+| `{controlledElementIdPath}` | `test_data.controlledElementIdPath`, the JSONPath of that controlled data element in the compressed representation |
 | `{randomId}` | An ID that no service has issued: the runner's name, `-` and 32 random lowercase hexadecimal digits (128 bits), e.g. `dpp-validator-3f9c…`. It uses only unreserved characters (RFC 3986), so encoding never changes it. |
 | `{now}` | Run time in UTC as `YYYY-MM-DDThh:mm:ssZ` (RFC 3339, whole seconds) |
 
 `{randomId}` and `{now}` are fixed once per run and are the same in every
-criterion of that run. Only these six names are placeholders; any other text in
+criterion of that run. Only these eight names are placeholders; any other text in
 braces stays as written (e.g. the body `{not json` of DPP-API-007).
 
 If a criterion uses a placeholder that has no value for the service (e.g.
@@ -98,7 +100,8 @@ Where placeholders are substituted, and how:
 ### Check types
 
 - **http** — ordered `steps`, each with `request` (`method`, `path` relative to
-  `{base}`, optional `headers`, `body`, `auth: none | token`) and `expect`
+  `{base}`, optional `headers`, `body`, `auth: none | token`, and with `auth: token`
+  an optional `role` naming the test role whose token is sent) and `expect`
   (`status` list, `content_type`, `json` assertions with RFC 9535 JSONPath:
   `equals`, `exists`, `in`, `matches` (see "Regular expressions"), each with
   optional `severity: warning`; `headers` assertions on response header fields,
@@ -401,6 +404,8 @@ test_data:
   productId: https://dpp.oydapp.eu/01/09520123456788/21/000001
   dppId: did:oyd:zQmTMPiMZ6mUg5bVXQxkuZ1JCgmtKE9QNu514EdMUydq9zL
   elementIdPath: $.ProductIdentification.ModelIdentifier   # needed for fine-granular-api
+  controlledElementId: DismantlingInformation   # needed for access-levels
+  controlledElementIdPath: $.DismantlingInformation   # access-levels with fine-granular-api
 credentials: none                     # none | secret:<NAME>  (repository secret, never in the file)
 declarations:
   - criterion: DPP-OPS-006
@@ -425,7 +430,8 @@ Rules:
   service is listed. It is ideally a passport made for this purpose.
 - Credentials are never stored in the repository. An operator who wants
   `automated-auth` checks provides a test token as a repository secret via the
-  maintainers.
+  maintainers, one per `role` that the criteria name (e.g. `granted` and
+  `not-granted` for DPP-ACC-003).
 
 ## Results wording
 

@@ -1,0 +1,53 @@
+id: DPP-ACC-003
+version: 1
+status: proposed
+title: Controlled data elements are delivered per role
+statement: >-
+  A DPP service MUST deliver a controlled data element to an authenticated actor
+  whose role grants access to it, and MUST NOT deliver it to an authenticated
+  actor whose role does not.
+level: MUST
+basis:
+- source: EN 18239:2026
+  clause: 5.2 (20), (22), (23), 6.2
+  kind: standard
+target: service
+method: automated-auth
+requires_features:
+- access-levels
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: token
+      role: granted
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $..['{controlledElementId}']
+        exists: true
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: token
+      role: not-granted
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $..['{controlledElementId}']
+        exists: false
+catalogue_ref: DPP-ACC-003
+notes: >-
+  EN 18239:2026 bases the authorisation on the role of the requesting actor and
+  requires access rights to be enforceable per controlled data element (5.2 (20),
+  (23)). The operator provides test tokens for two roles: "granted" may read the
+  controlled test element (test_data.controlledElementId), "not-granted" is
+  authenticated but may not. The second actor still receives the public part of
+  the passport. Which roles exist is up to the product-specific legal act and the
+  economic operator (5.2 (7)); the criterion does not prescribe role names.

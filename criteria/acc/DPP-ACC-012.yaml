@@ -1,0 +1,41 @@
+id: DPP-ACC-012
+version: 1
+status: proposed
+title: Fine-granular read of a controlled element without credentials is refused
+statement: >-
+  A DPP service MUST refuse a fine-granular read of a controlled data element
+  that is sent without credentials.
+level: MUST
+basis:
+- source: EN 18239:2026
+  clause: 5.2 (22), 6.2
+  kind: standard
+- source: EN 18222:2026
+  clause: 6.2, 7.2, Table 15
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features:
+- access-levels
+- fine-granular-api
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}/elements/{controlledElementIdPath}
+      auth: none
+    expect:
+      status:
+      - 401
+      - 403
+catalogue_ref: DPP-ACC-001
+notes: >-
+  ReadDataElement (EN 18222 6.2) addresses one element directly, so there is no
+  public part to fall back on. EN 18222 Table 15 has ClientNotAuthorized (401)
+  for missing or wrong credentials and ClientForbidden (403) for a refused
+  operation; the standard does not say which of the two answers a request
+  without credentials, so both pass. 200 fails, and so does 404, because it does
+  not tell a refused read from a missing element. The test data names the
+  JSONPath of the controlled element in the compressed representation
+  (test_data.controlledElementIdPath).

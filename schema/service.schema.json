@@ -34,7 +34,9 @@
       "properties": {
         "productId": { "type": "string" },
         "dppId": { "type": "string" },
-        "elementIdPath": { "type": "string", "pattern": "^\\$", "description": "RFC 9535 JSONPath of a data element in the test passport; needed for fine-granular-api checks." }
+        "elementIdPath": { "type": "string", "pattern": "^\\$", "description": "RFC 9535 JSONPath of a data element in the test passport; needed for fine-granular-api checks." },
+        "controlledElementId": { "type": "string", "minLength": 1, "description": "elementId of a controlled data element in the test passport; needed for access-levels checks." },
+        "controlledElementIdPath": { "type": "string", "pattern": "^\\$", "description": "RFC 9535 JSONPath of that controlled data element in the compressed representation; needed for access-levels checks with fine-granular-api." }
       }
     },
     "credentials": { "type": "string", "pattern": "^(none|secret:[A-Z][A-Z0-9_]*)$" },

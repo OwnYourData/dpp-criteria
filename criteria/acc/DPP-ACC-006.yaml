@@ -1,0 +1,73 @@
+id: DPP-ACC-006
+version: 1
+status: proposed
+title: Controlled data elements are not delivered without authorisation
+statement: >-
+  A DPP service MUST NOT include controlled data elements in a passport that it
+  returns to a request without credentials.
+level: MUST
+basis:
+- source: EN 18239:2026
+  clause: 5.2 (22), 6.1, 6.2
+  kind: standard
+- source: EN 18222:2026
+  clause: 4.2, 4.3
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features:
+- access-levels
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.digitalProductPassportId
+        equals: '{dppId}'
+      - path: $..['{controlledElementId}']
+        exists: false
+  - request:
+      method: GET
+      path: /dpps/{dppId}?representation=full
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.elements
+        exists: true
+      - path: $..[?@.elementId == '{controlledElementId}']
+        exists: false
+  - request:
+      method: GET
+      path: /dppsByProductId/{productId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $..['{controlledElementId}']
+        exists: false
+catalogue_ref: DPP-ACC-006
+notes: >-
+  EN 18239:2026 separates public DPP data, readable without authentication, from
+  controlled DPP data, which is released only after authentication and
+  authorisation (5.2 (2), (22); 6.1, 6.2). EN 18222:2026 lets access rules
+  decide which data elements a read returns (4.2, 4.3), so a request without
+  credentials is answered with the public part (200, see DPP-ID-013) and without
+  the controlled elements, not refused. The test data of the service names the
+  elementId of one controlled data element of the test passport
+  (test_data.controlledElementId). Steps 1 and 3 look for it as a member name in
+  the default compressed representation (EN 18223 5.2), step 2 as an elementId
+  in the full representation; step 2 also requires the elements array, so that a
+  service ignoring the representation flag cannot pass by accident. The HTML
+  view is not checked.
