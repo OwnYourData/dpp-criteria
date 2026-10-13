@@ -131,7 +131,7 @@
     "check": {
       "type": "object",
       "required": ["type"],
-      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "did", "proof", "links", "declaration"] } },
+      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "did", "proof", "links", "html", "declaration"] } },
       "allOf": [
         {
           "if": { "properties": { "type": { "const": "http" } } },
@@ -270,6 +270,17 @@
               "element_type": { "const": "RelatedResource" },
               "required": { "type": "array", "minItems": 1, "items": { "type": "string" } },
               "unreachable": { "$ref": "#/$defs/severity" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "html" } } },
+          "then": {
+            "additionalProperties": false,
+            "required": ["external_resources"],
+            "properties": {
+              "type": true,
+              "external_resources": { "const": "forbidden" }
             }
           }
         },

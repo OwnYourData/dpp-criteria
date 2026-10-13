@@ -206,6 +206,32 @@ Where placeholders are substituted, and how:
   to be issued with a key of the DID at that path; otherwise a warning.
 - **links** — checks every element of `element_type` for the `required`
   attributes and whether its URL answers; `unreachable` sets the severity.
+- **html** — the HTML view of the passport. `{productId}` is requested like in
+  `resolve`, with `Accept: text/html`, following redirects. If the final
+  response is not status 200 with media type `text/html`, the criterion is
+  `skipped` (`no_evidence`); whether the HTML view exists is rated by
+  DPP-DAT-016. `external_resources: forbidden`: displaying the document must
+  not make a browser fetch anything from another host. Counted are the URLs a
+  browser fetches without user action:
+  - `src` of `script`, `img`, `iframe`, `frame`, `embed`, `audio`, `video`,
+    `source`, `track` and `input type="image"`; `srcset` of `img` and
+    `source`; `poster` of `video`; `data` of `object`; `href` and
+    `xlink:href` of SVG `image`;
+  - `href` of `link` whose `rel` contains `stylesheet`, `icon`,
+    `apple-touch-icon`, `mask-icon`, `manifest`, `preload`, `modulepreload`,
+    `prefetch`, `prerender`, `preconnect` or `dns-prefetch`;
+  - `url(…)` and `@import` in `style` elements and `style` attributes;
+  - the target of `meta http-equiv="refresh"`.
+
+  Relative URLs are resolved against `base href` if present, otherwise against
+  the final response URL. A URL counts as external if its scheme is `http` or
+  `https` (or it is protocol-relative) and its host differs from the host of
+  the final response URL, compared case-insensitively and without the port;
+  `data:`, `blob:` and other schemes are not counted. Links the user has to
+  follow (`a href`, `form action`) are not counted, and resources that a
+  script adds at run time cannot be seen in the document and are not checked.
+  Result: `failed` if at least one external URL is found (the message names
+  them), otherwise `passed`.
 - **declaration** — for `self-declared`: the service file must contain an entry
   under `declarations` with this criterion's ID, a `statement` and an
   `evidence` URL. The runner only checks presence and that the URL answers.
@@ -329,7 +355,7 @@ exactly one code:
 |---|---|---|
 | `not_applicable` | The criterion does not concern this service or passport. | a feature in `requires_features` the service neither declares nor lists under `not_implemented`; an `applies_if` assertion does not hold; no DID at the `did` paths; a status in `skip_if_status` |
 | `not_implemented` | The service lists a feature in `requires_features` under `not_implemented` (see "Service"). | `write-api` of a read-only service |
-| `no_evidence` | The check needs evidence that the passport or service does not provide. | `proof` without any integrity proof |
+| `no_evidence` | The check needs evidence that the passport or service does not provide. | `proof` without any integrity proof; `html` without an HTML view |
 | `needs_credentials` | The check needs test credentials the runner does not have. | `method: automated-auth`; a step with `auth: token` |
 | `not_sent` | A read-only run (see below) does not send a step of the check. | a step with `POST` or `PATCH` |
 | `unreachable` | No TCP connection to the service (see "Requests and steps"). | name not resolvable, connection refused |

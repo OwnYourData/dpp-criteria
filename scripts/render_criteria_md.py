@@ -273,6 +273,16 @@ def describe_proof(c):
     return [s]
 
 
+def describe_html(c):
+    s = ("The product identifier is opened with `Accept: text/html`, and the HTML view is "
+         "searched for URLs a browser loads without user action (scripts, style sheets, "
+         "fonts, images, frames, preloads, CSS `url()` and `@import`, meta refresh).")
+    if c.get("external_resources") == "forbidden":
+        s += " None of them may point to another host than the passport's own."
+    s += " Without an HTML view the result is skipped."
+    return [s]
+
+
 def describe_links(c):
     req = either((code(a) for a in c.get("required", [])), "and")
     s = (f"Every {code(c['element_type'])} element of the passport must have {req}, "
@@ -296,6 +306,7 @@ DESCRIBE = {
     "did": describe_did,
     "proof": describe_proof,
     "links": describe_links,
+    "html": describe_html,
     "declaration": describe_declaration,
 }
 

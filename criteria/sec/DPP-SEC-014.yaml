@@ -1,0 +1,33 @@
+id: DPP-SEC-014
+version: 1
+status: proposed
+title: HTML view loads no external components
+statement: >-
+  The HTML view of a DPP MUST NOT make the browser load scripts, styles, fonts,
+  images or other components from other hosts.
+level: MUST
+basis:
+- source: EN 18246:2026
+  clause: 5.1.3, 5.1.5
+  kind: standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: html
+  external_resources: forbidden
+catalogue_ref:
+- DPP-SEC-005
+notes: >-
+  EN 18246:2026 5.1.3 rules out external analytics tools in a DPP service and
+  any reference to external components in the response to the user; 5.1.5 asks
+  that profiling through IP addresses, HTTP data and user behaviour be prevented
+  where technically feasible. Every resource a browser fetches from another host
+  while it displays the passport discloses the reader's address and request data
+  to that host, so every URL on another host that is loaded without user action
+  counts, whatever its purpose (web fonts, CDN scripts, tracking pixels). Links
+  the reader has to follow are not counted. Resources that a script adds at run
+  time are not visible in the document, so analytics loaded that way go
+  undetected. Hosts are compared exactly: assets on another host of the same
+  operator count as well and belong on the passport host. Without an HTML view
+  the result is skipped; DPP-DAT-016 rates whether it exists.
