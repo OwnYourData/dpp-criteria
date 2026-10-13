@@ -10,10 +10,10 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 
 | | active | proposed | total |
 |---|---:|---:|---:|
-| Published passport (dpplint) | 6 | 16 | 22 |
+| Published passport (dpplint) | 6 | 17 | 23 |
 | DPP service (dpp-validator) | 15 | 1 | 16 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 21 | 18 | 39 |
+| **All criteria** | 21 | 19 | 40 |
 
 How to read the entries:
 
@@ -99,6 +99,7 @@ How to read the entries:
 | [DPP-SEC-001](#dpp-sec-001) | Passport cannot be changed without authorisation | MUST | DPP service | active |
 | [DPP-SEC-002](#dpp-sec-002) | Integrity of the passport version is verifiable | MUST | published passport | active |
 | [DPP-SEC-013](#dpp-sec-013) | Integrity proof is issued by the economic operator | SHOULD | published passport | proposed |
+| [DPP-SEC-014](#dpp-sec-014) | HTML view loads no external components | MUST | published passport | proposed |
 
 **Interoperability and standards**
 
@@ -858,6 +859,24 @@ Catalogue rows: DPP-SEC-002, DPP-BAT-008 · Source: [sec/DPP-SEC-002.yaml](sec/D
 **Notes** EN 18246:2026 Annex A (normative), A.3, names the economic operator placing the product on the market as the typical issuer of core passport data and describes the DPP signed data construct as carrying the electronic signature of the responsible economic operator or its authorised representative; EN 18219:2026 6.4.1 describes economic operator DIDs as the means to sign passports, with the public key in the DID document. Passed if at least one proof verified under DPP-SEC-002 is issued with a key of the DID in economicOperatorId. A proof by another key gives a warning, because an authorised representative cannot be recognised automatically. For did-oyd-log the content is attested with the key of the passport identifier, which is not linked to the economic operator, so it gives a warning. Without a verified proof, or if economicOperatorId is not a DID, the result is skipped. The level stays SHOULD because other authorised actors may sign attestations and an authorised representative cannot be recognised automatically.
 
 Catalogue rows: DPP-SEC-004 · Source: [sec/DPP-SEC-013.yaml](sec/DPP-SEC-013.yaml)
+
+### DPP-SEC-014
+
+**HTML view loads no external components**
+
+**MUST** · checked on: published passport · automated · status: proposed · version 1
+
+> The HTML view of a DPP MUST NOT make the browser load scripts, styles, fonts, images or other components from other hosts.
+
+**Basis**
+
+- EN 18246:2026, 5.1.3, 5.1.5 (standard)
+
+**How it is checked** The product identifier is opened with `Accept: text/html`, and the HTML view is searched for URLs a browser loads without user action (scripts, style sheets, fonts, images, frames, preloads, CSS `url()` and `@import`, meta refresh). None of them may point to another host than the passport's own. Without an HTML view the result is skipped.
+
+**Notes** EN 18246:2026 5.1.3 rules out external analytics tools in a DPP service and any reference to external components in the response to the user; 5.1.5 asks that profiling through IP addresses, HTTP data and user behaviour be prevented where technically feasible. Every resource a browser fetches from another host while it displays the passport discloses the reader's address and request data to that host, so every URL on another host that is loaded without user action counts, whatever its purpose (web fonts, CDN scripts, tracking pixels). Links the reader has to follow are not counted. Resources that a script adds at run time are not visible in the document, so analytics loaded that way go undetected. Hosts are compared exactly: assets on another host of the same operator count as well and belong on the passport host. Without an HTML view the result is skipped; DPP-DAT-016 rates whether it exists.
+
+Catalogue rows: DPP-SEC-005 · Source: [sec/DPP-SEC-014.yaml](sec/DPP-SEC-014.yaml)
 
 ## Interoperability and standards
 
