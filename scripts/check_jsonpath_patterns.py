@@ -22,7 +22,7 @@ import jsonpath_rfc9535
 import yaml
 from iregexp_check import check as iregexp_valid
 
-PLACEHOLDER = re.compile(r"\{(base|dppId|productId|elementIdPath|randomId|now)\}")
+PLACEHOLDER = re.compile(r"\{(base|dppId|productId|elementIdPath|controlledElementId|controlledElementIdPath|randomId|now)\}")
 
 
 def literals(path):

@@ -1,0 +1,74 @@
+id: DPP-BAT-004
+version: 1
+status: proposed
+title: Battery passport releases restricted Annex XIII data only to its access groups
+statement: >-
+  A DPP service for battery passports MUST release the information that Annex XIII
+  of the Batteries Regulation reserves for authorities only to that access group,
+  and not to persons with a legitimate interest or the public.
+level: MUST
+basis:
+- source: Regulation (EU) 2023/1542 (Batteries)
+  clause: Art. 77; Annex XIII (2), (3)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2023/1542/oj
+- source: EN 18239:2026
+  clause: 5.2 (7)
+  kind: standard
+target: service
+method: automated-auth
+requires_features:
+- battery
+- access-levels
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $..['{controlledElementId}']
+        exists: false
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: token
+      role: legitimate-interest
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $..['{controlledElementId}']
+        exists: false
+  - request:
+      method: GET
+      path: /dpps/{dppId}
+      auth: token
+      role: authority
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $..['{controlledElementId}']
+        exists: true
+catalogue_ref:
+- DPP-BAT-004
+- DPP-BAT-007
+- DPP-BAT-001
+notes: >-
+  Annex XIII of the Batteries Regulation sorts the battery passport information
+  into three access groups: public (1), persons with a legitimate interest and
+  the Commission (2), and notified bodies, market surveillance authorities and
+  the Commission (3). EN 18239:2026 5.2 (7) leaves such roles to the legal act of
+  the product group. For battery services the test passport is a battery
+  passport and the controlled test element (test_data.controlledElementId) is
+  an element of Annex XIII (3). The operator provides test tokens for the roles
+  "legitimate-interest" (group 2) and "authority" (group 3). Group 2 data are
+  covered by DPP-ACC-003. DPP-BAT-002 checks the public data of Annex XIII (1).

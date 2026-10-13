@@ -1,0 +1,48 @@
+id: DPP-STO-017
+version: 1
+status: proposed
+title: Archived versions keep the access restrictions
+statement: >-
+  A DPP service MUST apply the access restrictions of the current passport to its
+  archived versions.
+level: MUST
+basis:
+- source: EN 18221:2026
+  clause: '4.2'
+  kind: harmonised-standard
+- source: EN 18239:2026
+  clause: 5.2 (22)
+  kind: standard
+target: service
+method: automated
+requires_features:
+- access-levels
+- historical-versions
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dppsByIdAndDate/{dppId}?date={now}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.digitalProductPassportId
+        equals: '{dppId}'
+      - path: $..['{controlledElementId}']
+        exists: false
+    skip_if_status:
+    - 401
+    - 403
+catalogue_ref: DPP-STO-017
+notes: >-
+  EN 18221:2026 4.2 subjects the attributes of archived versions to the same
+  access restrictions as the corresponding attributes of the passport. The check
+  reads the version valid now (ReadDPPVersionByIdAndDate, EN 18222 4.4) without
+  credentials and expects the controlled test element
+  (test_data.controlledElementId) to be missing, as for the current passport in
+  DPP-ACC-006. If the archive answers 401 or 403, the check is skipped, as in
+  DPP-API-019.

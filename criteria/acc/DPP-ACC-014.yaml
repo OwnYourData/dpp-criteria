@@ -1,0 +1,27 @@
+id: DPP-ACC-014
+version: 1
+status: proposed
+title: Access to controlled data is logged tamper-evidently
+statement: >-
+  A DPP service MUST log every access to controlled data and every change to
+  roles and access rights, and MUST protect the log against alteration and
+  deletion.
+level: MUST
+basis:
+- source: EN 18239:2026
+  clause: 5.2 (5), (16)
+  kind: standard
+target: service
+method: self-declared
+requires_features:
+- access-levels
+check:
+  type: declaration
+catalogue_ref: DPP-LCM-010
+notes: >-
+  EN 18239:2026 requires accountability for every access to controlled DPP data
+  (5.2 (5)) and an auditable, tamper-protected log of all access and of all
+  changes to roles, rights and controlled data whose integrity can be shown over
+  time (5.2 (16)). No standard defines an interface to read such a log, so the
+  criterion is self-declared; the evidence describes what is logged, who can
+  read the log and how it is protected.
