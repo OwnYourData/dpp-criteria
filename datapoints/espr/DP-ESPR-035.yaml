@@ -1,0 +1,25 @@
+id: DP-ESPR-035
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Reference to the back-up service provider
+term: reference to back-up digital product passport service provider
+description: >-
+  Reference to the independent third-party service provider that stores the back-up
+  copy of the digital product passport.
+granularity: per digital product passport
+provided_by: economic operator
+access: delegated-act
+access_notes: >-
+  Annex III, first paragraph, point (l); Art. 10(4). ESPR does not fix the access
+  class; the delegated act sets it (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first
+  subparagraph, point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (l); Art. 10(4); Art. 27(1)(c); Art. 29(2)(c)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: Commission Implementing Regulation (EU) 2026/1778 (DPP registry)
+  clause: Art. 8(7)(e)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj

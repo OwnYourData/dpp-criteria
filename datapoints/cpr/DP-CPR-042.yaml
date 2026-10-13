@@ -1,0 +1,24 @@
+id: DP-CPR-042
+version: 1
+regime: CPR
+tier: regime
+name: Version of the Commission software used
+term: reference to the version of the software provided by the Commission
+description: >-
+  Version of the software provided by the Commission that was used to calculate the
+  environmental performance.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Part of the declaration of performance and conformity. An electronic copy is supplied
+  with each product made available unless the declaration is contained in the passport
+  (Art. 16(1)), and it may be made available on a continuously available website with
+  free access for recipients (Art. 16(2)(c), (d)). The passport is accessible via the
+  data carrier (Art. 76(2)(e)); finer access levels are left to the delegated act under
+  Art. 75(1).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex V, point 9(d); Art. 15(2), second subparagraph
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

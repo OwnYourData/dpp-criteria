@@ -1,0 +1,20 @@
+id: DP-ESPR-056
+version: 1
+regime: ESPR
+tier: voluntary
+name: Additional voluntary information
+term: additional voluntary information, including voluntary labels and the EU Ecolabel
+description: >-
+  Information relevant to ecodesign that the manufacturer adds to the passport on a
+  voluntary basis.
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Annex III, third paragraph; Art. 10(2). Voluntary information is subject to the same
+  reservation: ESPR does not fix the access class; the delegated act sets it (Art.
+  9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph, point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, third paragraph; Art. 10(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

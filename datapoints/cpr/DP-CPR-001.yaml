@@ -1,0 +1,27 @@
+id: DP-CPR-001
+version: 1
+regime: CPR
+tier: regime
+name: Construction product passport data catalogue
+term: construction product digital product passport (Regulation (EU) 2024/3110)
+description: >-
+  Mandatory content of the construction product passport under Art. 76(2)(a)(i) to
+  (vii): the declaration of performance and conformity, product information under Annex
+  IV, technical documentation, markings, identifiers, documents required by other Union
+  law, and data carriers of essential components. This entry summarises the
+  construction product data catalogue.
+granularity: product type (Art. 76(2)(d); Art. 77(1)(a), (f))
+provided_by: manufacturer; other actors enter or update data as set by the delegated act (Art. 75(2)(d))
+access: delegated-act
+access_notes: >-
+  Summary row for the construction product data catalogue. The passport is accessible
+  free of charge through the data carrier to all economic operators, customers, users
+  and authorities (Art. 76(2)(e)), and the system supports different access levels
+  (Art. 76(2)(f)). The delegated act under Art. 75(1) sets the access level per
+  information item and protects trade secrets and intellectual property rights (Art.
+  75(2)(c); Art. 77(1)(g); Art. 78(b), (f), (g)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 15; Art. 16; Art. 22; Art. 75 to 79; Annex II; Annex IV; Annex V
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

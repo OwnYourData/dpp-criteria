@@ -1,0 +1,21 @@
+id: DP-ESPR-052
+version: 1
+regime: ESPR
+tier: annex-i
+name: Emissions to air, water or soil
+term: emissions to air, water or soil
+description: >-
+  Quantity and type of emissions released over one or more life cycle stages, including
+  noise.
+granularity: as set by the delegated act
+provided_by: manufacturer and suppliers
+access: delegated-act
+access_notes: >-
+  ESPR does not fix the access class; the delegated act sets it (Art. 9(2)(f); Art.
+  10(1)(g); Art. 11, first subparagraph, point (b)). Annex I names product parameters,
+  not access rights.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex I, point (q); Art. 7(2)(b)(i); Annex III, point (a)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

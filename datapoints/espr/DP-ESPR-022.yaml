@@ -1,0 +1,21 @@
+id: DP-ESPR-022
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Information for treatment facilities
+term: information for treatment facilities on disassembly, re-use, refurbishment, recycling or disposal
+description: >-
+  Information for treatment facilities on disassembly, re-use, refurbishment, recycling
+  or disposal at the end of life.
+granularity: as set by the delegated act
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Art. 7(2)(b)(iii) names treatment facilities as recipients but does not create an
+  access class. ESPR sets no access class; it is left to the delegated act (Art.
+  9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph, point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 7(2)(b)(iii)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

@@ -1,0 +1,21 @@
+id: DP-ESPR-023
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Other information for sustainable product choices
+term: other information influencing sustainable product choices and handling by parties other than the manufacturer
+description: >-
+  Other information that influences sustainable product choices by customers and
+  handling by parties other than the manufacturer, such as appropriate use, value
+  retention and correct end-of-life treatment.
+granularity: as set by the delegated act
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  ESPR sets no access class; it is left to the delegated act (Art. 9(2)(f); Art.
+  10(1)(g); Art. 11, first subparagraph, point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 7(2)(b)(iv)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

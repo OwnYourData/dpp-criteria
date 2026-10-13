@@ -1,0 +1,25 @@
+id: DP-ESPR-010
+version: 1
+regime: ESPR
+tier: minimum
+name: Concentration
+term: concentration, maximum concentration or concentration range
+description: >-
+  Concentration, maximum concentration or concentration range of the substance in the
+  whole product, in relevant components or in spare parts.
+granularity: per substance
+provided_by: economic operator or suppliers
+access: public
+access_notes: >-
+  Under Art. 7(7), second subparagraph, the tracking information is shown on the
+  product or made accessible via a data carrier on the product, with no access
+  restriction. Under Art. 7(6)(b) the delegated act may exempt information, for example
+  to protect confidential business information, but may not restrict access to it; this
+  exemption is not available for substances under Art. 2(27)(a) above 0.1 % weight by
+  weight. For the concentration, Art. 7(6)(b) is the exemption that matters most in
+  practice.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 7(5), first subparagraph, point (c); Art. 7(6)(b)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

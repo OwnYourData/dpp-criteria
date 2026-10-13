@@ -1,0 +1,20 @@
+id: DP-ESPR-017
+version: 1
+regime: ESPR
+tier: conditional
+name: Personal data relating to customers
+term: personal data relating to customers
+description: >-
+  Personal data of customers, which may be stored in the digital product passport only
+  with explicit consent under Art. 6 of Regulation (EU) 2016/679 (GDPR).
+granularity: item
+access: unspecified
+access_notes: >-
+  Art. 10(1)(e) prohibits storing personal data of customers in the passport without
+  explicit consent under Art. 6 GDPR. This is a storage prohibition subject to consent,
+  not an access class; see also Recital 43.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(1)(e)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

@@ -1,0 +1,24 @@
+id: DP-TOY-013
+version: 1
+regime: TOY
+tier: regime
+name: CE marking
+term: CE marking
+description: >-
+  CE marking shown in the digital product passport.
+granularity: model
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Art. 19(2)(f) opens the passport to consumers and other end users, market
+  surveillance and customs authorities, notified bodies, the Commission and other
+  economic operators, free of charge (Art. 20(3)), according to the access rights set
+  by the delegated act under Art. 49(1)(d). The regulation does not assign access per
+  data point. That delegated act must balance trade secrets under Directive (EU)
+  2016/943 against easy consumer access (Art. 49(1), second subparagraph). Separately,
+  the CE marking must be affixed visibly to the toy itself (Art. 17 and 18).
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Annex VI, Part I, point (k)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

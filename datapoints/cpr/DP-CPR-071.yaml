@@ -1,0 +1,22 @@
+id: DP-CPR-071
+version: 1
+regime: CPR
+tier: regime
+name: Environmental sustainability label
+term: environmental sustainability labelling
+description: >-
+  Label set by a delegated act, where the product is usually chosen by consumers and
+  its environmental performance does not depend to a large extent on how it is
+  installed.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  The label gives consumer-friendly information that non-experts can understand (Art.
+  22(9)). The delegated act sets how it is presented to customers, also in distance
+  sales (Art. 22(10)(c)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 76(2)(a)(iv); Art. 22(9), (10)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

@@ -1,0 +1,22 @@
+id: DP-TOY-019
+version: 1
+regime: TOY
+tier: regime
+name: Link to the Safety Gate section
+term: link to the Safety Gate Portal section referred to in Article 34(3) of Regulation (EU) 2023/988
+description: >-
+  When the passport is accessed, a link to the Safety Gate Portal section for reports
+  on dangerous toys must be displayed.
+granularity: model
+provided_by: manufacturer or DPP service provider
+access: public
+access_notes: >-
+  Art. 19(11) requires the link to the Safety Gate section under Art. 34(3) of
+  Regulation (EU) 2023/988 to be displayed whenever the passport is accessed, with no
+  access level of its own. Access to the passport as a whole follows Art. 19(2)(f) and
+  Art. 20(3), under the access rights set by the delegated act under Art. 49(1)(d).
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Art. 19(11)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

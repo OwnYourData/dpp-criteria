@@ -1,0 +1,21 @@
+id: DP-TOY-015
+version: 1
+regime: TOY
+tier: regime
+name: Communication channel for complaints and accident reports
+term: communication channel referred to in Article 7(12)
+description: >-
+  Publicly accessible communication channel, such as a telephone number, an email
+  address or a dedicated section of the website.
+granularity: model
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Under Art. 7(12) manufacturers make the communication channels publicly available,
+  taking accessibility requirements into account. The data point is therefore open
+  regardless of access rights.
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Annex VI, Part I, point (m); Art. 7(12)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

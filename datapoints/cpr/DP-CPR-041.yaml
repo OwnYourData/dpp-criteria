@@ -1,0 +1,26 @@
+id: DP-CPR-041
+version: 1
+regime: CPR
+tier: regime
+name: Capacity for temporary carbon storage and other carbon removal
+term: capacity for temporary carbon storage and other carbon removal
+description: >-
+  Capacity of the product for temporary carbon storage and other carbon removal. The
+  harmonised technical specifications take these capacities into account where
+  possible.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Part of the declaration of performance and conformity. An electronic copy is supplied
+  with each product made available unless the declaration is contained in the passport
+  (Art. 16(1)), and it may be made available on a continuously available website with
+  free access for recipients (Art. 16(2)(c), (d)). The passport is accessible via the
+  data carrier (Art. 76(2)(e)); finer access levels are left to the delegated act under
+  Art. 75(1). The value is a sub-element of the declared environmental sustainability
+  (Annex V, point 9(c); Art. 15(2), (3)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex II, last paragraph
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

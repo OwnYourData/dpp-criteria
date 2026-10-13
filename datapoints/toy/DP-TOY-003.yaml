@@ -1,0 +1,26 @@
+id: DP-TOY-003
+version: 1
+regime: TOY
+tier: regime
+name: Unique product identifier
+term: unique product identifier
+en18223_attribute: uniqueProductIdentifier
+description: >-
+  Unique product identifier of the toy, following the standards set under ESPR (Art.
+  21(1)). Where a further DPP obligation applies, the product identifier, the economic
+  operator identifier and the registration identifier are identical (Art. 21(3)).
+granularity: model
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Art. 19(2)(f) opens the passport to consumers and other end users, market
+  surveillance and customs authorities, notified bodies, the Commission and other
+  economic operators, free of charge (Art. 20(3)), according to the access rights set
+  by the delegated act under Art. 49(1)(d). The regulation does not assign access per
+  data point. That delegated act must balance trade secrets under Directive (EU)
+  2016/943 against easy consumer access (Art. 49(1), second subparagraph).
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Annex VI, Part I, point (a); Art. 19(2)(h); Art. 21
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

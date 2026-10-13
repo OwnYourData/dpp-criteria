@@ -1,0 +1,20 @@
+id: DP-ESPR-025
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Information under other Union law
+term: information required under other Union law applicable to the product group
+description: >-
+  Information required or allowed under other Union law that applies to the product
+  group, for example RoHS or WEEE, where the delegated act provides for its inclusion.
+granularity: as set by the delegated act
+provided_by: economic operator
+access: unspecified
+access_notes: >-
+  Annex III, point (a) (second alternative), and Art. 10(2) refer to other Union law.
+  The access class follows that act, not ESPR.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (a) (second alternative); Art. 10(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

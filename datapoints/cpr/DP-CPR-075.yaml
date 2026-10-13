@@ -1,0 +1,21 @@
+id: DP-CPR-075
+version: 1
+regime: CPR
+tier: regime
+name: Reference to the product type
+term: reference to the product-type
+description: >-
+  The information in the digital product passport includes a reference to the product
+  type.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Reference to the product type (Art. 77(1)(f)). The unique identification code is
+  easily visible and legible for users (Art. 22(5)) and follows the CE marking (Art.
+  18(2)(d)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 77(1)(f); Art. 76(2)(d); Art. 3(27)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

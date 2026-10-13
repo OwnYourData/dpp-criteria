@@ -6,13 +6,15 @@ standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 
 - `criteria/` – one YAML file per criterion; [criteria/README.md](criteria/README.md) lists them all in readable form
 - `services/` – one YAML file per listed DPP service
+- `datapoints/` – one YAML file per data point that EU legal acts require or allow in a passport (ESPR, toy safety, construction products, EUDR); [datapoints/README.md](datapoints/README.md) lists them all in readable form
 - `soya/` – SOyA structures with the SHACL shapes of the passport checks, see [soya/README.md](soya/README.md)
 - `tests/soya/` – test vectors for the structures
 - `tests/schema/` – valid and invalid examples for the JSON Schemas
-- `schema/` – JSON Schemas for both file types
-- `scripts/` – build and test the structures with the SOyA web-cli, run the schema test vectors, render `criteria/README.md`
+- `schema/` – JSON Schemas for the three file types
+- `scripts/` – build and test the structures with the SOyA web-cli, run the schema test vectors, render `criteria/README.md` and `datapoints/README.md`
 
-The format is described in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md).
+The format is described in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md), the data
+point format in [DATAPOINT-FORMAT.md](DATAPOINT-FORMAT.md).
 
 ## Contributing
 

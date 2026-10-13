@@ -1,0 +1,24 @@
+id: DP-EUDR-002
+version: 1
+regime: EUDR
+tier: sectoral
+name: Due diligence information
+term: information referred to in Article 9(1)
+description: >-
+  Information that the operator must collect and keep, including a description with the
+  species of wood, quantity, country of production, geolocation, time of production,
+  suppliers, and evidence that the products are deforestation-free and legal. Micro or
+  small primary operators may give the address of the plots of land or of the
+  establishment instead of the geolocation.
+granularity: consignment
+provided_by: operator; suppliers
+access: unspecified
+access_notes: >-
+  Mandatory outside DPP law, under Regulation (EU) 2023/1115 as amended by Regulation
+  (EU) 2025/2650. ESPR sets no access rule for it. EUDR due diligence data are in
+  principle meant for authorities and the supply chain, not for the public.
+basis:
+- source: Regulation (EU) 2023/1115 (EUDR), as amended by Regulation (EU) 2025/2650
+  clause: Art. 9(1)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2023/1115/oj

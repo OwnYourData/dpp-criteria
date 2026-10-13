@@ -1,0 +1,21 @@
+id: DP-ESPR-018
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Information requirements and information under other Union law (umbrella entry)
+term: information requirements (Art. 7(2)(b)) and information required under other Union law
+description: >-
+  Entry point for the product-group-specific information requirements set by the
+  delegated act.
+granularity: as set by the delegated act
+provided_by: economic operator or suppliers
+access: delegated-act
+access_notes: >-
+  ESPR sets no access class; it is left to the delegated act (Art. 9(2)(f); Art.
+  10(1)(g); Art. 11, first subparagraph, point (b)). Art. 7(7), first subparagraph,
+  governs only how the information is provided, not who receives it.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (a); Art. 7(2)(b); Art. 7(7), first subparagraph; Art. 10(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

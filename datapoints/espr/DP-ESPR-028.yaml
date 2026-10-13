@@ -1,0 +1,21 @@
+id: DP-ESPR-028
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Conformity documents
+term: declaration of conformity, technical documentation, conformity certificates
+description: >-
+  Documents on conformity, such as the declaration of conformity, technical
+  documentation or conformity certificates.
+granularity: model or batch
+provided_by: economic operator
+access: delegated-act
+access_notes: >-
+  Annex III, point (e) only names the content. ESPR sets no access class; it is left to
+  the delegated act (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph, point
+  (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (e)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

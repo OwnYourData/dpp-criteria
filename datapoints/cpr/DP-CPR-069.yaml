@@ -1,0 +1,27 @@
+id: DP-CPR-069
+version: 1
+regime: CPR
+tier: regime
+name: Technical documentation
+term: technical documentation
+description: >-
+  Declared intended use, evidence for performance and conformity, the procedures under
+  Art. 22(4), details of the assessment and verification system and, where relevant,
+  simplified procedures (Art. 59 to 61).
+granularity: product type
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  The technical documentation under Art. 22(3) is passport content (Art.
+  76(2)(a)(iii)). CPR assigns it no access level; it is a typical case for the
+  protection of trade secrets and intellectual property rights under Art. 78(g). The
+  passport is accessible free of charge via the data carrier to all economic operators,
+  customers, users and authorities (Art. 76(2)(e)), and the system allows different
+  access levels (point (f)). The delegated act under Art. 75(1) sets the level for each
+  piece of information (Art. 75(2)(c); Art. 77(1)(g); Art. 78(b), (f)) and protects
+  trade secrets and intellectual property rights (Art. 78(g)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 76(2)(a)(iii); Art. 22(3)(a) to (e); Art. 59 to 61
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

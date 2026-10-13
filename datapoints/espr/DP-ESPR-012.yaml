@@ -1,0 +1,25 @@
+id: DP-ESPR-012
+version: 1
+regime: ESPR
+tier: minimum
+name: Information for disassembly, recycling and end-of-life treatment
+term: information for disassembly, preparation for re-use, re-use, recycling and environmentally sound treatment at end of life
+description: >-
+  Relevant information for disassembling the product, preparing it for re-use, re-using
+  and recycling it, and for treating it in an environmentally sound way at the end of
+  its life.
+granularity: per substance
+provided_by: economic operator or suppliers
+access: public
+access_notes: >-
+  Under Art. 7(7), second subparagraph, the tracking information is shown on the
+  product or made accessible via a data carrier on the product, with no access
+  restriction. Under Art. 7(6)(b) the delegated act may exempt information, for example
+  to protect confidential business information, but may not restrict access to it; this
+  exemption is not available for substances under Art. 2(27)(a) above 0.1 % weight by
+  weight.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 7(5), first subparagraph, point (e); Art. 7(8)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

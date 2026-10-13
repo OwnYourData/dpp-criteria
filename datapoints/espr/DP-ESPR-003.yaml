@@ -1,0 +1,24 @@
+id: DP-ESPR-003
+version: 1
+regime: ESPR
+tier: fixed
+name: Digital instructions for use
+term: digital instructions for use
+description: >-
+  Instructions for use in digital format, included in the digital product passport and
+  accessible via the data carrier. They contain at least the information under Art.
+  7(2)(b)(ii), as provided for in the delegated act.
+granularity: model, or as set by the delegated act
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Art. 27(7), third subparagraph, requires the instructions to be included in the
+  passport and made accessible via the data carrier. The fourth subparagraph keeps them
+  online and downloadable for at least ten years, and the fifth requires a free paper
+  copy on request. No access restriction is set, but ESPR does not use the term public
+  part here.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 27(7), first, third and fourth subparagraphs; Art. 29(4); Art. 30(2)(b); Art. 7(8)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

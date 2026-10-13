@@ -1,0 +1,24 @@
+id: DP-CPR-009
+version: 1
+regime: CPR
+tier: regime
+name: Estimated average and minimum service life (durability)
+term: estimated average and minimal service life for the declared intended use (durability)
+description: >-
+  Estimated average and minimum service life of the product for the declared intended
+  use.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Openly available as part of the declaration of performance and conformity: an
+  electronic copy accompanies each product made available unless the passport contains
+  it (Art. 16(1)), and it may be provided on a continuously available website with free
+  access for recipients (Art. 16(2)(c), (d)). The passport is reachable through the
+  data carrier (Art. 76(2)(e)). Finer access levels are left to the delegated act under
+  Art. 75(1).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex V, point 1(f); Annex IV, point 1.2(d)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

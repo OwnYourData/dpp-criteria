@@ -1,0 +1,22 @@
+id: DP-ESPR-002
+version: 1
+regime: ESPR
+tier: fixed
+name: Manufacturer contact details
+term: manufacturer name, registered trade name or registered trade mark, postal address, electronic means of communication
+description: >-
+  Name, registered trade name or registered trade mark, postal address with a single
+  contact point and electronic means of communication of the manufacturer, in the
+  public part of the digital product passport.
+granularity: model, or as set by the delegated act
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Art. 27(6), first subparagraph, point (a) places the details on the public part of
+  the passport, where applicable. Missing or incorrect details are a formal
+  non-compliance under Art. 71(1)(g).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 27(6), first subparagraph, point (a), and second subparagraph; Annex III, point (g); Art. 71(1)(g)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

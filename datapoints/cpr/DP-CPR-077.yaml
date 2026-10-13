@@ -1,0 +1,22 @@
+id: DP-CPR-077
+version: 1
+regime: CPR
+tier: regime
+name: Availability period
+term: availability period
+description: >-
+  The passport system keeps the passport for 25 years after the last product of the
+  product type is placed on the market, and the economic operator for at least 10
+  years. A back-up system keeps it available also after insolvency.
+granularity: product type
+provided_by: delegated act
+access: unspecified
+access_notes: >-
+  Availability parameter, not an access parameter: Art. 75(2)(f), (i) (25 years for the
+  system, at least ten years for provision by the economic operator); Art. 76(2)(h);
+  Art. 78(e).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 75(2)(f), (i); Art. 76(2)(h); Art. 78(e)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

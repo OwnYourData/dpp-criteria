@@ -1,0 +1,20 @@
+id: DP-CPR-079
+version: 1
+regime: CPR
+tier: regime
+name: Availability of information for reuse and remanufacturing
+term: availability of information for reuse and remanufacturing
+description: >-
+  The passport system must take into account the need to keep information available for
+  the reuse and remanufacturing of products.
+granularity: product type
+provided_by: delegated act
+access: unspecified
+access_notes: >-
+  Art. 75(2)(j) is a duty to consider this need when designing the system, not an
+  access rule.
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 75(2)(j); Recital 51
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

@@ -1,0 +1,22 @@
+id: DP-ESPR-013
+version: 1
+regime: ESPR
+tier: conditional
+name: Importer contact details
+term: importer name, registered trade name or registered trade mark, postal address, electronic means of communication
+description: >-
+  Name, registered trade name or registered trade mark, postal address and electronic
+  means of communication of the importer, in the public part of the digital product
+  passport.
+granularity: model, or as set by the delegated act
+provided_by: importer or economic operator
+access: public
+access_notes: >-
+  Art. 29(3), first subparagraph, point (a) places the details in the public part of
+  the passport, where there is one. Missing or incorrect details are a formal
+  non-compliance under Art. 71(1)(g).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 29(3), first subparagraph, point (a), and second subparagraph; Annex III, point (j); Art. 71(1)(g)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

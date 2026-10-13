@@ -1,0 +1,21 @@
+id: DP-ESPR-026
+version: 1
+regime: ESPR
+tier: delegated-act
+name: GTIN or equivalent identifier
+term: GTIN (ISO/IEC 15459-6) or equivalent
+description: >-
+  Global Trade Item Number or an equivalent trade identifier of products or their
+  parts.
+granularity: model or part
+provided_by: economic operator
+access: delegated-act
+access_notes: >-
+  ESPR sets no access class; it is left to the delegated act (Art. 9(2)(f); Art.
+  10(1)(g); Art. 11, first subparagraph, point (b)). The GTIN can usually be read on
+  the product, but ESPR does not state this as an access rule.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (c)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

@@ -1,0 +1,24 @@
+id: DP-ESPR-016
+version: 1
+regime: ESPR
+tier: conditional
+name: Parts of the technical documentation
+term: parts of the technical documentation
+description: >-
+  Parts of the technical documentation, specified in the delegated act, that are made
+  available digitally to the Commission or market surveillance authorities. Where a
+  digital product passport exists, this is done through it.
+granularity: model
+provided_by: manufacturer, authorised representative or importer
+access: restricted
+access_notes: >-
+  Art. 36(3) in conjunction with Art. 4(6)(a)(iii) provides these parts to the
+  Commission or market surveillance authorities for market surveillance; where a
+  passport exists, through the passport (Art. 36(3), second subparagraph). The class is
+  derived from these addressees; the formal access rights remain with the delegated
+  act.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 36(3), second subparagraph, in conjunction with Art. 4(6)(a)(iii)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

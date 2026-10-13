@@ -1,0 +1,21 @@
+id: DP-ESPR-040
+version: 1
+regime: ESPR
+tier: annex-i
+name: Avoidance of detrimental technical solutions
+term: avoidance of technical solutions detrimental to re-use, upgrading, repair, maintenance, refurbishment, remanufacturing and recycling
+description: >-
+  Avoidance of technical solutions that hinder re-use, upgrading, repair, maintenance,
+  refurbishment, remanufacturing and recycling.
+granularity: as set by the delegated act
+provided_by: manufacturer and suppliers
+access: delegated-act
+access_notes: >-
+  ESPR does not fix the access class; the delegated act sets it (Art. 9(2)(f); Art.
+  10(1)(g); Art. 11, first subparagraph, point (b)). Annex I names product parameters,
+  not access rights.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex I, point (e); Art. 7(2)(b)(i); Annex III, point (a)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
