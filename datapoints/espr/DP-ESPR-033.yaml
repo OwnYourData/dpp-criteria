@@ -1,0 +1,19 @@
+id: DP-ESPR-033
+version: 1
+regime: ESPR
+tier: delegated-act
+name: EORI number of the importer
+term: EORI number of the importer
+description: >-
+  Economic Operators Registration and Identification (EORI) number of the importer.
+provided_by: importer
+access: delegated-act
+access_notes: >-
+  Annex III, first paragraph, point (j). ESPR does not fix the access class; the
+  delegated act sets it (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph,
+  point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (j)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

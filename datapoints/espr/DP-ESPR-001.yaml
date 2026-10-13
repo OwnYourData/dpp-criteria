@@ -1,0 +1,23 @@
+id: DP-ESPR-001
+version: 1
+regime: ESPR
+tier: fixed
+name: Unique product identifier
+term: unique product identifier
+en18223_attribute: uniqueProductIdentifier
+description: >-
+  Persistent unique identifier that the data carrier links to the digital product
+  passport and that gives a web link to it.
+granularity: model, batch or item, as set by the delegated act
+provided_by: economic operator, following the identifier scheme
+access: public
+access_notes: >-
+  The identifier is carried on the product, its packaging or accompanying documents
+  (Art. 10(1)(a), (b)) and a digital copy goes to dealers and online marketplaces (Art.
+  10(3)(a)). ESPR does not assign it to the public part explicitly, but it is carried
+  on the product and ESPR sets no access restriction for it.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 2(30); Art. 10(1)(a), (c); Annex III, point (b) and second paragraph
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

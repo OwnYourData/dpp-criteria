@@ -1,0 +1,21 @@
+id: DP-CPR-076
+version: 1
+regime: CPR
+tier: regime
+name: Access levels and rights to enter or update information
+term: access levels and rights to enter or update information
+description: >-
+  Actors with access and the scope of information they can access; actors with rights
+  to enter and update information; arrangements for updates.
+granularity: product type
+provided_by: delegated act
+access: delegated-act
+access_notes: >-
+  This is the parameter that sets the access levels: Art. 75(2)(c), (d), (e); Art.
+  76(2)(e) to (g); Art. 78(b), (f). It matches the corresponding access parameter at
+  ESPR level.
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 75(2)(c), (d), (e); Art. 76(2)(e) to (g); Art. 78(b), (f)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

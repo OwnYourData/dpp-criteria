@@ -1,0 +1,26 @@
+id: DP-ESPR-027
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Commodity code
+term: commodity code (e.g. TARIC)
+description: >-
+  Commodity code of the product.
+granularity: model
+provided_by: economic operator
+access: delegated-act
+access_notes: >-
+  In the registry, Art. 13(1), second subparagraph, in conjunction with Art. 13(6)
+  gives access to the Commission, competent national authorities and customs
+  authorities, and customs check the code under Art. 15(2). For the passport (Annex
+  III, point (d)), ESPR sets no access class; it is left to the delegated act (Art.
+  9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph, point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 13(1), second subparagraph; Annex III, point (d)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: Commission Implementing Regulation (EU) 2026/1778 (DPP registry)
+  clause: Art. 8(7)(d)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj

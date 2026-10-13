@@ -1,0 +1,25 @@
+id: DP-ESPR-021
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Installation, use, maintenance and repair information
+term: information on installation, use, maintenance and repair
+description: >-
+  Information for customers and other actors on installation, use, maintenance and
+  repair. Where relevant it also covers installing third-party operating systems,
+  collection for refurbishment or remanufacturing, and return or handling at end of
+  life.
+granularity: as set by the delegated act
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Where the information forms the minimum content of the digital instructions for use
+  (Art. 27(7), first subparagraph, in conjunction with Art. 7(2)(b)(ii)), the access
+  rules of DP-ESPR-003, i.e. the rules of Art. 27(7), third and fourth subparagraphs,
+  apply. For further content, ESPR sets no access class; it is left to the delegated
+  act (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph, point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 7(2)(b)(ii); Art. 27(7), first subparagraph
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

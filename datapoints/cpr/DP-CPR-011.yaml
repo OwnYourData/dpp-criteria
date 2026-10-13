@@ -1,0 +1,24 @@
+id: DP-CPR-011
+version: 1
+regime: CPR
+tier: regime
+name: Date and place of the last dismantling
+term: date and place of the last dismantling
+description: >-
+  For products that were already installed in a construction work: the date and place
+  of the last dismantling.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Openly available as part of the declaration of performance and conformity: an
+  electronic copy accompanies each product made available unless the passport contains
+  it (Art. 16(1)), and it may be provided on a continuously available website with free
+  access for recipients (Art. 16(2)(c), (d)). The passport is reachable through the
+  data carrier (Art. 76(2)(e)). Finer access levels are left to the delegated act under
+  Art. 75(1).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex V, point 1(h); Art. 3(20), (25); Art. 18(2)(a); Art. 26(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

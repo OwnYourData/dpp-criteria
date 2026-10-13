@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OwnYourData/dpp-criteria/schema/datapoint.schema.json",
+  "title": "DPP data point",
+  "description": "A data point that a legal act requires, allows or expects in a digital product passport. Data points are reference material for criteria; they are not checked themselves.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "regime",
+    "tier",
+    "name",
+    "description",
+    "access",
+    "basis"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^DP-(ESPR|TOY|CPR|EUDR)-[0-9]{3}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "regime": {
+      "description": "Legal act that defines the data point.",
+      "enum": [
+        "ESPR",
+        "TOY",
+        "CPR",
+        "EUDR"
+      ]
+    },
+    "tier": {
+      "description": "How firmly the legal act fixes the data point. ESPR: fixed, minimum, conditional, delegated-act, annex-i, voluntary. Product-specific acts: regime. Law outside DPP rules: sectoral.",
+      "enum": [
+        "fixed",
+        "minimum",
+        "conditional",
+        "delegated-act",
+        "annex-i",
+        "voluntary",
+        "regime",
+        "sectoral"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "term": {
+      "description": "Term used in the English version of the legal act.",
+      "type": "string"
+    },
+    "en18223_attribute": {
+      "description": "Attribute of the class DigitalProductPassport (EN 18223:2026, Table 1) that carries the value, if any.",
+      "enum": [
+        "digitalProductPassportId",
+        "uniqueProductIdentifier",
+        "granularity",
+        "dppSchemaVersion",
+        "dppStatus",
+        "lastUpdated",
+        "economicOperatorId",
+        "facilityId",
+        "contentSpecificationIds"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "granularity": {
+      "description": "Level the value refers to (model, batch, item, product type, substance, ...).",
+      "type": "string"
+    },
+    "provided_by": {
+      "description": "Actor that produces the value.",
+      "type": "string"
+    },
+    "access": {
+      "description": "public: the legal act puts the value in the public part, or requires it on the product or via the data carrier without access restriction. restricted: the legal act limits it to named actors. delegated-act: left to the delegated or implementing act. unspecified: the legal act says nothing about access.",
+      "enum": [
+        "public",
+        "restricted",
+        "delegated-act",
+        "unspecified"
+      ]
+    },
+    "access_notes": {
+      "type": "string"
+    },
+    "basis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "kind"
+        ],
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "clause": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "regulation",
+              "harmonised-standard",
+              "draft-standard",
+              "standard",
+              "guidance",
+              "derived"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

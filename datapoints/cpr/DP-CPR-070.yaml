@@ -1,0 +1,25 @@
+id: DP-CPR-070
+version: 1
+regime: CPR
+tier: regime
+name: Calculation of environmental sustainability performance
+term: calculation of the environmental sustainability performance
+description: >-
+  Calculation of the environmental sustainability performance for the essential
+  characteristics under Art. 15(2), as part of the technical documentation.
+granularity: product type
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  The calculation is part of the technical documentation (Art. 22(3)(f)). Its result is
+  declared openly under Annex V, point 9(c) (DP-CPR-021), but the calculation itself is
+  not. The passport is accessible free of charge via the data carrier to all economic
+  operators, customers, users and authorities (Art. 76(2)(e)), and the system allows
+  different access levels (point (f)). The delegated act under Art. 75(1) sets the
+  level for each piece of information (Art. 75(2)(c); Art. 77(1)(g); Art. 78(b), (f))
+  and protects trade secrets and intellectual property rights (Art. 78(g)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 76(2)(a)(iii); Art. 22(3)(f); Art. 15(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

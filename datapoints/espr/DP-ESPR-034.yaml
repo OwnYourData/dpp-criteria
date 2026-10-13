@@ -1,0 +1,23 @@
+id: DP-ESPR-034
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Responsible economic operator established in the Union
+term: economic operator established in the Union responsible (Article 4 of Regulation (EU) 2019/1020)
+description: >-
+  Name, contact details and unique operator identifier of the economic operator
+  established in the Union that is responsible under Article 4 of Regulation (EU)
+  2019/1020.
+granularity: model
+provided_by: economic operator
+access: delegated-act
+access_notes: >-
+  Annex III, first paragraph, point (k). ESPR does not fix the access class; the
+  delegated act sets it (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph,
+  point (b)). The same details must be shown openly in distance sales offers anyway
+  (Art. 36(1)(b)), outside the passport.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (k)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

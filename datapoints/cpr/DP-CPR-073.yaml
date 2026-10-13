@@ -1,0 +1,20 @@
+id: DP-CPR-073
+version: 1
+regime: CPR
+tier: regime
+name: Documents required under other Union law
+term: documents required under other Union law applicable to the product
+description: >-
+  Documents required under other Union law that applies to the product. Further
+  information only in line with the delegated act (Art. 77(2)).
+granularity: product type
+provided_by: manufacturer
+access: unspecified
+access_notes: >-
+  Documents under other Union law (Art. 76(2)(a)(vi); Art. 77(2)). The access class
+  follows the act that requires each document, not CPR.
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 76(2)(a)(vi); Art. 77(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

@@ -1,0 +1,25 @@
+id: DP-CPR-037
+version: 1
+regime: CPR
+tier: regime
+name: Ecotoxicity, freshwater
+term: eco-toxicity (freshwater)
+description: >-
+  Environmental performance over the life cycle for this predefined essential
+  environmental characteristic (ecotoxicity, freshwater).
+granularity: product type; declared unit as set by the harmonised technical specification
+provided_by: manufacturer, using software provided by the Commission
+access: public
+access_notes: >-
+  Openly available as part of the declaration of performance and conformity: an
+  electronic copy accompanies each product made available unless the passport contains
+  it (Art. 16(1)), and it may be provided on a continuously available website with free
+  access for recipients (Art. 16(2)(c), (d)). The passport is reachable through the
+  data carrier (Art. 76(2)(e)). Finer access levels are left to the delegated act under
+  Art. 75(1). It is a sub-element of the declared environmental sustainability (Annex
+  V, point 9(c); Art. 15(2), (3)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex II, point (p); Art. 15(2), (3); Annex V, point 9(c)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

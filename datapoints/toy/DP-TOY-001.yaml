@@ -1,0 +1,26 @@
+id: DP-TOY-001
+version: 1
+regime: TOY
+tier: regime
+name: Toy DPP data catalogue
+term: toy digital product passport (Regulation (EU) 2025/2509)
+description: >-
+  Self-contained list of fields: mandatory information under Art. 19(2)(b) and (c) in
+  conjunction with Annex VI, Part I, points (a) to (n), and optional information under
+  Annex VI, Part II.
+granularity: model (Art. 19(2)(a)); batch where other Union law requires the batch level (Art. 19(9))
+provided_by: manufacturer (Art. 19(1))
+access: delegated-act
+access_notes: >-
+  Summary row of the toy data catalogue. Art. 19(2)(f) opens the passport to consumers
+  and other end users, market surveillance and customs authorities, notified bodies,
+  the Commission and other economic operators, free of charge (Art. 20(3)), according
+  to the access rights set by the delegated act under Art. 49(1)(d). The regulation
+  does not assign access per data point. That delegated act must balance trade secrets
+  under Directive (EU) 2016/943 against easy consumer access (Art. 49(1), second
+  subparagraph).
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Art. 19; Art. 20; Art. 21; Art. 22; Art. 49; Art. 59; Annex VI
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

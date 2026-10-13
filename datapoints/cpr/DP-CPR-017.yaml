@@ -1,0 +1,24 @@
+id: DP-CPR-017
+version: 1
+regime: CPR
+tier: regime
+name: Reference to certificates or validation reports
+term: reference to certificates or validation reports
+description: >-
+  Reference to certificates or validation reports issued by notified bodies and
+  technical assessment bodies.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Openly available as part of the declaration of performance and conformity: an
+  electronic copy accompanies each product made available unless the passport contains
+  it (Art. 16(1)), and it may be provided on a continuously available website with free
+  access for recipients (Art. 16(2)(c), (d)). The passport is reachable through the
+  data carrier (Art. 76(2)(e)). Finer access levels are left to the delegated act under
+  Art. 75(1).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex V, point 7; Art. 21(4)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

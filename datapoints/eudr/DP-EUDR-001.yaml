@@ -1,0 +1,23 @@
+id: DP-EUDR-001
+version: 1
+regime: EUDR
+tier: sectoral
+name: Due diligence statement reference number or simplified declaration identification number
+term: reference number of the due diligence statement / identification number of the simplified declaration
+description: >-
+  Operators submit the due diligence statement and receive a reference number; micro or
+  small primary operators submit a one-off simplified declaration and receive an
+  identification number. Downstream operators and traders do not submit a due diligence
+  statement; only the first downstream actor records and keeps the numbers.
+granularity: consignment or product
+provided_by: information system (Art. 33); recorded by the operator or the first downstream actor
+access: unspecified
+access_notes: >-
+  Mandatory outside DPP law, under Regulation (EU) 2023/1115 as amended by Regulation
+  (EU) 2025/2650. ESPR sets no access rule for it. EUDR due diligence data are in
+  principle meant for authorities and the supply chain, not for the public.
+basis:
+- source: Regulation (EU) 2023/1115 (EUDR), as amended by Regulation (EU) 2025/2650
+  clause: Art. 4; Art. 4a; Art. 5; Art. 33
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2023/1115/oj

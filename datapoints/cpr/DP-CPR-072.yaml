@@ -1,0 +1,24 @@
+id: DP-CPR-072
+version: 1
+regime: CPR
+tier: regime
+name: Unique identifiers
+term: unique identifiers
+description: >-
+  Unique identifiers of the product, the economic operator and, where relevant, the
+  facility, assigned under Art. 79(1). ESPR Art. 12 applies unless the delegated act
+  provides otherwise.
+granularity: product type
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Covers three identifiers. In EN 18223:2026, Table 1, they are
+  uniqueProductIdentifier, economicOperatorId and facilityId.
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 76(2)(a)(v); Art. 79(1); Art. 75(2)(h)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj
+notes: >-
+  Covers three identifiers. In EN 18223:2026, Table 1, they are
+  uniqueProductIdentifier, economicOperatorId and facilityId.

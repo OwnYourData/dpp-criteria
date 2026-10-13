@@ -1,0 +1,26 @@
+id: DP-CPR-004
+version: 1
+regime: CPR
+tier: regime
+name: Unique identification code of the product type; batch or serial number
+term: unique identification code of the product-type; batch or serial number
+description: >-
+  Manufacturer-specific unique identification code of the product type and, where
+  available, the batch or serial number.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Openly available as part of the declaration of performance and conformity: an
+  electronic copy accompanies each product made available unless the passport contains
+  it (Art. 16(1)), and it may be provided on a continuously available website with free
+  access for recipients (Art. 16(2)(c), (d)). The passport is reachable through the
+  data carrier (Art. 76(2)(e)). Finer access levels are left to the delegated act under
+  Art. 75(1). In addition, the unique identification code of the product type must be
+  shown on the product, easily visible and legible for users (Art. 22(5)), and follows
+  the CE marking (Art. 18(2)(d)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex V, point 1(a); Art. 22(5)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

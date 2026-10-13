@@ -1,0 +1,25 @@
+id: DP-TOY-010
+version: 1
+regime: TOY
+tier: regime
+name: Replacement of other EU declarations of conformity
+term: indication that the DPP replaces the EU declaration of conformity under other Union legislation
+description: >-
+  Indication of the legal acts whose EU declaration of conformity the passport
+  replaces: Regulations (EU) 2024/1689 and (EU) 2024/2847, Directives 2011/65/EU,
+  2014/30/EU, 2014/35/EU and 2014/53/EU, and Delegated Regulation (EU) 2019/945.
+granularity: model
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Art. 19(2)(f) opens the passport to consumers and other end users, market
+  surveillance and customs authorities, notified bodies, the Commission and other
+  economic operators, free of charge (Art. 20(3)), according to the access rights set
+  by the delegated act under Art. 49(1)(d). The regulation does not assign access per
+  data point. That delegated act must balance trade secrets under Directive (EU)
+  2016/943 against easy consumer access (Art. 49(1), second subparagraph).
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Annex VI, Part I, point (h); Art. 19(5), (6)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

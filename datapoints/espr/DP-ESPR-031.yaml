@@ -1,0 +1,21 @@
+id: DP-ESPR-031
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Identifiers of other economic operators
+term: unique operator identifiers other than the manufacturer's
+description: >-
+  Unique operator identifiers of economic operators other than the manufacturer. A
+  passport can list several operators, each with its role.
+provided_by: economic operator, applying for the identifier under Art. 12(2) where needed
+access: delegated-act
+access_notes: >-
+  Annex III, first paragraph, point (h); Art. 12(2). ESPR does not fix the access
+  class; the delegated act sets it (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first
+  subparagraph, point (b)). In practice this is the main use case for differentiated
+  access to protect intellectual property (Recital 33).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (h); Art. 12(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

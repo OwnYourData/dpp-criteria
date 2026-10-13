@@ -1,0 +1,22 @@
+id: DP-ESPR-020
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Performance class
+term: performance class
+description: >-
+  Performance class for a parameter or for an aggregated score, where the delegated act
+  sets classes.
+granularity: as set by the delegated act
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Under Art. 7(4) and Art. 16(2), performance classes let customers compare products; a
+  class shown on a label is in practice public through Art. 31(3)(a). For the passport
+  itself, ESPR sets no access class; it is left to the delegated act (Art. 9(2)(f);
+  Art. 10(1)(g); Art. 11, first subparagraph, point (b)).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 7(4); Art. 16(2)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

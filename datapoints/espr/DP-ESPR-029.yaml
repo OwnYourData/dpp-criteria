@@ -1,0 +1,19 @@
+id: DP-ESPR-029
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Instructions and safety information under other Union law
+term: user manuals, instructions, warnings, safety information
+description: >-
+  User manuals, instructions, warnings or safety information required under other Union
+  law that applies to the product.
+granularity: model
+provided_by: economic operator
+access: unspecified
+access_notes: >-
+  Annex III, point (f) refers to other Union law. The access class follows that act.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (f)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

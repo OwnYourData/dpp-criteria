@@ -18,12 +18,14 @@ jobs:
         run: check-jsonschema --schemafile schema/criterion.schema.json criteria/*/*.yaml
       - name: Services
         run: check-jsonschema --schemafile schema/service.schema.json services/*.yaml
+      - name: Data points
+        run: check-jsonschema --schemafile schema/datapoint.schema.json datapoints/*/*.yaml
       - name: Schema test vectors
         run: sh scripts/test_schema.sh
       - name: File name matches id
         run: |
           fail=0
-          for f in criteria/*/*.yaml services/*.yaml; do
+          for f in criteria/*/*.yaml services/*.yaml datapoints/*/*.yaml; do
             id=$(grep -m1 '^id:' "$f" | awk '{print $2}')
             [ "$(basename "$f" .yaml)" = "$id" ] || { echo "::error file=$f::file name does not match id $id"; fail=1; }
           done
@@ -52,6 +54,8 @@ jobs:
       - run: pip install pyyaml==6.0.2
       - name: criteria/README.md matches the criteria files
         run: python3 scripts/render_criteria_md.py --check
+      - name: datapoints/README.md matches the data point files
+        run: python3 scripts/render_datapoints_md.py --check
 
   structures:
     runs-on: ubuntu-latest

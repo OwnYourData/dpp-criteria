@@ -1,0 +1,21 @@
+id: DP-CPR-078
+version: 1
+regime: CPR
+tier: regime
+name: Data carrier on the product and link to the CE marking
+term: data carrier linked to the digital product passport
+description: >-
+  Data carrier linked to the digital product passport and placed after the CE marking.
+  A digital copy of the data carrier is provided for distance sales.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  The data carrier follows the CE marking under Art. 18(2)(g) and is visible on the
+  product. A digital copy for distance sales is provided free of charge within five
+  working days (Art. 77(3)). It is not passport content in the strict sense.
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 18(2)(g); Art. 77(1)(a) to (c); Art. 77(3); Art. 79(1)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

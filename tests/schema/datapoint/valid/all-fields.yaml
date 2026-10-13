@@ -1,0 +1,21 @@
+id: DP-CPR-999
+version: 2
+regime: CPR
+tier: regime
+name: Schema test vector
+term: test vector
+en18223_attribute: uniqueProductIdentifier
+description: >-
+  A test vector validates as described in its file name.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Test.
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 76(2)(a)(v)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj
+notes: >-
+  Test.

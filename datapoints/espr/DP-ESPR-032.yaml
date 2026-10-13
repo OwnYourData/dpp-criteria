@@ -1,0 +1,21 @@
+id: DP-ESPR-032
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Unique facility identifier
+term: unique facility identifier
+en18223_attribute: facilityId
+description: >-
+  Identifier of sites or buildings involved in the life cycle of the product.
+provided_by: economic operator, applying for the identifier under Art. 12(3) where needed
+access: delegated-act
+access_notes: >-
+  Annex III, first paragraph, point (i); Art. 12(1) and (3). ESPR does not fix the
+  access class; the delegated act sets it (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first
+  subparagraph, point (b)). Site information is a typical case of confidential business
+  information (Recitals 32 and 33).
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Annex III, point (i); Art. 12(1), (3)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

@@ -1,0 +1,23 @@
+id: DP-CPR-058
+version: 1
+regime: CPR
+tier: regime
+name: Maintenance needs
+term: maintenance needs
+description: >-
+  Maintenance that the product needs to keep its performance, covering points (a) to
+  (c).
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  The Annex IV information accompanies the product (Art. 22(6)) and must allow
+  potential buyers to make informed choices before purchase (Annex IV, point 3). It is
+  shown visibly to customers before they are bound by a contract, also in distance
+  sales (Art. 22(5), third subparagraph), and is accessible via the data carrier (Art.
+  76(2)(e)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex IV, point 2.3; Art. 76(2)(a)(ii); Art. 22(6)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

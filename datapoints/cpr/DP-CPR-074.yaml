@@ -1,0 +1,22 @@
+id: DP-CPR-074
+version: 1
+regime: CPR
+tier: regime
+name: Data carriers of essential components with their own passport
+term: data carriers of essential components for which a digital product passport exists
+description: >-
+  Data carriers of essential components for which a separate digital product passport
+  exists.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  Data carriers of essential components (Art. 76(2)(a)(vii)). The data carrier is
+  placed on the product after the CE marking under Art. 18(2)(g) and is therefore
+  visible. The content of the linked passport follows that passport's own access
+  levels.
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Art. 76(2)(a)(vii); Art. 3(16)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

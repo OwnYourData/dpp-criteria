@@ -1,0 +1,22 @@
+id: DP-ESPR-015
+version: 1
+regime: ESPR
+tier: conditional
+name: Linked batch and model identifiers
+term: batch identifier / model identifier
+description: >-
+  An item-level passport links to the batch and the model; a batch-level passport links
+  to the model.
+granularity: item or batch
+provided_by: economic operator
+access: delegated-act
+access_notes: >-
+  The requirement comes from Art. 8(4) and (5) of the implementing regulation, not from
+  ESPR, so ESPR gives no access class for it. ESPR sets no access class; it is left to
+  the delegated act (Art. 9(2)(f); Art. 10(1)(g); Art. 11, first subparagraph, point
+  (b)).
+basis:
+- source: Commission Implementing Regulation (EU) 2026/1778 (DPP registry)
+  clause: Art. 8(4) and (5)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj

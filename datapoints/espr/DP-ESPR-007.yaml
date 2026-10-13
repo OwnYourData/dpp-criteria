@@ -1,0 +1,24 @@
+id: DP-ESPR-007
+version: 1
+regime: ESPR
+tier: minimum
+name: EC number or ECHA number
+term: EC number (EINECS, ELINCS, NLP list) or number assigned by ECHA
+description: >-
+  EC number as given in the EINECS, ELINCS or NLP list or, where applicable and useful,
+  the number assigned by the European Chemicals Agency (ECHA).
+granularity: per substance
+provided_by: economic operator or suppliers
+access: public
+access_notes: >-
+  Under Art. 7(7), second subparagraph, the tracking information is shown on the
+  product or made accessible via a data carrier on the product, with no access
+  restriction. Under Art. 7(6)(b) the delegated act may exempt information, for example
+  to protect confidential business information, but may not restrict access to it; this
+  exemption is not available for substances under Art. 2(27)(a) above 0.1 % weight by
+  weight.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 7(5), first subparagraph, point (a)(iii)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj

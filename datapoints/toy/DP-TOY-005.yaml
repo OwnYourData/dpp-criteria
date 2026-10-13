@@ -1,0 +1,25 @@
+id: DP-TOY-005
+version: 1
+regime: TOY
+tier: regime
+name: Responsible economic operator in the Union
+term: name, address and unique operator identifier of the economic operator responsible under Article 4 of Regulation (EU) 2019/1020
+description: >-
+  Name, address and unique operator identifier of the economic operator in the Union
+  that carries out the tasks under Art. 4 of the Market Surveillance Regulation (EU)
+  2019/1020.
+granularity: model
+provided_by: manufacturer
+access: delegated-act
+access_notes: >-
+  Art. 19(2)(f) opens the passport to consumers and other end users, market
+  surveillance and customs authorities, notified bodies, the Commission and other
+  economic operators, free of charge (Art. 20(3)), according to the access rights set
+  by the delegated act under Art. 49(1)(d). The regulation does not assign access per
+  data point. That delegated act must balance trade secrets under Directive (EU)
+  2016/943 against easy consumer access (Art. 49(1), second subparagraph).
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Annex VI, Part I, point (c)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

@@ -1,0 +1,22 @@
+id: DP-TOY-021
+version: 1
+regime: TOY
+tier: regime
+name: Toy registry data
+term: data uploaded to the digital product passport registry
+description: >-
+  Product identifier and economic operator identifier, uploaded before the toy is
+  placed on the market; commodity code, when the toy is released for free circulation.
+granularity: model
+provided_by: economic operator placing the toy on the market
+access: restricted
+access_notes: >-
+  Art. 22(3) gives the Commission, competent national authorities and customs
+  authorities access to the registry to carry out their tasks. The registry is not part
+  of the passport; the registration identifier is sent to the economic operator that
+  uploads the data (Art. 22(2)).
+basis:
+- source: Regulation (EU) 2025/2509 (toy safety)
+  clause: Art. 22(1), (2), (3)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2025/2509/oj

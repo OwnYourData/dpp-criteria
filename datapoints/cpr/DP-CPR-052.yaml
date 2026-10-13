@@ -1,0 +1,22 @@
+id: DP-CPR-052
+version: 1
+regime: CPR
+tier: regime
+name: Main materials used
+term: main materials used
+description: >-
+  Main materials used in the product.
+granularity: product type
+provided_by: manufacturer
+access: public
+access_notes: >-
+  The Annex IV information accompanies the product (Art. 22(6)) and must allow
+  potential buyers to make informed choices before purchase (Annex IV, point 3). It is
+  shown visibly to customers before they are bound by a contract, also in distance
+  sales (Art. 22(5), third subparagraph), and is accessible via the data carrier (Art.
+  76(2)(e)).
+basis:
+- source: Regulation (EU) 2024/3110 (CPR)
+  clause: Annex IV, point 1.2(e); Art. 76(2)(a)(ii); Art. 22(6)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/3110/oj

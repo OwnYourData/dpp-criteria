@@ -1,0 +1,21 @@
+id: DP-ESPR-024
+version: 1
+regime: ESPR
+tier: delegated-act
+name: Label content
+term: label content
+description: >-
+  Content of a label required under Art. 16. Where a digital product passport exists,
+  the content is also given in it.
+granularity: as set by the delegated act
+provided_by: manufacturer
+access: unspecified
+access_notes: >-
+  The label content must be shown visibly to customers and potential customers, also in
+  distance selling (Art. 16(1)(c); Art. 31(3)(a); Art. 32(1)(a) and (b)). ESPR sets no
+  separate rule for its copy in the passport.
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 16(1)(a); Art. 7(7), first subparagraph
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
