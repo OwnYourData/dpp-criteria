@@ -134,7 +134,7 @@ How to read the entries:
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
 | [DPP-BAT-002](#dpp-bat-002) | Battery passport exposes the public Annex XIII data | MUST | published passport | proposed |
-| [DPP-BAT-004](#dpp-bat-004) | Battery passport releases restricted Annex XIII data only to its access groups | MUST | DPP service | proposed |
+| [DPP-BAT-004](#dpp-bat-004) | Battery passport releases Annex XIII point 3 data only to authorities | MUST | DPP service | proposed |
 
 **Circularity and environmental data**
 
@@ -1095,15 +1095,15 @@ Catalogue rows: DPP-BAT-002 · Source: [bat/DPP-BAT-002.yaml](bat/DPP-BAT-002.ya
 
 ### DPP-BAT-004
 
-**Battery passport releases restricted Annex XIII data only to its access groups**
+**Battery passport releases Annex XIII point 3 data only to authorities**
 
-**MUST** · checked on: DPP service · automated, with test credentials · status: proposed · version 1
+**MUST** · checked on: DPP service · automated, with test credentials · status: proposed · version 2
 
-> A DPP service for battery passports MUST release the information that Annex XIII of the Batteries Regulation reserves for authorities only to that access group, and not to persons with a legitimate interest or the public.
+> A DPP service for battery passports MUST release the information of Annex XIII point 3 of the Batteries Regulation only to notified bodies, market surveillance authorities and the Commission, and not to persons with a legitimate interest or the public.
 
 **Basis**
 
-- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77; Annex XIII (2), (3) (regulation)
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77(2), (6); Annex XIII (3) (regulation)
 - EN 18239:2026, 5.2 (7) (standard)
 
 **Applies only if** the service declares the feature `battery` and `access-levels`.
@@ -1114,7 +1114,7 @@ Catalogue rows: DPP-BAT-002 · Source: [bat/DPP-BAT-002.yaml](bat/DPP-BAT-002.ya
 2. `GET /dpps/{dppId}`, with the operator's test token for the role `legitimate-interest` → expect status 200; content type `application/json`; `$..['{controlledElementId}']` does not exist
 3. `GET /dpps/{dppId}`, with the operator's test token for the role `authority` → expect status 200; content type `application/json`; `$..['{controlledElementId}']` exists
 
-**Notes** Annex XIII of the Batteries Regulation sorts the battery passport information into three access groups: public (1), persons with a legitimate interest and the Commission (2), and notified bodies, market surveillance authorities and the Commission (3). EN 18239:2026 5.2 (7) leaves such roles to the legal act of the product group. For battery services the test passport is a battery passport and the controlled test element (test\_data.controlledElementId) is an element of Annex XIII (3). The operator provides test tokens for the roles "legitimate-interest" (group 2) and "authority" (group 3). Group 2 data are covered by DPP-ACC-003. DPP-BAT-002 checks the public data of Annex XIII (1).
+**Notes** Article 77(2) of the Batteries Regulation sorts the battery passport information into three access groups: the public (Annex XIII point 1); notified bodies, market surveillance authorities and the Commission (points 2 and 3); and persons with a legitimate interest (points 2 and 4). Point 3, the results of test reports proving compliance, is the only part reserved for the authorities and the Commission. EN 18239:2026 5.2 (7) leaves such roles to the legal act of the product group. For battery services the test passport is a battery passport and the controlled test element (test\_data.controlledElementId) is an element of point 3. The operator provides test tokens for the roles "legitimate-interest" and "authority". Which persons have a legitimate interest, and to which information of points 2 and 4, is specified by implementing acts under Article 77(9); DPP-ACC-003 checks the delivery of a controlled element per role in general. DPP-BAT-002 checks the public data of point 1.
 
 Catalogue rows: DPP-BAT-004, DPP-BAT-007, DPP-BAT-001 · Source: [bat/DPP-BAT-004.yaml](bat/DPP-BAT-004.yaml)
 
