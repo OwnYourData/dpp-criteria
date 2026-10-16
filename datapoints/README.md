@@ -14,7 +14,8 @@ Data points are reference material for criteria. They are not checked themselves
 | Toy Safety Regulation (EU) 2025/2509 | 2 | 1 | 18 | 0 | 21 |
 | Construction Products Regulation (EU) 2024/3110 | 71 | 0 | 5 | 3 | 79 |
 | Deforestation Regulation (EU) 2023/1115 | 0 | 0 | 0 | 2 | 2 |
-| **All data points** | 86 | 2 | 61 | 9 | 158 |
+| Batteries Regulation (EU) 2023/1542 | 44 | 27 | 0 | 0 | 71 |
+| **All data points** | 130 | 29 | 61 | 9 | 229 |
 
 ## Contents
 
@@ -195,6 +196,82 @@ Data points are reference material for criteria. They are not checked themselves
 |---|---|---|
 | [DP-EUDR-001](#dp-eudr-001) | Due diligence statement reference number or simplified declaration identification number | not specified |
 | [DP-EUDR-002](#dp-eudr-002) | Due diligence information | not specified |
+
+**Batteries Regulation (EU) 2023/1542**
+
+| ID | Name | Access |
+|---|---|---|
+| [DP-BATT-001](#dp-batt-001) | Unique battery identifier | public |
+| [DP-BATT-002](#dp-batt-002) | Economic operator responsible for the battery passport | public |
+| [DP-BATT-003](#dp-batt-003) | Manufacturer name | public |
+| [DP-BATT-004](#dp-batt-004) | Manufacturer postal address | public |
+| [DP-BATT-005](#dp-batt-005) | Manufacturer web address and e-mail | public |
+| [DP-BATT-006](#dp-batt-006) | Battery category | public |
+| [DP-BATT-007](#dp-batt-007) | Battery identification | public |
+| [DP-BATT-008](#dp-batt-008) | Place of manufacture | public |
+| [DP-BATT-009](#dp-batt-009) | Date of manufacture | public |
+| [DP-BATT-010](#dp-batt-010) | Weight | public |
+| [DP-BATT-011](#dp-batt-011) | Capacity | public |
+| [DP-BATT-012](#dp-batt-012) | Chemistry | public |
+| [DP-BATT-013](#dp-batt-013) | Hazardous substances | public |
+| [DP-BATT-014](#dp-batt-014) | Usable extinguishing agent | public |
+| [DP-BATT-015](#dp-batt-015) | Critical raw materials | public |
+| [DP-BATT-016](#dp-batt-016) | Material composition | public |
+| [DP-BATT-017](#dp-batt-017) | Carbon footprint declaration | public |
+| [DP-BATT-018](#dp-batt-018) | Carbon footprint label | public |
+| [DP-BATT-019](#dp-batt-019) | Responsible sourcing information | public |
+| [DP-BATT-020](#dp-batt-020) | Recycled cobalt share | public |
+| [DP-BATT-021](#dp-batt-021) | Recycled lithium share | public |
+| [DP-BATT-022](#dp-batt-022) | Recycled nickel share | public |
+| [DP-BATT-023](#dp-batt-023) | Recycled lead share | public |
+| [DP-BATT-024](#dp-batt-024) | Renewable content share | public |
+| [DP-BATT-025](#dp-batt-025) | Rated capacity | public |
+| [DP-BATT-026](#dp-batt-026) | Minimal voltage | public |
+| [DP-BATT-027](#dp-batt-027) | Nominal voltage | public |
+| [DP-BATT-028](#dp-batt-028) | Maximum voltage | public |
+| [DP-BATT-029](#dp-batt-029) | Original power capability | public |
+| [DP-BATT-030](#dp-batt-030) | Power limits | public |
+| [DP-BATT-031](#dp-batt-031) | Expected lifetime in cycles | public |
+| [DP-BATT-032](#dp-batt-032) | Reference test for the expected lifetime | public |
+| [DP-BATT-033](#dp-batt-033) | Capacity threshold for exhaustion | public |
+| [DP-BATT-034](#dp-batt-034) | Temperature range when not in use | public |
+| [DP-BATT-035](#dp-batt-035) | Commercial warranty period for calendar life | public |
+| [DP-BATT-036](#dp-batt-036) | Initial round trip energy efficiency | public |
+| [DP-BATT-037](#dp-batt-037) | Round trip energy efficiency at 50 % of cycle life | public |
+| [DP-BATT-038](#dp-batt-038) | Internal cell and pack resistance | public |
+| [DP-BATT-039](#dp-batt-039) | C-rate of the cycle-life test | public |
+| [DP-BATT-040](#dp-batt-040) | Separate collection symbol | public |
+| [DP-BATT-041](#dp-batt-041) | Cadmium or lead symbol | public |
+| [DP-BATT-042](#dp-batt-042) | EU declaration of conformity | public |
+| [DP-BATT-043](#dp-batt-043) | Waste prevention and management information | public |
+| [DP-BATT-044](#dp-batt-044) | Printable and downloadable instructions for use | public |
+| [DP-BATT-045](#dp-batt-045) | Detailed composition | restricted to named actors |
+| [DP-BATT-046](#dp-batt-046) | Part numbers for components | restricted to named actors |
+| [DP-BATT-047](#dp-batt-047) | Sources for replacement spares | restricted to named actors |
+| [DP-BATT-048](#dp-batt-048) | Dismantling information | restricted to named actors |
+| [DP-BATT-049](#dp-batt-049) | Safety measures | restricted to named actors |
+| [DP-BATT-050](#dp-batt-050) | Results of test reports | restricted to named actors |
+| [DP-BATT-051](#dp-batt-051) | Rated capacity (current value) | restricted to named actors |
+| [DP-BATT-052](#dp-batt-052) | Capacity fade | restricted to named actors |
+| [DP-BATT-053](#dp-batt-053) | Power | restricted to named actors |
+| [DP-BATT-054](#dp-batt-054) | Power fade | restricted to named actors |
+| [DP-BATT-055](#dp-batt-055) | Internal resistance | restricted to named actors |
+| [DP-BATT-056](#dp-batt-056) | Internal resistance increase | restricted to named actors |
+| [DP-BATT-057](#dp-batt-057) | Round trip energy efficiency | restricted to named actors |
+| [DP-BATT-058](#dp-batt-058) | Round trip energy efficiency fade | restricted to named actors |
+| [DP-BATT-059](#dp-batt-059) | Expected lifetime in cycles (individual battery) | restricted to named actors |
+| [DP-BATT-060](#dp-batt-060) | Expected lifetime in calendar years | restricted to named actors |
+| [DP-BATT-061](#dp-batt-061) | State of certified energy (SOCE) | restricted to named actors |
+| [DP-BATT-062](#dp-batt-062) | Remaining capacity | restricted to named actors |
+| [DP-BATT-063](#dp-batt-063) | Remaining power capability | restricted to named actors |
+| [DP-BATT-064](#dp-batt-064) | Remaining round trip efficiency | restricted to named actors |
+| [DP-BATT-065](#dp-batt-065) | Evolution of self-discharging rates | restricted to named actors |
+| [DP-BATT-066](#dp-batt-066) | Ohmic resistance | restricted to named actors |
+| [DP-BATT-067](#dp-batt-067) | Battery status | restricted to named actors |
+| [DP-BATT-068](#dp-batt-068) | Number of charging and discharging cycles | restricted to named actors |
+| [DP-BATT-069](#dp-batt-069) | Negative events | restricted to named actors |
+| [DP-BATT-070](#dp-batt-070) | Operating environmental conditions | restricted to named actors |
+| [DP-BATT-071](#dp-batt-071) | State of charge | restricted to named actors |
 
 ## Ecodesign for Sustainable Products Regulation (EU) 2024/1781
 
@@ -3695,3 +3772,2088 @@ Information that the operator must collect and keep, including a description wit
 - [Regulation (EU) 2023/1115 (EUDR), as amended by Regulation (EU) 2025/2650](https://eur-lex.europa.eu/eli/reg/2023/1115/oj), Art. 9(1) (regulation)
 
 Source: [eudr/DP-EUDR-002.yaml](eudr/DP-EUDR-002.yaml)
+
+## Batteries Regulation (EU) 2023/1542
+
+Battery passports are required from 18 February 2027 for LMT batteries, industrial batteries with a capacity greater than 2 kWh and electric vehicle batteries (Art. 77(1)). The data points follow the numbering, the battery categories and the applicability of the European Commission's [Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en) (© European Union, 2026, CC BY 4.0); names and descriptions are paraphrased and the access and granularity entries are added from the Regulation. The guidance is not legally binding.
+
+### Required by the product-specific regulation
+
+#### DP-BATT-001
+
+**Unique battery identifier**
+
+EN 18223 attribute: `uniqueProductIdentifier` · access: public · version 1
+
+Unique identifier that the economic operator placing the battery on the market attributes to the battery; the QR code on the battery links to it and gives access to the battery passport.
+
+| | |
+|---|---|
+| Term in the legal act | unique identifier |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(3) makes the battery passport accessible through the QR code that links to this identifier; the Regulation sets no access restriction for it.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77(3), first subparagraph (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 1 (guidance)
+
+Source: [batt/DP-BATT-001.yaml](batt/DP-BATT-001.yaml)
+
+#### DP-BATT-002
+
+**Economic operator responsible for the battery passport**
+
+access: public · version 1
+
+Identity of the economic operator that registers the battery passport or is responsible for it, that is, for keeping its information accurate, complete and up to date.
+
+| | |
+|---|---|
+| Term in the legal act | economic operator placing the battery on the market |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** The Regulation sets no access restriction for the identity of the responsible operator.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77(3), first subparagraph; Art. 77(4) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 2 (guidance)
+
+Source: [batt/DP-BATT-002.yaml](batt/DP-BATT-002.yaml)
+
+#### DP-BATT-003
+
+**Manufacturer name**
+
+access: public · version 1
+
+Name, registered trade name or registered trade mark of the manufacturer.
+
+| | |
+|---|---|
+| Term in the legal act | information identifying the manufacturer |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 1; Art. 38(7) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 3 (guidance)
+
+Source: [batt/DP-BATT-003.yaml](batt/DP-BATT-003.yaml)
+
+#### DP-BATT-004
+
+**Manufacturer postal address**
+
+access: public · version 1
+
+Postal address of the manufacturer, naming a single point at which it can be contacted.
+
+| | |
+|---|---|
+| Term in the legal act | information identifying the manufacturer |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 1; Art. 38(7) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 4 (guidance)
+
+Source: [batt/DP-BATT-004.yaml](batt/DP-BATT-004.yaml)
+
+#### DP-BATT-005
+
+**Manufacturer web address and e-mail**
+
+access: public · version 1
+
+Web address and e-mail address of the manufacturer, where available.
+
+| | |
+|---|---|
+| Term in the legal act | information identifying the manufacturer |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | optional. To be provided if the manufacturer has a web address or e-mail address. |
+| LMT batteries | optional. To be provided if the manufacturer has a web address or e-mail address. |
+| Industrial batteries > 2 kWh | optional. To be provided if the manufacturer has a web address or e-mail address. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 1; Art. 38(7) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 5 (guidance)
+
+Source: [batt/DP-BATT-005.yaml](batt/DP-BATT-005.yaml)
+
+#### DP-BATT-006
+
+**Battery category**
+
+access: public · version 1
+
+Category of the battery as defined in Art. 3 of the Regulation.
+
+| | |
+|---|---|
+| Term in the legal act | battery category |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 2; Art. 38(6) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 6 (guidance)
+
+Source: [batt/DP-BATT-006.yaml](batt/DP-BATT-006.yaml)
+
+#### DP-BATT-007
+
+**Battery identification**
+
+access: public · version 1
+
+Model identification and batch or serial number, product number or another element that allows the battery to be identified.
+
+| | |
+|---|---|
+| Term in the legal act | information identifying the battery |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 2; Art. 38(6) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 7 (guidance)
+
+Source: [batt/DP-BATT-007.yaml](batt/DP-BATT-007.yaml)
+
+#### DP-BATT-008
+
+**Place of manufacture**
+
+access: public · version 1
+
+Geographical location of the plant where the battery was manufactured.
+
+| | |
+|---|---|
+| Term in the legal act | place of manufacture |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 3 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 8 (guidance)
+
+Source: [batt/DP-BATT-008.yaml](batt/DP-BATT-008.yaml)
+
+#### DP-BATT-009
+
+**Date of manufacture**
+
+access: public · version 1
+
+Month and year of manufacture.
+
+| | |
+|---|---|
+| Term in the legal act | date of manufacture |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 4 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 9 (guidance)
+
+Source: [batt/DP-BATT-009.yaml](batt/DP-BATT-009.yaml)
+
+#### DP-BATT-010
+
+**Weight**
+
+access: public · version 1
+
+Weight of the battery.
+
+| | |
+|---|---|
+| Term in the legal act | weight |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 5 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 10 (guidance)
+
+Source: [batt/DP-BATT-010.yaml](batt/DP-BATT-010.yaml)
+
+#### DP-BATT-011
+
+**Capacity**
+
+access: public · version 1
+
+Capacity of the battery.
+
+| | |
+|---|---|
+| Term in the legal act | capacity |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 6 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 11 (guidance)
+
+Source: [batt/DP-BATT-011.yaml](batt/DP-BATT-011.yaml)
+
+#### DP-BATT-012
+
+**Chemistry**
+
+access: public · version 1
+
+Chemistry of the battery.
+
+| | |
+|---|---|
+| Term in the legal act | chemistry |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 7 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 12 (guidance)
+
+Source: [batt/DP-BATT-012.yaml](batt/DP-BATT-012.yaml)
+
+#### DP-BATT-013
+
+**Hazardous substances**
+
+access: public · version 1
+
+Hazardous substances present in the battery, except mercury, cadmium and lead.
+
+| | |
+|---|---|
+| Term in the legal act | hazardous substances present in the battery |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 8 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 13 (guidance)
+
+Source: [batt/DP-BATT-013.yaml](batt/DP-BATT-013.yaml)
+
+#### DP-BATT-014
+
+**Usable extinguishing agent**
+
+access: public · version 1
+
+Extinguishing agent that can be used for the battery.
+
+| | |
+|---|---|
+| Term in the legal act | usable extinguishing agent |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 9 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 14 (guidance)
+
+Source: [batt/DP-BATT-014.yaml](batt/DP-BATT-014.yaml)
+
+#### DP-BATT-015
+
+**Critical raw materials**
+
+access: public · version 1
+
+Critical raw materials present in the battery in a concentration above 0.1 % by weight.
+
+| | |
+|---|---|
+| Term in the legal act | critical raw materials present in the battery |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 10 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 15 (guidance)
+
+Source: [batt/DP-BATT-015.yaml](batt/DP-BATT-015.yaml)
+
+#### DP-BATT-016
+
+**Material composition**
+
+access: public · version 1
+
+Material composition of the battery: its chemistry, the hazardous substances other than mercury, cadmium and lead, and the critical raw materials it contains.
+
+| | |
+|---|---|
+| Term in the legal act | material composition of the battery |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – repetition; see [DP-BATT-012](#dp-batt-012), [DP-BATT-013](#dp-batt-013), [DP-BATT-015](#dp-batt-015) |
+| LMT batteries | not to be filled – repetition; see [DP-BATT-012](#dp-batt-012), [DP-BATT-013](#dp-batt-013), [DP-BATT-015](#dp-batt-015) |
+| Industrial batteries > 2 kWh | not to be filled – repetition; see [DP-BATT-012](#dp-batt-012), [DP-BATT-013](#dp-batt-013), [DP-BATT-015](#dp-batt-015) |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(b) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 16 (guidance)
+
+Source: [batt/DP-BATT-016.yaml](batt/DP-BATT-016.yaml)
+
+#### DP-BATT-017
+
+**Carbon footprint declaration**
+
+access: public · version 1
+
+Carbon footprint declaration of the battery model.
+
+| | |
+|---|---|
+| Term in the legal act | carbon footprint information |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – implementing act pending. The format is to be specified by an implementing act. |
+| LMT batteries | not to be filled – implementing act pending. The format is to be specified by an implementing act. |
+| Industrial batteries > 2 kWh | not to be filled – implementing act pending. The format is to be specified by an implementing act. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(c); Art. 7(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 17 (guidance)
+
+Source: [batt/DP-BATT-017.yaml](batt/DP-BATT-017.yaml)
+
+#### DP-BATT-018
+
+**Carbon footprint label**
+
+access: public · version 1
+
+Label showing the carbon footprint performance class of the battery model.
+
+| | |
+|---|---|
+| Term in the legal act | carbon footprint information |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – implementing act pending. The format is to be specified by an implementing act. |
+| LMT batteries | not to be filled – implementing act pending. The format is to be specified by an implementing act. |
+| Industrial batteries > 2 kWh | not to be filled – implementing act pending. The format is to be specified by an implementing act. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(c); Art. 7(2) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 18 (guidance)
+
+Source: [batt/DP-BATT-018.yaml](batt/DP-BATT-018.yaml)
+
+#### DP-BATT-019
+
+**Responsible sourcing information**
+
+access: public · version 1
+
+Information on responsible sourcing as indicated in the report on the battery due diligence policy under Art. 52(3).
+
+| | |
+|---|---|
+| Term in the legal act | information on responsible sourcing |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – applies later; from 2027-08. Required as provided in Art. 48(1). |
+| LMT batteries | not to be filled – applies later; from 2027-08. Required as provided in Art. 48(1). |
+| Industrial batteries > 2 kWh | not to be filled – applies later; from 2027-08. Required as provided in Art. 48(1). |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(d); Art. 48(1); Art. 52(3) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 19 (guidance)
+
+Source: [batt/DP-BATT-019.yaml](batt/DP-BATT-019.yaml)
+
+#### DP-BATT-020
+
+**Recycled cobalt share**
+
+access: public · version 1
+
+Percentage share of cobalt present in the active materials that has been recovered from battery manufacturing waste or post-consumer waste.
+
+| | |
+|---|---|
+| Term in the legal act | recycled content information |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| LMT batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| Industrial batteries > 2 kWh | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(e); Art. 8(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 20 (guidance)
+
+Source: [batt/DP-BATT-020.yaml](batt/DP-BATT-020.yaml)
+
+#### DP-BATT-021
+
+**Recycled lithium share**
+
+access: public · version 1
+
+Percentage share of lithium present in the active materials that has been recovered from battery manufacturing waste or post-consumer waste.
+
+| | |
+|---|---|
+| Term in the legal act | recycled content information |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| LMT batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| Industrial batteries > 2 kWh | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(e); Art. 8(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 21 (guidance)
+
+Source: [batt/DP-BATT-021.yaml](batt/DP-BATT-021.yaml)
+
+#### DP-BATT-022
+
+**Recycled nickel share**
+
+access: public · version 1
+
+Percentage share of nickel present in the active materials that has been recovered from battery manufacturing waste or post-consumer waste.
+
+| | |
+|---|---|
+| Term in the legal act | recycled content information |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| LMT batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| Industrial batteries > 2 kWh | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(e); Art. 8(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 22 (guidance)
+
+Source: [batt/DP-BATT-022.yaml](batt/DP-BATT-022.yaml)
+
+#### DP-BATT-023
+
+**Recycled lead share**
+
+access: public · version 1
+
+Percentage share of lead present in the battery that has been recovered from waste.
+
+| | |
+|---|---|
+| Term in the legal act | recycled content information |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| LMT batteries | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+| Industrial batteries > 2 kWh | not to be filled – delegated act pending. To be applied in line with Art. 8 and the delegated act under it. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(e); Art. 8(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 23 (guidance)
+
+Source: [batt/DP-BATT-023.yaml](batt/DP-BATT-023.yaml)
+
+#### DP-BATT-024
+
+**Renewable content share**
+
+access: public · version 1
+
+Share of renewable content in the battery.
+
+| | |
+|---|---|
+| Term in the legal act | share of renewable content |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(f) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 24 (guidance)
+
+Source: [batt/DP-BATT-024.yaml](batt/DP-BATT-024.yaml)
+
+#### DP-BATT-025
+
+**Rated capacity**
+
+access: public · version 1
+
+Rated capacity of the battery in Ah.
+
+| | |
+|---|---|
+| Term in the legal act | rated capacity |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – repetition; see [DP-BATT-011](#dp-batt-011) |
+| LMT batteries | not to be filled – repetition; see [DP-BATT-011](#dp-batt-011) |
+| Industrial batteries > 2 kWh | not to be filled – repetition; see [DP-BATT-011](#dp-batt-011) |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(g) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 25 (guidance)
+
+Source: [batt/DP-BATT-025.yaml](batt/DP-BATT-025.yaml)
+
+#### DP-BATT-026
+
+**Minimal voltage**
+
+access: public · version 1
+
+Minimal voltage, with temperature ranges where relevant.
+
+| | |
+|---|---|
+| Term in the legal act | minimal voltage |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(h) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 26 (guidance)
+
+Source: [batt/DP-BATT-026.yaml](batt/DP-BATT-026.yaml)
+
+#### DP-BATT-027
+
+**Nominal voltage**
+
+access: public · version 1
+
+Nominal voltage, with temperature ranges where relevant.
+
+| | |
+|---|---|
+| Term in the legal act | nominal voltage |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(h) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 27 (guidance)
+
+Source: [batt/DP-BATT-027.yaml](batt/DP-BATT-027.yaml)
+
+#### DP-BATT-028
+
+**Maximum voltage**
+
+access: public · version 1
+
+Maximum voltage, with temperature ranges where relevant.
+
+| | |
+|---|---|
+| Term in the legal act | maximum voltage |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(h) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 28 (guidance)
+
+Source: [batt/DP-BATT-028.yaml](batt/DP-BATT-028.yaml)
+
+#### DP-BATT-029
+
+**Original power capability**
+
+access: public · version 1
+
+Original power capability in watts.
+
+| | |
+|---|---|
+| Term in the legal act | original power capability |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(i) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 29 (guidance)
+
+Source: [batt/DP-BATT-029.yaml](batt/DP-BATT-029.yaml)
+
+#### DP-BATT-030
+
+**Power limits**
+
+access: public · version 1
+
+Limits of the power capability, with temperature range where relevant.
+
+| | |
+|---|---|
+| Term in the legal act | limits |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(i) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 30 (guidance)
+
+Source: [batt/DP-BATT-030.yaml](batt/DP-BATT-030.yaml)
+
+#### DP-BATT-031
+
+**Expected lifetime in cycles**
+
+access: public · version 1
+
+Expected lifetime of the battery expressed in cycles.
+
+| | |
+|---|---|
+| Term in the legal act | expected battery lifetime expressed in cycles |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Only for industrial batteries whose lifetime can be expressed in cycles. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(j) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 31 (guidance)
+
+Source: [batt/DP-BATT-031.yaml](batt/DP-BATT-031.yaml)
+
+#### DP-BATT-032
+
+**Reference test for the expected lifetime**
+
+access: public · version 1
+
+Reference test used to determine the expected lifetime in cycles.
+
+| | |
+|---|---|
+| Term in the legal act | reference test used |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Only for industrial batteries whose lifetime can be expressed in cycles. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(j) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 32 (guidance)
+
+Source: [batt/DP-BATT-032.yaml](batt/DP-BATT-032.yaml)
+
+#### DP-BATT-033
+
+**Capacity threshold for exhaustion**
+
+access: public · version 1
+
+Capacity threshold at which the battery is considered exhausted; the Regulation names it for electric vehicle batteries only.
+
+| | |
+|---|---|
+| Term in the legal act | capacity threshold for exhaustion |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | not to be filled – not for this category |
+| Industrial batteries > 2 kWh | not to be filled – not for this category |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(k) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 33 (guidance)
+
+Source: [batt/DP-BATT-033.yaml](batt/DP-BATT-033.yaml)
+
+#### DP-BATT-034
+
+**Temperature range when not in use**
+
+access: public · version 1
+
+Temperature range that the battery can withstand when not in use, with the reference test.
+
+| | |
+|---|---|
+| Term in the legal act | temperature range the battery can withstand when not in use |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(l) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 34 (guidance)
+
+Source: [batt/DP-BATT-034.yaml](batt/DP-BATT-034.yaml)
+
+#### DP-BATT-035
+
+**Commercial warranty period for calendar life**
+
+access: public · version 1
+
+Period for which a commercial warranty for the calendar life of the battery applies.
+
+| | |
+|---|---|
+| Term in the legal act | period for which the commercial warranty for the calendar life applies |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where a commercial warranty for the calendar life is offered. |
+| LMT batteries | if applicable. Where a commercial warranty for the calendar life is offered. |
+| Industrial batteries > 2 kWh | if applicable. Where a commercial warranty for the calendar life is offered. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(m) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 35 (guidance)
+
+Source: [batt/DP-BATT-035.yaml](batt/DP-BATT-035.yaml)
+
+#### DP-BATT-036
+
+**Initial round trip energy efficiency**
+
+access: public · version 1
+
+Round trip energy efficiency of the new battery.
+
+| | |
+|---|---|
+| Term in the legal act | initial round trip energy efficiency |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Only for some industrial batteries. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(n) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 36 (guidance)
+
+Source: [batt/DP-BATT-036.yaml](batt/DP-BATT-036.yaml)
+
+#### DP-BATT-037
+
+**Round trip energy efficiency at 50 % of cycle life**
+
+access: public · version 1
+
+Round trip energy efficiency when half of the cycle life has been reached.
+
+| | |
+|---|---|
+| Term in the legal act | round trip energy efficiency at 50 % of cycle-life |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Only for some industrial batteries. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(n) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 37 (guidance)
+
+Source: [batt/DP-BATT-037.yaml](batt/DP-BATT-037.yaml)
+
+#### DP-BATT-038
+
+**Internal cell and pack resistance**
+
+access: public · version 1
+
+Internal resistance of the battery cells and of the pack.
+
+| | |
+|---|---|
+| Term in the legal act | internal battery cell and pack resistance |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(o) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 38 (guidance)
+
+Source: [batt/DP-BATT-038.yaml](batt/DP-BATT-038.yaml)
+
+#### DP-BATT-039
+
+**C-rate of the cycle-life test**
+
+access: public · version 1
+
+C-rate used in the relevant cycle-life test.
+
+| | |
+|---|---|
+| Term in the legal act | c-rate of relevant cycle-life test |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Only for some industrial batteries. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(p) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 39 (guidance)
+
+Source: [batt/DP-BATT-039.yaml](batt/DP-BATT-039.yaml)
+
+#### DP-BATT-040
+
+**Separate collection symbol**
+
+access: public · version 1
+
+The marking with the symbol for separate collection of batteries.
+
+| | |
+|---|---|
+| Term in the legal act | marking requirements |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(q); Art. 13(4) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 40 (guidance)
+
+Source: [batt/DP-BATT-040.yaml](batt/DP-BATT-040.yaml)
+
+#### DP-BATT-041
+
+**Cadmium or lead symbol**
+
+access: public · version 1
+
+The marking with the chemical symbol for cadmium or lead.
+
+| | |
+|---|---|
+| Term in the legal act | marking requirements |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where the battery has to bear the chemical symbol Cd or Pb. |
+| LMT batteries | if applicable. Where the battery has to bear the chemical symbol Cd or Pb. |
+| Industrial batteries > 2 kWh | if applicable. Where the battery has to bear the chemical symbol Cd or Pb. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(q); Art. 13(5) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 41 (guidance)
+
+Source: [batt/DP-BATT-041.yaml](batt/DP-BATT-041.yaml)
+
+#### DP-BATT-042
+
+**EU declaration of conformity**
+
+access: public · version 1
+
+The EU declaration of conformity of the battery.
+
+| | |
+|---|---|
+| Term in the legal act | EU declaration of conformity |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(r); Art. 18 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 42 (guidance)
+
+Source: [batt/DP-BATT-042.yaml](batt/DP-BATT-042.yaml)
+
+#### DP-BATT-043
+
+**Waste prevention and management information**
+
+access: public · version 1
+
+Information on the prevention and management of waste batteries that Art. 74(1), points (a) to (f) lists, for example on collection and on the role of end-users.
+
+| | |
+|---|---|
+| Term in the legal act | information regarding the prevention and management of waste batteries |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to the general public.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(s); Art. 74(1), points (a) to (f) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 43 (guidance)
+
+Source: [batt/DP-BATT-043.yaml](batt/DP-BATT-043.yaml)
+
+#### DP-BATT-044
+
+**Printable and downloadable instructions for use**
+
+access: public · version 1
+
+Clear and readable instructions for use in a format that can be printed, downloaded and saved on an electronic device, so that they remain available at all times, also when the battery breaks down.
+
+| | |
+|---|---|
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** The guidance places the data point among the publicly accessible information of Annex XIII, point 1.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – on hold. The guidance sets the data point aside as of February 2027 until an amending act is adopted. |
+| LMT batteries | not to be filled – on hold. The guidance sets the data point aside as of February 2027 until an amending act is adopted. |
+| Industrial batteries > 2 kWh | not to be filled – on hold. The guidance sets the data point aside as of February 2027 until an amending act is adopted. |
+
+**Basis**
+
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 44 (guidance)
+
+**Notes** The guidance lists the data point as Annex XIII, point 1(t), pending the adoption of an amending act. The Regulation as consolidated on 13 August 2026 has no point 1(t); Annex XIII, point 1 ends with point (s). The data point therefore has no basis in the Regulation yet.
+
+Source: [batt/DP-BATT-044.yaml](batt/DP-BATT-044.yaml)
+
+#### DP-BATT-045
+
+**Detailed composition**
+
+access: restricted to named actors · version 1
+
+Detailed composition of the battery model, including the materials used in the cathode, the anode and the electrolyte.
+
+| | |
+|---|---|
+| Term in the legal act | detailed composition |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, points (b) and (c), with Annex XIII, point 2: accessible to notified bodies, market surveillance authorities and the Commission, and to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 2(a) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 45 (guidance)
+
+Source: [batt/DP-BATT-045.yaml](batt/DP-BATT-045.yaml)
+
+#### DP-BATT-046
+
+**Part numbers for components**
+
+access: restricted to named actors · version 1
+
+Part numbers of the components of the battery.
+
+| | |
+|---|---|
+| Term in the legal act | part numbers for components |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, points (b) and (c), with Annex XIII, point 2: accessible to notified bodies, market surveillance authorities and the Commission, and to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 2(b) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 46 (guidance)
+
+Source: [batt/DP-BATT-046.yaml](batt/DP-BATT-046.yaml)
+
+#### DP-BATT-047
+
+**Sources for replacement spares**
+
+access: restricted to named actors · version 1
+
+Contact details of the sources from which replacement spares can be obtained.
+
+| | |
+|---|---|
+| Term in the legal act | contact details of sources for replacement spares |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, points (b) and (c), with Annex XIII, point 2: accessible to notified bodies, market surveillance authorities and the Commission, and to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 2(b) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 47 (guidance)
+
+Source: [batt/DP-BATT-047.yaml](batt/DP-BATT-047.yaml)
+
+#### DP-BATT-048
+
+**Dismantling information**
+
+access: restricted to named actors · version 1
+
+Information for dismantling the battery, at least exploded diagrams of the system or pack with the location of the cells, the disassembly sequence, the type and number of fastenings to be unlocked, the tools needed, warnings where parts may be damaged, and the number and layout of the cells.
+
+| | |
+|---|---|
+| Term in the legal act | dismantling information |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, points (b) and (c), with Annex XIII, point 2: accessible to notified bodies, market surveillance authorities and the Commission, and to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 2(c) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 48 (guidance)
+
+Source: [batt/DP-BATT-048.yaml](batt/DP-BATT-048.yaml)
+
+#### DP-BATT-049
+
+**Safety measures**
+
+access: restricted to named actors · version 1
+
+Safety measures to be taken, in particular when dismantling the battery.
+
+| | |
+|---|---|
+| Term in the legal act | safety measures |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, points (b) and (c), with Annex XIII, point 2: accessible to notified bodies, market surveillance authorities and the Commission, and to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 2(d) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 49 (guidance)
+
+Source: [batt/DP-BATT-049.yaml](batt/DP-BATT-049.yaml)
+
+#### DP-BATT-050
+
+**Results of test reports**
+
+access: restricted to named actors · version 1
+
+Results of the test reports that prove compliance with the requirements of the Regulation and of the delegated and implementing acts adopted under it.
+
+| | |
+|---|---|
+| Term in the legal act | results of test reports proving compliance |
+| Refers to | battery model |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (b), with Annex XIII, point 3: accessible only to notified bodies, market surveillance authorities and the Commission.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 3 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 50 (guidance)
+
+Source: [batt/DP-BATT-050.yaml](batt/DP-BATT-050.yaml)
+
+#### DP-BATT-051
+
+**Rated capacity (current value)**
+
+access: restricted to named actors · version 1
+
+Current value of the rated capacity in Ah; the same parameter as data point DP-BATT-011, kept up to date for the individual battery.
+
+| | |
+|---|---|
+| Term in the legal act | values for performance and durability parameters |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 51 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-051.yaml](batt/DP-BATT-051.yaml)
+
+#### DP-BATT-052
+
+**Capacity fade**
+
+access: restricted to named actors · version 1
+
+Capacity fade in per cent.
+
+| | |
+|---|---|
+| Term in the legal act | capacity fade |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery under the Regulation and its implementing acts. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 52 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-052.yaml](batt/DP-BATT-052.yaml)
+
+#### DP-BATT-053
+
+**Power**
+
+access: restricted to named actors · version 1
+
+Power in watts.
+
+| | |
+|---|---|
+| Term in the legal act | power |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery under the Regulation and its implementing acts. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 53 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-053.yaml](batt/DP-BATT-053.yaml)
+
+#### DP-BATT-054
+
+**Power fade**
+
+access: restricted to named actors · version 1
+
+Power fade in per cent.
+
+| | |
+|---|---|
+| Term in the legal act | power fade |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery under the Regulation and its implementing acts. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 54 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-054.yaml](batt/DP-BATT-054.yaml)
+
+#### DP-BATT-055
+
+**Internal resistance**
+
+access: restricted to named actors · version 1
+
+Internal resistance in ohms.
+
+| | |
+|---|---|
+| Term in the legal act | internal resistance |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery under the Regulation and its implementing acts. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 55 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-055.yaml](batt/DP-BATT-055.yaml)
+
+#### DP-BATT-056
+
+**Internal resistance increase**
+
+access: restricted to named actors · version 1
+
+Increase of the internal resistance in per cent.
+
+| | |
+|---|---|
+| Term in the legal act | internal resistance increase |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery under the Regulation and its implementing acts. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 56 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-056.yaml](batt/DP-BATT-056.yaml)
+
+#### DP-BATT-057
+
+**Round trip energy efficiency**
+
+access: restricted to named actors · version 1
+
+Round trip energy efficiency in per cent, where applicable.
+
+| | |
+|---|---|
+| Term in the legal act | energy round trip efficiency |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where the parameter applies to the battery. |
+| LMT batteries | if applicable. Where the parameter applies to the battery. |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter applies to the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 57 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-057.yaml](batt/DP-BATT-057.yaml)
+
+#### DP-BATT-058
+
+**Round trip energy efficiency fade**
+
+access: restricted to named actors · version 1
+
+Fade of the round trip energy efficiency in per cent, where applicable.
+
+| | |
+|---|---|
+| Term in the legal act | energy round trip efficiency fade |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where the parameter applies to the battery. |
+| LMT batteries | if applicable. Where the parameter applies to the battery. |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter applies to the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 58 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-058.yaml](batt/DP-BATT-058.yaml)
+
+#### DP-BATT-059
+
+**Expected lifetime in cycles (individual battery)**
+
+access: restricted to named actors · version 1
+
+Expected lifetime of the battery in cycles under the reference conditions for which it was designed, except for applications that are not cycle-based.
+
+| | |
+|---|---|
+| Term in the legal act | expected life-time of the battery |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery under the Regulation and its implementing acts. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 59 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-059.yaml](batt/DP-BATT-059.yaml)
+
+#### DP-BATT-060
+
+**Expected lifetime in calendar years**
+
+access: restricted to named actors · version 1
+
+Expected lifetime of the battery in calendar years under the reference conditions for which it was designed.
+
+| | |
+|---|---|
+| Term in the legal act | expected life-time of the battery |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery under the Regulation and its implementing acts. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(a); Art. 10(1) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 60 (guidance)
+
+**Notes** The value when the battery is placed on the market and whenever its status changes (Annex XIII, point 4(a)).
+
+Source: [batt/DP-BATT-060.yaml](batt/DP-BATT-060.yaml)
+
+#### DP-BATT-061
+
+**State of certified energy (SOCE)**
+
+access: restricted to named actors · version 1
+
+State of health of the battery expressed as state of certified energy.
+
+| | |
+|---|---|
+| Term in the legal act | information on the state of health |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | not to be filled – not for this category |
+| Industrial batteries > 2 kWh | not to be filled – not for this category |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(b); Art. 14 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 61 (guidance)
+
+Source: [batt/DP-BATT-061.yaml](batt/DP-BATT-061.yaml)
+
+#### DP-BATT-062
+
+**Remaining capacity**
+
+access: restricted to named actors · version 1
+
+State of health of the battery: remaining capacity.
+
+| | |
+|---|---|
+| Term in the legal act | information on the state of health |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – not for this category |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(b); Art. 14 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 62 (guidance)
+
+Source: [batt/DP-BATT-062.yaml](batt/DP-BATT-062.yaml)
+
+#### DP-BATT-063
+
+**Remaining power capability**
+
+access: restricted to named actors · version 1
+
+State of health of the battery: remaining power capability, where possible.
+
+| | |
+|---|---|
+| Term in the legal act | information on the state of health |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – not for this category |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(b); Art. 14 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 63 (guidance)
+
+Source: [batt/DP-BATT-063.yaml](batt/DP-BATT-063.yaml)
+
+#### DP-BATT-064
+
+**Remaining round trip efficiency**
+
+access: restricted to named actors · version 1
+
+State of health of the battery: remaining round trip efficiency, where possible.
+
+| | |
+|---|---|
+| Term in the legal act | information on the state of health |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – not for this category |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(b); Art. 14 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 64 (guidance)
+
+Source: [batt/DP-BATT-064.yaml](batt/DP-BATT-064.yaml)
+
+#### DP-BATT-065
+
+**Evolution of self-discharging rates**
+
+access: restricted to named actors · version 1
+
+State of health of the battery: evolution of the self-discharging rates, where possible.
+
+| | |
+|---|---|
+| Term in the legal act | information on the state of health |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – not for this category |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(b); Art. 14 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 65 (guidance)
+
+Source: [batt/DP-BATT-065.yaml](batt/DP-BATT-065.yaml)
+
+#### DP-BATT-066
+
+**Ohmic resistance**
+
+access: restricted to named actors · version 1
+
+State of health of the battery: ohmic resistance, where possible.
+
+| | |
+|---|---|
+| Term in the legal act | information on the state of health |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | not to be filled – not for this category |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | if applicable. Where the parameter is relevant for the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(b); Art. 14 (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 66 (guidance)
+
+Source: [batt/DP-BATT-066.yaml](batt/DP-BATT-066.yaml)
+
+#### DP-BATT-067
+
+**Battery status**
+
+access: restricted to named actors · version 1
+
+Status of the battery: original, repurposed, re-used, remanufactured or waste.
+
+| | |
+|---|---|
+| Term in the legal act | information on the status of the battery |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | mandatory |
+| LMT batteries | mandatory |
+| Industrial batteries > 2 kWh | mandatory |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(c) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 67 (guidance)
+
+Source: [batt/DP-BATT-067.yaml](batt/DP-BATT-067.yaml)
+
+#### DP-BATT-068
+
+**Number of charging and discharging cycles**
+
+access: restricted to named actors · version 1
+
+Number of charging and discharging cycles of the battery.
+
+| | |
+|---|---|
+| Term in the legal act | information and data resulting from its use |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where such information and data result from the use of the battery. |
+| LMT batteries | if applicable. Where such information and data result from the use of the battery. |
+| Industrial batteries > 2 kWh | if applicable. Where such information and data result from the use of the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(d) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 68 (guidance)
+
+Source: [batt/DP-BATT-068.yaml](batt/DP-BATT-068.yaml)
+
+#### DP-BATT-069
+
+**Negative events**
+
+access: restricted to named actors · version 1
+
+Negative events in the use of the battery, such as accidents.
+
+| | |
+|---|---|
+| Term in the legal act | information and data resulting from its use |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where such information and data result from the use of the battery. |
+| LMT batteries | if applicable. Where such information and data result from the use of the battery. |
+| Industrial batteries > 2 kWh | if applicable. Where such information and data result from the use of the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(d) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 69 (guidance)
+
+Source: [batt/DP-BATT-069.yaml](batt/DP-BATT-069.yaml)
+
+#### DP-BATT-070
+
+**Operating environmental conditions**
+
+access: restricted to named actors · version 1
+
+Periodically recorded information on the environmental conditions in which the battery operates, including temperature.
+
+| | |
+|---|---|
+| Term in the legal act | information and data resulting from its use |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where such information and data result from the use of the battery. |
+| LMT batteries | if applicable. Where such information and data result from the use of the battery. |
+| Industrial batteries > 2 kWh | if applicable. Where such information and data result from the use of the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(d) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 70 (guidance)
+
+Source: [batt/DP-BATT-070.yaml](batt/DP-BATT-070.yaml)
+
+#### DP-BATT-071
+
+**State of charge**
+
+access: restricted to named actors · version 1
+
+Periodically recorded information on the state of charge.
+
+| | |
+|---|---|
+| Term in the legal act | information and data resulting from its use |
+| Refers to | individual battery |
+| Provided by | economic operator that places the battery on the market (Art. 77(4)); after preparation for re-use, repurposing or remanufacturing, or when the battery becomes waste, the operator named in Art. 77(7) |
+
+**Access** Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible only to persons with a legitimate interest for the purposes in the third subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons have a legitimate interest and to which information.
+
+| Battery category | Applicability |
+|---|---|
+| Electric vehicle batteries | if applicable. Where such information and data result from the use of the battery. |
+| LMT batteries | if applicable. Where such information and data result from the use of the battery. |
+| Industrial batteries > 2 kWh | if applicable. Where such information and data result from the use of the battery. |
+
+**Basis**
+
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 4(d) (regulation)
+- [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 71 (guidance)
+
+Source: [batt/DP-BATT-071.yaml](batt/DP-BATT-071.yaml)

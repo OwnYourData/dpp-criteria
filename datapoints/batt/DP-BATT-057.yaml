@@ -1,0 +1,44 @@
+id: DP-BATT-057
+version: 1
+regime: BATT
+tier: regime
+name: Round trip energy efficiency
+term: energy round trip efficiency
+description: >-
+  Round trip energy efficiency in per cent, where applicable.
+granularity: individual battery
+provided_by: >-
+  economic operator that places the battery on the market (Art. 77(4)); after
+  preparation for re-use, repurposing or remanufacturing, or when the battery becomes
+  waste, the operator named in Art. 77(7)
+access: restricted
+access_notes: >-
+  Art. 77(2), second subparagraph, point (c), with Annex XIII, point 4: accessible
+  only to persons with a legitimate interest for the purposes in the third
+  subparagraph of Art. 77(2). Implementing acts under Art. 77(9) specify which persons
+  have a legitimate interest and to which information.
+battery_applicability:
+  ev:
+    status: if-applicable
+    note: >-
+      Where the parameter applies to the battery.
+  lmt:
+    status: if-applicable
+    note: >-
+      Where the parameter applies to the battery.
+  industrial:
+    status: if-applicable
+    note: >-
+      Where the parameter applies to the battery.
+basis:
+- source: Regulation (EU) 2023/1542 (Batteries)
+  clause: Annex XIII, point 4(a); Art. 10(1)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2023/1542/oj
+- source: "European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026"
+  clause: data point 57
+  kind: guidance
+  url: https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en
+notes: >-
+  The value when the battery is placed on the market and whenever its status changes
+  (Annex XIII, point 4(a)).

@@ -6,7 +6,7 @@ standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 
 - `criteria/` – one YAML file per criterion; [criteria/README.md](criteria/README.md) lists them all in readable form
 - `services/` – one YAML file per listed DPP service
-- `datapoints/` – one YAML file per data point that EU legal acts require or allow in a passport (ESPR, toy safety, construction products, EUDR); [datapoints/README.md](datapoints/README.md) lists them all in readable form
+- `datapoints/` – one YAML file per data point that EU legal acts require or allow in a passport (ESPR, toy safety, construction products, EUDR, batteries); [datapoints/README.md](datapoints/README.md) lists them all in readable form
 - `soya/` – SOyA structures with the SHACL shapes of the passport checks, see [soya/README.md](soya/README.md)
 - `tests/soya/` – test vectors for the structures
 - `tests/schema/` – valid and invalid examples for the JSON Schemas
@@ -42,3 +42,11 @@ and never count.
 
 Apache License 2.0 – see [LICENSE](LICENSE). This covers the criteria, schemas,
 shapes and workflow files in this repository.
+
+The battery data points in `datapoints/batt/` follow the numbering and data
+points of the European Commission's Guidance Document: Digital Batteries
+Passport – data points by category, version 2.0 of 15 August 2026,
+© European Union, 2026, reused under the
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence. Changes:
+names and descriptions paraphrased, applicability expressed in a structured
+field, access and granularity added from Regulation (EU) 2023/1542.
