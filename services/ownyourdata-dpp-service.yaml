@@ -5,12 +5,13 @@ operator:
   url: https://www.ownyourdata.eu
 contact: office@ownyourdata.eu
 api_base: https://dpp-service.ownyourdata.eu/dpp/v1
-features: [fine-granular-api, write-api, historical-versions]
-not_implemented: [access-levels]
+features: [fine-granular-api, write-api, historical-versions, access-levels]
 test_data:
-  productId: https://dpp.oydapp.eu/01/09520123456788/21/000001
-  dppId: did:oyd:zQmTMPiMZ6mUg5bVXQxkuZ1JCgmtKE9QNu514EdMUydq9zL
+  productId: https://dpp-staging.go-data.at/01/09520123456788/21/000922
+  dppId: did:oyd:zQmd6vKekgUJGc7QEctiUiphFQSBpwfrRnAZjQ6Bj5TYamx
   elementIdPath: $.ProductIdentification.ModelIdentifier
+  controlledElementId: SerialNumber
+  controlledElementIdPath: $.SerialNumber
 credentials: none
 declarations: []
 listed_since: 2026-10-08
