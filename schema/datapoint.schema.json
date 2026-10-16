@@ -18,7 +18,7 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^DP-(ESPR|TOY|CPR|EUDR)-[0-9]{3}$"
+      "pattern": "^DP-(ESPR|TOY|CPR|EUDR|BATT)-[0-9]{3}$"
     },
     "version": {
       "type": "integer",
@@ -30,11 +30,12 @@
         "ESPR",
         "TOY",
         "CPR",
-        "EUDR"
+        "EUDR",
+        "BATT"
       ]
     },
     "tier": {
-      "description": "How firmly the legal act fixes the data point. ESPR: fixed, minimum, conditional, delegated-act, annex-i, voluntary. Product-specific acts: regime. Law outside DPP rules: sectoral.",
+      "description": "How firmly the legal act fixes the data point. ESPR: fixed, minimum, conditional, delegated-act, annex-i, voluntary. Product-specific acts (TOY, CPR, BATT): regime. Law outside DPP rules: sectoral.",
       "enum": [
         "fixed",
         "minimum",
@@ -92,6 +93,30 @@
     "access_notes": {
       "type": "string"
     },
+    "battery_applicability": {
+      "description": "Only for regime BATT: whether the data point is to be provided for each battery category with a battery passport (Regulation (EU) 2023/1542, Art. 77(1)).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ev",
+        "lmt",
+        "industrial"
+      ],
+      "properties": {
+        "ev": {
+          "$ref": "#/$defs/batteryCategoryApplicability",
+          "description": "Electric vehicle batteries."
+        },
+        "lmt": {
+          "$ref": "#/$defs/batteryCategoryApplicability",
+          "description": "LMT batteries (light means of transport)."
+        },
+        "industrial": {
+          "$ref": "#/$defs/batteryCategoryApplicability",
+          "description": "Industrial batteries with a capacity greater than 2 kWh."
+        }
+      }
+    },
     "basis": {
       "type": "array",
       "minItems": 1,
@@ -129,5 +154,160 @@
     "notes": {
       "type": "string"
     }
-  }
+  },
+  "$defs": {
+    "batteryCategoryApplicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "description": "mandatory: to be provided. optional: to be provided if the information is available. if-applicable: to be provided where the condition in note applies. not-to-be-filled: not to be provided or displayed, see reason.",
+          "enum": [
+            "mandatory",
+            "optional",
+            "if-applicable",
+            "not-to-be-filled"
+          ]
+        },
+        "reason": {
+          "description": "Why the data point is not to be provided. repetition: the same information is already provided under the data points in same_as. pending-implementing-act / pending-delegated-act: the act that specifies the information has not been adopted. applies-later: the information is required from applies_from. on-hold: the guidance has set the data point aside. not-for-category: the data point does not apply to this battery category.",
+          "enum": [
+            "repetition",
+            "pending-implementing-act",
+            "pending-delegated-act",
+            "applies-later",
+            "on-hold",
+            "not-for-category"
+          ]
+        },
+        "same_as": {
+          "description": "With reason repetition: the data points that already carry the information.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^DP-BATT-[0-9]{3}$"
+          }
+        },
+        "applies_from": {
+          "description": "Date from which the data point is required, where the legal act or the guidance names one: YYYY-MM-DD, or YYYY-MM if only the month is named.",
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?$"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "not-to-be-filled"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "reason"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "reason"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "same_as"
+            ]
+          },
+          "then": {
+            "properties": {
+              "reason": {
+                "const": "repetition"
+              }
+            },
+            "required": [
+              "reason"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "reason": {
+                "const": "repetition"
+              }
+            },
+            "required": [
+              "reason"
+            ]
+          },
+          "then": {
+            "required": [
+              "same_as"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "reason": {
+                "const": "applies-later"
+              }
+            },
+            "required": [
+              "reason"
+            ]
+          },
+          "then": {
+            "required": [
+              "applies_from"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "regime": {
+            "const": "BATT"
+          }
+        },
+        "required": [
+          "regime"
+        ]
+      },
+      "then": {
+        "required": [
+          "battery_applicability"
+        ],
+        "properties": {
+          "id": {
+            "pattern": "^DP-BATT-"
+          }
+        }
+      },
+      "else": {
+        "not": {
+          "required": [
+            "battery_applicability"
+          ]
+        }
+      }
+    }
+  ]
 }

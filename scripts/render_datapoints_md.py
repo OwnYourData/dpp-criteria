@@ -22,7 +22,44 @@ REGIMES = [
     ("TOY", "Toy Safety Regulation (EU) 2025/2509"),
     ("CPR", "Construction Products Regulation (EU) 2024/3110"),
     ("EUDR", "Deforestation Regulation (EU) 2023/1115"),
+    ("BATT", "Batteries Regulation (EU) 2023/1542"),
 ]
+
+REGIME_NOTES = {
+    "BATT": [
+        "Battery passports are required from 18 February 2027 for LMT batteries, industrial "
+        "batteries with a capacity greater than 2 kWh and electric vehicle batteries "
+        "(Art. 77(1)). The data points follow the numbering, the battery categories and the "
+        "applicability of the European Commission's [Guidance Document: Digital Batteries "
+        "Passport – data points by category, version 2.0 of 15 August 2026]"
+        "(https://single-market-economy.ec.europa.eu/document/download/"
+        "cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en) (© European Union, 2026, CC BY 4.0); names and "
+        "descriptions are paraphrased and the access and granularity entries are added from the "
+        "Regulation. The guidance is not legally binding.",
+    ],
+}
+
+BATTERY_CATEGORIES = [
+    ("ev", "Electric vehicle batteries"),
+    ("lmt", "LMT batteries"),
+    ("industrial", "Industrial batteries > 2 kWh"),
+]
+
+STATUS = {
+    "mandatory": "mandatory",
+    "optional": "optional",
+    "if-applicable": "if applicable",
+    "not-to-be-filled": "not to be filled",
+}
+
+REASON = {
+    "repetition": "repetition",
+    "pending-implementing-act": "implementing act pending",
+    "pending-delegated-act": "delegated act pending",
+    "applies-later": "applies later",
+    "on-hold": "on hold",
+    "not-for-category": "not for this category",
+}
 
 TIERS = [
     ("fixed", "Fixed by ESPR for every passport"),
@@ -79,6 +116,20 @@ def basis_line(b):
     return f"- {src}{clause} ({KIND.get(b['kind'], b['kind'])})"
 
 
+def applicability_cell(a):
+    parts = [STATUS[a["status"]]]
+    if a.get("reason"):
+        parts.append(REASON[a["reason"]])
+    if a.get("same_as"):
+        parts.append("see " + ", ".join(f"[{i}](#{i.lower()})" for i in a["same_as"]))
+    if a.get("applies_from"):
+        parts.append(f"from {a['applies_from']}")
+    cell = " – ".join(parts[:2]) + ("; " + "; ".join(parts[2:]) if len(parts) > 2 else "")
+    if a.get("note"):
+        cell += ". " + text(a["note"])
+    return cell
+
+
 def section(d):
     out = [f"#### {d['id']}", "", f"**{text(d['name'])}**", ""]
     facts = [f"access: {ACCESS[d['access']]}", f"version {d['version']}"]
@@ -96,6 +147,11 @@ def section(d):
         out += ["| | |", "|---|---|"] + [f"| {k} | {v} |" for k, v in rows] + [""]
     if d.get("access_notes"):
         out += ["**Access** " + text(d["access_notes"]), ""]
+    if d.get("battery_applicability"):
+        ba = d["battery_applicability"]
+        out += ["| Battery category | Applicability |", "|---|---|"]
+        out += [f"| {label} | {applicability_cell(ba[key])} |" for key, label in BATTERY_CATEGORIES]
+        out += [""]
     out += ["**Basis**", ""] + [basis_line(b) for b in d["basis"]] + [""]
     if d.get("notes"):
         out += ["**Notes** " + text(d["notes"]), ""]
@@ -141,6 +197,8 @@ def render(items):
         out.append("")
     for r, name in regimes:
         out += [f"## {name}", ""]
+        for para in REGIME_NOTES.get(r, []):
+            out += [para, ""]
         for tier, label in TIERS:
             sel = sorted((d for d in items if d["regime"] == r and d["tier"] == tier),
                          key=lambda d: d["id"])

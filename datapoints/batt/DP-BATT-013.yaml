@@ -1,0 +1,33 @@
+id: DP-BATT-013
+version: 1
+regime: BATT
+tier: regime
+name: Hazardous substances
+term: hazardous substances present in the battery
+description: >-
+  Hazardous substances present in the battery, except mercury, cadmium and lead.
+granularity: battery model
+provided_by: >-
+  economic operator that places the battery on the market (Art. 77(4)); after
+  preparation for re-use, repurposing or remanufacturing, or when the battery becomes
+  waste, the operator named in Art. 77(7)
+access: public
+access_notes: >-
+  Art. 77(2), second subparagraph, point (a), with Annex XIII, point 1: accessible to
+  the general public.
+battery_applicability:
+  ev:
+    status: mandatory
+  lmt:
+    status: mandatory
+  industrial:
+    status: mandatory
+basis:
+- source: Regulation (EU) 2023/1542 (Batteries)
+  clause: Annex XIII, point 1(a); Annex VI, Part A, point 8
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2023/1542/oj
+- source: "European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026"
+  clause: data point 13
+  kind: guidance
+  url: https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en

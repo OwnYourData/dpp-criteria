@@ -1,0 +1,12 @@
+id: DP-BATT-999
+version: 1
+regime: BATT
+tier: regime
+name: Schema test vector
+description: >-
+  A test vector validates as described in its file name.
+access: public
+basis:
+- source: Regulation (EU) 2023/1542 (Batteries)
+  clause: Annex XIII, point 1(a)
+  kind: regulation

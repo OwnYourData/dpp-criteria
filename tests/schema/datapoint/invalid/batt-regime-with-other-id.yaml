@@ -1,0 +1,19 @@
+id: DP-ESPR-999
+version: 1
+regime: BATT
+tier: regime
+name: Schema test vector
+description: >-
+  A test vector validates as described in its file name.
+access: public
+battery_applicability:
+  ev:
+    status: mandatory
+  lmt:
+    status: mandatory
+  industrial:
+    status: mandatory
+basis:
+- source: Regulation (EU) 2023/1542 (Batteries)
+  clause: Annex XIII, point 1(a)
+  kind: regulation
