@@ -12,5 +12,35 @@ test_data:
   dppId: did:oyd:zQmTMPiMZ6mUg5bVXQxkuZ1JCgmtKE9QNu514EdMUydq9zL
   elementIdPath: $.ProductIdentification.ModelIdentifier
 credentials: none
-declarations: []
+declarations:
+  - criterion: DPP-ACC-008
+    statement: >-
+      An access policy, registered by the economic operator once per product type
+      and named when a passport is created or updated, assigns every data element of
+      the passport exactly one of the access classes public, legitimateInterest and
+      authority; header attributes are always public, and an element no rule reaches
+      falls to the policy's default or, without one, to authority. A registered
+      policy never changes; a new version is registered under a new identifier.
+      Readers, identified by their DID, receive access rights through signed access
+      grants that last at most 365 days: legitimateInterest is granted by the
+      economic operator for its own passports, authority only by issuers on the
+      published list of authority issuers. The issuer revokes a grant over the API
+      with immediate effect. In addition, the operator of the service can revoke any
+      grant on order, with a recorded reason, and can withdraw an authority issuer as
+      a whole by removing it from that list.
+    evidence: https://github.com/OwnYourData/dpp-service-public/blob/a42359ecdf33913bb6afc3164d0e4af40f60be19/docs/AccessClasses.md#7-access-grants
+  - criterion: DPP-ACC-014
+    statement: >-
+      The service keeps an access log with one entry for every read of the
+      controlled part of a passport by a reader with access rights, every refused
+      read by a reader with a valid token but no valid grant, every read the service
+      makes at the custodian under its own read grant, and every registration and
+      revocation of an access grant. An answer that hands out controlled data is sent
+      only after its entry is written. Entries are only ever added; the service
+      neither changes nor deletes them, the database refuses changes and deletions,
+      and entries are kept for five years. Owners, readers and grant issuers read the
+      entries that concern them through the API; the operator of the service sees the
+      whole log. The log protects against changes made through the service, not
+      against direct changes to its database.
+    evidence: https://github.com/OwnYourData/dpp-service-public/blob/a42359ecdf33913bb6afc3164d0e4af40f60be19/docs/AccessClasses.md#10-access-log
 listed_since: 2026-10-08
