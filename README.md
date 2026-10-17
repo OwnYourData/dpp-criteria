@@ -11,7 +11,8 @@ standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 - `tests/soya/` – test vectors for the structures
 - `tests/schema/` – valid and invalid examples for the JSON Schemas
 - `schema/` – JSON Schemas for the three file types
-- `scripts/` – build and test the structures with the SOyA web-cli, run the schema test vectors, render `criteria/README.md` and `datapoints/README.md`
+- `scripts/` – build and test the structures with the SOyA web-cli, run the schema test vectors, render `criteria/README.md`, `datapoints/README.md` and the funding notice in this README
+- `config/funding.yml` – the funding notice, the one place where its wording is kept
 
 The format is described in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md), the data
 point format in [DATAPOINT-FORMAT.md](DATAPOINT-FORMAT.md).
@@ -37,6 +38,12 @@ establish a presumption of conformity. Criteria that were not checked are
 listed as `skipped` with a reason code, e.g. `not_applicable` or
 `not_implemented` (see "Results" in [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md)),
 and never count.
+
+## Funding
+
+<!-- funding:begin -->
+The DPP criteria catalogue is part of [PACE-DPP](https://dpp-austria.at/) – Promoting and Accelerating a Digital Product Passport based Data-Service Ecosystem. This Lighthouse Project has been made possible by financial contributions from the Austrian Federal Ministry of Innovation, Mobility and Infrastructure ([BMIMI](https://www.bmimi.gv.at/en.html), formerly BMK), supported by the Austrian Research Promotion Agency (FFG) under grant number [917177](https://projekte.ffg.at/projekt/5128301), as well as from the German Federal Ministry of Research, Technology and Space (BMFTR, formerly BMWK), supported by the German Research Promotion Agency (DLR-PT).
+<!-- funding:end -->
 
 ## License
 
