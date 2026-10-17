@@ -11,7 +11,7 @@ test_data:
   dppId: did:oyd:zQmd6vKekgUJGc7QEctiUiphFQSBpwfrRnAZjQ6Bj5TYamx
   elementIdPath: $.ProductIdentification.ModelIdentifier
   controlledElementId: SerialNumber
-  controlledElementIdPath: $.SerialNumber
+  controlledElementIdPath: $.ProductIdentification.SerialNumber
 credentials: none
 declarations: []
 listed_since: 2026-10-08
