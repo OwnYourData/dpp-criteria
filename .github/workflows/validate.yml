@@ -56,6 +56,8 @@ jobs:
         run: python3 scripts/render_criteria_md.py --check
       - name: datapoints/README.md matches the data point files
         run: python3 scripts/render_datapoints_md.py --check
+      - name: Funding notice in README.md matches config/funding.yml
+        run: python3 scripts/render_funding_md.py --check
 
   structures:
     runs-on: ubuntu-latest
