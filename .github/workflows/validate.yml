@@ -7,7 +7,7 @@ on:
 
 jobs:
   schema:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -32,7 +32,7 @@ jobs:
           exit $fail
 
   jsonpath:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -45,7 +45,7 @@ jobs:
         run: sh scripts/test_jsonpath_patterns.sh
 
   catalogue:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -60,7 +60,7 @@ jobs:
         run: python3 scripts/render_funding_md.py --check
 
   structures:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - name: SOyA structures against test vectors (oydeu/soya-web-cli)
