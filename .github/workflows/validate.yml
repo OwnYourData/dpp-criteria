@@ -9,8 +9,8 @@ jobs:
   schema:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install check-jsonschema==0.29.4
@@ -34,8 +34,8 @@ jobs:
   jsonpath:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install jsonpath-rfc9535==2.0.0 iregexp-check==0.1.4 pyyaml==6.0.2
@@ -47,8 +47,8 @@ jobs:
   catalogue:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install pyyaml==6.0.2
@@ -62,6 +62,6 @@ jobs:
   structures:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: SOyA structures against test vectors (oydeu/soya-web-cli)
         run: sh scripts/run_structure_tests.sh
