@@ -367,7 +367,7 @@ exactly one code:
 
 | `reason_code` | Meaning | Examples |
 |---|---|---|
-| `not_applicable` | The criterion does not concern this service or passport. | a feature in `requires_features` the service neither declares nor lists under `not_implemented`; an `applies_if` assertion does not hold; no DID at the `did` paths; a status in `skip_if_status` |
+| `not_applicable` | The criterion does not concern this service or passport, or on our own test instance it would describe the test environment rather than the software. | a feature in `requires_features` the service neither declares nor lists under `not_implemented`; an `applies_if` assertion does not hold; no DID at the `did` paths; a status in `skip_if_status`; a `tls` check or a criterion under `test_instance.not_applicable` on a test instance |
 | `not_implemented` | The service lists a feature in `requires_features` under `not_implemented` (see "Service"). | `write-api` of a read-only service |
 | `no_evidence` | The check needs evidence that the passport or service does not provide. | `proof` without any integrity proof; `html` without an HTML view |
 | `needs_credentials` | The check needs test credentials the runner does not have. | `method: automated-auth`; a step with `auth: token` |
@@ -383,8 +383,18 @@ results list each code separately; none of them enters "N of M".
 `OPTIONS` requests. A criterion with a step that uses another method is then
 `skipped` with `not_sent` before any of its requests is sent, so that no
 partial result is reported. Operator entries are checked in full every day;
-entries from our own research only with read-only runs, at most once a week
-(see "Service").
+entries from our own research only with read-only runs, at most once a week,
+or in full on our own test instance (see "Service").
+
+**Test instance.** Open software without a public instance can be checked on a
+short-lived test instance of our own (`check.mode: test-instance-weekly`):
+once a week the runner starts the current release as the published setup
+(`test_instance.setup`) describes, gives it the test passport of the setup,
+runs all criteria in full and discards the instance afterwards. The results
+name the software version. On a test instance, `tls` checks (certificate, TLS
+and HTTP versions) are `skipped` with `not_applicable`, because they would
+measure our test environment rather than the software; so are the criteria
+listed under `test_instance.not_applicable`, with the reason given there.
 
 A regular expression that the runner cannot evaluate as specified above
 (invalid, or valid but outside the portable subset; for JSONPath functions an
@@ -411,7 +421,9 @@ from one of two sources, recorded in `entry.source`:
 - `research`: added from the maintainers' own research and marked as such
   wherever results are shown. The information may be incomplete or out of
   date. Checked read-only, at most once a week, without credentials
-  (`check.mode: read-only-weekly`), or not at all (`check.mode: none`, with
+  (`check.mode: read-only-weekly`); for open software without a public
+  instance, in full once a week on a short-lived test instance of our own
+  (`check.mode: test-instance-weekly`); or not at all (`check.mode: none`, with
   the reason).
 
 ```yaml
@@ -433,7 +445,7 @@ example_passports:                     # optional, at most 3, checked with dppli
   - product_id: https://dpp.oydapp.eu/01/09520123456788/21/000001
     label: reference passport
 check:
-  mode: full-daily                     # full-daily | read-only-weekly | none
+  mode: full-daily                     # full-daily | read-only-weekly | test-instance-weekly | none
   # reason: needs_credentials          # with mode none: needs_credentials | no_public_instance | no_en18222_paths
 contact: office@ownyourdata.eu         # address for questions about results
 api_base: https://dpp-service.ownyourdata.eu/dpp/v1
@@ -459,17 +471,36 @@ Rules:
 - Every entry has `entry`, `licence` and `check`. Operator entries also need
   `contact`, `api_base`, `features`, `test_data` and `credentials`, and are
   checked with `check.mode: full-daily`.
-- Research entries use `check.mode: read-only-weekly` or `none`. They carry no
-  `declarations`, no `consent` and no credentials (`credentials` is absent or
-  `none`); `contact` is optional. `test_data` is given only if a public test
-  passport is known; without it, criteria that need one are `skipped`. Feature
-  flags in a research entry describe what public documentation or a public
-  instance shows.
-- An entry that is checked (`full-daily`, `read-only-weekly`) needs an
-  `api_base`. With `check.mode: none`, `check.reason` says why:
+- Research entries use `check.mode: read-only-weekly`, `test-instance-weekly`
+  or `none`. They carry no `declarations`, no `consent` and no credentials
+  (`credentials` is absent or `none`); `contact` is optional. `test_data` is
+  given only if a public test passport is known; without it, criteria that
+  need one are `skipped`. Feature flags in a research entry describe what
+  public documentation, the published software or a public instance shows.
+- An entry that is checked on its own instance (`full-daily`,
+  `read-only-weekly`) needs an `api_base`. With `check.mode: none`,
+  `check.reason` says why:
   `needs_credentials` (the EN 18222 paths answer only with credentials),
   `no_public_instance` (software without a public instance) or
   `no_en18222_paths` (no EN 18222 paths found).
+- A research entry with `check.mode: test-instance-weekly` describes open
+  software that we run ourselves for the check. It has `test_instance` and
+  `features`, but no `api_base` and no `test_data`: the setup provides both.
+  `test_instance.configuration` says how the instance is configured, and
+  `test_instance.not_applicable` lists criteria whose result would describe
+  that configuration rather than the software, each with the reason:
+
+  ```yaml
+  check:
+    mode: test-instance-weekly
+  test_instance:
+    setup: https://github.com/OwnYourData/dpp-validator/tree/main/test-instances/eclipse-basyx-dpp-api
+    configuration: Current release, configured as in the example of the project, without access control.
+    not_applicable:
+      - criterion: DPP-SEC-001
+        reason: The test instance runs without access control.
+  features: [fine-granular-api, write-api, historical-versions]
+  ```
 - An operator can correct a research entry or take it over by pull request; it
   then becomes an operator entry (`entry.source: operator`). An operator who
   does not want the service listed can ask for the research entry to be

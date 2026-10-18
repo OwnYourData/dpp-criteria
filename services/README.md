@@ -298,10 +298,17 @@ information. Such an entry:
   only if a public test passport is known;
 - is checked with `check.mode: read-only-weekly`: once a week, only `GET`,
   `HEAD` and `OPTIONS` requests and no write requests, fewer than 30 requests
-  per run (criteria that need other methods are reported as `not_sent`); or with
-  `check.mode: none` and a `check.reason`: `needs_credentials` (the EN 18222
-  paths answer only with credentials), `no_public_instance` (software without a
-  public instance) or `no_en18222_paths` (no EN 18222 paths found);
+  per run (criteria that need other methods are reported as `not_sent`); or,
+  for open software without a public instance, with
+  `check.mode: test-instance-weekly`: once a week in full on a short-lived test
+  instance of our own, started with the current release as published in
+  `test_instance.setup` and discarded after the run; certificate, TLS and HTTP
+  version checks and the criteria under `test_instance.not_applicable` are then
+  reported as `not_applicable`, because they would describe our test
+  environment; or with `check.mode: none` and a `check.reason`:
+  `needs_credentials` (the EN 18222 paths answer only with credentials),
+  `no_public_instance` (software without a public instance) or
+  `no_en18222_paths` (no EN 18222 paths found);
 - has its `example_passports` checked with dpplint once a week.
 
 We would be very glad to hear from operators:

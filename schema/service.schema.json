@@ -58,14 +58,37 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["mode"],
-      "description": "How dpp-validator checks the service: full-daily (operator entries), read-only-weekly (research entries) or none, with the reason.",
+      "description": "How dpp-validator checks the service: full-daily (operator entries), read-only-weekly (research entries), test-instance-weekly (open software without a public instance, checked in full once a week on our own short-lived test instance) or none, with the reason.",
       "properties": {
-        "mode": { "enum": ["full-daily", "read-only-weekly", "none"] },
+        "mode": { "enum": ["full-daily", "read-only-weekly", "test-instance-weekly", "none"] },
         "reason": { "enum": ["needs_credentials", "no_public_instance", "no_en18222_paths"] }
       },
       "if": { "properties": { "mode": { "const": "none" } } },
       "then": { "required": ["reason"] },
       "else": { "not": { "required": ["reason"] } }
+    },
+    "test_instance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["setup", "configuration"],
+      "description": "Our own short-lived test instance (check.mode test-instance-weekly): started in the weekly run with the current release of the software, given a test passport, checked in full and discarded afterwards. The setup provides the API base and the test passport.",
+      "properties": {
+        "setup": { "type": "string", "pattern": "^https://", "description": "Published setup of the test instance: how it is started and which test passport it is given." },
+        "configuration": { "type": "string", "minLength": 1, "description": "How the test instance is configured, as shown to people." },
+        "not_applicable": {
+          "type": "array",
+          "description": "Criteria whose result would describe the configuration of the test instance rather than the software; reported as not_applicable with the reason.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["criterion", "reason"],
+            "properties": {
+              "criterion": { "type": "string", "pattern": "^DPP-[A-Z]{2,5}-[0-9]{3}$" },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
     },
     "contact": { "type": "string" },
     "api_base": { "type": "string", "pattern": "^https://" },
@@ -110,7 +133,7 @@
     "notes": { "type": "string", "description": "Remarks shown with the entry, e.g. why a service is not checked." },
     "listed_since": { "type": "string", "format": "date" }
   },
-  "$comment": "Operator entries are checked in full every day and need everything a full run uses. Research entries are checked read-only at most weekly, or not at all; they carry no credentials, declarations or consent. A service that is checked needs an api_base. A feature flag may not be in both features and not_implemented.",
+  "$comment": "Operator entries are checked in full every day and need everything a full run uses. Research entries are checked read-only at most weekly, in full once a week on our own test instance, or not at all; they carry no credentials, declarations or consent. A service that is checked on its own instance needs an api_base. A test instance provides the API base and the test passport itself, so such an entry has test_instance and features but no api_base and no test_data. A feature flag may not be in both features and not_implemented.",
   "allOf": [
     {
       "if": { "required": ["entry"], "properties": { "entry": { "required": ["source"], "properties": { "source": { "const": "operator" } } } } },
@@ -123,7 +146,7 @@
       "if": { "required": ["entry"], "properties": { "entry": { "required": ["source"], "properties": { "source": { "const": "research" } } } } },
       "then": {
         "properties": {
-          "check": { "properties": { "mode": { "enum": ["read-only-weekly", "none"] } } },
+          "check": { "properties": { "mode": { "enum": ["read-only-weekly", "test-instance-weekly", "none"] } } },
           "credentials": { "const": "none" }
         },
         "not": { "anyOf": [{ "required": ["declarations"] }, { "required": ["consent"] }] }
@@ -132,6 +155,11 @@
     {
       "if": { "required": ["check"], "properties": { "check": { "required": ["mode"], "properties": { "mode": { "enum": ["full-daily", "read-only-weekly"] } } } } },
       "then": { "required": ["api_base"] }
+    },
+    {
+      "if": { "required": ["check"], "properties": { "check": { "required": ["mode"], "properties": { "mode": { "const": "test-instance-weekly" } } } } },
+      "then": { "required": ["test_instance", "features"], "not": { "anyOf": [{ "required": ["api_base"] }, { "required": ["test_data"] }] } },
+      "else": { "not": { "required": ["test_instance"] } }
     },
     { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "fine-granular-api" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "fine-granular-api" } } } } } },
     { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "write-api" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "write-api" } } } } } },

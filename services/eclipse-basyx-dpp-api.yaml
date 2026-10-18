@@ -12,10 +12,24 @@ licence:
   spdx: [MIT]
 source_code: https://github.com/eclipse-basyx/basyx-go-components
 check:
-  mode: none
-  reason: no_public_instance
+  mode: test-instance-weekly
+test_instance:
+  setup: https://github.com/OwnYourData/dpp-validator/tree/main/test-instances/eclipse-basyx-dpp-api
+  configuration: >-
+    Current release of the Docker images of the project: the DPP API with a
+    PostgreSQL database, configured as in the DPP API example of the project,
+    without access control. The test passport is the sample passport of that
+    release, created with POST /v1/dpps.
+  not_applicable:
+    - criterion: DPP-SEC-001
+      reason: >-
+        The test instance runs without access control, as in the example of the
+        project, so the result would describe our configuration rather than the
+        software.
+features: [fine-granular-api, write-api, historical-versions]
 notes: >-
-  Software to run on one's own servers, distributed as a Docker image; there is
-  no public instance. The repository contains a sample passport file. A file is
-  not a product identifier, so it is not checked with dpplint.
+  Software to run on one's own servers, distributed as Docker images; there is
+  no public instance. We check it once a week on a short-lived test instance of
+  our own. The sample passport is not published under a product identifier, so
+  it is not checked with dpplint.
 listed_since: 2026-10-18
