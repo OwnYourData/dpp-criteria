@@ -1,0 +1,24 @@
+id: example-test-instance
+name: Example DPP Software
+url: https://www.example.org/dpp-software
+operator:
+  name: Example Publisher
+  country: DE
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: MIT
+  spdx: [MIT]
+source_code: https://github.com/example/dpp-software
+check:
+  mode: test-instance-weekly
+test_instance:
+  setup: https://github.com/OwnYourData/dpp-validator/tree/main/test-instances/example-test-instance
+  configuration: Current release with its default configuration.
+  not_applicable:
+    - criterion: DPP-SEC-001
+      reason: The test instance runs without access control.
+features: [write-api]
+api_base: https://dpp.example.org/v1
+listed_since: 2026-10-18

@@ -31,7 +31,9 @@ request, or someone adds it with the operator's consent linked in the pull
 request; these services are checked in full every day. We also list services
 we found in our own research. These entries are marked as our own research,
 are checked read-only at most once a week, and may be incomplete or out of
-date. We would be very glad to hear from operators: a pull request or an issue
+date. Open software without a public instance is checked once a week in full
+on a short-lived test instance of our own, started with the current release
+and discarded after the run. We would be very glad to hear from operators: a pull request or an issue
 can correct an entry or turn it into an operator entry, and on request we
 remove a research entry. How to add or correct a service, step by step:
 [services/README.md](services/README.md).
