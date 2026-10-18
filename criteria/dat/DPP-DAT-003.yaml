@@ -1,5 +1,5 @@
 id: DPP-DAT-003
-version: 2
+version: 3
 status: active
 title: Passport is delivered as structured JSON
 statement: >-
@@ -12,7 +12,7 @@ basis:
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
 - source: EN 18216:2026
-  clause: 5 a)
+  clause: 5 a), 5 c)
   kind: harmonised-standard
 - source: EN 18223:2026
   clause: 5.2.4
@@ -27,6 +27,8 @@ check:
     status:
     - 200
     content_type: application/json
+    content_type_with_warning:
+    - application/ld+json
 catalogue_ref:
 - DPP-DAT-003
 - DPP-DAT-001
@@ -36,4 +38,9 @@ notes: >-
   The response has to parse as a single JSON object. Attribute names are checked
   by DPP-DAT-014. The request states Accept application/json: the criterion asks
   whether the passport is available as JSON, not which format a client without a
-  stated preference receives; that is assessed by DPP-DAT-016.
+  stated preference receives; that is assessed by DPP-DAT-016. EN 18216 Clause 5
+  makes JSON the required format and allows JSON-LD in addition through content
+  negotiation, as long as a plain JSON parser can read it. A single JSON object
+  delivered as application/ld+json to a request for application/json therefore
+  passes with a warning: the content is JSON, but the request for
+  application/json is not honoured.

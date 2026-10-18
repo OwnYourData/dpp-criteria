@@ -147,7 +147,10 @@ def expectation(e):
     if "status" in e:
         out.append("status " + either(str(s) for s in e["status"]))
     if "content_type" in e:
-        out.append("content type " + code(e["content_type"]))
+        text = "content type " + code(e["content_type"])
+        if e.get("content_type_with_warning"):
+            text += " (" + either(code(t) for t in e["content_type_with_warning"]) + " only with a warning)"
+        out.append(text)
     out += [header_assertion(a) for a in e.get("headers", [])]
     out += [json_assertion(a) for a in e.get("json", [])]
     if "body_equals_step" in e:

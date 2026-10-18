@@ -379,19 +379,19 @@ Catalogue rows: DPP-CRT-003 · Source: [crt/DPP-CRT-003.yaml](crt/DPP-CRT-003.ya
 
 **Passport is delivered as structured JSON**
 
-**MUST** · checked on: published passport · automated · status: active · version 2
+**MUST** · checked on: published passport · automated · status: active · version 3
 
 > DPP data MUST be machine-readable and structured, delivered as a JSON object based on open standards.
 
 **Basis**
 
 - [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 10(1)(d) (regulation)
-- EN 18216:2026, 5 a) (harmonised standard)
+- EN 18216:2026, 5 a), 5 c) (harmonised standard)
 - EN 18223:2026, 5.2.4 (harmonised standard)
 
-**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET with `Accept: application/json`). Expected: status 200; content type `application/json`.
+**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET with `Accept: application/json`). Expected: status 200; content type `application/json` (`application/ld+json` only with a warning).
 
-**Notes** The response has to parse as a single JSON object. Attribute names are checked by DPP-DAT-014. The request states Accept application/json: the criterion asks whether the passport is available as JSON, not which format a client without a stated preference receives; that is assessed by DPP-DAT-016.
+**Notes** The response has to parse as a single JSON object. Attribute names are checked by DPP-DAT-014. The request states Accept application/json: the criterion asks whether the passport is available as JSON, not which format a client without a stated preference receives; that is assessed by DPP-DAT-016. EN 18216 Clause 5 makes JSON the required format and allows JSON-LD in addition through content negotiation, as long as a plain JSON parser can read it. A single JSON object delivered as application/ld+json to a request for application/json therefore passes with a warning: the content is JSON, but the request for application/json is not honoured.
 
 Catalogue rows: DPP-DAT-003, DPP-DAT-001, DPP-DAT-002, DPP-DAT-004 · Source: [dat/DPP-DAT-003.yaml](dat/DPP-DAT-003.yaml)
 

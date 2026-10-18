@@ -1,0 +1,28 @@
+id: freedpp
+name: freeDPP
+url: https://freedpp.eu/
+operator:
+  name: inndata Datentechnik GmbH
+  country: AT
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: GPL-3.0
+  spdx: [GPL-3.0-only]
+source_code: https://github.com/OttoHandle/freeDPP
+api_base: https://drill.freedpp.eu/v1
+features: [fine-granular-api]
+test_data:
+  productId: "5012345101095"
+  dppId: "5012345101095"
+  elementIdPath: $.c0ProductInformation._p_d_ModelName
+example_passports:
+  - product_id: https://drill.freedpp.eu/01/5012345101095
+    label: drill passport
+check:
+  mode: read-only-weekly
+notes: >-
+  Demo instance with test passports. Test data and the feature flag come from
+  the public demo and the published source code.
+listed_since: 2026-10-18

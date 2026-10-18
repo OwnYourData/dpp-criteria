@@ -1,0 +1,20 @@
+id: example-research-entry
+name: Example DPP Service
+url: https://www.example.org/dpp
+operator:
+  name: Example Operator
+  country: DE
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: commercial; SDKs Apache-2.0
+  spdx: []
+check:
+  mode: none
+  reason: no_en18222_paths
+declarations:
+  - criterion: DPP-OPS-006
+    statement: Test and production environments are separated.
+    evidence: https://www.example.org/ops
+listed_since: 2026-10-18

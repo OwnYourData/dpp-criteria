@@ -1,0 +1,23 @@
+id: opendpp
+name: OpenDPP
+url: https://opendpp-node.eu/
+operator:
+  name: Opendpp UAB
+  country: LT
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: commercial; interop kit and SDKs Apache-2.0
+  spdx: []
+source_code: https://github.com/OpenDPP/opendpp-interop
+example_passports:
+  - product_id: https://opendpp-node.eu/01/09501101532007/21/demo-batteries-lfp-cell-200
+    label: demo battery cell
+check:
+  mode: none
+  reason: needs_credentials
+notes: >-
+  The EN 18222 operations answer only with an API key. Demo passports are
+  public through the resolver.
+listed_since: 2026-10-18

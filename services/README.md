@@ -1,12 +1,27 @@
-# Adding a DPP service to the daily checks
+# Adding or correcting a DPP service
 
 This guide explains how the operator of a Digital Product Passport (DPP)
 service adds the service to the list checked every day by
-[dpp-validator](https://github.com/OwnYourData/dpp-validator). The results
-are published at <https://ownyourdata.github.io/dpp-validator/>.
+[dpp-validator](https://github.com/OwnYourData/dpp-validator), and how an
+operator corrects or takes over an entry from our own research. The results
+are published at <https://ownyourdata.github.io/dpp-validator/>, together with
+`available-services.json`, the list of all entries with their latest results.
 
-Results are results of automated checks only. They are no certification and
-establish no presumption of conformity.
+The list has two kinds of entries (`entry.source`):
+
+- **Entries maintained by the operator** (`operator`): added by the operator's
+  pull request, or with the operator's consent linked in the pull request.
+  Checked in full every day.
+- **Entries from our research** (`research`): services we found in our own
+  research, from public information. They are marked as such wherever results
+  are shown and may be incomplete or out of date. They are checked read-only
+  at most once a week, or not at all if that is not possible (see
+  [section 7](#7-entries-from-our-research)).
+
+This list is part of a research project. It shares what we currently know; it
+makes no claim to be complete and is not a legal assessment. Results are
+results of automated checks only. They are no certification and establish no
+presumption of conformity.
 
 ## Contents
 
@@ -16,13 +31,16 @@ establish no presumption of conformity.
 4. [Check your entry locally](#4-check-your-entry-locally)
 5. [Open the pull request](#5-open-the-pull-request)
 6. [After the merge](#6-after-the-merge)
-7. [Questions](#7-questions)
+7. [Entries from our research](#7-entries-from-our-research)
+8. [Questions](#8-questions)
 
 ## 1. What is checked
 
 Every day at about 04:17 UTC, dpp-validator runs all service criteria of this
-repository (`target: service`, `method: automated`) against every service
-listed in this directory. Examples:
+repository (`target: service`, `method: automated`) against every operator
+entry in this directory, and checks the passports in `example_passports` with
+dpplint. Research entries are checked the same way once a week, read-only.
+Examples:
 
 | Area | Examples of criteria |
 |---|---|
@@ -90,9 +108,23 @@ A service is listed by one YAML file in this directory, named after its
 ```yaml
 id: example-dpp-service
 name: Example DPP Service
+url: https://dpp.example.org/
 operator:
   name: Example GmbH
   url: https://www.example.org
+  country: DE
+entry:
+  source: operator
+  as_of: 2026-10-15
+licence:
+  text: Apache-2.0
+  spdx: [Apache-2.0]
+source_code: https://github.com/example/dpp-service
+example_passports:
+  - product_id: https://dpp.example.org/01/09520123456788/21/000001
+    label: test passport
+check:
+  mode: full-daily
 contact: dpp@example.org
 api_base: https://dpp.example.org/api/v1
 features: [fine-granular-api]
@@ -114,8 +146,17 @@ A real entry: [ownyourdata-dpp-service.yaml](ownyourdata-dpp-service.yaml).
 |---|---|---|---|
 | `id` | yes | Short name of the service: lower-case letters, digits and hyphens. The file name must be `<id>.yaml`. | `example-dpp-service` |
 | `name` | yes | Name shown on the results page. | `Example DPP Service` |
+| `url` | no | Web page of the service. | `https://dpp.example.org/` |
 | `operator.name` | yes | Legal name of the operator. | `Example GmbH` |
 | `operator.url` | no | Website of the operator. | `https://www.example.org` |
+| `operator.country` | no | Country of the operator's seat, ISO 3166-1 alpha-2 in capitals. | `DE` |
+| `entry.source` | yes | `operator` for an entry by the operator or with its consent. | `operator` |
+| `entry.as_of` | yes | Date on which the information in the entry was last checked. | `2026-10-15` |
+| `licence.text` | yes | Licence as shown to people; for a commercial service with open parts, say so. | `Apache-2.0` |
+| `licence.spdx` | yes | SPDX identifiers of the licences of the software; `[]` if none applies. | `[Apache-2.0]` |
+| `source_code` | no | Public repository of the software. | `https://github.com/example/dpp-service` |
+| `example_passports` | no | Up to three published passports, each with `product_id` (an `https://` product identifier) and `label`. They are checked with [dpplint](https://dpplint.ownyourdata.eu) in each run. | see the example |
+| `check.mode` | yes | `full-daily` for an operator entry. | `full-daily` |
 | `contact` | yes | E-mail address for questions about the results; shown as a mailto link. | `dpp@example.org` |
 | `api_base` | yes | Base URL of the EN 18222 API, `https://`, ending with the version prefix `v1`. The criteria append paths such as `/dpps/{dppId}`. | `https://dpp.example.org/api/v1` |
 | `features` | yes | Optional parts of the standard the service offers (list below). An empty list `[]` is allowed. | `[fine-granular-api]` |
@@ -128,6 +169,7 @@ A real entry: [ownyourdata-dpp-service.yaml](ownyourdata-dpp-service.yaml).
 | `credentials` | yes | Always `none` for now: checks that need test credentials are not run yet. Never put secrets into this repository. | `none` |
 | `declarations` | no | Self-declarations for criteria with `method: self-declared`, each with `criterion`, `statement` and an `evidence` URL. They are listed, never counted as passed. | see below |
 | `consent` | if the PR is not opened by the operator | Link to the operator's written consent. | `https://github.com/OwnYourData/dpp-criteria/issues/42` |
+| `notes` | no | Remarks shown with the entry. | `Test passport made for the checks.` |
 | `listed_since` | yes | Date of the pull request (`YYYY-MM-DD`); the maintainers set the date of the merge. | `2026-10-15` |
 
 Feature flags:
@@ -245,6 +287,32 @@ reviews the entry, may ask questions in the pull request and merges it.
 - New or changed criteria enter as `proposed` and are shown, but not counted,
   until a maintainer activates them.
 
-## 7. Questions
+## 7. Entries from our research
+
+Entries with `entry.source: research` describe services we found in our own
+research, from public information such as web pages, documentation, source
+code and public demo instances. `entry.as_of` says when we last checked the
+information. Such an entry:
+
+- has no `contact`, `credentials`, `declarations` or `consent`, and `test_data`
+  only if a public test passport is known;
+- is checked with `check.mode: read-only-weekly`: once a week, only `GET`,
+  `HEAD` and `OPTIONS` requests and no write requests, fewer than 30 requests
+  per run (criteria that need other methods are reported as `not_sent`); or with
+  `check.mode: none` and a `check.reason`: `needs_credentials` (the EN 18222
+  paths answer only with credentials), `no_public_instance` (software without a
+  public instance) or `no_en18222_paths` (no EN 18222 paths found);
+- has its `example_passports` checked with dpplint once a week.
+
+We would be very glad to hear from operators:
+
+- **Correct an entry**: open an issue or a pull request that changes the file.
+- **Take it over**: a pull request by the operator that sets
+  `entry.source: operator` and adds the fields of section 3 (contact, test
+  passport, …). From then on the service is checked in full every day.
+- **Remove it**: open an issue or write to office@ownyourdata.eu; we remove
+  the entry.
+
+## 8. Questions
 
 Open an issue in this repository or write to office@ownyourdata.eu.

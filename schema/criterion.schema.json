@@ -104,10 +104,15 @@
       "properties": {
         "status": { "$ref": "#/$defs/statusList" },
         "content_type": { "type": "string" },
+        "content_type_with_warning": {
+          "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 },
+          "description": "Media types that satisfy content_type with a warning instead of a failure."
+        },
         "json": { "type": "array", "items": { "$ref": "#/$defs/assertion" } },
         "headers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/headerAssertion" } },
         "body_equals_step": { "type": "integer", "minimum": 1 }
-      }
+      },
+      "dependentRequired": { "content_type_with_warning": ["content_type"] }
     },
     "headerAssertion": {
       "type": "object",

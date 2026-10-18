@@ -1,8 +1,22 @@
 id: ownyourdata-dpp-service
 name: OwnYourData DPP Service
+url: https://dpp-service.ownyourdata.eu/
 operator:
   name: OwnYourData
   url: https://www.ownyourdata.eu
+  country: AT
+entry:
+  source: operator
+  as_of: 2026-10-18
+licence:
+  text: Apache-2.0
+  spdx: [Apache-2.0]
+source_code: https://github.com/OwnYourData/dpp-service-public
+example_passports:
+  - product_id: https://dpp.oydapp.eu/01/09520123456788/21/000001
+    label: reference passport
+check:
+  mode: full-daily
 contact: office@ownyourdata.eu
 api_base: https://dpp-service.ownyourdata.eu/dpp/v1
 features: [fine-granular-api, write-api, historical-versions, access-levels]
