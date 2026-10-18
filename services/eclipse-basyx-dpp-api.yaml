@@ -1,0 +1,21 @@
+id: eclipse-basyx-dpp-api
+name: Eclipse BaSyx DPP API
+url: https://dpp.basyx.org/
+operator:
+  name: Fraunhofer IESE
+  country: DE
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: MIT
+  spdx: [MIT]
+source_code: https://github.com/eclipse-basyx/basyx-go-components
+check:
+  mode: none
+  reason: no_public_instance
+notes: >-
+  Software to run on one's own servers, distributed as a Docker image; there is
+  no public instance. The repository contains a sample passport file. A file is
+  not a product identifier, so it is not checked with dpplint.
+listed_since: 2026-10-18

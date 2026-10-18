@@ -1,0 +1,18 @@
+id: example-dpp-service
+name: Example DPP Service
+operator:
+  name: Example Operator
+  country: AT
+entry:
+  source: operator
+  as_of: 2026-10-18
+licence:
+  text: Apache-2.0
+  spdx: [Apache-2.0]
+check:
+  mode: full-daily
+contact: dpp@example.org
+api_base: https://dpp.example.org/v1
+features: []
+credentials: none
+listed_since: 2026-10-18

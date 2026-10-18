@@ -102,7 +102,7 @@ Where placeholders are substituted, and how:
 - **http** — ordered `steps`, each with `request` (`method`, `path` relative to
   `{base}`, optional `headers`, `body`, `auth: none | token`, and with `auth: token`
   an optional `role` naming the test role whose token is sent) and `expect`
-  (`status` list, `content_type`, `json` assertions with RFC 9535 JSONPath:
+  (`status` list, `content_type`, optionally `content_type_with_warning`, `json` assertions with RFC 9535 JSONPath:
   `equals`, `exists`, `in`, `matches` (see "Regular expressions"), each with
   optional `severity: warning`; `headers` assertions on response header fields,
   see below; `body_equals_step: n` compares the body with that of step n). A
@@ -309,6 +309,14 @@ be a single JSON object, since the request fetches one passport; in `http` any
 JSON value is accepted (a data element in the compressed representation may be
 a bare value, see DPP-API-021).
 
+`content_type_with_warning` (only together with `content_type`) lists media
+types that satisfy `content_type` with a `warning` instead of a failure, for a
+format a standard allows besides the requested one (e.g. `application/ld+json`
+for a request for `application/json`, see DPP-DAT-003). They are compared like
+`content_type`; for a JSON media type the body must parse as JSON as above. The
+warning names the media type received and the one requested, and the other
+parts of `expect` are evaluated as if `content_type` held.
+
 ### Regular expressions
 
 `matches` in JSON and header assertions and `base_matches` use ECMA-262
@@ -348,7 +356,10 @@ and is not converted to a string; use `equals` or `in` for those.
 
 Each run gives every applicable criterion one result: `passed`, `failed`,
 `warning` (passed, with a remark) or `skipped` (condition not met, feature not
-declared or data not available). Only `passed` and `failed` enter "N of M".
+declared or data not available). In "N of M", `passed` and `warning` count as
+passed and `failed` counts against it; `skipped` does not enter it. The number
+of warnings is reported next to it, e.g. "5 of 5 automated checks passed,
+1 warning": the warning is one of the five.
 
 A `skipped` result carries a `reason` (text for people) and a `reason_code`
 (for grouping and display). Each skip described in this document maps to
@@ -371,8 +382,9 @@ results list each code separately; none of them enters "N of M".
 **Read-only run.** A runner may offer a run that sends only `GET`, `HEAD` and
 `OPTIONS` requests. A criterion with a step that uses another method is then
 `skipped` with `not_sent` before any of its requests is sent, so that no
-partial result is reported. Listed services are always checked in full; the
-read-only run is meant for a check before listing (see "Service").
+partial result is reported. Operator entries are checked in full every day;
+entries from our own research only with read-only runs, at most once a week
+(see "Service").
 
 A regular expression that the runner cannot evaluate as specified above
 (invalid, or valid but outside the portable subset; for JSONPath functions an
@@ -390,13 +402,40 @@ has a placeholder outside a string literal (see "Placeholders in checks").
 
 ## Service
 
+Every service in the list is one file `services/<id>.yaml`. An entry comes
+from one of two sources, recorded in `entry.source`:
+
+- `operator`: added by pull request from the operator, or with the operator's
+  written consent linked in the pull request (`consent`). Checked in full every
+  day (`check.mode: full-daily`).
+- `research`: added from the maintainers' own research and marked as such
+  wherever results are shown. The information may be incomplete or out of
+  date. Checked read-only, at most once a week, without credentials
+  (`check.mode: read-only-weekly`), or not at all (`check.mode: none`, with
+  the reason).
+
 ```yaml
 id: ownyourdata-dpp-service
 name: OwnYourData DPP Service
-operator:
+url: https://dpp-service.ownyourdata.eu/   # web page of the service or software
+operator:                              # who runs the service or publishes the software
   name: OwnYourData
   url: https://www.ownyourdata.eu
-contact: TODO                          # address for questions about results
+  country: AT                          # ISO 3166-1 alpha-2
+entry:
+  source: operator                     # operator | research
+  as_of: 2026-10-18                    # date the information was last checked
+licence:
+  text: Apache-2.0                     # as shown to people
+  spdx: [Apache-2.0]                   # SPDX identifiers, empty if none applies
+source_code: https://github.com/OwnYourData/dpp-service-public   # optional
+example_passports:                     # optional, at most 3, checked with dpplint
+  - product_id: https://dpp.oydapp.eu/01/09520123456788/21/000001
+    label: reference passport
+check:
+  mode: full-daily                     # full-daily | read-only-weekly | none
+  # reason: needs_credentials          # with mode none: needs_credentials | no_public_instance | no_en18222_paths
+contact: office@ownyourdata.eu         # address for questions about results
 api_base: https://dpp-service.ownyourdata.eu/dpp/v1
 features: [fine-granular-api, write-api, historical-versions]
 not_implemented: []                   # optional, e.g. [access-levels]
@@ -411,16 +450,30 @@ declarations:
   - criterion: DPP-OPS-006
     statement: Test and production environments are separated.
     evidence: https://example.org/ops-doc
+notes: ""                             # optional remarks shown with the entry
 listed_since: 2026-10-01
 ```
 
 Rules:
 
-- Services are listed **only by pull request from the operator** (or with the
-  operator's written consent linked in the PR). No third party is tested
-  regularly without that. Before asking an operator, maintainers may check a
-  publicly reachable service once with a read-only run (see "Results"); such
-  a run is not published and the entry is not added to `services/`.
+- Every entry has `entry`, `licence` and `check`. Operator entries also need
+  `contact`, `api_base`, `features`, `test_data` and `credentials`, and are
+  checked with `check.mode: full-daily`.
+- Research entries use `check.mode: read-only-weekly` or `none`. They carry no
+  `declarations`, no `consent` and no credentials (`credentials` is absent or
+  `none`); `contact` is optional. `test_data` is given only if a public test
+  passport is known; without it, criteria that need one are `skipped`. Feature
+  flags in a research entry describe what public documentation or a public
+  instance shows.
+- An entry that is checked (`full-daily`, `read-only-weekly`) needs an
+  `api_base`. With `check.mode: none`, `check.reason` says why:
+  `needs_credentials` (the EN 18222 paths answer only with credentials),
+  `no_public_instance` (software without a public instance) or
+  `no_en18222_paths` (no EN 18222 paths found).
+- An operator can correct a research entry or take it over by pull request; it
+  then becomes an operator entry (`entry.source: operator`). An operator who
+  does not want the service listed can ask for the research entry to be
+  removed, by issue or e-mail. Feedback is very welcome.
 - `features` lists what the service offers. `not_implemented` (optional)
   lists feature flags the service does not offer yet although they concern
   it, e.g. a write API that is planned. Criteria that require such a feature
@@ -428,6 +481,9 @@ Rules:
   may not appear in both lists.
 - `test_data` must point to a passport that stays online for as long as the
   service is listed. It is ideally a passport made for this purpose.
+- `example_passports` lists up to three product identifiers of published
+  passports. dpp-validator checks them with dpplint in the same run as the
+  service. A sample file is not a product identifier and is not listed here.
 - Credentials are never stored in the repository. An operator who wants
   `automated-auth` checks provides a test token as a repository secret via the
   maintainers, one per `role` that the criteria name (e.g. `granted` and
@@ -436,8 +492,10 @@ Rules:
 ## Results wording
 
 Results report "N of M automated checks passed" per service and run, plus the
-list of self-declarations. They never state that a service is "conformant"
-or "certified": passing checks is not a presumption of conformity.
+number of warnings and the list of self-declarations. Results of research
+entries say that the entry comes from our own research. Results never state
+that a service is "conformant" or "certified": passing checks is not a
+presumption of conformity.
 
 ## Identifiers
 

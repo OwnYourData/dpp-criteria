@@ -1,0 +1,21 @@
+id: opc-ua-cloud-library
+name: OPC UA Cloud Library
+url: https://uacloudlibrary.opcfoundation.org
+operator:
+  name: OPC Foundation
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: OPC Foundation MIT License 1.00
+  spdx: []
+source_code: https://github.com/OPCFoundation/UA-CloudLibrary
+api_base: https://uacloudlibrary.opcfoundation.org/v1
+features: [fine-granular-api, historical-versions]
+check:
+  mode: read-only-weekly
+notes: >-
+  Global instance whose read paths answer without login. No passport ID is
+  publicly known, so checks that need a test passport are skipped. Feature
+  flags as described in the documentation of the repository.
+listed_since: 2026-10-18

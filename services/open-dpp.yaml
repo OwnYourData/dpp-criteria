@@ -1,0 +1,20 @@
+id: open-dpp
+name: open-dpp
+url: https://open-dpp.de/
+operator:
+  name: open-dpp GmbH
+  country: DE
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: AGPL-3.0; hosted cloud commercial
+  spdx: [AGPL-3.0-only]
+source_code: https://github.com/open-dpp/open-dpp
+check:
+  mode: none
+  reason: no_en18222_paths
+notes: >-
+  Platform with an Asset Administration Shell API and GS1 Digital Link
+  permalinks; no EN 18222 paths found.
+listed_since: 2026-10-18

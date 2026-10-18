@@ -1,0 +1,22 @@
+id: passportlab
+name: PassportLab
+url: https://www.passportlab.io
+operator:
+  name: NextGate Digital UG
+  country: DE
+entry:
+  source: research
+  as_of: 2026-10-18
+licence:
+  text: commercial (freemium)
+  spdx: []
+example_passports:
+  - product_id: https://api.passportlab.io/api/v1/public/dpp/DPP-04099999000036-BAT-IND-2026-0001
+    label: demo battery
+check:
+  mode: none
+  reason: no_en18222_paths
+notes: >-
+  Public read API without key under its own paths; no EN 18222 lifecycle
+  paths found.
+listed_since: 2026-10-18

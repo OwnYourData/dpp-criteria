@@ -4,15 +4,68 @@
   "title": "Listed DPP service",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "name", "operator", "contact", "api_base", "features", "test_data", "credentials", "listed_since"],
+  "required": ["id", "name", "operator", "entry", "licence", "check", "listed_since"],
   "properties": {
     "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
     "name": { "type": "string" },
+    "url": { "type": "string", "pattern": "^https://", "description": "Web page of the service or of the software." },
     "operator": {
       "type": "object",
       "additionalProperties": false,
       "required": ["name"],
-      "properties": { "name": { "type": "string" }, "url": { "type": "string", "format": "uri" } }
+      "description": "The organisation that runs the service or, for software without a public instance, publishes it.",
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "country": { "type": "string", "pattern": "^[A-Z]{2}$", "description": "ISO 3166-1 alpha-2 code of the operator's seat." }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "as_of"],
+      "description": "Who maintains the entry: the operator (pull request by the operator or with linked consent) or the maintainers from their own research.",
+      "properties": {
+        "source": { "enum": ["operator", "research"] },
+        "as_of": { "type": "string", "format": "date", "description": "Date on which the information in the entry was last checked." }
+      }
+    },
+    "licence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "spdx"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1, "description": "Licence as shown to people, e.g. for a service that is commercial with open parts." },
+        "spdx": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9.+-]*$" }, "description": "SPDX identifiers of the licences of the software; empty if none applies." }
+      }
+    },
+    "source_code": { "type": "string", "pattern": "^https://", "description": "Public repository of the software, if any." },
+    "example_passports": {
+      "type": "array",
+      "maxItems": 3,
+      "description": "Product identifiers of passports the service publishes; checked with dpplint.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["product_id", "label"],
+        "properties": {
+          "product_id": { "type": "string", "pattern": "^https://" },
+          "label": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode"],
+      "description": "How dpp-validator checks the service: full-daily (operator entries), read-only-weekly (research entries) or none, with the reason.",
+      "properties": {
+        "mode": { "enum": ["full-daily", "read-only-weekly", "none"] },
+        "reason": { "enum": ["needs_credentials", "no_public_instance", "no_en18222_paths"] }
+      },
+      "if": { "properties": { "mode": { "const": "none" } } },
+      "then": { "required": ["reason"] },
+      "else": { "not": { "required": ["reason"] } }
     },
     "contact": { "type": "string" },
     "api_base": { "type": "string", "pattern": "^https://" },
@@ -54,10 +107,32 @@
       }
     },
     "consent": { "type": "string", "description": "Link to the operator's consent if the PR is not opened by the operator." },
+    "notes": { "type": "string", "description": "Remarks shown with the entry, e.g. why a service is not checked." },
     "listed_since": { "type": "string", "format": "date" }
   },
-  "$comment": "A feature flag may not be in both features and not_implemented.",
+  "$comment": "Operator entries are checked in full every day and need everything a full run uses. Research entries are checked read-only at most weekly, or not at all; they carry no credentials, declarations or consent. A service that is checked needs an api_base. A feature flag may not be in both features and not_implemented.",
   "allOf": [
+    {
+      "if": { "required": ["entry"], "properties": { "entry": { "required": ["source"], "properties": { "source": { "const": "operator" } } } } },
+      "then": {
+        "required": ["contact", "api_base", "features", "test_data", "credentials"],
+        "properties": { "check": { "properties": { "mode": { "const": "full-daily" } } } }
+      }
+    },
+    {
+      "if": { "required": ["entry"], "properties": { "entry": { "required": ["source"], "properties": { "source": { "const": "research" } } } } },
+      "then": {
+        "properties": {
+          "check": { "properties": { "mode": { "enum": ["read-only-weekly", "none"] } } },
+          "credentials": { "const": "none" }
+        },
+        "not": { "anyOf": [{ "required": ["declarations"] }, { "required": ["consent"] }] }
+      }
+    },
+    {
+      "if": { "required": ["check"], "properties": { "check": { "required": ["mode"], "properties": { "mode": { "enum": ["full-daily", "read-only-weekly"] } } } } },
+      "then": { "required": ["api_base"] }
+    },
     { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "fine-granular-api" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "fine-granular-api" } } } } } },
     { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "write-api" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "write-api" } } } } } },
     { "if": { "required": ["features"], "properties": { "features": { "contains": { "const": "historical-versions" } } } }, "then": { "properties": { "not_implemented": { "not": { "contains": { "const": "historical-versions" } } } } } },

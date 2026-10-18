@@ -5,7 +5,7 @@ services and published passports against EU regulation and the harmonised
 standards EN 18216, EN 18219, EN 18220, EN 18221, EN 18222 and EN 18223.
 
 - `criteria/` – one YAML file per criterion; [criteria/README.md](criteria/README.md) lists them all in readable form
-- `services/` – one YAML file per listed DPP service
+- `services/` – one YAML file per DPP service in the list, maintained by its operator or from our own research
 - `datapoints/` – one YAML file per data point that EU legal acts require or allow in a passport (ESPR, toy safety, construction products, EUDR, batteries); [datapoints/README.md](datapoints/README.md) lists them all in readable form
 - `soya/` – SOyA structures with the SHACL shapes of the passport checks, see [soya/README.md](soya/README.md)
 - `tests/soya/` – test vectors for the structures
@@ -26,11 +26,21 @@ After changing a criterion, run `python3 scripts/render_criteria_md.py` (needs
 `pip install pyyaml`) and commit the updated `criteria/README.md`; CI checks
 that it matches the YAML files.
 
-A DPP service is listed only by a pull request from its operator, or with the
-operator's consent linked in the pull request. How to add a service to the
-daily checks, step by step: [services/README.md](services/README.md).
+DPP services are listed in two ways. An operator adds its service by pull
+request, or someone adds it with the operator's consent linked in the pull
+request; these services are checked in full every day. We also list services
+we found in our own research. These entries are marked as our own research,
+are checked read-only at most once a week, and may be incomplete or out of
+date. We would be very glad to hear from operators: a pull request or an issue
+can correct an entry or turn it into an operator entry, and on request we
+remove a research entry. How to add or correct a service, step by step:
+[services/README.md](services/README.md).
 
 ## What results mean
+
+This repository is part of a research project. It shares what we currently
+know about DPP standards and services. It makes no claim to be complete and is
+not a legal assessment.
 
 Results state how many automated checks a service passed on a given day and
 which self-declarations it made. They are not a certification and do not

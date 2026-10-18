@@ -1,0 +1,20 @@
+id: DPP-TST-001
+version: 1
+status: proposed
+title: Test vector
+statement: A test vector MUST validate.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: 5 a), 5 c)
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  accept: application/json
+  expect:
+    status: [200]
+    content_type: application/json
+    content_type_with_warning: [application/ld+json]
