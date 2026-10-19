@@ -17,6 +17,22 @@ namespace; no further preparation is needed.
 |---|---|
 | `DigitalProductPassport` | DPP-DAT-014 (header, EN 18223 Table 1), DPP-INT-005 (data elements, expanded full serialization of Annex A, Tables 2 to 7), DPP-ROL-016, DPP-DAT-015, DPP-ID-014, DPP-CAR-002, DPP-ID-009, DPP-ID-010, DPP-CFG-005 |
 
+## SOyA context
+
+The structures import the SOyA context
+`https://ns.ownyourdata.eu/ns/soya-context.json`. `scripts/build_structures.js`
+embeds it, so that validation needs no network access. It fetches the context
+when the structures are built; if the context cannot be retrieved (no
+connection, timeout, a status other than 2xx, or a response that is not JSON
+with `@context`), it uses the copy in `context/` and says so. The build writes
+`build/soya-context.json`: which context each structure uses, whether it was
+fetched or taken from the copy, and from which date. dpplint shows this.
+
+`node scripts/refresh_soya_context.js` updates the copy;
+`node scripts/refresh_soya_context.js --check` only reports whether it differs
+from the published context. The structure tests check both a build with and a
+build without network.
+
 ## Conventions
 
 - **Messages carry the criterion.** Every validation message starts with the
