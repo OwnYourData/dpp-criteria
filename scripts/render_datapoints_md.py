@@ -79,6 +79,16 @@ ACCESS = {
     "unspecified": "not specified",
 }
 
+SCHEME = {
+    "idta-cds": "IDTA",
+    "iec-cdd": "IEC CDD",
+}
+
+RELATION = {
+    "same-as": "same as",
+    "is-case-of": "is a case of",
+}
+
 KIND = {
     "regulation": "regulation",
     "harmonised-standard": "harmonised standard",
@@ -153,6 +163,17 @@ def section(d):
         out += [f"| {label} | {applicability_cell(ba[key])} |" for key, label in BATTERY_CATEGORIES]
         out += [""]
     out += ["**Basis**", ""] + [basis_line(b) for b in d["basis"]] + [""]
+    if d.get("semantic_ids"):
+        out += ["**Semantic identifiers**", ""]
+        sources = []
+        for s in d["semantic_ids"]:
+            if s["source"] not in sources:
+                sources.append(s["source"])
+        for src in sources:
+            out += [f"From {text(src)}:", ""]
+            out += [f"- {RELATION[s['relation']]} {SCHEME[s['scheme']]} `{s['id']}`"
+                    for s in d["semantic_ids"] if s["source"] == src]
+            out += [""]
     if d.get("notes"):
         out += ["**Notes** " + text(d["notes"]), ""]
     out += [f"Source: [{d['_file']}]({d['_file']})", ""]
@@ -175,6 +196,12 @@ def render(items):
         "Data points are reference material for criteria. They are not checked themselves "
         "and are not legal advice: which data points apply to a product follows from the "
         "delegated or product-specific act for its product group.",
+        "",
+        "Where a published document ties a data point to concepts of open dictionaries, the "
+        "data point lists their identifiers under \"Semantic identifiers\": identifiers from the "
+        "submodel templates of the Industrial Digital Twin Association (IDTA, CC BY 4.0) and "
+        "IRDIs of the IEC Common Data Dictionary (source: IEC). Only the identifiers are given, "
+        "no names or definitions of the dictionaries.",
         "",
         "## Overview",
         "",

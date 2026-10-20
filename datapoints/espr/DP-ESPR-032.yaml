@@ -19,3 +19,16 @@ basis:
   clause: Annex III, point (i); Art. 12(1), (3)
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+semantic_ids:
+- scheme: idta-cds
+  id: https://admin-shell.io/idta/cds/facilityId/1
+  relation: same-as
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
+- scheme: idta-cds
+  id: urn:samm:io.admin-shell.idta.dpp.dpp_metadata:1.0.0#facilityId
+  relation: is-case-of
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
+- scheme: idta-cds
+  id: https://admin-shell.io/idta/nameplate/3/0/UniqueFacilityIdentifier
+  relation: is-case-of
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2

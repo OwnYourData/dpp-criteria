@@ -47,6 +47,7 @@ notes: ""
 | `battery_applicability` | Required for `BATT`, not allowed for other regimes. See "Battery data points" below. |
 | `access` | `public`: the act puts the value in the public part, or requires it on the product or via the data carrier without access restriction. `restricted`: the act limits it to named actors. `delegated-act`: the act leaves the access class to a delegated or implementing act. `unspecified`: the act says nothing about access. |
 | `basis` | At least one entry, same fields and `kind` values as in criteria (see [CRITERIA-FORMAT.md](CRITERIA-FORMAT.md)). Clauses in the notation of the English Official Journal, e.g. `Art. 27(6), first subparagraph, point (a)`, `Annex III, point (g)`. |
+| `semantic_ids` | Optional. Identifiers of the data point in open dictionaries, see "Semantic identifiers" below. |
 
 ### Tiers
 
@@ -113,6 +114,38 @@ battery_applicability:
 
 When the guidance or the Regulation changes the applicability, the data point
 gets the new values and its `version` is bumped.
+
+## Semantic identifiers
+
+`semantic_ids` lists identifiers that open dictionaries give to the concept of
+a data point. A passport built on such a dictionary, for example an Asset
+Administration Shell (AAS) whose submodel elements carry a `semanticId`, can
+then be matched to the data point.
+
+```yaml
+semantic_ids:
+- scheme: idta-cds
+  id: https://admin-shell.io/idta/cds/economicOperatorId/1
+  relation: same-as
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
+```
+
+| Field | Rule |
+|---|---|
+| `scheme` | `idta-cds`: identifiers the Industrial Digital Twin Association (IDTA) publishes in its submodel templates, of the form `https://admin-shell.io/idta/…` or `urn:samm:io.admin-shell.idta.…`. `iec-cdd`: IRDI of the IEC Common Data Dictionary (IEC 61360), of the form `0112/2///…`. `eclass` is reserved: the schema rejects it until it is cleared whether ECLASS identifiers may be published in this repository. |
+| `id` | The identifier exactly as published. Only the identifier: no names, definitions or other content of the dictionary. |
+| `relation` | `same-as`: the identifier denotes the same information as the data point. `is-case-of`: the source declares the concept of the data point a case of the concept the identifier denotes (`isCaseOf` of an AAS concept description); that concept can be more general, or the same concept in another dictionary or model. |
+| `source` | Document and version that tie the identifier to the data point. |
+
+An identifier is only listed when a published document ties it to the data
+point: the document cites the clause of the legal act given in `basis`, or it
+defines the concept as the EN 18223 attribute given in `en18223_attribute`. A
+similar name is not enough. Where that document declares the concept a case of
+further concepts (`isCaseOf`), these are listed with `is-case-of` and the same
+`source`.
+
+Adding or correcting `semantic_ids` does not change the meaning of a data point
+and does not bump its `version`.
 
 ## Identifiers
 

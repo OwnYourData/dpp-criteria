@@ -21,3 +21,24 @@ basis:
   clause: Art. 2(30); Art. 10(1)(a), (c); Annex III, point (b) and second paragraph
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+semantic_ids:
+- scheme: idta-cds
+  id: https://admin-shell.io/idta/cds/uniqueProductIdentifier/1
+  relation: same-as
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
+- scheme: idta-cds
+  id: urn:samm:io.admin-shell.idta.dpp.dpp_metadata:1.0.0#uniqueProductIdentifier
+  relation: is-case-of
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
+- scheme: iec-cdd
+  id: 0112/2///61360_7#CBA055#001
+  relation: is-case-of
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
+- scheme: idta-cds
+  id: urn:samm:io.admin-shell.idta.digital_nameplate:3.0.0#uriOfTheProduct
+  relation: is-case-of
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
+- scheme: iec-cdd
+  id: 0112/2///61987#ABN590#002
+  relation: is-case-of
+  source: IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2
