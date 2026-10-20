@@ -1,0 +1,16 @@
+id: DP-ESPR-999
+version: 1
+regime: ESPR
+tier: fixed
+name: Schema test vector
+description: >-
+  A test vector validates as described in its file name.
+access: unspecified
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  kind: regulation
+semantic_ids:
+- scheme: other-dictionary
+  id: https://admin-shell.io/idta/cds/example/1
+  relation: same-as
+  source: Test document, version 1

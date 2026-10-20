@@ -6,6 +6,8 @@ Data points that EU legal acts require, allow or expect in a digital product pas
 
 Data points are reference material for criteria. They are not checked themselves and are not legal advice: which data points apply to a product follows from the delegated or product-specific act for its product group.
 
+Where a published document ties a data point to concepts of open dictionaries, the data point lists their identifiers under "Semantic identifiers": identifiers from the submodel templates of the Industrial Digital Twin Association (IDTA, CC BY 4.0) and IRDIs of the IEC Common Data Dictionary (source: IEC). Only the identifiers are given, no names or definitions of the dictionaries.
+
 ## Overview
 
 | | public | restricted to named actors | set by the delegated act | not specified | total |
@@ -296,6 +298,16 @@ Persistent unique identifier that the data carrier links to the digital product 
 **Basis**
 
 - [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 2(30); Art. 10(1)(a), (c); Annex III, point (b) and second paragraph (regulation)
+
+**Semantic identifiers**
+
+From IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2:
+
+- same as IDTA `https://admin-shell.io/idta/cds/uniqueProductIdentifier/1`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.dpp.dpp_metadata:1.0.0#uniqueProductIdentifier`
+- is a case of IEC CDD `0112/2///61360_7#CBA055#001`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.digital_nameplate:3.0.0#uriOfTheProduct`
+- is a case of IEC CDD `0112/2///61987#ABN590#002`
 
 Source: [espr/DP-ESPR-001.yaml](espr/DP-ESPR-001.yaml)
 
@@ -940,6 +952,13 @@ Unique identifier of the manufacturer as an economic operator.
 
 - [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Annex III, point (g) and second paragraph; Art. 12(1); Art. 2(31) (regulation)
 
+**Semantic identifiers**
+
+From IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2:
+
+- same as IDTA `https://admin-shell.io/idta/cds/economicOperatorId/1`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.dpp.dpp_metadata:1.0.0#economicOperatorId`
+
 Source: [espr/DP-ESPR-030.yaml](espr/DP-ESPR-030.yaml)
 
 #### DP-ESPR-031
@@ -981,6 +1000,14 @@ Identifier of sites or buildings involved in the life cycle of the product.
 **Basis**
 
 - [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Annex III, point (i); Art. 12(1), (3) (regulation)
+
+**Semantic identifiers**
+
+From IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2:
+
+- same as IDTA `https://admin-shell.io/idta/cds/facilityId/1`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.dpp.dpp_metadata:1.0.0#facilityId`
+- is a case of IDTA `https://admin-shell.io/idta/nameplate/3/0/UniqueFacilityIdentifier`
 
 Source: [espr/DP-ESPR-032.yaml](espr/DP-ESPR-032.yaml)
 
@@ -1582,6 +1609,16 @@ Unique product identifier of the toy, following the standards set under ESPR (Ar
 **Basis**
 
 - [Regulation (EU) 2025/2509 (toy safety)](https://eur-lex.europa.eu/eli/reg/2025/2509/oj), Annex VI, Part I, point (a); Art. 19(2)(h); Art. 21 (regulation)
+
+**Semantic identifiers**
+
+From IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2:
+
+- same as IDTA `https://admin-shell.io/idta/cds/uniqueProductIdentifier/1`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.dpp.dpp_metadata:1.0.0#uniqueProductIdentifier`
+- is a case of IEC CDD `0112/2///61360_7#CBA055#001`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.digital_nameplate:3.0.0#uriOfTheProduct`
+- is a case of IEC CDD `0112/2///61987#ABN590#002`
 
 Source: [toy/DP-TOY-003.yaml](toy/DP-TOY-003.yaml)
 
@@ -3806,6 +3843,16 @@ Unique identifier that the economic operator placing the battery on the market a
 - [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77(3), first subparagraph (regulation)
 - [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 1 (guidance)
 
+**Semantic identifiers**
+
+From IDTA 02099-1 Digital Product Passport – Part 1 Metadata, version 1.0 (May 2026), submodel template 1.0.2:
+
+- same as IDTA `https://admin-shell.io/idta/cds/uniqueProductIdentifier/1`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.dpp.dpp_metadata:1.0.0#uniqueProductIdentifier`
+- is a case of IEC CDD `0112/2///61360_7#CBA055#001`
+- is a case of IDTA `urn:samm:io.admin-shell.idta.digital_nameplate:3.0.0#uriOfTheProduct`
+- is a case of IEC CDD `0112/2///61987#ABN590#002`
+
 Source: [batt/DP-BATT-001.yaml](batt/DP-BATT-001.yaml)
 
 #### DP-BATT-002
@@ -4182,6 +4229,12 @@ Extinguishing agent that can be used for the battery.
 
 - [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 1(a); Annex VI, Part A, point 9 (regulation)
 - [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 14 (guidance)
+
+**Semantic identifiers**
+
+From IDTA 02035-7 Digital Battery Passport – Part 7 Circularity, version 1.0 (February 2026), submodel template 1.0.2:
+
+- same as IDTA `urn:samm:io.admin-shell.idta.batterypass.circularity:1.0.0#extinguishingAgents`
 
 Source: [batt/DP-BATT-014.yaml](batt/DP-BATT-014.yaml)
 
@@ -5140,6 +5193,12 @@ Contact details of the sources from which replacement spares can be obtained.
 - [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 2(b) (regulation)
 - [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 47 (guidance)
 
+**Semantic identifiers**
+
+From IDTA 02035-7 Digital Battery Passport – Part 7 Circularity, version 1.0 (February 2026), submodel template 1.0.2:
+
+- same as IDTA `urn:samm:io.admin-shell.idta.batterypass.circularity:1.0.0#sparePartSources`
+
 Source: [batt/DP-BATT-047.yaml](batt/DP-BATT-047.yaml)
 
 #### DP-BATT-048
@@ -5168,6 +5227,12 @@ Information for dismantling the battery, at least exploded diagrams of the syste
 
 - [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Annex XIII, point 2(c) (regulation)
 - [European Commission, Guidance Document: Digital Batteries Passport – data points by category, version 2.0 of 15 August 2026](https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en), data point 48 (guidance)
+
+**Semantic identifiers**
+
+From IDTA 02035-7 Digital Battery Passport – Part 7 Circularity, version 1.0 (February 2026), submodel template 1.0.2:
+
+- same as IDTA `urn:samm:io.admin-shell.idta.batterypass.circularity:1.0.0#dismantlingAndRemovalInformation`
 
 Source: [batt/DP-BATT-048.yaml](batt/DP-BATT-048.yaml)
 

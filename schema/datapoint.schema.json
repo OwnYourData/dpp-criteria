@@ -151,6 +151,15 @@
         }
       }
     },
+    "semantic_ids": {
+      "description": "Identifiers of concepts in open dictionaries that denote this data point, so that passports built on those dictionaries (for example Asset Administration Shell submodels) can be matched to it. Only identifiers: no names or definitions from the dictionaries. Each entry is taken from a published document that ties the identifier to a clause of the legal act in basis or to the EN 18223 attribute in en18223_attribute.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/semanticId"
+      }
+    },
     "notes": {
       "type": "string"
     }
@@ -273,6 +282,95 @@
           "then": {
             "required": [
               "applies_from"
+            ]
+          }
+        }
+      ]
+    },
+    "semanticId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scheme",
+        "id",
+        "relation",
+        "source"
+      ],
+      "properties": {
+        "scheme": {
+          "description": "Dictionary that issues the identifier. idta-cds: concept descriptions published by the IDTA in its submodel templates (https://admin-shell.io/idta/... or urn:samm:io.admin-shell.idta...). iec-cdd: IRDI of the IEC Common Data Dictionary (IEC 61360). eclass: reserved; not accepted until publishing ECLASS identifiers in this repository is cleared.",
+          "enum": [
+            "idta-cds",
+            "iec-cdd",
+            "eclass"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relation": {
+          "description": "same-as: the identifier denotes the same information as the data point. is-case-of: the source declares the concept of the data point a case of the concept the identifier denotes (isCaseOf of a concept description in the Asset Administration Shell); that concept can be more general or the same concept in another dictionary or model.",
+          "enum": [
+            "same-as",
+            "is-case-of"
+          ]
+        },
+        "source": {
+          "description": "Document and version the identifier and its relation to the data point are taken from.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "scheme": {
+                "const": "idta-cds"
+              }
+            },
+            "required": [
+              "scheme"
+            ]
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "pattern": "^(https://admin-shell\\.io/idta/[^\\s]+|urn:samm:io\\.admin-shell\\.idta\\.[^\\s]+)$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "scheme": {
+                "const": "iec-cdd"
+              }
+            },
+            "required": [
+              "scheme"
+            ]
+          },
+          "then": {
+            "properties": {
+              "id": {
+                "pattern": "^0112/2///[0-9A-Za-z_]+#[A-Z]{3}[0-9]{3}(#[0-9]{3})?$"
+              }
+            }
+          }
+        },
+        {
+          "$comment": "ECLASS identifiers are reserved in the scheme list but rejected until their publication is cleared.",
+          "not": {
+            "properties": {
+              "scheme": {
+                "const": "eclass"
+              }
+            },
+            "required": [
+              "scheme"
             ]
           }
         }

@@ -69,3 +69,15 @@ Passport – data points by category, version 2.0 of 15 August 2026,
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence. Changes:
 names and descriptions paraphrased, applicability expressed in a structured
 field, access and granularity added from Regulation (EU) 2023/1542.
+
+The semantic identifiers of the data points (`semantic_ids`) come from:
+
+- the submodel templates that the Industrial Digital Twin Association (IDTA)
+  publishes in [admin-shell-io/submodel-templates](https://github.com/admin-shell-io/submodel-templates)
+  under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence. Each
+  entry names the template and version in `source`. Only the identifiers and
+  their `isCaseOf` relations are taken over, no names or definitions;
+- the IEC Common Data Dictionary (IEC 61360), source: IEC. The IRDIs are
+  taken as named in the IDTA templates; they are free attributes under the
+  [licence of the IEC CDD](https://cdd.iec.ch/CDD/iec61360/iec61360.nsf/License),
+  section 5.
