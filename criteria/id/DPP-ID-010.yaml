@@ -26,7 +26,9 @@ applies_if:
 check:
   type: shacl
   structure: DigitalProductPassport
-catalogue_ref: DPP-ID-010
+catalogue_ref:
+- DPP-ID-010
+- DPP-INT-013
 notes: >-
   Checked in the SOyA structure DigitalProductPassport by syntax, with the same
   schemes as DPP-ID-009. facilityId is optional in EN 18223 (cardinality 0..1);

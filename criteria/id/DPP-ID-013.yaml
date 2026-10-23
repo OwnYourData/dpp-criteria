@@ -28,9 +28,12 @@ check:
     status:
     - 200
 catalogue_ref:
-- DPP-CFG-006
+- DPP-ID-013
+- DPP-ACC-038
+- DPP-ACC-043
+- DPP-SEC-037
 - DPP-ACC-005
-- DPP-BAT-006
+- DPP-CFG-006
 notes: >-
   The request is a plain HTTPS GET without authorization or special headers. This
   also covers the absence of vendor lock-in as far as it can be observed.

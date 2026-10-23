@@ -1,5 +1,5 @@
 id: DPP-SEC-001
-version: 3
+version: 4
 status: active
 title: Passport cannot be changed without authorisation
 statement: >-
@@ -7,6 +7,10 @@ statement: >-
   authorisation.
 level: MUST
 basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 11, point (f)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
 - source: EN 18221:2026
   clause: '4.1'
   kind: harmonised-standard
@@ -17,7 +21,7 @@ basis:
   clause: '6.1'
   kind: standard
 - source: EN 18246:2026
-  clause: '4.7'
+  clause: 4.1, 4.7
   kind: standard
 target: service
 method: automated

@@ -23,7 +23,9 @@ applies_if:
 check:
   type: shacl
   structure: DigitalProductPassport
-catalogue_ref: DPP-ID-009
+catalogue_ref:
+- DPP-ID-009
+- DPP-INT-013
 notes: >-
   Checked in the SOyA structure DigitalProductPassport by syntax: ISO/IEC 6523
   (ICD prefix), GS1 GLN or Digital Link (ISO/IEC 15418), DID or DOI. Whether the

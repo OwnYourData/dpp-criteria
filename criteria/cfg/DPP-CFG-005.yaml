@@ -1,5 +1,5 @@
 id: DPP-CFG-005
-version: 1
+version: 2
 status: proposed
 title: Granularity matches the product identifier
 statement: >-
@@ -8,7 +8,7 @@ statement: >-
 level: MUST
 basis:
 - source: Regulation (EU) 2024/1781 (ESPR)
-  clause: Art. 9(2)(d)
+  clause: Art. 9(2)(d); Art. 10(1)(f)
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
 - source: EN 18223:2026
@@ -23,7 +23,10 @@ requires_features: []
 check:
   type: shacl
   structure: DigitalProductPassport
-catalogue_ref: DPP-CFG-005
+catalogue_ref:
+- DPP-CFG-005
+- DPP-DAT-019
+- DPP-ID-033
 notes: >-
   Checked in the SOyA structure DigitalProductPassport for identifiers in GS1
   Digital Link form (ID scheme 1, EN 18219 5.2.2.1): /21/ means item, /10/ batch,

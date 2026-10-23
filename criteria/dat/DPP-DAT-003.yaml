@@ -34,6 +34,8 @@ catalogue_ref:
 - DPP-DAT-001
 - DPP-DAT-002
 - DPP-DAT-004
+- DPP-DEX-007
+- DPP-DAT-036
 notes: >-
   The response has to parse as a single JSON object. Attribute names are checked
   by DPP-DAT-014. The request states Accept application/json: the criterion asks

@@ -18,9 +18,11 @@ check:
   type: shacl
   structure: DigitalProductPassport
 catalogue_ref:
+- DPP-DAT-014
 - DPP-CRT-009
 - DPP-DAT-007
 - DPP-DAT-009
+- DPP-ID-025
 notes: >-
   facilityId is optional (0..1), contentSpecificationIds may repeat (0..*). lastUpdated
   is an ISO 8601 UTC timestamp. dppStatus is a free string; values outside the examples

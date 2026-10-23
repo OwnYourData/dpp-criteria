@@ -20,6 +20,9 @@ check:
 catalogue_ref:
 - DPP-ACC-008
 - DPP-ROL-019
+- DPP-ACC-032
+- DPP-ACC-022
+- DPP-ACC-023
 notes: >-
   EN 18239:2026 asks for access rights terms at data element level, documented
   processes for granting, changing and revoking access rights, a mechanism for

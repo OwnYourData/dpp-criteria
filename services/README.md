@@ -179,10 +179,10 @@ Feature flags:
 | `fine-granular-api` | ReadDataElement: `GET {api_base}/dpps/{dppId}/elements/{elementIdPath}` (EN 18222 6.1) | DPP-API-021 |
 | `write-api` | Create and update passports (UpdateDPPById, …) | DPP-API-016 (needs credentials, not run yet) |
 | `historical-versions` | ReadDPPVersionByIdAndDate (EN 18222 4.4) | DPP-API-019; DPP-STO-015 (with `backup-provider`) |
-| `access-levels` | Controlled data elements that only authorised roles receive | DPP-ACC-006, DPP-ACC-012, DPP-STO-017; DPP-ACC-003 (needs credentials, not run yet); DPP-ACC-008, DPP-ACC-014 (self-declared) |
+| `access-levels` | Controlled data elements that only authorised roles receive | DPP-ACC-006, DPP-ACC-012, DPP-STO-017; DPP-ACC-003 (needs credentials, not run yet); DPP-ACC-008, DPP-ACC-014, DPP-ACC-015 (self-declared) |
 | `backup-provider` | The service acts as backup DPP service provider | DPP-STO-019; DPP-STO-015 (with `historical-versions`) |
 | `registry-integration` | Registration with the EU DPP registry | – |
-| `battery` | Battery passports | DPP-BAT-004 (with `access-levels`, needs credentials, not run yet) |
+| `battery` | Battery passports | DPP-BAT-003 (with `access-levels`, needs credentials, not run yet) |
 | `pcds` | Product circularity data sheets (ISO 59040) in passports | – |
 
 Example of a self-declaration:

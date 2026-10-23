@@ -17,7 +17,10 @@ requires_features:
 - access-levels
 check:
   type: declaration
-catalogue_ref: DPP-LCM-010
+catalogue_ref:
+- DPP-LCM-010
+- DPP-LCM-011
+- DPP-LCM-014
 notes: >-
   EN 18239:2026 requires accountability for every access to controlled DPP data
   (5.2 (5)) and an auditable, tamper-protected log of all access and of all

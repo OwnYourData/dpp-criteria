@@ -1,0 +1,31 @@
+id: DPP-ACC-015
+version: 1
+status: proposed
+title: Actors reading controlled data are identified by a globally unique identifier
+statement: >-
+  A DPP service MUST identify every actor that accesses controlled passport data
+  by a globally unique operator identifier provided during authentication.
+level: MUST
+basis:
+- source: EN 18239:2026
+  clause: 5.2 (1), (8)
+  kind: standard
+- source: EN 18246:2026
+  clause: '4.2'
+  kind: standard
+target: service
+method: self-declared
+requires_features:
+- access-levels
+check:
+  type: declaration
+catalogue_ref:
+- DPP-ACC-015
+- DPP-ACC-033
+notes: >-
+  EN 18239 gives every actor a globally unique operator identifier as defined in
+  EN 18219 and makes it part of authentication, for example inside a role
+  credential; EN 18246 requires every actor that accesses controlled data to be
+  identified by such an identifier. The declaration names the identifier schemes
+  the service accepts, for example DIDs (EN 18219 6.4), and how the identifier
+  enters the authentication.

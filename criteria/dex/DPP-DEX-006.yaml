@@ -18,6 +18,7 @@ check:
     reject:
     - '1.0'
     - '1.1'
+catalogue_ref: DPP-DEX-006
 notes: >-
   Checked on the HTTPS port of the API base only; port 80 (redirect to HTTPS,
   ACME HTTP-01) is not tested and stays covered by DPP-DEX-002. A request forced

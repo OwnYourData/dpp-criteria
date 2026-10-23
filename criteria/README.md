@@ -10,10 +10,10 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 
 | | active | proposed | total |
 |---|---:|---:|---:|
-| Published passport (dpplint) | 6 | 18 | 24 |
-| DPP service (dpp-validator) | 15 | 12 | 27 |
+| Published passport (dpplint) | 6 | 22 | 28 |
+| DPP service (dpp-validator) | 15 | 14 | 29 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 21 | 31 | 52 |
+| **All criteria** | 21 | 37 | 58 |
 
 How to read the entries:
 
@@ -47,7 +47,9 @@ How to read the entries:
 | [DPP-ID-010](#dpp-id-010) | Facility identifier follows an EN 18219 scheme | MUST | published passport | proposed |
 | [DPP-ID-013](#dpp-id-013) | Passport readable without registration or credentials | MUST | published passport | active |
 | [DPP-ID-014](#dpp-id-014) | Product identifier is a URL or convertible to one | MUST | published passport | proposed |
+| [DPP-ID-015](#dpp-id-015) | Identifiers use ISO/IEC 646 characters and, as URIs, RFC 3986 syntax | MUST | published passport | proposed |
 | [DPP-ID-016](#dpp-id-016) | DID identifiers follow DID Core, DID Resolution and VC 2.0 | MUST | published passport | active |
+| [DPP-ID-054](#dpp-id-054) | A product DID uses did:web, did:ethr or did:ebsi | SHOULD | published passport | proposed |
 
 **Data carrier**
 
@@ -71,6 +73,7 @@ How to read the entries:
 | [DPP-DAT-014](#dpp-dat-014) | Passport header uses the EN 18223 attributes | MUST | published passport | proposed |
 | [DPP-DAT-015](#dpp-dat-015) | Granularity uses the EN 18223 values | MUST | published passport | proposed |
 | [DPP-DAT-016](#dpp-dat-016) | Passport is available as HTML | MUST | published passport | active |
+| [DPP-DAT-026](#dpp-dat-026) | valueDataType names no XSD type that EN 18223 excludes | MUST | published passport | proposed |
 
 **APIs and data exchange**
 
@@ -107,6 +110,7 @@ How to read the entries:
 | [DPP-ACC-008](#dpp-acc-008) | Access policy defines element-level rights, granting and revocation | MUST | DPP service | proposed |
 | [DPP-ACC-012](#dpp-acc-012) | Fine-granular read of a controlled element without credentials is refused | MUST | DPP service | proposed |
 | [DPP-ACC-014](#dpp-acc-014) | Access to controlled data is logged tamper-evidently | MUST | DPP service | proposed |
+| [DPP-ACC-015](#dpp-acc-015) | Actors reading controlled data are identified by a globally unique identifier | MUST | DPP service | proposed |
 
 **Security, integrity and privacy**
 
@@ -116,6 +120,8 @@ How to read the entries:
 | [DPP-SEC-002](#dpp-sec-002) | Integrity of the passport version is verifiable | MUST | published passport | active |
 | [DPP-SEC-013](#dpp-sec-013) | Integrity proof is issued by the economic operator | SHOULD | published passport | proposed |
 | [DPP-SEC-014](#dpp-sec-014) | HTML view loads no external components | MUST | published passport | proposed |
+| [DPP-SEC-020](#dpp-sec-020) | Public passport data are served without cookies | MUST | published passport | proposed |
+| [DPP-SEC-022](#dpp-sec-022) | Access is limited against attacks and mass scraping | MUST | DPP service | proposed |
 
 **Storage, backup and persistence**
 
@@ -143,7 +149,7 @@ How to read the entries:
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
 | [DPP-BAT-002](#dpp-bat-002) | Battery passport exposes the public Annex XIII data | MUST | published passport | proposed |
-| [DPP-BAT-004](#dpp-bat-004) | Battery passport releases Annex XIII point 3 data only to authorities | MUST | DPP service | proposed |
+| [DPP-BAT-003](#dpp-bat-003) | Battery passport releases Annex XIII point 3 data only to authorities | MUST | DPP service | proposed |
 
 **Circularity and environmental data**
 
@@ -163,13 +169,13 @@ How to read the entries:
 
 **Granularity matches the product identifier**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 1
+**MUST** · checked on: published passport · automated · status: proposed · version 2
 
 > The granularity of a DPP MUST match the level (model, batch or item) that its unique product identifier identifies.
 
 **Basis**
 
-- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 9(2)(d) (regulation)
+- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 9(2)(d); Art. 10(1)(f) (regulation)
 - EN 18223:2026, 4.1.2.2 (harmonised standard)
 - EN 18219:2026, 4.4.2 (1), 5.2.2.1 (harmonised standard)
 
@@ -177,7 +183,7 @@ How to read the entries:
 
 **Notes** Checked in the SOyA structure DigitalProductPassport for identifiers in GS1 Digital Link form (ID scheme 1, EN 18219 5.2.2.1): /21/ means item, /10/ batch, otherwise model. Other schemes do not encode the level and are not rated. The allowed values are checked by DPP-DAT-015.
 
-Catalogue rows: DPP-CFG-005 · Source: [cfg/DPP-CFG-005.yaml](cfg/DPP-CFG-005.yaml)
+Catalogue rows: DPP-CFG-005, DPP-DAT-019, DPP-ID-033 · Source: [cfg/DPP-CFG-005.yaml](cfg/DPP-CFG-005.yaml)
 
 ## Governance and roles
 
@@ -226,15 +232,14 @@ Catalogue rows: DPP-ID-001, DPP-CAR-004 · Source: [id/DPP-ID-001.yaml](id/DPP-I
 
 **Product identifier stays resolvable over time**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 1
+**MUST** · checked on: published passport · automated · status: proposed · version 2
 
 > The unique product identifier MUST keep resolving to its passport for as long as the passport has to be available.
 
 **Basis**
 
-- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 10(1)(a) (regulation)
-- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 9(2)(i) (regulation)
-- EN 18219:2026, 4.2.2 (harmonised standard)
+- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 9(2)(i); Art. 10(1)(a); Art. 11, point (e) (regulation)
+- EN 18219:2026, 4.2.2 (2), (3) (harmonised standard)
 - EN 18221:2026, 4.1 (harmonised standard)
 
 **How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET). Expected: a single passport object whose `uniqueProductIdentifier` equals the identifier.
@@ -243,7 +248,7 @@ Rated only from the validator's daily runs: fails after 3 consecutive days witho
 
 **Notes** Rated only by the validator from its daily runs against the test data of a listed service; single failures appear in the history. A single linter run does not rate this criterion (see DPP-ID-001).
 
-Catalogue rows: DPP-ID-002, DPP-BCK-001, DPP-BCK-003 · Source: [id/DPP-ID-002.yaml](id/DPP-ID-002.yaml)
+Catalogue rows: DPP-ID-002, DPP-ID-022, DPP-BCK-012, DPP-BCK-003 · Source: [id/DPP-ID-002.yaml](id/DPP-ID-002.yaml)
 
 ### DPP-ID-009
 
@@ -264,7 +269,7 @@ Catalogue rows: DPP-ID-002, DPP-BCK-001, DPP-BCK-003 · Source: [id/DPP-ID-002.y
 
 **Notes** Checked in the SOyA structure DigitalProductPassport by syntax: ISO/IEC 6523 (ICD prefix), GS1 GLN or Digital Link (ISO/IEC 15418), DID or DOI. Whether the identifier is present is checked by DPP-ROL-016; DID-specific requirements by DPP-ID-016. The EU DPP registry accepts only NTR, LEI, VAT and eID identifiers for economic operators.
 
-Catalogue rows: DPP-ID-009 · Source: [id/DPP-ID-009.yaml](id/DPP-ID-009.yaml)
+Catalogue rows: DPP-ID-009, DPP-INT-013 · Source: [id/DPP-ID-009.yaml](id/DPP-ID-009.yaml)
 
 ### DPP-ID-010
 
@@ -286,7 +291,7 @@ Catalogue rows: DPP-ID-009 · Source: [id/DPP-ID-009.yaml](id/DPP-ID-009.yaml)
 
 **Notes** Checked in the SOyA structure DigitalProductPassport by syntax, with the same schemes as DPP-ID-009. facilityId is optional in EN 18223 (cardinality 0..1); without it the criterion is skipped.
 
-Catalogue rows: DPP-ID-010 · Source: [id/DPP-ID-010.yaml](id/DPP-ID-010.yaml)
+Catalogue rows: DPP-ID-010, DPP-INT-013 · Source: [id/DPP-ID-010.yaml](id/DPP-ID-010.yaml)
 
 ### DPP-ID-013
 
@@ -307,7 +312,7 @@ Catalogue rows: DPP-ID-010 · Source: [id/DPP-ID-010.yaml](id/DPP-ID-010.yaml)
 
 **Notes** The request is a plain HTTPS GET without authorization or special headers. This also covers the absence of vendor lock-in as far as it can be observed. EN 18239:2026 and EN 18246:2026 likewise require read access to public DPP data without authentication and without additional software.
 
-Catalogue rows: DPP-CFG-006, DPP-ACC-005, DPP-BAT-006 · Source: [id/DPP-ID-013.yaml](id/DPP-ID-013.yaml)
+Catalogue rows: DPP-ID-013, DPP-ACC-038, DPP-ACC-043, DPP-SEC-037, DPP-ACC-005, DPP-CFG-006 · Source: [id/DPP-ID-013.yaml](id/DPP-ID-013.yaml)
 
 ### DPP-ID-014
 
@@ -325,7 +330,26 @@ Catalogue rows: DPP-CFG-006, DPP-ACC-005, DPP-BAT-006 · Source: [id/DPP-ID-013.
 
 **Notes** Checked in the SOyA structure DigitalProductPassport by syntax: an HTTP(S) URL, a DID (resolved by DID Resolution), an EPC URN (converted per the GS1 EPC Tag Data Standard) or an ISO/IEC 15434 message (converted per ISO/IEC 18975).
 
-Source: [id/DPP-ID-014.yaml](id/DPP-ID-014.yaml)
+Catalogue rows: DPP-ID-014 · Source: [id/DPP-ID-014.yaml](id/DPP-ID-014.yaml)
+
+### DPP-ID-015
+
+**Identifiers use ISO/IEC 646 characters and, as URIs, RFC 3986 syntax**
+
+**MUST** · checked on: published passport · automated · status: proposed · version 1
+
+> The unique product, operator and facility identifiers in a passport MUST consist of ISO/IEC 646 characters and, where they are URIs, MUST follow RFC 3986 with every other character percent-encoded.
+
+**Basis**
+
+- EN 18219:2026, 4.3.2 (1) (harmonised standard)
+- [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986.html#section-2), 2 (standard)
+
+**How it is checked** The passport fetched via the product identifier is validated against the SHACL shapes of the SOyA structure [`DigitalProductPassport`](../soya/DigitalProductPassport.yml); only the results tagged with this criterion's ID count.
+
+**Notes** Checked on uniqueProductIdentifier, economicOperatorId and facilityId. ISO/IEC 646 is a 7-bit character set, so any character outside US-ASCII fails. A value that begins with a URI scheme (a letter, then letters, digits, "+", "-" or ".", then ":") is treated as a URI: it may then contain only the unreserved and reserved characters of RFC 3986 and percent-encodings ("%" and two hexadecimal digits); a space, for example, fails. Reserved characters such as ":" and "/" keep their role as delimiters. Element strings without a scheme, such as ISO/IEC 15434 messages, are checked for ISO/IEC 646 only. digitalProductPassportId is an identifier of EN 18223, not of EN 18219, and is not checked here.
+
+Catalogue rows: DPP-ID-015, DPP-ID-023 · Source: [id/DPP-ID-015.yaml](id/DPP-ID-015.yaml)
 
 ### DPP-ID-016
 
@@ -343,7 +367,27 @@ Source: [id/DPP-ID-014.yaml](id/DPP-ID-014.yaml)
 
 **Notes** Values that are not DIDs are skipped. Resolution uses didlint. Associated credentials are not required; if there are none, a warning is given. No issuer is prescribed (EN 18219 6.4.3 lists registries only as an option).
 
-Source: [id/DPP-ID-016.yaml](id/DPP-ID-016.yaml)
+Catalogue rows: DPP-ID-016 · Source: [id/DPP-ID-016.yaml](id/DPP-ID-016.yaml)
+
+### DPP-ID-054
+
+**A product DID uses did:web, did:ethr or did:ebsi**
+
+**SHOULD** · checked on: published passport · automated · status: proposed · version 1
+
+> A unique product identifier that is a DID SHOULD use the DID method did:web, did:ethr or did:ebsi.
+
+**Basis**
+
+- EN 18219:2026, 5.4.3 (harmonised standard)
+
+**Applies only if** the passport meets: `$.uniqueProductIdentifier` matches `^did:` (otherwise skipped).
+
+**How it is checked** The passport fetched via the product identifier is validated against the SHACL shapes of the SOyA structure [`DigitalProductPassport`](../soya/DigitalProductPassport.yml); only the results tagged with this criterion's ID count.
+
+**Notes** EN 18219 ID scheme 3 (5.4) bases product identifiers on DIDs and recommends one of three DID methods. Another method gives a warning. Passports whose product identifier is not a DID are skipped. DID Core conformance of such identifiers is not checked here.
+
+Catalogue rows: DPP-ID-054 · Source: [id/DPP-ID-054.yaml](id/DPP-ID-054.yaml)
 
 ## Data carrier
 
@@ -366,7 +410,7 @@ Source: [id/DPP-ID-016.yaml](id/DPP-ID-016.yaml)
 
 **Notes** Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the identifier is checked; conformity of the physical data carrier (EN 18220) cannot be observed. Since version 2, a GS1 Digital Link whose GTIN after /01/ carries the GS1 prefix 952 (the first three digits of a GTIN-13, or the three digits after the indicator digit of a GTIN-14) gives a warning: GS1 uses this prefix for demonstrations and examples, so the GTIN is not assigned under a GS1 Company Prefix, and the global uniqueness that EN 18219 5.2.2.1 f) and g) expect for scheme 1 is not ensured. A demonstration passport gets this warning on purpose.
 
-Catalogue rows: DPP-CAR-002 · Source: [car/DPP-CAR-002.yaml](car/DPP-CAR-002.yaml)
+Catalogue rows: DPP-CAR-002, DPP-ID-043, DPP-INT-007 · Source: [car/DPP-CAR-002.yaml](car/DPP-CAR-002.yaml)
 
 ## DPP creation and validation
 
@@ -409,7 +453,7 @@ Catalogue rows: DPP-CRT-003 · Source: [crt/DPP-CRT-003.yaml](crt/DPP-CRT-003.ya
 
 **Notes** The response has to parse as a single JSON object. Attribute names are checked by DPP-DAT-014. The request states Accept application/json: the criterion asks whether the passport is available as JSON, not which format a client without a stated preference receives; that is assessed by DPP-DAT-016. EN 18216 Clause 5 makes JSON the required format and allows JSON-LD in addition through content negotiation, as long as a plain JSON parser can read it. A single JSON object delivered as application/ld+json to a request for application/json therefore passes with a warning: the content is JSON, but the request for application/json is not honoured.
 
-Catalogue rows: DPP-DAT-003, DPP-DAT-001, DPP-DAT-002, DPP-DAT-004 · Source: [dat/DPP-DAT-003.yaml](dat/DPP-DAT-003.yaml)
+Catalogue rows: DPP-DAT-003, DPP-DAT-001, DPP-DAT-002, DPP-DAT-004, DPP-DEX-007, DPP-DAT-036 · Source: [dat/DPP-DAT-003.yaml](dat/DPP-DAT-003.yaml)
 
 ### DPP-DAT-006
 
@@ -434,13 +478,13 @@ Catalogue rows: DPP-DAT-006, DPP-ENT-012 · Source: [dat/DPP-DAT-006.yaml](dat/D
 
 **Related resources are typed and reachable**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 1
+**MUST** · checked on: published passport · automated · status: proposed · version 2
 
 > Links from a DPP to other passports or resources MUST carry a content type and a resolvable URL.
 
 **Basis**
 
-- [Implementing Regulation (EU) 2026/1778 (DPP registry)](https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj), Art. 12(1)(a) (regulation)
+- [Implementing Regulation (EU) 2026/1778 (DPP registry)](https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj), Art. 12(2)(a) (regulation)
 - EN 18223:2026, 4.1.2.7 (harmonised standard)
 - EN 18221:2026, 4.1, 4.4 (harmonised standard)
 
@@ -448,7 +492,7 @@ Catalogue rows: DPP-DAT-006, DPP-ENT-012 · Source: [dat/DPP-DAT-006.yaml](dat/D
 
 **Notes** A URL that does not answer is reported as a warning, so that outages of third-party sites do not fail the passport. Without RelatedResource elements the result is skipped.
 
-Catalogue rows: DPP-DAT-011 · Source: [dat/DPP-DAT-011.yaml](dat/DPP-DAT-011.yaml)
+Catalogue rows: DPP-DAT-011, DPP-STO-031, DPP-STO-040 · Source: [dat/DPP-DAT-011.yaml](dat/DPP-DAT-011.yaml)
 
 ### DPP-DAT-014
 
@@ -466,7 +510,7 @@ Catalogue rows: DPP-DAT-011 · Source: [dat/DPP-DAT-011.yaml](dat/DPP-DAT-011.ya
 
 **Notes** facilityId is optional (0..1), contentSpecificationIds may repeat (0..\*). lastUpdated is an ISO 8601 UTC timestamp. dppStatus is a free string; values outside the examples active, inactive, archived, invalid give a warning, independent of capitalisation. dppSchemaVersion and contentSpecificationIds are strings and are not resolved. A passport ID that is not a URI gives a warning. Draft-era names (ProductID, DPPStatus, …) fail because the published attribute is missing.
 
-Catalogue rows: DPP-CRT-009, DPP-DAT-007, DPP-DAT-009 · Source: [dat/DPP-DAT-014.yaml](dat/DPP-DAT-014.yaml)
+Catalogue rows: DPP-DAT-014, DPP-CRT-009, DPP-DAT-007, DPP-DAT-009, DPP-ID-025 · Source: [dat/DPP-DAT-014.yaml](dat/DPP-DAT-014.yaml)
 
 ### DPP-DAT-015
 
@@ -484,7 +528,7 @@ Catalogue rows: DPP-CRT-009, DPP-DAT-007, DPP-DAT-009 · Source: [dat/DPP-DAT-01
 
 **Notes** Checked in the SOyA structure DigitalProductPassport. The standard lists the values in lower case, its serialization example writes "Model". Other capitalisation therefore only gives a warning.
 
-Catalogue rows: DPP-DAT-008 · Source: [dat/DPP-DAT-015.yaml](dat/DPP-DAT-015.yaml)
+Catalogue rows: DPP-DAT-015 · Source: [dat/DPP-DAT-015.yaml](dat/DPP-DAT-015.yaml)
 
 ### DPP-DAT-016
 
@@ -507,7 +551,25 @@ Catalogue rows: DPP-DAT-008 · Source: [dat/DPP-DAT-015.yaml](dat/DPP-DAT-015.ya
 
 **Notes** Only the HTML request decides pass or fail. Three further checks give at most a warning. (1) The HTML response lists Accept in its Vary header (RFC 9110 12.5.5), so that caches do not hand the HTML variant to JSON clients or the other way round; "Vary: \*" does not count. (2) A request with Accept \*/\* still returns application/json: JSON is the required format of EN 18216 Clause 5 and HTML is added only through content negotiation, so a client that states no preference keeps receiving JSON. (3) A request that prefers JSON and accepts HTML only with a low quality value (RFC 9110 12.5.1) returns application/json, so that the service weighs quality values instead of only looking for media types in the header. The accessibility requirements of the same clause (EN 301 549) are not checked automatically.
 
-Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
+Catalogue rows: DPP-DAT-016, DPP-ACC-029 · Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
+
+### DPP-DAT-026
+
+**valueDataType names no XSD type that EN 18223 excludes**
+
+**MUST** · checked on: published passport · automated · status: proposed · version 1
+
+> The valueDataType of a data element MUST NOT name an XSD list type, an XSD built-in type derived from string, NOTATION or QName.
+
+**Basis**
+
+- EN 18223:2026, 4.1.2.9 (harmonised standard)
+
+**How it is checked** The passport fetched via the product identifier is validated against the SHACL shapes of the SOyA structure [`DigitalProductPassport`](../soya/DigitalProductPassport.yml); only the results tagged with this criterion's ID count.
+
+**Notes** EN 18223 lets valueDataType name the data types of W3C XML Schema with three exceptions: the list types ENTITIES, IDREFS and NMTOKENS; the built-in types derived from string (normalizedString, token, language, Name, NCName, NMTOKEN, ID, IDREF and ENTITY); and the primitive types NOTATION and QName. xsd:string itself and xsd:base64Binary stay allowed. Whether valueDataType names an XSD type at all is checked by DPP-INT-005.
+
+Catalogue rows: DPP-DAT-026 · Source: [dat/DPP-DAT-026.yaml](dat/DPP-DAT-026.yaml)
 
 ## APIs and data exchange
 
@@ -530,7 +592,7 @@ Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
 
 **Notes** Checks malformed requests to ReadDPPIdsByProductIds. The answer to an unknown passport ID (404) is checked by DPP-API-022, so that it is also assessed in a read-only run.
 
-Catalogue rows: DPP-API-007 · Source: [api/DPP-API-007.yaml](api/DPP-API-007.yaml)
+Catalogue rows: DPP-API-029 · Source: [api/DPP-API-007.yaml](api/DPP-API-007.yaml)
 
 ### DPP-API-013
 
@@ -679,7 +741,7 @@ Catalogue rows: DPP-API-011 · Source: [api/DPP-API-020.yaml](api/DPP-API-020.ya
 
 **Notes** The fine-granular API itself is optional (EN 18222 6.1); the criterion applies only to services that declare it. The test data of the service names a JSONPath to a known data element. Step 1 requests it without the representation query flag, so the service answers in the default compressed representation (EN 18222 8.1, EN 18223 5.2), where the element may be a bare value, array or object without an elementId; step 1 therefore checks only status and content type. Step 2 sends the syntactically invalid expression "$\[". EN 18222 Table 15 maps a malformed request to ClientErrorBadRequest (400); 404 is not accepted, since a service that does not evaluate JSONPath at all would also answer 404.
 
-Source: [api/DPP-API-021.yaml](api/DPP-API-021.yaml)
+Catalogue rows: DPP-API-021, DPP-API-026 · Source: [api/DPP-API-021.yaml](api/DPP-API-021.yaml)
 
 ### DPP-API-022
 
@@ -699,7 +761,7 @@ Source: [api/DPP-API-021.yaml](api/DPP-API-021.yaml)
 
 **Notes** Taken over from version 1 of DPP-API-007, so that it is also assessed in a read-only run. Table 15 lists a result object for 404; a missing one gives a warning. 200 or 204 with an empty body is not accepted: the client could not tell an unknown passport from an empty answer.
 
-Catalogue rows: DPP-API-007 · Source: [api/DPP-API-022.yaml](api/DPP-API-022.yaml)
+Catalogue rows: DPP-API-029, DPP-API-028 · Source: [api/DPP-API-022.yaml](api/DPP-API-022.yaml)
 
 ### DPP-API-023
 
@@ -723,7 +785,7 @@ Catalogue rows: DPP-API-007 · Source: [api/DPP-API-022.yaml](api/DPP-API-022.ya
 
 **Notes** In the compressed representation (EN 18223 5.2.2) data elements are keyed by their elementId and the metadata is left out, so the passport has no elements array; the full representation (Annex A) lists them under elements with elementId and objectType. The check relies on that difference and assumes that no data element of the test passport has the elementId "elements". EN 18222 8.1 defines only the two values; another value is a malformed request (Table 15, 400), which gives at most a warning.
 
-Source: [api/DPP-API-023.yaml](api/DPP-API-023.yaml)
+Catalogue rows: DPP-API-023, DPP-DAT-033 · Source: [api/DPP-API-023.yaml](api/DPP-API-023.yaml)
 
 ### DPP-DEX-002
 
@@ -764,7 +826,7 @@ Catalogue rows: DPP-DEX-002, DPP-DEX-001 · Source: [dex/DPP-DEX-002.yaml](dex/D
 
 **Notes** TLS 1.3 is recommended; its absence gives a warning.
 
-Catalogue rows: DPP-DEX-003 · Source: [dex/DPP-DEX-003.yaml](dex/DPP-DEX-003.yaml)
+Catalogue rows: DPP-DEX-003, DPP-DEX-011, DPP-DEX-009 · Source: [dex/DPP-DEX-003.yaml](dex/DPP-DEX-003.yaml)
 
 ### DPP-DEX-004
 
@@ -804,7 +866,7 @@ Catalogue rows: DPP-DEX-004 · Source: [dex/DPP-DEX-004.yaml](dex/DPP-DEX-004.ya
 
 **Notes** HTTP/3 is recommended by the standard but not checked.
 
-Source: [dex/DPP-DEX-005.yaml](dex/DPP-DEX-005.yaml)
+Catalogue rows: DPP-DEX-005 · Source: [dex/DPP-DEX-005.yaml](dex/DPP-DEX-005.yaml)
 
 ### DPP-DEX-006
 
@@ -824,7 +886,7 @@ Source: [dex/DPP-DEX-005.yaml](dex/DPP-DEX-005.yaml)
 
 **Notes** Checked on the HTTPS port of the API base only; port 80 (redirect to HTTPS, ACME HTTP-01) is not tested and stays covered by DPP-DEX-002. A request forced to HTTP/1.0 or HTTP/1.1 over TLS counts as rejected if it gets no successful response: aborted connection or TLS handshake, or a status of 400 or higher. A 2xx or 3xx answer at either version fails the criterion. Recommended answer: refuse HTTP/1.x already in the TLS handshake (ALPN offers only h2), or answer 400 (ClientErrorBadRequest) with the result object of EN 18222. 505 HTTP Version Not Supported is not recommended, since it is not among the status codes that EN 18222:2026 Table 15 allows. See the tls check type in CRITERIA-FORMAT.md.
 
-Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
+Catalogue rows: DPP-DEX-006 · Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
 ## EU DPP registry and onboarding
 
@@ -869,20 +931,22 @@ Source: [reg/DPP-REG-024.yaml](reg/DPP-REG-024.yaml)
 
 **Notes** EN 18239:2026 bases the authorisation on the role of the requesting actor and requires access rights to be enforceable per controlled data element (5.2 (20), (23)). The operator provides test tokens for two roles: "granted" may read the controlled test element (test\_data.controlledElementId), "not-granted" is authenticated but may not. The second actor still receives the public part of the passport. Which roles exist is up to the product-specific legal act and the economic operator (5.2 (7)); the criterion does not prescribe role names.
 
-Catalogue rows: DPP-ACC-003 · Source: [acc/DPP-ACC-003.yaml](acc/DPP-ACC-003.yaml)
+Catalogue rows: DPP-ACC-003, DPP-ACC-013 · Source: [acc/DPP-ACC-003.yaml](acc/DPP-ACC-003.yaml)
 
 ### DPP-ACC-006
 
 **Controlled data elements are not delivered without authorisation**
 
-**MUST** · checked on: DPP service · automated · status: proposed · version 1
+**MUST** · checked on: DPP service · automated · status: proposed · version 2
 
 > A DPP service MUST NOT include controlled data elements in a passport that it returns to a request without credentials.
 
 **Basis**
 
+- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 10(1)(g); Art. 11, point (b) (regulation)
 - EN 18239:2026, 5.2 (22), 6.1, 6.2 (standard)
 - EN 18222:2026, 4.2, 4.3 (harmonised standard)
+- EN 18221:2026, 4.3 (harmonised standard)
 
 **Applies only if** the service declares the feature `access-levels`.
 
@@ -892,9 +956,9 @@ Catalogue rows: DPP-ACC-003 · Source: [acc/DPP-ACC-003.yaml](acc/DPP-ACC-003.ya
 2. `GET /dpps/{dppId}?representation=full`, without credentials → expect status 200; content type `application/json`; `$.elements` exists; `$..[?@.elementId == '{controlledElementId}']` does not exist
 3. `GET /dppsByProductId/{productId}`, without credentials → expect status 200; content type `application/json`; `$..['{controlledElementId}']` does not exist
 
-**Notes** EN 18239:2026 separates public DPP data, readable without authentication, from controlled DPP data, which is released only after authentication and authorisation (5.2 (2), (22); 6.1, 6.2). EN 18222:2026 lets access rules decide which data elements a read returns (4.2, 4.3), so a request without credentials is answered with the public part (200, see DPP-ID-013) and without the controlled elements, not refused. The test data of the service names the elementId of one controlled data element of the test passport (test\_data.controlledElementId). Steps 1 and 3 look for it as a member name in the default compressed representation (EN 18223 5.2), step 2 as an elementId in the full representation; step 2 also requires the elements array, so that a service ignoring the representation flag cannot pass by accident. The HTML view is not checked.
+**Notes** EN 18239:2026 separates public DPP data, readable without authentication, from controlled DPP data, which is released only after authentication and authorisation (5.2 (2), (22); 6.1, 6.2). EN 18222:2026 lets access rules decide which data elements a read returns (4.2, 4.3), so a request without credentials is answered with the public part (200, see DPP-ID-013) and without the controlled elements, not refused. The test data of the service names the elementId of one controlled data element of the test passport (test\_data.controlledElementId). Steps 1 and 3 look for it as a member name in the default compressed representation (EN 18223 5.2), step 2 as an elementId in the full representation; step 2 also requires the elements array, so that a service ignoring the representation flag cannot pass by accident. The HTML view is not checked. If the test passport of a service that declares backup-provider is a back-up copy, the check also covers EN 18221:2026 4.3, which gives the attributes of the back-up copy the same access restrictions as those of the original.
 
-Catalogue rows: DPP-ACC-006 · Source: [acc/DPP-ACC-006.yaml](acc/DPP-ACC-006.yaml)
+Catalogue rows: DPP-ACC-001, DPP-ACC-006, DPP-STO-038 · Source: [acc/DPP-ACC-006.yaml](acc/DPP-ACC-006.yaml)
 
 ### DPP-ACC-008
 
@@ -914,7 +978,7 @@ Catalogue rows: DPP-ACC-006 · Source: [acc/DPP-ACC-006.yaml](acc/DPP-ACC-006.ya
 
 **Notes** EN 18239:2026 asks for access rights terms at data element level, documented processes for granting, changing and revoking access rights, a mechanism for emergency changes and a revocation policy (5.2 (10), (17), (19); 6.3). Controlled vocabularies may be used for the access rights terms. One possible implementation is the vocabulary https://w3id.org/soya/dpp-access/v1 with the classes public, legitimateInterest and authority; the criterion does not require any particular vocabulary.
 
-Catalogue rows: DPP-ACC-008, DPP-ROL-019 · Source: [acc/DPP-ACC-008.yaml](acc/DPP-ACC-008.yaml)
+Catalogue rows: DPP-ACC-008, DPP-ROL-019, DPP-ACC-032, DPP-ACC-022, DPP-ACC-023 · Source: [acc/DPP-ACC-008.yaml](acc/DPP-ACC-008.yaml)
 
 ### DPP-ACC-012
 
@@ -957,7 +1021,28 @@ Catalogue rows: DPP-ACC-001 · Source: [acc/DPP-ACC-012.yaml](acc/DPP-ACC-012.ya
 
 **Notes** EN 18239:2026 requires accountability for every access to controlled DPP data (5.2 (5)) and an auditable, tamper-protected log of all access and of all changes to roles, rights and controlled data whose integrity can be shown over time (5.2 (16)). No standard defines an interface to read such a log, so the criterion is self-declared; the evidence describes what is logged, who can read the log and how it is protected.
 
-Catalogue rows: DPP-LCM-010 · Source: [acc/DPP-ACC-014.yaml](acc/DPP-ACC-014.yaml)
+Catalogue rows: DPP-LCM-010, DPP-LCM-011, DPP-LCM-014 · Source: [acc/DPP-ACC-014.yaml](acc/DPP-ACC-014.yaml)
+
+### DPP-ACC-015
+
+**Actors reading controlled data are identified by a globally unique identifier**
+
+**MUST** · checked on: DPP service · self-declared · status: proposed · version 1
+
+> A DPP service MUST identify every actor that accesses controlled passport data by a globally unique operator identifier provided during authentication.
+
+**Basis**
+
+- EN 18239:2026, 5.2 (1), (8) (standard)
+- EN 18246:2026, 4.2 (standard)
+
+**Applies only if** the service declares the feature `access-levels`.
+
+**How it is checked** The service entry must contain a self-declaration for this criterion with a statement and an evidence URL. Only its presence and that the URL answers are checked; the result is shown separately and never as passed.
+
+**Notes** EN 18239 gives every actor a globally unique operator identifier as defined in EN 18219 and makes it part of authentication, for example inside a role credential; EN 18246 requires every actor that accesses controlled data to be identified by such an identifier. The declaration names the identifier schemes the service accepts, for example DIDs (EN 18219 6.4), and how the identifier enters the authentication.
+
+Catalogue rows: DPP-ACC-015, DPP-ACC-033 · Source: [acc/DPP-ACC-015.yaml](acc/DPP-ACC-015.yaml)
 
 ## Security, integrity and privacy
 
@@ -965,16 +1050,17 @@ Catalogue rows: DPP-LCM-010 · Source: [acc/DPP-ACC-014.yaml](acc/DPP-ACC-014.ya
 
 **Passport cannot be changed without authorisation**
 
-**MUST** · checked on: DPP service · automated · status: active · version 3
+**MUST** · checked on: DPP service · automated · status: active · version 4
 
 > A DPP service MUST reject attempts to create or change passports without valid authorisation.
 
 **Basis**
 
+- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 11, point (f) (regulation)
 - EN 18221:2026, 4.1 (harmonised standard)
 - EN 18222:2026, 4.6, 4.7, 4.8, Table 15 (harmonised standard)
 - EN 18239:2026, 6.1 (standard)
-- EN 18246:2026, 4.7 (standard)
+- EN 18246:2026, 4.1, 4.7 (standard)
 
 **How it is checked** Requests to the API base of the service, in this order:
 
@@ -997,7 +1083,7 @@ Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/D
 
 **Basis**
 
-- [Implementing Regulation (EU) 2026/1778 (DPP registry)](https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj), Art. 2 (hash of the version); Art. 8(9) (regulation)
+- [Implementing Regulation (EU) 2026/1778 (DPP registry)](https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj), Art. 2, point (16); Art. 8(9)(d) (regulation)
 - EN 18221:2026, 4.1, 4.2 (harmonised standard)
 - EN 18246:2026, 4.1, 4.7 (standard)
 
@@ -1005,7 +1091,7 @@ Catalogue rows: DPP-SEC-001, DPP-API-005 · Source: [sec/DPP-SEC-001.yaml](sec/D
 
 **Notes** EN 18221:2026 requires DPP service providers to ensure the integrity and authenticity of stored passports and of archived versions, following EN 18246. EN 18246:2026 4.1 requires DPP data to be protected against unauthorised modification and attributable to a verifiable source, by mechanisms that do not depend on the security of the transport channel; 4.7 requires a DPP to be verifiable in integrity and authenticity, free of charge and without limitations for the verifier. Every proof found is verified with the key it names (verificationMethod, JWS kid) or, for did-oyd-log, against the payloadHash in the DID document of the passport identifier; who holds the key is assessed in DPP-SEC-013. Only the current version is checked. Without a proof the result is skipped, because verification may rely on means that are not visible in the response. The version hash under Art. 8(9) of the Implementing Regulation is held by the EU DPP registry, which has no public API.
 
-Catalogue rows: DPP-SEC-002, DPP-BAT-008 · Source: [sec/DPP-SEC-002.yaml](sec/DPP-SEC-002.yaml)
+Catalogue rows: DPP-SEC-002, DPP-SEC-015, DPP-SEC-017 · Source: [sec/DPP-SEC-002.yaml](sec/DPP-SEC-002.yaml)
 
 ### DPP-SEC-013
 
@@ -1024,7 +1110,7 @@ Catalogue rows: DPP-SEC-002, DPP-BAT-008 · Source: [sec/DPP-SEC-002.yaml](sec/D
 
 **Notes** EN 18246:2026 Annex A (normative), A.3, names the economic operator placing the product on the market as the typical issuer of core passport data and describes the DPP signed data construct as carrying the electronic signature of the responsible economic operator or its authorised representative; EN 18219:2026 6.4.1 describes economic operator DIDs as the means to sign passports, with the public key in the DID document. Passed if at least one proof verified under DPP-SEC-002 is issued with a key of the DID in economicOperatorId. A proof by another key gives a warning, because an authorised representative cannot be recognised automatically. For did-oyd-log the content is attested with the key of the passport identifier, which is not linked to the economic operator, so it gives a warning. Without a verified proof, or if economicOperatorId is not a DID, the result is skipped. The level stays SHOULD because other authorised actors may sign attestations and an authorised representative cannot be recognised automatically.
 
-Catalogue rows: DPP-SEC-004 · Source: [sec/DPP-SEC-013.yaml](sec/DPP-SEC-013.yaml)
+Catalogue rows: DPP-SEC-004, DPP-SEC-048, DPP-SEC-027 · Source: [sec/DPP-SEC-013.yaml](sec/DPP-SEC-013.yaml)
 
 ### DPP-SEC-014
 
@@ -1042,7 +1128,48 @@ Catalogue rows: DPP-SEC-004 · Source: [sec/DPP-SEC-013.yaml](sec/DPP-SEC-013.ya
 
 **Notes** EN 18246:2026 5.1.3 rules out external analytics tools in a DPP service and any reference to external components in the response to the user; 5.1.5 asks that profiling through IP addresses, HTTP data and user behaviour be prevented where technically feasible. Every resource a browser fetches from another host while it displays the passport discloses the reader's address and request data to that host, so every URL on another host that is loaded without user action counts, whatever its purpose (web fonts, CDN scripts, tracking pixels). Links the reader has to follow are not counted. Resources that a script adds at run time are not visible in the document, so analytics loaded that way go undetected. Hosts are compared exactly: assets on another host of the same operator count as well and belong on the passport host. Without an HTML view the result is skipped; DPP-DAT-016 rates whether it exists.
 
-Catalogue rows: DPP-SEC-005 · Source: [sec/DPP-SEC-014.yaml](sec/DPP-SEC-014.yaml)
+Catalogue rows: DPP-SEC-014, DPP-SEC-038, DPP-SEC-005 · Source: [sec/DPP-SEC-014.yaml](sec/DPP-SEC-014.yaml)
+
+### DPP-SEC-020
+
+**Public passport data are served without cookies**
+
+**MUST** · checked on: published passport · automated · status: proposed · version 1
+
+> A DPP service MUST NOT collect personal data from persons who only read public passport data, nor request such data from their devices.
+
+**Basis**
+
+- EN 18246:2026, 5.1.2, 5.1.5, 5.1.6 (standard)
+- EN 18239:2026, 5.2 (24) (standard)
+
+**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET). Expected: status 200; header `Set-Cookie` is absent.
+
+- Further request with `Accept: text/html`: expect header `Set-Cookie` is absent.
+- Further request with `Accept: application/json`: expect header `Set-Cookie` is absent.
+
+**Notes** A cookie set on a read of public data makes the reader's device send an identifier back with every later request, so that visits can be linked to one person. The check reads the passport through its product identifier as a scanner would, as a browser (text/html) and as a client of the data (application/json), and fails if any answer sets a cookie. Only the first request also has to succeed; whether an HTML view exists is checked by DPP-DAT-016. Passing is a necessary condition only: what a service records on its own side, for example IP addresses in its logs, cannot be observed from outside.
+
+Catalogue rows: DPP-SEC-020, DPP-SEC-019, DPP-SEC-040 · Source: [sec/DPP-SEC-020.yaml](sec/DPP-SEC-020.yaml)
+
+### DPP-SEC-022
+
+**Access is limited against attacks and mass scraping**
+
+**MUST** · checked on: DPP service · self-declared · status: proposed · version 1
+
+> A DPP service MUST limit access to its services so that attacks and unauthorised mass retrieval of passport data are prevented.
+
+**Basis**
+
+- EN 18239:2026, 5.2 (11), (15) (standard)
+- EN 18246:2026, 4.3, 5.1.8 (standard)
+
+**How it is checked** The service entry must contain a self-declaration for this criterion with a statement and an evidence URL. Only its presence and that the URL answers are checked; the result is shown separately and never as passed.
+
+**Notes** EN 18246 recommends robust measures against scraping, names rate limits and access control as examples and allows search engines to index the data. A rate limit must not affect information that legal acts require to be available (EN 18239 5.2 (15)), and public data stay readable without authentication or additional software (EN 18246 4.3). The criterion is self-declared because a test would have to put load on the service. The declaration names the measures, for example rate limits per client, and how public access stays open.
+
+Catalogue rows: DPP-SEC-022, DPP-SEC-046 · Source: [sec/DPP-SEC-022.yaml](sec/DPP-SEC-022.yaml)
 
 ## Storage, backup and persistence
 
@@ -1152,7 +1279,7 @@ Catalogue rows: DPP-STO-019, DPP-STO-024 · Source: [sto/DPP-STO-019.yaml](sto/D
 
 **Notes** Covers the DataElement classes (objectType), the attributes of Tables 2 to 6 and the value types of Table 7 in the expanded full serialization (Annex A). Whether an elementId is unique at its level is not checked: SOyA validates with SHACL Core, which cannot compare sibling nodes. Passports in the compressed serialization (5.2.5 to 5.2.9) are skipped until a structure for that form exists. Header attributes are checked by DPP-DAT-014.
 
-Catalogue rows: DPP-INT-005 · Source: [int/DPP-INT-005.yaml](int/DPP-INT-005.yaml)
+Catalogue rows: DPP-INT-005, DPP-DAT-024, DPP-DAT-034 · Source: [int/DPP-INT-005.yaml](int/DPP-INT-005.yaml)
 
 ## Operations and change management
 
@@ -1184,7 +1311,7 @@ Catalogue rows: DPP-OPS-006 · Source: [ops/DPP-OPS-006.yaml](ops/DPP-OPS-006.ya
 
 **Basis**
 
-- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77; Annex XIII (1) (regulation)
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77(2), second subparagraph, point (a); Annex XIII, point 1 (regulation)
 
 **Applies only if** the passport meets: `$.contentSpecificationIds[?search(@, '[Bb]atter')]` exists (otherwise skipped).
 
@@ -1194,17 +1321,17 @@ Catalogue rows: DPP-OPS-006 · Source: [ops/DPP-OPS-006.yaml](ops/DPP-OPS-006.ya
 
 Catalogue rows: DPP-BAT-002 · Source: [bat/DPP-BAT-002.yaml](bat/DPP-BAT-002.yaml)
 
-### DPP-BAT-004
+### DPP-BAT-003
 
 **Battery passport releases Annex XIII point 3 data only to authorities**
 
-**MUST** · checked on: DPP service · automated, with test credentials · status: proposed · version 2
+**MUST** · checked on: DPP service · automated, with test credentials · status: proposed · version 1
 
 > A DPP service for battery passports MUST release the information of Annex XIII point 3 of the Batteries Regulation only to notified bodies, market surveillance authorities and the Commission, and not to persons with a legitimate interest or the public.
 
 **Basis**
 
-- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77(2), (6); Annex XIII (3) (regulation)
+- [Regulation (EU) 2023/1542 (Batteries)](https://eur-lex.europa.eu/eli/reg/2023/1542/oj), Art. 77(2), second subparagraph, point (b); Art. 77(6); Art. 78, point (f); Annex XIII, point 3 (regulation)
 - EN 18239:2026, 5.2 (7) (standard)
 
 **Applies only if** the service declares the feature `battery` and `access-levels`.
@@ -1217,7 +1344,7 @@ Catalogue rows: DPP-BAT-002 · Source: [bat/DPP-BAT-002.yaml](bat/DPP-BAT-002.ya
 
 **Notes** Article 77(2) of the Batteries Regulation sorts the battery passport information into three access groups: the public (Annex XIII point 1); notified bodies, market surveillance authorities and the Commission (points 2 and 3); and persons with a legitimate interest (points 2 and 4). Point 3, the results of test reports proving compliance, is the only part reserved for the authorities and the Commission. EN 18239:2026 5.2 (7) leaves such roles to the legal act of the product group. For battery services the test passport is a battery passport and the controlled test element (test\_data.controlledElementId) is an element of point 3. The operator provides test tokens for the roles "legitimate-interest" and "authority". Which persons have a legitimate interest, and to which information of points 2 and 4, is specified by implementing acts under Article 77(9); DPP-ACC-003 checks the delivery of a controlled element per role in general. DPP-BAT-002 checks the public data of point 1.
 
-Catalogue rows: DPP-BAT-004, DPP-BAT-007, DPP-BAT-001 · Source: [bat/DPP-BAT-004.yaml](bat/DPP-BAT-004.yaml)
+Catalogue rows: DPP-BAT-003, DPP-BAT-007, DPP-BAT-001 · Source: [bat/DPP-BAT-003.yaml](bat/DPP-BAT-003.yaml)
 
 ## Circularity and environmental data
 

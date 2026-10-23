@@ -1,5 +1,5 @@
-id: DPP-BAT-004
-version: 2
+id: DPP-BAT-003
+version: 1
 status: proposed
 title: Battery passport releases Annex XIII point 3 data only to authorities
 statement: >-
@@ -10,7 +10,7 @@ statement: >-
 level: MUST
 basis:
 - source: Regulation (EU) 2023/1542 (Batteries)
-  clause: Art. 77(2), (6); Annex XIII (3)
+  clause: Art. 77(2), second subparagraph, point (b); Art. 77(6); Art. 78, point (f); Annex XIII, point 3
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg/2023/1542/oj
 - source: EN 18239:2026
@@ -60,7 +60,7 @@ check:
       - path: $..['{controlledElementId}']
         exists: true
 catalogue_ref:
-- DPP-BAT-004
+- DPP-BAT-003
 - DPP-BAT-007
 - DPP-BAT-001
 notes: >-

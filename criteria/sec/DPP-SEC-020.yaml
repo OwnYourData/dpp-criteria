@@ -1,0 +1,51 @@
+id: DPP-SEC-020
+version: 1
+status: proposed
+title: Public passport data are served without cookies
+statement: >-
+  A DPP service MUST NOT collect personal data from persons who only read public
+  passport data, nor request such data from their devices.
+level: MUST
+basis:
+- source: EN 18246:2026
+  clause: 5.1.2, 5.1.5, 5.1.6
+  kind: standard
+- source: EN 18239:2026
+  clause: 5.2 (24)
+  kind: standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  expect:
+    status:
+    - 200
+    headers:
+    - name: Set-Cookie
+      exists: false
+  further_requests:
+  - accept: text/html
+    expect:
+      headers:
+      - name: Set-Cookie
+        exists: false
+  - accept: application/json
+    expect:
+      headers:
+      - name: Set-Cookie
+        exists: false
+catalogue_ref:
+- DPP-SEC-020
+- DPP-SEC-019
+- DPP-SEC-040
+notes: >-
+  A cookie set on a read of public data makes the reader's device send an
+  identifier back with every later request, so that visits can be linked to one
+  person. The check reads the passport through its product identifier as a
+  scanner would, as a browser (text/html) and as a client of the data
+  (application/json), and fails if any answer sets a cookie. Only the first
+  request also has to succeed; whether an HTML view exists is checked by
+  DPP-DAT-016. Passing is a necessary condition only: what a service records on
+  its own side, for example IP addresses in its logs, cannot be observed from
+  outside.
