@@ -94,8 +94,10 @@ Where placeholders are substituted, and how:
   `\uXXXX`), so it is compared literally whatever characters it contains. A
   placeholder outside a string literal makes the JSONPath unusable and the
   criterion `skipped` (see "Results").
-- **Not substituted**: regular expressions (`matches`, `base_matches`) and
-  header assertions (`expect.headers`) are used as written.
+- **Not substituted**: regular expressions (`matches`, `base_matches`),
+  header assertions (`expect.headers`) and the JSONPaths of
+  `compare_with_resolved` are used as written; a placeholder in such a path
+  makes the JSONPath unusable and the criterion `skipped` (see "Results").
 
 ### Check types
 
@@ -110,7 +112,9 @@ Where placeholders are substituted, and how:
   `skip_if_status` (result `skipped`) and `warn_if_status` (result `warning`);
   `severity: warning` on a step turns any failure of that step into a
   `warning` (`error` is the default and need not be written). `base_matches` is a regular expression (see "Regular expressions") that must
-  be found in the API base.
+  be found in the API base. `compare_with_resolved` on a step compares its
+  response with the passport the product identifier resolves to, see
+  "Comparison with the resolved passport".
 - **tls** — properties of TLS and HTTP versions on the host and HTTPS port of
   the API base. `{base}` must be an `https` URL; otherwise the criterion fails.
   Each key below is one part of the check:
@@ -270,6 +274,25 @@ If the service cannot be reached at all, i.e. no TCP connection can be opened
 DPP-ID-002. A failed TLS handshake or certificate is not "not reachable"; it
 fails the step.
 
+### Comparison with the resolved passport (`http`)
+
+`compare_with_resolved` on an `http` step lists RFC 9535 JSONPaths. It
+compares the response of the step with the passport that `{productId}`
+resolves to, for example a back-up copy with the current passport
+(DPP-STO-019). The runner fetches that passport once per run, like the first
+request of a `resolve` check with `Accept: application/json` (plain HTTPS GET,
+redirects followed), and expects status 200 and a single JSON object. Each
+path must select exactly one value in that passport, and at least one value
+it selects in the response body of the step must equal it, compared as JSON
+values as in JSON assertions.
+
+The comparison is evaluated only if `status` and `content_type` of the step's
+`expect` hold, like the other parts of `expect` (see "Order of evaluation
+within a request"). A difference fails the step, or gives a warning if the
+step has `severity: warning`. If the passport cannot be fetched as a single
+JSON object, or a path does not select exactly one value in it, the criterion
+is `skipped` with `no_evidence`.
+
 ### JSON assertions
 
 The `path` of a JSON assertion (RFC 9535) selects a node list. `exists: true`
@@ -296,9 +319,9 @@ expressions"). A missing field fails every assertion except `exists: false`.
 For each request (an `http` step, the first `resolve` request or one of its
 `further_requests`), `status` and `content_type` are evaluated first. Only if
 both hold are `headers`, `json` and `body_equals_step` of the same `expect`
-evaluated; otherwise they are not evaluated and give no message of their own,
-because they would describe a different response than the one the criterion
-is about. The failed `status` or `content_type` alone decides the outcome of
+evaluated, and for an `http` step `compare_with_resolved`; otherwise they are
+not evaluated and give no message of their own, because they would describe a
+different response than the one the criterion is about. The failed `status` or `content_type` alone decides the outcome of
 that request.
 
 `content_type` compares the media type of the response without its parameters
@@ -369,11 +392,11 @@ exactly one code:
 |---|---|---|
 | `not_applicable` | The criterion does not concern this service or passport, or on our own test instance it would describe the test environment rather than the software. | a feature in `requires_features` the service neither declares nor lists under `not_implemented`; an `applies_if` assertion does not hold; no DID at the `did` paths; a status in `skip_if_status`; a `tls` check or a criterion under `test_instance.not_applicable` on a test instance |
 | `not_implemented` | The service lists a feature in `requires_features` under `not_implemented` (see "Service"). | `write-api` of a read-only service |
-| `no_evidence` | The check needs evidence that the passport or service does not provide. | `proof` without any integrity proof; `html` without an HTML view |
+| `no_evidence` | The check needs evidence that the passport or service does not provide. | `proof` without any integrity proof; `html` without an HTML view; `compare_with_resolved` without a passport to compare with |
 | `needs_credentials` | The check needs test credentials the runner does not have. | `method: automated-auth`; a step with `auth: token` |
 | `not_sent` | A read-only run (see below) does not send a step of the check. | a step with `POST` or `PATCH` |
 | `unreachable` | No TCP connection to the service (see "Requests and steps"). | name not resolvable, connection refused |
-| `not_evaluated` | The runner cannot evaluate the check as specified. | check type not implemented; self-declarations not evaluated; a placeholder without value; an unusable regular expression or JSONPath; a part the `tls` check cannot test; no shapes available; a criterion file that does not match the schema; an error in the runner |
+| `not_evaluated` | The runner cannot evaluate the check as specified. | check type, or a part of a check, not implemented; self-declarations not evaluated; a placeholder without value; an unusable regular expression or JSONPath; a part the `tls` check cannot test; no shapes available; a criterion file that does not match the schema; an error in the runner |
 
 `not_applicable` and `not_implemented` describe the service; `not_sent`,
 `needs_credentials`, `unreachable` and `not_evaluated` describe the run. The
@@ -402,8 +425,10 @@ invalid I-Regexp or one with an unescaped `^` or `$` outside a character
 class) makes the criterion
 `skipped` with that reason, before any request is sent. It never leads to
 `failed`. CI already rejects patterns that are not valid ECMA-262. The same
-holds for a JSONPath that is not valid RFC 9535 after substitution, or that
-has a placeholder outside a string literal (see "Placeholders in checks").
+holds for a JSONPath that is not valid RFC 9535 after substitution, that
+has a placeholder outside a string literal, or that is listed under
+`compare_with_resolved` and has a placeholder at all (see "Placeholders in
+checks").
 
 ### Controlled feature flags
 

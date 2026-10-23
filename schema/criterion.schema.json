@@ -172,7 +172,12 @@
                     "expect": { "$ref": "#/$defs/expect" },
                     "skip_if_status": { "$ref": "#/$defs/statusList" },
                     "warn_if_status": { "$ref": "#/$defs/statusList" },
-                    "severity": { "$ref": "#/$defs/severity" }
+                    "severity": { "$ref": "#/$defs/severity" },
+                    "compare_with_resolved": {
+                      "type": "array", "minItems": 1, "uniqueItems": true,
+                      "items": { "type": "string", "pattern": "^\\$" },
+                      "description": "JSONPaths whose values in the response body must equal those in the passport the product identifier resolves to."
+                    }
                   }
                 }
               }

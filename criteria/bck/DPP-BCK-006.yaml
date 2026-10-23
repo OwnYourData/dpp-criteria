@@ -1,0 +1,35 @@
+id: DPP-BCK-006
+version: 1
+status: proposed
+title: Service names the provider of the back-up copy
+statement: >-
+  A DPP service MUST name the DPP service provider with which the back-up copy
+  of each passport it publishes is kept.
+level: MUST
+basis:
+- source: Regulation (EU) 2024/1781 (ESPR)
+  clause: Art. 10(4); Annex III, point (l)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
+- source: Commission Implementing Regulation (EU) 2026/1778 (DPP registry)
+  clause: Art. 8(7)(e)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj
+target: service
+method: self-declared
+requires_features: []
+check:
+  type: declaration
+catalogue_ref:
+- DPP-BCK-006
+- DPP-BCK-008
+notes: >-
+  ESPR Art. 10(4) obliges the economic operator to have a back-up copy of the
+  passport kept by a DPP service provider when it places a product covered by a
+  delegated act on the market. Annex III, point (l) lets the delegated act require a
+  reference to that provider in the passport (data point DP-ESPR-035), and the
+  registry regulation provides for the link to the back-up copy in the
+  registration (Art. 8(7)(e)). The declaration names the provider and links
+  evidence, for example its API base or a published description of the
+  arrangement. Whether a service that acts as back-up provider holds a current
+  copy is checked by DPP-STO-019 and DPP-STO-015.

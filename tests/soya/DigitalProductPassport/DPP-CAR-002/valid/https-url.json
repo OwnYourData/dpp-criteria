@@ -1,6 +1,6 @@
 {
   "digitalProductPassportId": "https://dpp.example.org/dpp/4711",
-  "uniqueProductIdentifier": "https://dpp.example.org/01/09520123456788/21/0001",
+  "uniqueProductIdentifier": "https://dpp.example.org/01/04012345000016/21/0001",
   "granularity": "item",
   "dppSchemaVersion": "EN 18223:2026",
   "dppStatus": "active",

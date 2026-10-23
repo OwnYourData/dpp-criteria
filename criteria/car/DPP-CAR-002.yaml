@@ -1,10 +1,11 @@
 id: DPP-CAR-002
-version: 1
+version: 2
 status: proposed
 title: Product identifier follows an EN 18219 product scheme
 statement: >-
   The unique product identifier MUST follow one of the product ID schemes of EN
-  18219.
+  18219, and a GS1 Digital Link SHOULD NOT carry a GTIN with the GS1 prefix 952,
+  which GS1 sets aside for demonstrations and examples.
 level: MUST
 basis:
 - source: Regulation (EU) 2024/1781 (ESPR)
@@ -12,11 +13,14 @@ basis:
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg/2024/1781/oj
 - source: EN 18219:2026
-  clause: 4.3.2, Clause 5
+  clause: 4.3.2, Clause 5, 5.2.2.1 f) and g)
   kind: harmonised-standard
 - source: EN 18220:2026
   clause: 5.2.2
   kind: harmonised-standard
+- source: GS1 Prefixes, list of the GS1 Global Office
+  kind: guidance
+  url: https://www.gs1.org/prefixes
 target: passport
 method: automated
 requires_features: []
@@ -28,4 +32,10 @@ notes: >-
   Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL
   (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the
   identifier is checked; conformity of the physical data carrier (EN 18220)
-  cannot be observed.
+  cannot be observed. Since version 2, a GS1 Digital Link whose GTIN after /01/
+  carries the GS1 prefix 952 (the first three digits of a GTIN-13, or the three
+  digits after the indicator digit of a GTIN-14) gives a warning: GS1 uses this
+  prefix for demonstrations and examples, so the GTIN is not assigned under a GS1
+  Company Prefix, and the global uniqueness that EN 18219 5.2.2.1 f) and g) expect
+  for scheme 1 is not ensured. A demonstration passport gets this warning on
+  purpose.

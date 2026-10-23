@@ -1,0 +1,29 @@
+id: DPP-REG-024
+version: 1
+status: proposed
+title: Product identifier has the form the EU DPP registry accepts
+statement: >-
+  The unique product identifier SHOULD be an HTTPS URL of at most 2000
+  characters, the form in which the EU DPP registry accepts it.
+level: SHOULD
+basis:
+- source: European Commission, DPP Registry User Guide for Economic Operators, version 1.03 (16 September 2026)
+  clause: 6.2.1, 6.2.2
+  kind: guidance
+  url: https://single-market-economy.ec.europa.eu/document/download/079a45e2-469f-4eec-b1e5-32e8e05d1357_en?filename=dpp_registry_user_guide_for_economic_operators.pdf
+target: passport
+method: automated
+requires_features: []
+check:
+  type: shacl
+  structure: DigitalProductPassport
+notes: >-
+  Checked in the SOyA structure DigitalProductPassport: uniqueProductIdentifier
+  starts with https:// and has at most 2000 characters. The user guide asks for the
+  identifier as a URL of at most 2000 characters, and its error text for file
+  submissions requires https:// (6.2.1). It also names unsupported protocols,
+  domains and ports and problems with redirects as reasons for rejection (6.2.2),
+  without saying which domains and ports are allowed; these are not checked.
+  Whether the identifier resolves to the passport is rated by DPP-ID-001. The user
+  guide is not legally binding; it describes how the registry handles
+  registrations.

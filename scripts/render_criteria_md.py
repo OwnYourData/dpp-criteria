@@ -182,6 +182,9 @@ def describe_http(c):
     lines.append("")
     for i, step in enumerate(c["steps"], 1):
         line = f"{i}. {request_line(step['request'])} → expect {expectation(step.get('expect', {}))}"
+        if step.get("compare_with_resolved"):
+            line += ("; same " + either((code(p) for p in step["compare_with_resolved"]), "and")
+                     + " as the passport the product identifier resolves to")
         if "skip_if_status" in step:
             line += "; status " + either(str(s) for s in step["skip_if_status"]) + " → skipped"
         if "warn_if_status" in step:

@@ -1,0 +1,30 @@
+id: DPP-DGA-001
+version: 1
+status: proposed
+title: Custody by a data intermediation service is documented
+statement: >-
+  Where a data intermediation service holds the passport data, the DPP service
+  SHOULD describe what the intermediary does for those who hold the data and for
+  those who use them, and name its entry in the public register of data
+  intermediation services providers.
+level: SHOULD
+basis:
+- source: Regulation (EU) 2022/868 (Data Governance Act)
+  clause: Art. 10; Art. 11(10); Art. 12, point (a)
+  kind: regulation
+  url: https://eur-lex.europa.eu/eli/reg/2022/868/oj
+target: service
+method: self-declared
+requires_features: []
+check:
+  type: declaration
+catalogue_ref: DPP-DGA-001
+notes: >-
+  The Data Governance Act lists the data intermediation services (Art. 10), has the
+  Commission keep a public register of their providers (Art. 11(10)), and lets a
+  provider use the data only to make them available to data users and offer the
+  service through a separate legal person (Art. 12, point (a)). Whether keeping
+  passport data for an economic operator is a data intermediation service depends
+  on the arrangement; a DPP service is not one by itself. The
+  declaration describes the role of the intermediary, for example in the
+  documentation of the service, and links its entry in the register.

@@ -10,10 +10,10 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 
 | | active | proposed | total |
 |---|---:|---:|---:|
-| Published passport (dpplint) | 6 | 17 | 23 |
-| DPP service (dpp-validator) | 15 | 8 | 23 |
+| Published passport (dpplint) | 6 | 18 | 24 |
+| DPP service (dpp-validator) | 15 | 12 | 27 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 21 | 26 | 47 |
+| **All criteria** | 21 | 31 | 52 |
 
 How to read the entries:
 
@@ -92,6 +92,12 @@ How to read the entries:
 | [DPP-DEX-005](#dpp-dex-005) | HTTP/2 is supported | MUST | DPP service | active |
 | [DPP-DEX-006](#dpp-dex-006) | HTTP versions below HTTP/2 are not used | MUST | DPP service | active |
 
+**EU DPP registry and onboarding**
+
+| ID | Title | Level | Checked on | Status |
+|---|---|---|---|---|
+| [DPP-REG-024](#dpp-reg-024) | Product identifier has the form the EU DPP registry accepts | SHOULD | published passport | proposed |
+
 **Access control**
 
 | ID | Title | Level | Checked on | Status |
@@ -115,7 +121,10 @@ How to read the entries:
 
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
+| [DPP-BCK-006](#dpp-bck-006) | Service names the provider of the back-up copy | MUST | DPP service | proposed |
+| [DPP-STO-015](#dpp-sto-015) | Back-up provider keeps the archived versions | MUST | DPP service | proposed |
 | [DPP-STO-017](#dpp-sto-017) | Archived versions keep the access restrictions | MUST | DPP service | proposed |
+| [DPP-STO-019](#dpp-sto-019) | Back-up copy is readable and up to date | MUST | DPP service | proposed |
 
 **Interoperability and standards**
 
@@ -141,6 +150,12 @@ How to read the entries:
 | ID | Title | Level | Checked on | Status |
 |---|---|---|---|---|
 | [DPP-PCDS-008](#dpp-pcds-008) | Embedded PCDS are machine-readable with template ID | MUST | published passport | proposed |
+
+**Data governance and assurance**
+
+| ID | Title | Level | Checked on | Status |
+|---|---|---|---|---|
+| [DPP-DGA-001](#dpp-dga-001) | Custody by a data intermediation service is documented | SHOULD | DPP service | proposed |
 
 ## Scope and configuration
 
@@ -336,19 +351,20 @@ Source: [id/DPP-ID-016.yaml](id/DPP-ID-016.yaml)
 
 **Product identifier follows an EN 18219 product scheme**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 1
+**MUST** · checked on: published passport · automated · status: proposed · version 2
 
-> The unique product identifier MUST follow one of the product ID schemes of EN 18219.
+> The unique product identifier MUST follow one of the product ID schemes of EN 18219, and a GS1 Digital Link SHOULD NOT carry a GTIN with the GS1 prefix 952, which GS1 sets aside for demonstrations and examples.
 
 **Basis**
 
 - [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 10(1)(c) (regulation)
-- EN 18219:2026, 4.3.2, Clause 5 (harmonised standard)
+- EN 18219:2026, 4.3.2, Clause 5, 5.2.2.1 f) and g) (harmonised standard)
 - EN 18220:2026, 5.2.2 (harmonised standard)
+- [GS1 Prefixes, list of the GS1 Global Office](https://www.gs1.org/prefixes) (guidance)
 
 **How it is checked** The passport fetched via the product identifier is validated against the SHACL shapes of the SOyA structure [`DigitalProductPassport`](../soya/DigitalProductPassport.yml); only the results tagged with this criterion's ID count.
 
-**Notes** Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the identifier is checked; conformity of the physical data carrier (EN 18220) cannot be observed.
+**Notes** Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the identifier is checked; conformity of the physical data carrier (EN 18220) cannot be observed. Since version 2, a GS1 Digital Link whose GTIN after /01/ carries the GS1 prefix 952 (the first three digits of a GTIN-13, or the three digits after the indicator digit of a GTIN-14) gives a warning: GS1 uses this prefix for demonstrations and examples, so the GTIN is not assigned under a GS1 Company Prefix, and the global uniqueness that EN 18219 5.2.2.1 f) and g) expect for scheme 1 is not ensured. A demonstration passport gets this warning on purpose.
 
 Catalogue rows: DPP-CAR-002 · Source: [car/DPP-CAR-002.yaml](car/DPP-CAR-002.yaml)
 
@@ -810,6 +826,26 @@ Source: [dex/DPP-DEX-005.yaml](dex/DPP-DEX-005.yaml)
 
 Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.yaml)
 
+## EU DPP registry and onboarding
+
+### DPP-REG-024
+
+**Product identifier has the form the EU DPP registry accepts**
+
+**SHOULD** · checked on: published passport · automated · status: proposed · version 1
+
+> The unique product identifier SHOULD be an HTTPS URL of at most 2000 characters, the form in which the EU DPP registry accepts it.
+
+**Basis**
+
+- [European Commission, DPP Registry User Guide for Economic Operators, version 1.03 (16 September 2026)](https://single-market-economy.ec.europa.eu/document/download/079a45e2-469f-4eec-b1e5-32e8e05d1357_en?filename=dpp_registry_user_guide_for_economic_operators.pdf), 6.2.1, 6.2.2 (guidance)
+
+**How it is checked** The passport fetched via the product identifier is validated against the SHACL shapes of the SOyA structure [`DigitalProductPassport`](../soya/DigitalProductPassport.yml); only the results tagged with this criterion's ID count.
+
+**Notes** Checked in the SOyA structure DigitalProductPassport: uniqueProductIdentifier starts with https:// and has at most 2000 characters. The user guide asks for the identifier as a URL of at most 2000 characters, and its error text for file submissions requires https:// (6.2.1). It also names unsupported protocols, domains and ports and problems with redirects as reasons for rejection (6.2.2), without saying which domains and ports are allowed; these are not checked. Whether the identifier resolves to the passport is rated by DPP-ID-001. The user guide is not legally binding; it describes how the registry handles registrations.
+
+Source: [reg/DPP-REG-024.yaml](reg/DPP-REG-024.yaml)
+
 ## Access control
 
 ### DPP-ACC-003
@@ -1010,6 +1046,48 @@ Catalogue rows: DPP-SEC-005 · Source: [sec/DPP-SEC-014.yaml](sec/DPP-SEC-014.ya
 
 ## Storage, backup and persistence
 
+### DPP-BCK-006
+
+**Service names the provider of the back-up copy**
+
+**MUST** · checked on: DPP service · self-declared · status: proposed · version 1
+
+> A DPP service MUST name the DPP service provider with which the back-up copy of each passport it publishes is kept.
+
+**Basis**
+
+- [Regulation (EU) 2024/1781 (ESPR)](https://eur-lex.europa.eu/eli/reg/2024/1781/oj), Art. 10(4); Annex III, point (l) (regulation)
+- [Commission Implementing Regulation (EU) 2026/1778 (DPP registry)](https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj), Art. 8(7)(e) (regulation)
+
+**How it is checked** The service entry must contain a self-declaration for this criterion with a statement and an evidence URL. Only its presence and that the URL answers are checked; the result is shown separately and never as passed.
+
+**Notes** ESPR Art. 10(4) obliges the economic operator to have a back-up copy of the passport kept by a DPP service provider when it places a product covered by a delegated act on the market. Annex III, point (l) lets the delegated act require a reference to that provider in the passport (data point DP-ESPR-035), and the registry regulation provides for the link to the back-up copy in the registration (Art. 8(7)(e)). The declaration names the provider and links evidence, for example its API base or a published description of the arrangement. Whether a service that acts as back-up provider holds a current copy is checked by DPP-STO-019 and DPP-STO-015.
+
+Catalogue rows: DPP-BCK-006, DPP-BCK-008 · Source: [bck/DPP-BCK-006.yaml](bck/DPP-BCK-006.yaml)
+
+### DPP-STO-015
+
+**Back-up provider keeps the archived versions**
+
+**MUST** · checked on: DPP service · automated · status: proposed · version 1
+
+> A back-up DPP service provider MUST also hold the archived versions of the passport, including the one valid now, and serve them through ReadDPPVersionByIdAndDate.
+
+**Basis**
+
+- EN 18221:2026, 4.2, 4.3 (harmonised standard)
+- EN 18222:2026, 4.1, 4.4, 8.2 (harmonised standard)
+
+**Applies only if** the service declares the feature `backup-provider` and `historical-versions`.
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dppsByIdAndDate/{dppId}?date={now}`, without credentials → expect status 200; content type `application/json`; `$.digitalProductPassportId` equals `{dppId}`; same `$.lastUpdated` as the passport the product identifier resolves to; status 401 or 403 → skipped
+
+**Notes** EN 18221:2026 asks for archived versions to be stored by the back-up provider as well as by the creator or its main DPP service provider (4.2), and for the back-up provider to keep the required historical versions (4.3). The check reads the version valid now at the back-up provider and compares its lastUpdated with the passport that the product identifier resolves to (compare\_with\_resolved). Older versions cannot be compared, because the passport the product identifier leads to is always the current one. EN 18221 4.2 lets archived versions be restricted to authenticated and authorised actors; 401 or 403 therefore skips the check, as in DPP-API-019.
+
+Catalogue rows: DPP-STO-015, DPP-STO-020 · Source: [sto/DPP-STO-015.yaml](sto/DPP-STO-015.yaml)
+
 ### DPP-STO-017
 
 **Archived versions keep the access restrictions**
@@ -1032,6 +1110,29 @@ Catalogue rows: DPP-SEC-005 · Source: [sec/DPP-SEC-014.yaml](sec/DPP-SEC-014.ya
 **Notes** EN 18221:2026 4.2 subjects the attributes of archived versions to the same access restrictions as the corresponding attributes of the passport. The check reads the version valid now (ReadDPPVersionByIdAndDate, EN 18222 4.4) without credentials and expects the controlled test element (test\_data.controlledElementId) to be missing, as for the current passport in DPP-ACC-006. If the archive answers 401 or 403, the check is skipped, as in DPP-API-019.
 
 Catalogue rows: DPP-STO-017 · Source: [sto/DPP-STO-017.yaml](sto/DPP-STO-017.yaml)
+
+### DPP-STO-019
+
+**Back-up copy is readable and up to date**
+
+**MUST** · checked on: DPP service · automated · status: proposed · version 1
+
+> A back-up DPP service provider MUST serve through ReadDPPByProductId a copy of the passport that matches the current passport the product identifier resolves to.
+
+**Basis**
+
+- EN 18221:2026, 4.3, 4.5 (harmonised standard)
+- EN 18222:2026, 4.1, 4.3, 8.2 (harmonised standard)
+
+**Applies only if** the service declares the feature `backup-provider`.
+
+**How it is checked** Requests to the API base of the service, in this order:
+
+1. `GET /dppsByProductId/{productId}`, without credentials → expect status 200; content type `application/json`; `$.uniqueProductIdentifier` equals `{productId}`; same `$.digitalProductPassportId` and `$.lastUpdated` as the passport the product identifier resolves to
+
+**Notes** EN 18221:2026 asks the back-up provider to store a copy of the latest version (4.3) and to receive the passport and all its changes by replication (4.5); EN 18222:2026 makes ReadDPPByProductId mandatory for back-up providers as well (4.1). The check reads the copy of the test passport at the back-up provider and compares its passport ID and lastUpdated with the passport that the product identifier resolves to (compare\_with\_resolved). Replication may lag behind by the recovery point objective agreed for it; the test passport should therefore change rarely.
+
+Catalogue rows: DPP-STO-019, DPP-STO-024 · Source: [sto/DPP-STO-019.yaml](sto/DPP-STO-019.yaml)
 
 ## Interoperability and standards
 
@@ -1139,3 +1240,23 @@ Catalogue rows: DPP-BAT-004, DPP-BAT-007, DPP-BAT-001 · Source: [bat/DPP-BAT-00
 **Notes** Applies only to passports that embed a PCDS; checked with the SOyA structure DigitalProductPassportPcds. The rule that recognises a PCDS is fixed together with the linter.
 
 Catalogue rows: DPP-PCDS-008 · Source: [pcds/DPP-PCDS-008.yaml](pcds/DPP-PCDS-008.yaml)
+
+## Data governance and assurance
+
+### DPP-DGA-001
+
+**Custody by a data intermediation service is documented**
+
+**SHOULD** · checked on: DPP service · self-declared · status: proposed · version 1
+
+> Where a data intermediation service holds the passport data, the DPP service SHOULD describe what the intermediary does for those who hold the data and for those who use them, and name its entry in the public register of data intermediation services providers.
+
+**Basis**
+
+- [Regulation (EU) 2022/868 (Data Governance Act)](https://eur-lex.europa.eu/eli/reg/2022/868/oj), Art. 10; Art. 11(10); Art. 12, point (a) (regulation)
+
+**How it is checked** The service entry must contain a self-declaration for this criterion with a statement and an evidence URL. Only its presence and that the URL answers are checked; the result is shown separately and never as passed.
+
+**Notes** The Data Governance Act lists the data intermediation services (Art. 10), has the Commission keep a public register of their providers (Art. 11(10)), and lets a provider use the data only to make them available to data users and offer the service through a separate legal person (Art. 12, point (a)). Whether keeping passport data for an economic operator is a data intermediation service depends on the arrangement; a DPP service is not one by itself. The declaration describes the role of the intermediary, for example in the documentation of the service, and links its entry in the register.
+
+Catalogue rows: DPP-DGA-001 · Source: [dga/DPP-DGA-001.yaml](dga/DPP-DGA-001.yaml)
