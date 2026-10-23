@@ -1,5 +1,5 @@
 id: DPP-DAT-011
-version: 1
+version: 2
 status: proposed
 title: Related resources are typed and reachable
 statement: >-
@@ -8,7 +8,7 @@ statement: >-
 level: MUST
 basis:
 - source: Implementing Regulation (EU) 2026/1778 (DPP registry)
-  clause: Art. 12(1)(a)
+  clause: Art. 12(2)(a)
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj
 - source: EN 18223:2026
@@ -27,7 +27,10 @@ check:
   - contentType
   - url
   unreachable: warning
-catalogue_ref: DPP-DAT-011
+catalogue_ref:
+- DPP-DAT-011
+- DPP-STO-031
+- DPP-STO-040
 notes: >-
   A URL that does not answer is reported as a warning, so that outages of third-party
   sites do not fail the passport. Without RelatedResource elements the result is

@@ -23,7 +23,10 @@ check:
   - vc-data-integrity
   - vc-jose-cose
   - did-oyd-log
-catalogue_ref: DPP-SEC-004
+catalogue_ref:
+- DPP-SEC-004
+- DPP-SEC-048
+- DPP-SEC-027
 notes: >-
   EN 18246:2026 Annex A (normative), A.3, names the economic operator placing
   the product on the market as the typical issuer of core passport data and

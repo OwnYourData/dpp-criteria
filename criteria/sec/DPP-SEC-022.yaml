@@ -1,0 +1,31 @@
+id: DPP-SEC-022
+version: 1
+status: proposed
+title: Access is limited against attacks and mass scraping
+statement: >-
+  A DPP service MUST limit access to its services so that attacks and
+  unauthorised mass retrieval of passport data are prevented.
+level: MUST
+basis:
+- source: EN 18239:2026
+  clause: 5.2 (11), (15)
+  kind: standard
+- source: EN 18246:2026
+  clause: 4.3, 5.1.8
+  kind: standard
+target: service
+method: self-declared
+requires_features: []
+check:
+  type: declaration
+catalogue_ref:
+- DPP-SEC-022
+- DPP-SEC-046
+notes: >-
+  EN 18246 recommends robust measures against scraping, names rate limits and
+  access control as examples and allows search engines to index the data. A rate
+  limit must not affect information that legal acts require to be available
+  (EN 18239 5.2 (15)), and public data stay readable without authentication or
+  additional software (EN 18246 4.3). The criterion is self-declared because a
+  test would have to put load on the service. The declaration names the measures,
+  for example rate limits per client, and how public access stays open.

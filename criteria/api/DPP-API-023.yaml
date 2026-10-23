@@ -63,6 +63,9 @@ check:
     expect:
       status:
       - 400
+catalogue_ref:
+- DPP-API-023
+- DPP-DAT-033
 notes: >-
   In the compressed representation (EN 18223 5.2.2) data elements are keyed by
   their elementId and the metadata is left out, so the passport has no elements

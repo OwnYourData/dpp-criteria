@@ -304,6 +304,66 @@ content:
         15418 (GS1 or MH10.8.2), DID or DOI.'
   - type: OverlayShacl
     base: DigitalProductPassport
+    name: DppIdentifierCharacters
+    '@id': DppIdentifierCharacters
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: uniqueProductIdentifier
+      sh:pattern: '^[\u0000-\u007F]+$'
+      sh:message: '[DPP-ID-015] uniqueProductIdentifier consists of ISO/IEC 646 (US-ASCII) characters only (EN 18219
+        4.3.2 (1)).'
+    - sh:path: economicOperatorId
+      sh:pattern: '^[\u0000-\u007F]+$'
+      sh:message: '[DPP-ID-015] economicOperatorId consists of ISO/IEC 646 (US-ASCII) characters only (EN 18219
+        4.3.2 (1)).'
+    - sh:path: facilityId
+      sh:pattern: '^[\u0000-\u007F]+$'
+      sh:message: '[DPP-ID-015] facilityId consists of ISO/IEC 646 (US-ASCII) characters only (EN 18219
+        4.3.2 (1)).'
+    - sh:path: uniqueProductIdentifier
+      sh:or:
+        '@list':
+        - sh:not:
+            sh:pattern: '^[A-Za-z][A-Za-z0-9+.-]*:'
+        - sh:pattern: '^([A-Za-z0-9._~:/?#@!$&''()*+,;=\[\]-]|%[0-9A-Fa-f]{2})+$'
+      sh:message: '[DPP-ID-015] uniqueProductIdentifier, where it is a URI, contains only characters that RFC 3986
+        allows and percent-encodes all others (EN 18219 4.3.2 (1)).'
+    - sh:path: economicOperatorId
+      sh:or:
+        '@list':
+        - sh:not:
+            sh:pattern: '^[A-Za-z][A-Za-z0-9+.-]*:'
+        - sh:pattern: '^([A-Za-z0-9._~:/?#@!$&''()*+,;=\[\]-]|%[0-9A-Fa-f]{2})+$'
+      sh:message: '[DPP-ID-015] economicOperatorId, where it is a URI, contains only characters that RFC 3986
+        allows and percent-encodes all others (EN 18219 4.3.2 (1)).'
+    - sh:path: facilityId
+      sh:or:
+        '@list':
+        - sh:not:
+            sh:pattern: '^[A-Za-z][A-Za-z0-9+.-]*:'
+        - sh:pattern: '^([A-Za-z0-9._~:/?#@!$&''()*+,;=\[\]-]|%[0-9A-Fa-f]{2})+$'
+      sh:message: '[DPP-ID-015] facilityId, where it is a URI, contains only characters that RFC 3986
+        allows and percent-encodes all others (EN 18219 4.3.2 (1)).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppProductDidMethod
+    '@id': DppProductDidMethod
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: uniqueProductIdentifier
+      sh:or:
+        '@list':
+        - sh:not:
+            sh:pattern: '^did:'
+        - sh:pattern: '^did:(web|ethr|ebsi):'
+      sh:severity:
+        '@id': sh:Warning
+      sh:message: '[DPP-ID-054] A product identifier that is a DID uses the DID method did:web, did:ethr
+        or did:ebsi (EN 18219 5.4.3).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
     name: DppGranularityMatchesIdentifier
     '@id': DppGranularityMatchesIdentifier
     sh:targetClass:
@@ -572,6 +632,35 @@ content:
           sh:pattern: ^xsd:[A-Za-z]+$
     sh:message: '[DPP-INT-005] valueDataType occurs at most once and names an XSD type such as xsd:integer
       (Tables 3 and 4, 4.1.2.9).'
+  - type: OverlayShacl
+    base: DataElement
+    name: DppValueDataTypeExcluded
+    '@id': DppValueDataTypeExcluded
+    sh:targetObjectsOf:
+    - '@id': rdf:first
+    - '@id': value
+    sh:property:
+    - sh:path: valueDataType
+      sh:not:
+        sh:in:
+          '@list':
+          - xsd:ENTITIES
+          - xsd:IDREFS
+          - xsd:NMTOKENS
+          - xsd:normalizedString
+          - xsd:token
+          - xsd:language
+          - xsd:Name
+          - xsd:NCName
+          - xsd:NMTOKEN
+          - xsd:ID
+          - xsd:IDREF
+          - xsd:ENTITY
+          - xsd:NOTATION
+          - xsd:QName
+      sh:message: '[DPP-DAT-026] valueDataType is none of the XSD types that EN 18223 excludes: the list
+        types ENTITIES, IDREFS and NMTOKENS, the built-in types derived from string, NOTATION and QName
+        (4.1.2.9).'
   - type: OverlayShacl
     base: DataElement
     name: DppValueInteger

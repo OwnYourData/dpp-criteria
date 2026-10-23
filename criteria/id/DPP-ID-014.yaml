@@ -16,6 +16,7 @@ requires_features: []
 check:
   type: shacl
   structure: DigitalProductPassport
+catalogue_ref: DPP-ID-014
 notes: >-
   Checked in the SOyA structure DigitalProductPassport by syntax: an HTTP(S) URL,
   a DID (resolved by DID Resolution), an EPC URN (converted per the GS1 EPC Tag

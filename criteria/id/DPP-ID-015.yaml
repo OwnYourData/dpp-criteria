@@ -1,0 +1,37 @@
+id: DPP-ID-015
+version: 1
+status: proposed
+title: Identifiers use ISO/IEC 646 characters and, as URIs, RFC 3986 syntax
+statement: >-
+  The unique product, operator and facility identifiers in a passport MUST consist
+  of ISO/IEC 646 characters and, where they are URIs, MUST follow RFC 3986 with
+  every other character percent-encoded.
+level: MUST
+basis:
+- source: EN 18219:2026
+  clause: 4.3.2 (1)
+  kind: harmonised-standard
+- source: RFC 3986
+  clause: '2'
+  kind: standard
+  url: https://www.rfc-editor.org/rfc/rfc3986.html#section-2
+target: passport
+method: automated
+requires_features: []
+check:
+  type: shacl
+  structure: DigitalProductPassport
+catalogue_ref:
+- DPP-ID-015
+- DPP-ID-023
+notes: >-
+  Checked on uniqueProductIdentifier, economicOperatorId and facilityId.
+  ISO/IEC 646 is a 7-bit character set, so any character outside US-ASCII fails.
+  A value that begins with a URI scheme (a letter, then letters, digits, "+", "-"
+  or ".", then ":") is treated as a URI: it may then contain only the unreserved
+  and reserved characters of RFC 3986 and percent-encodings ("%" and two
+  hexadecimal digits); a space, for example, fails. Reserved characters such as
+  ":" and "/" keep their role as delimiters. Element strings without a scheme,
+  such as ISO/IEC 15434 messages, are checked for ISO/IEC 646 only.
+  digitalProductPassportId is an identifier of EN 18223, not of EN 18219, and is
+  not checked here.

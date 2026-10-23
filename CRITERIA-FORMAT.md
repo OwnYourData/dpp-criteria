@@ -555,6 +555,6 @@ presumption of conformity.
 
 ## Identifiers
 
-IDs from the catalogue (`DPP System Requirements Katalog v2`) keep their
-number. Criteria that do not come from the catalogue take the next free number
+IDs from the catalogue (DPP System Requirements Catalogue, version 4.0) keep
+their number. Criteria that do not come from the catalogue take the next free number
 in their area.

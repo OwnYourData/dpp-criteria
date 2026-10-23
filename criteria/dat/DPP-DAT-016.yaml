@@ -44,6 +44,9 @@ check:
       status:
       - 200
       content_type: application/json
+catalogue_ref:
+- DPP-DAT-016
+- DPP-ACC-029
 notes: >-
   Only the HTML request decides pass or fail. Three further checks give at most a
   warning. (1) The HTML response lists Accept in its Vary header (RFC 9110

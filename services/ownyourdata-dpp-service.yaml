@@ -60,4 +60,18 @@ declarations:
       whole log. The log protects against changes made through the service, not
       against direct changes to its database.
     evidence: https://github.com/OwnYourData/dpp-service-public/blob/a42359ecdf33913bb6afc3164d0e4af40f60be19/docs/AccessClasses.md#10-access-log
+  - criterion: DPP-DGA-001
+    statement: >-
+      The hosted instance of the service, operated by OwnYourData, keeps no passport
+      documents in its own database: it stores them in a hosting pod of DID
+      Daten-Intermediär-Dienste FlexCo, a separate legal person, and keeps only an
+      index and the storage configuration. For economic operators, the intermediary
+      holds their passports in a collection of its pod and serves the public part to
+      anyone who reads it; a change of custodian moves a passport without changing
+      its product identifier. DID Daten-Intermediär-Dienste FlexCo is notified in
+      Austria as a provider of data intermediation services and listed in the EU
+      register of data intermediation services. The role is described in the
+      documentation of the service:
+      https://github.com/OwnYourData/dpp-service-public/blob/8fec06ed3a108586b254fa4ba7d9a3f174c0f122/README.md#hosted-instance
+    evidence: https://digital-strategy.ec.europa.eu/en/policies/data-intermediary-services
 listed_since: 2026-10-08

@@ -37,7 +37,7 @@ check:
     expect:
       status:
       - 400
-catalogue_ref: DPP-API-007
+catalogue_ref: DPP-API-029
 notes: >-
   Checks malformed requests to ReadDPPIdsByProductIds. The answer to an unknown
   passport ID (404) is checked by DPP-API-022, so that it is also assessed in a

@@ -16,4 +16,5 @@ check:
   http_versions:
     require:
     - '2'
+catalogue_ref: DPP-DEX-005
 notes: HTTP/3 is recommended by the standard but not checked.

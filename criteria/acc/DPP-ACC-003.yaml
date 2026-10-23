@@ -42,7 +42,9 @@ check:
       json:
       - path: $..['{controlledElementId}']
         exists: false
-catalogue_ref: DPP-ACC-003
+catalogue_ref:
+- DPP-ACC-003
+- DPP-ACC-013
 notes: >-
   EN 18239:2026 bases the authorisation on the role of the requesting actor and
   requires access rights to be enforceable per controlled data element (5.2 (20),

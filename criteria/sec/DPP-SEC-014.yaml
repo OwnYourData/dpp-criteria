@@ -17,6 +17,8 @@ check:
   type: html
   external_resources: forbidden
 catalogue_ref:
+- DPP-SEC-014
+- DPP-SEC-038
 - DPP-SEC-005
 notes: >-
   EN 18246:2026 5.1.3 rules out external analytics tools in a DPP service and

@@ -16,7 +16,10 @@ requires_features: []
 check:
   type: shacl
   structure: DigitalProductPassport
-catalogue_ref: DPP-INT-005
+catalogue_ref:
+- DPP-INT-005
+- DPP-DAT-024
+- DPP-DAT-034
 notes: >-
   Covers the DataElement classes (objectType), the attributes of Tables 2 to 6 and
   the value types of Table 7 in the expanded full serialization (Annex A). Whether

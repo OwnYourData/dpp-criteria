@@ -27,7 +27,10 @@ requires_features: []
 check:
   type: shacl
   structure: DigitalProductPassport
-catalogue_ref: DPP-CAR-002
+catalogue_ref:
+- DPP-CAR-002
+- DPP-ID-043
+- DPP-INT-007
 notes: >-
   Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL
   (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the

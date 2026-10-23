@@ -31,6 +31,9 @@ check:
     expect:
       status:
       - 400
+catalogue_ref:
+- DPP-API-021
+- DPP-API-026
 notes: >-
   The fine-granular API itself is optional (EN 18222 6.1); the criterion applies
   only to services that declare it. The test data of the service names a JSONPath

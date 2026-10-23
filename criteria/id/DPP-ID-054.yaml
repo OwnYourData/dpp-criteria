@@ -1,0 +1,27 @@
+id: DPP-ID-054
+version: 1
+status: proposed
+title: A product DID uses did:web, did:ethr or did:ebsi
+statement: >-
+  A unique product identifier that is a DID SHOULD use the DID method did:web,
+  did:ethr or did:ebsi.
+level: SHOULD
+basis:
+- source: EN 18219:2026
+  clause: 5.4.3
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+applies_if:
+- path: $.uniqueProductIdentifier
+  matches: '^did:'
+check:
+  type: shacl
+  structure: DigitalProductPassport
+catalogue_ref: DPP-ID-054
+notes: >-
+  EN 18219 ID scheme 3 (5.4) bases product identifiers on DIDs and recommends
+  one of three DID methods. Another method gives a warning. Passports whose
+  product identifier is not a DID are skipped. DID Core conformance of such
+  identifiers is not checked here.

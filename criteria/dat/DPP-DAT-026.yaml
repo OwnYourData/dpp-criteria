@@ -1,0 +1,26 @@
+id: DPP-DAT-026
+version: 1
+status: proposed
+title: valueDataType names no XSD type that EN 18223 excludes
+statement: >-
+  The valueDataType of a data element MUST NOT name an XSD list type, an XSD
+  built-in type derived from string, NOTATION or QName.
+level: MUST
+basis:
+- source: EN 18223:2026
+  clause: 4.1.2.9
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: shacl
+  structure: DigitalProductPassport
+catalogue_ref: DPP-DAT-026
+notes: >-
+  EN 18223 lets valueDataType name the data types of W3C XML Schema with three
+  exceptions: the list types ENTITIES, IDREFS and NMTOKENS; the built-in types
+  derived from string (normalizedString, token, language, Name, NCName, NMTOKEN,
+  ID, IDREF and ENTITY); and the primitive types NOTATION and QName. xsd:string
+  itself and xsd:base64Binary stay allowed. Whether valueDataType names an XSD
+  type at all is checked by DPP-INT-005.

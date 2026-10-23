@@ -15,7 +15,7 @@ namespace; no further preparation is needed.
 
 | Structure | Criteria |
 |---|---|
-| `DigitalProductPassport` | DPP-DAT-014 (header, EN 18223 Table 1), DPP-INT-005 (data elements, expanded full serialization of Annex A, Tables 2 to 7), DPP-ROL-016, DPP-DAT-015, DPP-ID-014, DPP-CAR-002, DPP-REG-024, DPP-ID-009, DPP-ID-010, DPP-CFG-005 |
+| `DigitalProductPassport` | DPP-DAT-014 (header, EN 18223 Table 1), DPP-INT-005 (data elements, expanded full serialization of Annex A, Tables 2 to 7), DPP-ROL-016, DPP-DAT-015, DPP-ID-014, DPP-CAR-002, DPP-REG-024, DPP-ID-009, DPP-ID-010, DPP-ID-015, DPP-ID-054, DPP-CFG-005, DPP-DAT-026 |
 
 ## SOyA context
 

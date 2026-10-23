@@ -6,7 +6,7 @@ statement: The integrity of a DPP version MUST be verifiable.
 level: MUST
 basis:
 - source: Implementing Regulation (EU) 2026/1778 (DPP registry)
-  clause: Art. 2 (hash of the version); Art. 8(9)
+  clause: Art. 2, point (16); Art. 8(9)(d)
   kind: regulation
   url: https://eur-lex.europa.eu/eli/reg_impl/2026/1778/oj
 - source: EN 18221:2026
@@ -26,7 +26,8 @@ check:
   - did-oyd-log
 catalogue_ref:
 - DPP-SEC-002
-- DPP-BAT-008
+- DPP-SEC-015
+- DPP-SEC-017
 notes: >-
   EN 18221:2026 requires DPP service providers to ensure the integrity and
   authenticity of stored passports and of archived versions, following EN 18246.
