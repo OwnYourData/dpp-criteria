@@ -1,0 +1,7 @@
+check:
+  type: http
+  steps:
+  - request: { method: GET, path: "/dppsByProductId/{productId}" }
+    expect:
+      status: [200]
+    compare_with_resolved: [$.digitalProductPassportId, "$['lastUpdated']"]

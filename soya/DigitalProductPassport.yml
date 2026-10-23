@@ -256,6 +256,32 @@ content:
         5: HTTPS URL (schemes 1, 2, 5), DID (scheme 3) or RFID/2D encoding (scheme 4).'
   - type: OverlayShacl
     base: DigitalProductPassport
+    name: DppProductIdNoDemoPrefix
+    '@id': DppProductIdNoDemoPrefix
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: uniqueProductIdentifier
+      sh:not:
+        sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/[0-9]?952[0-9]{10}([/?#]|$)
+      sh:severity:
+        '@id': sh:Warning
+      sh:message: '[DPP-CAR-002] The GTIN of the GS1 Digital Link does not carry the GS1 prefix 952,
+        which GS1 sets aside for demonstrations and examples (EN 18219 5.2.2.1 f), g)).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
+    name: DppProductIdRegistryUrl
+    '@id': DppProductIdRegistryUrl
+    sh:targetClass:
+      '@id': DigitalProductPassport
+    sh:property:
+    - sh:path: uniqueProductIdentifier
+      sh:pattern: ^https://\S+$
+      sh:maxLength: 2000
+      sh:message: '[DPP-REG-024] uniqueProductIdentifier is an https:// URL of at most 2000 characters,
+        the form the EU DPP registry accepts (DPP Registry User Guide 6.2.1).'
+  - type: OverlayShacl
+    base: DigitalProductPassport
     name: DppOperatorIdScheme
     '@id': DppOperatorIdScheme
     sh:targetClass:

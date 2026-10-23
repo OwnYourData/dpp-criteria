@@ -1,0 +1,53 @@
+id: DPP-STO-015
+version: 1
+status: proposed
+title: Back-up provider keeps the archived versions
+statement: >-
+  A back-up DPP service provider MUST also hold the archived versions of the
+  passport, including the one valid now, and serve them through
+  ReadDPPVersionByIdAndDate.
+level: MUST
+basis:
+- source: EN 18221:2026
+  clause: 4.2, 4.3
+  kind: harmonised-standard
+- source: EN 18222:2026
+  clause: 4.1, 4.4, 8.2
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features:
+- backup-provider
+- historical-versions
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dppsByIdAndDate/{dppId}?date={now}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.digitalProductPassportId
+        equals: '{dppId}'
+    skip_if_status:
+    - 401
+    - 403
+    compare_with_resolved:
+    - $.lastUpdated
+catalogue_ref:
+- DPP-STO-015
+- DPP-STO-020
+notes: >-
+  EN 18221:2026 asks for archived versions to be stored by the back-up provider as
+  well as by the creator or its main DPP service provider (4.2), and for the
+  back-up provider to keep the required historical versions (4.3). The check reads
+  the version valid now at the back-up provider and compares its lastUpdated with
+  the passport that the product identifier resolves to (compare_with_resolved).
+  Older versions cannot be compared, because the passport the product identifier
+  leads to is always the current one. EN 18221 4.2 lets archived versions be
+  restricted to authenticated and authorised actors; 401 or 403 therefore skips the
+  check, as in DPP-API-019.

@@ -1,0 +1,49 @@
+id: DPP-STO-019
+version: 1
+status: proposed
+title: Back-up copy is readable and up to date
+statement: >-
+  A back-up DPP service provider MUST serve through ReadDPPByProductId a copy of
+  the passport that matches the current passport the product identifier resolves
+  to.
+level: MUST
+basis:
+- source: EN 18221:2026
+  clause: 4.3, 4.5
+  kind: harmonised-standard
+- source: EN 18222:2026
+  clause: 4.1, 4.3, 8.2
+  kind: harmonised-standard
+target: service
+method: automated
+requires_features:
+- backup-provider
+check:
+  type: http
+  steps:
+  - request:
+      method: GET
+      path: /dppsByProductId/{productId}
+      auth: none
+    expect:
+      status:
+      - 200
+      content_type: application/json
+      json:
+      - path: $.uniqueProductIdentifier
+        equals: '{productId}'
+    compare_with_resolved:
+    - $.digitalProductPassportId
+    - $.lastUpdated
+catalogue_ref:
+- DPP-STO-019
+- DPP-STO-024
+notes: >-
+  EN 18221:2026 asks the back-up provider to store a copy of the latest version
+  (4.3) and to receive the passport and all its changes by replication (4.5); EN
+  18222:2026 makes ReadDPPByProductId mandatory for back-up providers as well
+  (4.1). The check reads the copy of the test passport at the back-up provider
+  and compares its passport ID and lastUpdated with the passport that the product
+  identifier resolves to (compare_with_resolved). Replication may lag behind by
+  the recovery point objective agreed for it; the test passport should therefore
+  change rarely.

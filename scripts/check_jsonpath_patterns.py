@@ -1,10 +1,11 @@
 """Checks every JSONPath in the criteria (CRITERIA-FORMAT.md, "Regular expressions").
 
 For each JSON assertion path (http steps, resolve expect and further_requests,
-applies_if):
+applies_if) and each path of compare_with_resolved (http steps):
 
 - placeholders may stand only inside string literals; they are replaced by
-  "x" before parsing ("Placeholders in checks");
+  "x" before parsing ("Placeholders in checks"); in compare_with_resolved,
+  where nothing is substituted, they may not stand at all;
 - the path must be valid RFC 9535 (jsonpath-rfc9535);
 - every literal pattern of match() and search() must be valid I-Regexp
   (iregexp-check) and must not contain an unescaped ^ or $ outside a
@@ -119,18 +120,24 @@ def anchor_problem(pattern):
 
 
 def paths(doc):
+    """(path, substituted) for every JSONPath of the criterion."""
     check = doc.get("check") or {}
     expects = [s.get("expect") or {} for s in check.get("steps") or []]
     expects.append(check.get("expect") or {})
     expects += [r.get("expect") or {} for r in check.get("further_requests") or []]
     for e in expects:
         for a in e.get("json") or []:
-            yield a.get("path")
+            yield a.get("path"), True
     for a in doc.get("applies_if") or []:
-        yield a.get("path")
+        yield a.get("path"), True
+    for s in check.get("steps") or []:
+        for p in s.get("compare_with_resolved") or []:
+            yield p, False
 
 
-def problems(path):
+def problems(path, substituted=True):
+    if not substituted and (m := PLACEHOLDER.search(path)):
+        return [f"placeholder {m.group(0)} in compare_with_resolved, where placeholders are not substituted"]
     expanded, problem = substitute(path)
     if problem:
         return [problem]
@@ -152,10 +159,10 @@ def main(files):
     for f in files:
         with open(f, encoding="utf-8") as fh:
             doc = yaml.safe_load(fh)
-        for p in paths(doc):
+        for p, substituted in paths(doc):
             if not p:
                 continue
-            for problem in problems(p):
+            for problem in problems(p, substituted):
                 print(f"::error file={f}::{p}: {problem}")
                 failures += 1
     print(f"{len(files)} files checked, {failures} problem(s)")

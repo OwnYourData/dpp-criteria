@@ -1,0 +1,19 @@
+id: DPP-TST-151
+version: 1
+status: proposed
+title: Schema test vector
+statement: A test vector MUST validate as described in its file name.
+level: MUST
+basis:
+- source: EN 18221:2026
+  clause: "4.3"
+  kind: harmonised-standard
+target: service
+method: automated
+check:
+  type: http
+  steps:
+  - request: { method: GET, path: "/dppsByProductId/{productId}" }
+    expect:
+      status: [200]
+    compare_with_resolved: []
