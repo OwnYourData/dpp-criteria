@@ -7,7 +7,7 @@ operator:
   country: AT
 entry:
   source: operator
-  as_of: 2026-10-23
+  as_of: 2026-10-24
 licence:
   text: Apache-2.0
   spdx: [Apache-2.0]
@@ -60,6 +60,24 @@ declarations:
       whole log. The log protects against changes made through the service, not
       against direct changes to its database.
     evidence: https://github.com/OwnYourData/dpp-service-public/blob/a42359ecdf33913bb6afc3164d0e4af40f60be19/docs/AccessClasses.md#10-access-log
+  - criterion: DPP-ACC-015
+    statement: >-
+      Every party that authenticates to the service is identified by a W3C
+      Decentralized Identifier: economic operators that write passports, readers of
+      the controlled part and issuers of access grants. Each presents a self-issued
+      JWT (EdDSA) signed with the document key of its own did:oyd, with iss and sub
+      set to that DID, this service as aud, and a lifetime of at most 15 minutes and
+      is accepted once; the service resolves the DID and verifies the signature
+      against the key in its DID document. There are no local accounts, shared logins
+      or shared secrets. A did:oyd is the hash of its own DID document and therefore
+      unique without a central registry. Passport ownership, access grants and every
+      entry of the access log are keyed by this DID, and towards a custodian the
+      service authenticates with its own DID in the same way, with a delegation
+      signed by the economic operator, a client assertion and DPoP. Tokens are
+      verified with DPP_AUTH_MODE=did, as on the hosted instance; a stand-alone
+      instance in the default mode does not verify them. A DID proves control of a
+      key, not the legal identity behind it.
+    evidence: https://github.com/OwnYourData/dpp-service-public/blob/0a534e63813e1068c27e28807316b8894016401f/README.md#hosted-instance
   - criterion: DPP-DGA-001
     statement: >-
       The hosted instance of the service, operated by OwnYourData, keeps no passport
@@ -74,4 +92,30 @@ declarations:
       documentation of the service:
       https://github.com/OwnYourData/dpp-service-public/blob/8fec06ed3a108586b254fa4ba7d9a3f174c0f122/README.md#hosted-instance
     evidence: https://digital-strategy.ec.europa.eu/en/policies/data-intermediary-services
+  - criterion: DPP-SEC-022
+    statement: >-
+      The public part of a passport is readable without credentials, as EN 18239:2026
+      provides; the service limits how fast it can be harvested and keeps the
+      controlled part out of reach. Reads and writes are rate-limited per client
+      address and minute, by default 600 reads and 60 writes, counted in the database
+      all replicas share, and answered above the limit with 429 and Retry-After. No
+      operation lists passports: a read needs a passport identifier, a did:oyd that
+      cannot be guessed, or a product identifier, and the bulk lookup
+      ReadDPPIdsByProductIds takes at most 1000 product identifiers per request and
+      returns identifiers only, at most 1000 per page. The controlled part is handed
+      out only against a verified DID token and a valid access grant, and every such
+      read and every refused read with a valid token is logged; a fine-granular read
+      of an element path beyond the reader's access rights answers 401 without a
+      token and 403 with a valid one, whether or not the element exists. Writes need
+      the owner's signed token, and browsers may write only from configured origins,
+      none by default. The hosted instance serves the API over HTTPS only and refuses
+      HTTP versions below HTTP/2; tokens are bound to this service, live at most 15
+      minutes and are accepted once, their jti being recorded until they expire, and
+      DID resolution is cached, failures included, so invented DIDs cannot force
+      unbounded lookups. Not covered: the rate limit is kept per client address, so
+      scraping spread over many addresses is not stopped; there is no bot detection;
+      product identifiers that follow a predictable series can be enumerated at the
+      rate limit; and passports held by a custodian are served from the custodian's
+      host under the custodian's protection, not this service's.
+    evidence: https://github.com/OwnYourData/dpp-service-public/blob/0a534e63813e1068c27e28807316b8894016401f/docs/Standalone.md#3-configuration
 listed_since: 2026-10-08
