@@ -984,22 +984,23 @@ Catalogue rows: DPP-ACC-008, DPP-ROL-019, DPP-ACC-032, DPP-ACC-022, DPP-ACC-023 
 
 **Fine-granular read of a controlled element without credentials is refused**
 
-**MUST** · checked on: DPP service · automated · status: proposed · version 1
+**MUST** · checked on: DPP service · automated · status: proposed · version 2
 
-> A DPP service MUST refuse a fine-granular read of a controlled data element that is sent without credentials.
+> A DPP service MUST refuse a fine-granular read of a controlled data element that is sent without credentials. It SHOULD answer with 401 and a WWW-Authenticate header field.
 
 **Basis**
 
 - EN 18239:2026, 5.2 (22), 6.2 (standard)
 - EN 18222:2026, 6.2, 7.2, Table 15 (harmonised standard)
+- [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-401-unauthorized), 15.5.2 (standard)
 
 **Applies only if** the service declares the feature `access-levels` and `fine-granular-api`.
 
 **How it is checked** Requests to the API base of the service, in this order:
 
-1. `GET /dpps/{dppId}/elements/{controlledElementIdPath}`, without credentials → expect status 401 or 403
+1. `GET /dpps/{dppId}/elements/{controlledElementIdPath}`, without credentials → expect status 401; header `WWW-Authenticate` is present (warning only); status 403 → warning
 
-**Notes** ReadDataElement (EN 18222 6.2) addresses one element directly, so there is no public part to fall back on. EN 18222 Table 15 has ClientNotAuthorized (401) for missing or wrong credentials and ClientForbidden (403) for a refused operation; the standard does not say which of the two answers a request without credentials, so both pass. 200 fails, and so does 404, because it does not tell a refused read from a missing element. The test data names the JSONPath of the controlled element in the compressed representation (test\_data.controlledElementIdPath).
+**Notes** ReadDataElement (EN 18222 6.2) addresses one element directly, so there is no public part to fall back on. EN 18222 Table 15 maps credentials that are absent or invalid to ClientNotAuthorized (401) and a denied authorisation to ClientForbidden (403). A request without credentials is the case of absent credentials, so 401 passes. 403 still refuses the read and gives a warning, because the table provides 401 for this case. 200 fails, and so does 404, because it does not tell a refused read from a missing element. RFC 9110 15.5.2 requires every 401 to carry a WWW-Authenticate header field with at least one challenge; a 401 without it gives a warning. EN 18222 names no authentication scheme, so the check asks for the header field only, not for a particular scheme. The test data names the JSONPath of the controlled element in the compressed representation (test\_data.controlledElementIdPath).
 
 Catalogue rows: DPP-ACC-001 · Source: [acc/DPP-ACC-012.yaml](acc/DPP-ACC-012.yaml)
 
