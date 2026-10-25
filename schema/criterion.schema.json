@@ -136,7 +136,7 @@
     "check": {
       "type": "object",
       "required": ["type"],
-      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "did", "proof", "links", "html", "declaration"] } },
+      "properties": { "type": { "enum": ["http", "tls", "shacl", "resolve", "did", "proof", "links", "html", "element_ids", "declaration"] } },
       "allOf": [
         {
           "if": { "properties": { "type": { "const": "http" } } },
@@ -290,10 +290,22 @@
           "if": { "properties": { "type": { "const": "html" } } },
           "then": {
             "additionalProperties": false,
-            "required": ["external_resources"],
+            "anyOf": [{ "required": ["external_resources"] }, { "required": ["device_features"] }],
             "properties": {
               "type": true,
-              "external_resources": { "const": "forbidden" }
+              "external_resources": { "const": "forbidden" },
+              "device_features": { "const": "forbidden" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "element_ids" } } },
+          "then": {
+            "additionalProperties": false,
+            "required": ["unique"],
+            "properties": {
+              "type": true,
+              "unique": { "enum": ["level", "passport"] }
             }
           }
         },

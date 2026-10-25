@@ -49,7 +49,7 @@ notes: ""
 | `requires_features` | Feature flags from the controlled list below. Empty means "applies to every service". |
 | `applies_if` | Passport criteria only. A list of JSON assertions (see `http`) on the fetched passport. If one does not hold, the result is `skipped`. |
 | `catalogue_ref` | Catalogue rows whose check this criterion carries. Several rows that lead to the same check share one criterion, so a check counts only once in "N of M". |
-| `check.type` | One of `http`, `tls`, `shacl`, `resolve`, `did`, `proof`, `links`, `declaration`. Each type is implemented once in the runner; a pull request that needs a new type adds it to the runner in the same PR. A check accepts only the fields listed for its type below; any other key, including a misspelt one, is a schema error. |
+| `check.type` | One of `http`, `tls`, `shacl`, `resolve`, `did`, `proof`, `links`, `html`, `element_ids`, `declaration`. Each type is implemented once in the runner; a pull request that needs a new type adds it to the runner in the same PR. A check accepts only the fields listed for its type below; any other key, including a misspelt one, is a schema error. |
 
 ### Placeholders in checks
 
@@ -217,7 +217,10 @@ Where placeholders are substituted, and how:
   `resolve`, with `Accept: text/html`, following redirects. If the final
   response is not status 200 with media type `text/html`, the criterion is
   `skipped` (`no_evidence`); whether the HTML view exists is rated by
-  DPP-DAT-016. `external_resources: forbidden`: displaying the document must
+  DPP-DAT-016. A check names at least one of the two options below; with both,
+  both apply.
+
+  `external_resources: forbidden`: displaying the document must
   not make a browser fetch anything from another host. Counted are the URLs a
   browser fetches without user action:
   - `src` of `script`, `img`, `iframe`, `frame`, `embed`, `audio`, `video`,
@@ -237,8 +240,75 @@ Where placeholders are substituted, and how:
   `data:`, `blob:` and other schemes are not counted. Links the user has to
   follow (`a href`, `form action`) are not counted, and resources that a
   script adds at run time cannot be seen in the document and are not checked.
-  Result: `failed` if at least one external URL is found (the message names
-  them), otherwise `passed`.
+  Finding: every external URL (the message names them).
+
+  `device_features: forbidden`: the document must not use functions of the
+  reader's device. The check is static; no script is run. Searched are the
+  inline `script` elements with a JavaScript type (no `type`, a JavaScript MIME
+  type or `module`), the event handler attributes (`on…`) and `javascript:`
+  URLs of the document, and the scripts it loads from the host of the final
+  response URL (`script src`, `link rel=modulepreload`; at most 10 scripts and
+  the first 2 MB of each; a script that cannot be retrieved is not checked).
+  Counted is any occurrence of these interfaces:
+  - location: `.geolocation`, `getCurrentPosition`, `watchPosition`;
+  - camera, microphone or screen: `getUserMedia`, `getDisplayMedia`,
+    `.mediaDevices`;
+  - notifications: `Notification.requestPermission`, `new Notification(`,
+    `.showNotification(`, `PushManager`, `pushManager`;
+  - contacts: `navigator.contacts`;
+  - Bluetooth, USB, serial, HID or NFC: `navigator.bluetooth`, `navigator.usb`,
+    `navigator.serial`, `navigator.hid`, `NDEFReader`;
+  - motion and orientation sensors: the events `devicemotion`,
+    `deviceorientation` and `deviceorientationabsolute` (also as `on…`),
+    `DeviceMotionEvent.requestPermission`,
+    `DeviceOrientationEvent.requestPermission`, and `new` with `Accelerometer`,
+    `Gyroscope`, `Magnetometer`, `AbsoluteOrientationSensor`,
+    `RelativeOrientationSensor`, `LinearAccelerationSensor`, `GravitySensor`
+    or `AmbientLightSensor`;
+  - context or network information: `navigator.connection`, `getBattery(`,
+    `IdleDetector`;
+  - one-time codes from SMS: `OTPCredential`, or `transport: ['sms']`;
+  - app installation: `beforeinstallprompt`, `getInstalledRelatedApps`;
+  - device behaviour: `navigator.wakeLock`, `navigator.vibrate`.
+
+  In the markup, counted are an `iframe` whose `allow` grants `camera`,
+  `microphone`, `geolocation`, `display-capture`, `bluetooth`, `usb`,
+  `serial`, `hid`, `accelerometer`, `gyroscope`, `magnetometer`,
+  `ambient-light-sensor`, `idle-detection` or `screen-wake-lock`; an `input`
+  with a `capture` attribute; and the elements `permission` and
+  `geolocation`. Interfaces are matched as written (property names, case as
+  in the browser APIs), so a name in a comment or string counts as use, while
+  code assembled at run time, obfuscated, or loaded by a script (dynamic
+  `import`, `fetch`, workers) and scripts from other hosts are not seen.
+  `tel:` and `sms:` links are followed by the reader and are not counted.
+  Finding: every interface found, with the place (inline script, attribute or
+  script URL).
+
+  Result: `failed` if there is at least one finding (the message names up to
+  10 of them), otherwise `passed`.
+- **element_ids** — the elementIds of the passport fetched via `{productId}`
+  (EN 18223 4.1.2.3). In the expanded full serialization (EN 18223 Annex A,
+  recognised by an `elements` array at the top level) the data elements are
+  the objects with an `elementId` in the `elements` arrays of the passport and
+  of its DataElementCollections and MultiValuedDataElements, and in the
+  `value` array of a MultiValuedDataElement whose items are such objects.
+  `unique` says where an elementId has to be unique:
+  - `level`: within each of these arrays. In the compressed serialization
+    (5.2) the elementIds are JSON member names; there no JSON object of the
+    passport may contain a member name twice, checked on the passport as it
+    was delivered (a JSON parser keeps only one of the two values). If the
+    passport is not available as delivered, a passport in the compressed
+    serialization is `skipped` (`not_evaluated`). Every repeated elementId is a
+    violation.
+  - `passport`: within the whole passport. An elementId used at two places is
+    a warning; places that differ only in the item of a MultiValuedDataElement
+    they belong to count as one, because the items repeat one structure. Only
+    the expanded full serialization; a passport in the compressed
+    serialization is `skipped` (`not_evaluated`).
+
+  Result: `failed` on a violation, otherwise `warning` if there is a warning,
+  otherwise `passed`. Whether the elements follow the data model is a matter
+  of `shacl` (DPP-INT-005).
 - **declaration** — for `self-declared`: the service file must contain an entry
   under `declarations` with this criterion's ID, a `statement` and an
   `evidence` URL. The runner only checks presence and that the URL answers.

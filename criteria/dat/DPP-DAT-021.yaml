@@ -1,0 +1,28 @@
+id: DPP-DAT-021
+version: 1
+status: proposed
+title: elementId is unique in the whole passport
+statement: >-
+  The elementId of a data element SHOULD be unique within the whole passport.
+level: SHOULD
+basis:
+- source: EN 18223:2026
+  clause: 4.1.2.3, Table 2
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: element_ids
+  unique: passport
+catalogue_ref: DPP-DAT-021
+notes: >-
+  Beyond uniqueness at each level (DPP-DAT-017), EN 18223 recommends that an
+  elementId be unique in the passport instance. An elementId that is used at two
+  places of the passport gives a warning that names the places. The items of one
+  MultiValuedDataElement repeat the same structure, as in the examples of the
+  standard (5.2.5), so elements that differ only in the item they belong to count
+  as one place. The check needs the expanded full serialization (Annex A); in the
+  compressed serialization elementIds cannot be told apart from the attribute
+  names of RelatedResource and MultiLanguageDataElement objects without the data
+  dictionary, and the result is skipped.

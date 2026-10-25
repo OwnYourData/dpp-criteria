@@ -283,13 +283,33 @@ def describe_proof(c):
 
 
 def describe_html(c):
-    s = ("The product identifier is opened with `Accept: text/html`, and the HTML view is "
-         "searched for URLs a browser loads without user action (scripts, style sheets, "
-         "fonts, images, frames, preloads, CSS `url()` and `@import`, meta refresh).")
+    s = "The product identifier is opened with `Accept: text/html`."
     if c.get("external_resources") == "forbidden":
-        s += " None of them may point to another host than the passport's own."
+        s += (" The HTML view is searched for URLs a browser loads without user action "
+              "(scripts, style sheets, fonts, images, frames, preloads, CSS `url()` and "
+              "`@import`, meta refresh); none of them may point to another host than the "
+              "passport's own.")
+    if c.get("device_features") == "forbidden":
+        s += (" Without running any script, the HTML view and the scripts it loads from its "
+              "own host are searched for browser interfaces that use functions of the "
+              "reader's device (location, camera, microphone, notifications, contacts, "
+              "sensors, network information and others), and the markup for frames granted "
+              "such permissions, file inputs with `capture` and permission elements; none "
+              "may be found. The list is in [CRITERIA-FORMAT.md](../CRITERIA-FORMAT.md) under `html`.")
     s += " Without an HTML view the result is skipped."
     return [s]
+
+
+def describe_element_ids(c):
+    if c.get("unique") == "passport":
+        return ["The elementIds of the passport are compared across the whole passport; an "
+                "elementId used at two places gives a warning. Places that differ only in the "
+                "item of a MultiValuedDataElement count as one. Only the expanded full "
+                "serialization is checked; a compressed passport is skipped."]
+    return ["The elementIds of each level of the passport (the passport, every "
+            "DataElementCollection and every MultiValuedDataElement) are compared; an "
+            "elementId may occur only once per level. In the compressed serialization no JSON "
+            "object of the passport as delivered may contain a member name twice."]
 
 
 def describe_links(c):
@@ -316,6 +336,7 @@ DESCRIBE = {
     "proof": describe_proof,
     "links": describe_links,
     "html": describe_html,
+    "element_ids": describe_element_ids,
     "declaration": describe_declaration,
 }
 

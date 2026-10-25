@@ -10,10 +10,10 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 
 | | active | proposed | total |
 |---|---:|---:|---:|
-| Published passport (dpplint) | 6 | 22 | 28 |
+| Published passport (dpplint) | 6 | 25 | 31 |
 | DPP service (dpp-validator) | 15 | 14 | 29 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 21 | 37 | 58 |
+| **All criteria** | 21 | 40 | 61 |
 
 How to read the entries:
 
@@ -73,6 +73,8 @@ How to read the entries:
 | [DPP-DAT-014](#dpp-dat-014) | Passport header uses the EN 18223 attributes | MUST | published passport | proposed |
 | [DPP-DAT-015](#dpp-dat-015) | Granularity uses the EN 18223 values | MUST | published passport | proposed |
 | [DPP-DAT-016](#dpp-dat-016) | Passport is available as HTML | MUST | published passport | active |
+| [DPP-DAT-017](#dpp-dat-017) | elementId is unique at its level | MUST | published passport | proposed |
+| [DPP-DAT-021](#dpp-dat-021) | elementId is unique in the whole passport | SHOULD | published passport | proposed |
 | [DPP-DAT-026](#dpp-dat-026) | valueDataType names no XSD type that EN 18223 excludes | MUST | published passport | proposed |
 
 **APIs and data exchange**
@@ -121,6 +123,7 @@ How to read the entries:
 | [DPP-SEC-013](#dpp-sec-013) | Integrity proof is issued by the economic operator | SHOULD | published passport | proposed |
 | [DPP-SEC-014](#dpp-sec-014) | HTML view loads no external components | MUST | published passport | proposed |
 | [DPP-SEC-020](#dpp-sec-020) | Public passport data are served without cookies | MUST | published passport | proposed |
+| [DPP-SEC-021](#dpp-sec-021) | HTML view uses no device functions | MUST | published passport | proposed |
 | [DPP-SEC-022](#dpp-sec-022) | Access is limited against attacks and mass scraping | MUST | DPP service | proposed |
 
 **Storage, backup and persistence**
@@ -552,6 +555,42 @@ Catalogue rows: DPP-DAT-015 · Source: [dat/DPP-DAT-015.yaml](dat/DPP-DAT-015.ya
 **Notes** Only the HTML request decides pass or fail. Three further checks give at most a warning. (1) The HTML response lists Accept in its Vary header (RFC 9110 12.5.5), so that caches do not hand the HTML variant to JSON clients or the other way round; "Vary: \*" does not count. (2) A request with Accept \*/\* still returns application/json: JSON is the required format of EN 18216 Clause 5 and HTML is added only through content negotiation, so a client that states no preference keeps receiving JSON. (3) A request that prefers JSON and accepts HTML only with a low quality value (RFC 9110 12.5.1) returns application/json, so that the service weighs quality values instead of only looking for media types in the header. The accessibility requirements of the same clause (EN 301 549) are not checked automatically.
 
 Catalogue rows: DPP-DAT-016, DPP-ACC-029 · Source: [dat/DPP-DAT-016.yaml](dat/DPP-DAT-016.yaml)
+
+### DPP-DAT-017
+
+**elementId is unique at its level**
+
+**MUST** · checked on: published passport · automated · status: proposed · version 1
+
+> The elementId of a data element MUST be unique among the data elements of its level, that is the passport itself, a DataElementCollection or a MultiValuedDataElement.
+
+**Basis**
+
+- EN 18223:2026, 4.1.2.3, Table 2 (harmonised standard)
+
+**How it is checked** The elementIds of each level of the passport (the passport, every DataElementCollection and every MultiValuedDataElement) are compared; an elementId may occur only once per level. In the compressed serialization no JSON object of the passport as delivered may contain a member name twice.
+
+**Notes** EN 18223 requires the relative identifier of a data element to be unique at the place where the element sits, which is the passport or the level of a DataElementCollection or MultiValuedDataElement, and the absolute path of every data element to be unique within the passport. The second follows from the first: two elements with the same absolute path would need two siblings with the same elementId somewhere along that path, so one check covers both rows of the catalogue. In the expanded full serialization (Annex A) the check compares the elementIds within each array of data elements. In the compressed serialization (5.2) the elementIds are JSON member names; there the check looks for a member name that occurs twice in one JSON object of the passport as it was delivered, since a JSON parser keeps only one of the two values. Where the passport is not available as delivered, a passport in the compressed serialization is skipped. Whether the passport follows the data model at all is checked by DPP-INT-005; DPP-DAT-021 recommends unique elementIds in the whole passport.
+
+Catalogue rows: DPP-DAT-017, DPP-DAT-022 · Source: [dat/DPP-DAT-017.yaml](dat/DPP-DAT-017.yaml)
+
+### DPP-DAT-021
+
+**elementId is unique in the whole passport**
+
+**SHOULD** · checked on: published passport · automated · status: proposed · version 1
+
+> The elementId of a data element SHOULD be unique within the whole passport.
+
+**Basis**
+
+- EN 18223:2026, 4.1.2.3, Table 2 (harmonised standard)
+
+**How it is checked** The elementIds of the passport are compared across the whole passport; an elementId used at two places gives a warning. Places that differ only in the item of a MultiValuedDataElement count as one. Only the expanded full serialization is checked; a compressed passport is skipped.
+
+**Notes** Beyond uniqueness at each level (DPP-DAT-017), EN 18223 recommends that an elementId be unique in the passport instance. An elementId that is used at two places of the passport gives a warning that names the places. The items of one MultiValuedDataElement repeat the same structure, as in the examples of the standard (5.2.5), so elements that differ only in the item they belong to count as one place. The check needs the expanded full serialization (Annex A); in the compressed serialization elementIds cannot be told apart from the attribute names of RelatedResource and MultiLanguageDataElement objects without the data dictionary, and the result is skipped.
+
+Catalogue rows: DPP-DAT-021 · Source: [dat/DPP-DAT-021.yaml](dat/DPP-DAT-021.yaml)
 
 ### DPP-DAT-026
 
@@ -1125,7 +1164,7 @@ Catalogue rows: DPP-SEC-004, DPP-SEC-048, DPP-SEC-027 · Source: [sec/DPP-SEC-01
 
 - EN 18246:2026, 5.1.3, 5.1.5 (standard)
 
-**How it is checked** The product identifier is opened with `Accept: text/html`, and the HTML view is searched for URLs a browser loads without user action (scripts, style sheets, fonts, images, frames, preloads, CSS `url()` and `@import`, meta refresh). None of them may point to another host than the passport's own. Without an HTML view the result is skipped.
+**How it is checked** The product identifier is opened with `Accept: text/html`. The HTML view is searched for URLs a browser loads without user action (scripts, style sheets, fonts, images, frames, preloads, CSS `url()` and `@import`, meta refresh); none of them may point to another host than the passport's own. Without an HTML view the result is skipped.
 
 **Notes** EN 18246:2026 5.1.3 rules out external analytics tools in a DPP service and any reference to external components in the response to the user; 5.1.5 asks that profiling through IP addresses, HTTP data and user behaviour be prevented where technically feasible. Every resource a browser fetches from another host while it displays the passport discloses the reader's address and request data to that host, so every URL on another host that is loaded without user action counts, whatever its purpose (web fonts, CDN scripts, tracking pixels). Links the reader has to follow are not counted. Resources that a script adds at run time are not visible in the document, so analytics loaded that way go undetected. Hosts are compared exactly: assets on another host of the same operator count as well and belong on the passport host. Without an HTML view the result is skipped; DPP-DAT-016 rates whether it exists.
 
@@ -1152,6 +1191,24 @@ Catalogue rows: DPP-SEC-014, DPP-SEC-038, DPP-SEC-005 · Source: [sec/DPP-SEC-01
 **Notes** A cookie set on a read of public data makes the reader's device send an identifier back with every later request, so that visits can be linked to one person. The check reads the passport through its product identifier as a scanner would, as a browser (text/html) and as a client of the data (application/json), and fails if any answer sets a cookie. Only the first request also has to succeed; whether an HTML view exists is checked by DPP-DAT-016. Passing is a necessary condition only: what a service records on its own side, for example IP addresses in its logs, cannot be observed from outside.
 
 Catalogue rows: DPP-SEC-020, DPP-SEC-019, DPP-SEC-040 · Source: [sec/DPP-SEC-020.yaml](sec/DPP-SEC-020.yaml)
+
+### DPP-SEC-021
+
+**HTML view uses no device functions**
+
+**MUST** · checked on: published passport · automated · status: proposed · version 1
+
+> The HTML view of a DPP MUST NOT use functions of the reader's device such as location, camera, microphone, notifications, contacts, sensors or network information.
+
+**Basis**
+
+- EN 18246:2026, 5.1.6 (standard)
+
+**How it is checked** The product identifier is opened with `Accept: text/html`. Without running any script, the HTML view and the scripts it loads from its own host are searched for browser interfaces that use functions of the reader's device (location, camera, microphone, notifications, contacts, sensors, network information and others), and the markup for frames granted such permissions, file inputs with `capture` and permission elements; none may be found. The list is in [CRITERIA-FORMAT.md](../CRITERIA-FORMAT.md) under `html`. Without an HTML view the result is skipped.
+
+**Notes** EN 18246 rules out that a DPP system serving public data uses advanced functions of the reader's device, such as determining the location, sending notifications, reading context or network information, handling calls or messages, installing applications or changing settings. A web page reaches such functions only through browser interfaces that its scripts call or that its markup grants to embedded content. The check is static and runs no script: it looks for these interfaces in the inline scripts, event handler attributes and javascript: URLs of the HTML view and in the scripts the page loads from its own host, and in the markup for frames granted device permissions, file inputs with capture and permission elements (see html in CRITERIA-FORMAT.md). Its limits: scripts from other hosts are not fetched, but DPP-SEC-014 fails for them anyway; code that is put together at run time, obfuscated, or loaded by a script (dynamic import, fetch, workers) is not seen; an interface name in a comment or a string counts as use; and the check cannot tell whether a call would happen only after a user action. A tel: or sms: link that the reader follows is the reader's own action and does not count. Without an HTML view the result is skipped; DPP-DAT-016 rates whether it exists.
+
+Catalogue rows: DPP-SEC-021 · Source: [sec/DPP-SEC-021.yaml](sec/DPP-SEC-021.yaml)
 
 ### DPP-SEC-022
 
@@ -1278,7 +1335,7 @@ Catalogue rows: DPP-STO-019, DPP-STO-024 · Source: [sto/DPP-STO-019.yaml](sto/D
 
 **How it is checked** The passport fetched via the product identifier is validated against the SHACL shapes of the SOyA structure [`DigitalProductPassport`](../soya/DigitalProductPassport.yml); only the results tagged with this criterion's ID count.
 
-**Notes** Covers the DataElement classes (objectType), the attributes of Tables 2 to 6 and the value types of Table 7 in the expanded full serialization (Annex A). Whether an elementId is unique at its level is not checked: SOyA validates with SHACL Core, which cannot compare sibling nodes. Passports in the compressed serialization (5.2.5 to 5.2.9) are skipped until a structure for that form exists. Header attributes are checked by DPP-DAT-014.
+**Notes** Covers the DataElement classes (objectType), the attributes of Tables 2 to 6 and the value types of Table 7 in the expanded full serialization (Annex A). Whether an elementId is unique is checked by DPP-DAT-017 and DPP-DAT-021, because SOyA validates with SHACL Core, which cannot compare sibling nodes. Passports in the compressed serialization (5.2.5 to 5.2.9) are skipped until a structure for that form exists. Header attributes are checked by DPP-DAT-014.
 
 Catalogue rows: DPP-INT-005, DPP-DAT-024, DPP-DAT-034 · Source: [int/DPP-INT-005.yaml](int/DPP-INT-005.yaml)
 
