@@ -1,0 +1,38 @@
+id: DPP-SEC-021
+version: 1
+status: proposed
+title: HTML view uses no device functions
+statement: >-
+  The HTML view of a DPP MUST NOT use functions of the reader's device such as
+  location, camera, microphone, notifications, contacts, sensors or network
+  information.
+level: MUST
+basis:
+- source: EN 18246:2026
+  clause: 5.1.6
+  kind: standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: html
+  device_features: forbidden
+catalogue_ref: DPP-SEC-021
+notes: >-
+  EN 18246 rules out that a DPP system serving public data uses advanced
+  functions of the reader's device, such as determining the location, sending
+  notifications, reading context or network information, handling calls or
+  messages, installing applications or changing settings. A web page reaches such
+  functions only through browser interfaces that its scripts call or that its
+  markup grants to embedded content. The check is static and runs no script: it
+  looks for these interfaces in the inline scripts, event handler attributes and
+  javascript: URLs of the HTML view and in the scripts the page loads from its
+  own host, and in the markup for frames granted device permissions, file inputs
+  with capture and permission elements (see html in CRITERIA-FORMAT.md). Its
+  limits: scripts from other hosts are not fetched, but DPP-SEC-014 fails for
+  them anyway; code that is put together at run time, obfuscated, or loaded by a
+  script (dynamic import, fetch, workers) is not seen; an interface name in a
+  comment or a string counts as use; and the check cannot tell whether a call
+  would happen only after a user action. A tel: or sms: link that the reader
+  follows is the reader's own action and does not count. Without an HTML view
+  the result is skipped; DPP-DAT-016 rates whether it exists.

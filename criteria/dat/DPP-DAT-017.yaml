@@ -1,0 +1,38 @@
+id: DPP-DAT-017
+version: 1
+status: proposed
+title: elementId is unique at its level
+statement: >-
+  The elementId of a data element MUST be unique among the data elements of its
+  level, that is the passport itself, a DataElementCollection or a
+  MultiValuedDataElement.
+level: MUST
+basis:
+- source: EN 18223:2026
+  clause: 4.1.2.3, Table 2
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: element_ids
+  unique: level
+catalogue_ref:
+- DPP-DAT-017
+- DPP-DAT-022
+notes: >-
+  EN 18223 requires the relative identifier of a data element to be unique at
+  the place where the element sits, which is the passport or the level of a
+  DataElementCollection or MultiValuedDataElement, and the absolute path of every
+  data element to be unique within the passport. The second follows from the
+  first: two elements with the same absolute path would need two siblings with
+  the same elementId somewhere along that path, so one check covers both rows of
+  the catalogue. In the expanded full serialization (Annex A) the check compares
+  the elementIds within each array of data elements. In the compressed
+  serialization (5.2) the elementIds are JSON member names; there the check looks
+  for a member name that occurs twice in one JSON object of the passport as it
+  was delivered, since a JSON parser keeps only one of the two values. Where the
+  passport is not available as delivered, a passport in the compressed
+  serialization is skipped. Whether the passport follows the data model at all
+  is checked by DPP-INT-005; DPP-DAT-021 recommends unique elementIds in the
+  whole passport.
