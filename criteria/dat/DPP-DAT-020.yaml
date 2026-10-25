@@ -1,0 +1,34 @@
+id: DPP-DAT-020
+version: 1
+status: proposed
+title: HTML view conforms to the HTML standard
+statement: >-
+  The HTML view of a DPP MUST conform to the HTML standard; the Nu Html Checker
+  reports no error for it.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: 5 d)
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: html
+  markup_errors: forbidden
+catalogue_ref: DPP-DAT-020
+notes: >-
+  EN 18216 asks that the content of a DPP is delivered and displayed in line
+  with the HTML standards of the W3C, and recommends testing it in several
+  browsers and on several platforms. The check sends the HTML view, as
+  received, to an instance of the Nu Html Checker (the checker behind
+  validator.w3.org/nu) that the checking tool runs itself; the document is not
+  sent to a public service. Every message of type error fails the criterion.
+  Warnings and other informational messages do not count: they are advice, not
+  violations of the standard. The checker also checks the CSS in style elements
+  and style attributes and reports errors there. It runs no script, so content
+  that scripts add at run time is not checked, and it cannot show how the page
+  looks and works in different browsers; that recommendation is not checked. If
+  the checking tool has no checker or the checker does not answer, the result is
+  skipped (not_evaluated). Without an HTML view the result is skipped;
+  DPP-DAT-016 rates whether it exists.

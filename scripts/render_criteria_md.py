@@ -296,7 +296,13 @@ def describe_html(c):
               "sensors, network information and others), and the markup for frames granted "
               "such permissions, file inputs with `capture` and permission elements; none "
               "may be found. The list is in [CRITERIA-FORMAT.md](../CRITERIA-FORMAT.md) under `html`.")
-    s += " Without an HTML view the result is skipped."
+    if c.get("markup_errors") == "forbidden":
+        s += (" The HTML view is checked with the Nu Html Checker, run by the checking tool "
+              "itself; every error it reports fails the criterion, warnings and other "
+              "information do not count. Without an HTML view, or without a checker, the "
+              "result is skipped.")
+    else:
+        s += " Without an HTML view the result is skipped."
     return [s]
 
 
