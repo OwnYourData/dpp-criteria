@@ -290,11 +290,12 @@
           "if": { "properties": { "type": { "const": "html" } } },
           "then": {
             "additionalProperties": false,
-            "anyOf": [{ "required": ["external_resources"] }, { "required": ["device_features"] }],
+            "anyOf": [{ "required": ["external_resources"] }, { "required": ["device_features"] }, { "required": ["markup_errors"] }],
             "properties": {
               "type": true,
               "external_resources": { "const": "forbidden" },
-              "device_features": { "const": "forbidden" }
+              "device_features": { "const": "forbidden" },
+              "markup_errors": { "const": "forbidden" }
             }
           }
         },

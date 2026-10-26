@@ -10,10 +10,10 @@ Statements paraphrase their sources; they are not quotations of the standards. O
 
 | | active | proposed | total |
 |---|---:|---:|---:|
-| Published passport (dpplint) | 6 | 25 | 31 |
+| Published passport (dpplint) | 6 | 26 | 32 |
 | DPP service (dpp-validator) | 15 | 14 | 29 |
 | Economic operator (self-declared) | 0 | 1 | 1 |
-| **All criteria** | 21 | 40 | 61 |
+| **All criteria** | 21 | 41 | 62 |
 
 How to read the entries:
 
@@ -74,6 +74,7 @@ How to read the entries:
 | [DPP-DAT-015](#dpp-dat-015) | Granularity uses the EN 18223 values | MUST | published passport | proposed |
 | [DPP-DAT-016](#dpp-dat-016) | Passport is available as HTML | MUST | published passport | active |
 | [DPP-DAT-017](#dpp-dat-017) | elementId is unique at its level | MUST | published passport | proposed |
+| [DPP-DAT-020](#dpp-dat-020) | HTML view conforms to the HTML standard | MUST | published passport | proposed |
 | [DPP-DAT-021](#dpp-dat-021) | elementId is unique in the whole passport | SHOULD | published passport | proposed |
 | [DPP-DAT-026](#dpp-dat-026) | valueDataType names no XSD type that EN 18223 excludes | MUST | published passport | proposed |
 
@@ -573,6 +574,24 @@ Catalogue rows: DPP-DAT-016, DPP-ACC-029 · Source: [dat/DPP-DAT-016.yaml](dat/D
 **Notes** EN 18223 requires the relative identifier of a data element to be unique at the place where the element sits, which is the passport or the level of a DataElementCollection or MultiValuedDataElement, and the absolute path of every data element to be unique within the passport. The second follows from the first: two elements with the same absolute path would need two siblings with the same elementId somewhere along that path, so one check covers both rows of the catalogue. In the expanded full serialization (Annex A) the check compares the elementIds within each array of data elements. In the compressed serialization (5.2) the elementIds are JSON member names; there the check looks for a member name that occurs twice in one JSON object of the passport as it was delivered, since a JSON parser keeps only one of the two values. Where the passport is not available as delivered, a passport in the compressed serialization is skipped. Whether the passport follows the data model at all is checked by DPP-INT-005; DPP-DAT-021 recommends unique elementIds in the whole passport.
 
 Catalogue rows: DPP-DAT-017, DPP-DAT-022 · Source: [dat/DPP-DAT-017.yaml](dat/DPP-DAT-017.yaml)
+
+### DPP-DAT-020
+
+**HTML view conforms to the HTML standard**
+
+**MUST** · checked on: published passport · automated · status: proposed · version 1
+
+> The HTML view of a DPP MUST conform to the HTML standard; the Nu Html Checker reports no error for it.
+
+**Basis**
+
+- EN 18216:2026, 5 d) (harmonised standard)
+
+**How it is checked** The product identifier is opened with `Accept: text/html`. The HTML view is checked with the Nu Html Checker, run by the checking tool itself; every error it reports fails the criterion, warnings and other information do not count. Without an HTML view, or without a checker, the result is skipped.
+
+**Notes** EN 18216 asks that the content of a DPP is delivered and displayed in line with the HTML standards of the W3C, and recommends testing it in several browsers and on several platforms. The check sends the HTML view, as received, to an instance of the Nu Html Checker (the checker behind validator.w3.org/nu) that the checking tool runs itself; the document is not sent to a public service. Every message of type error fails the criterion. Warnings and other informational messages do not count: they are advice, not violations of the standard. The checker also checks the CSS in style elements and style attributes and reports errors there. It runs no script, so content that scripts add at run time is not checked, and it cannot show how the page looks and works in different browsers; that recommendation is not checked. If the checking tool has no checker or the checker does not answer, the result is skipped (not\_evaluated). Without an HTML view the result is skipped; DPP-DAT-016 rates whether it exists.
+
+Catalogue rows: DPP-DAT-020 · Source: [dat/DPP-DAT-020.yaml](dat/DPP-DAT-020.yaml)
 
 ### DPP-DAT-021
 

@@ -217,8 +217,8 @@ Where placeholders are substituted, and how:
   `resolve`, with `Accept: text/html`, following redirects. If the final
   response is not status 200 with media type `text/html`, the criterion is
   `skipped` (`no_evidence`); whether the HTML view exists is rated by
-  DPP-DAT-016. A check names at least one of the two options below; with both,
-  both apply.
+  DPP-DAT-016. A check names at least one of the options below; with more
+  than one, each applies.
 
   `external_resources: forbidden`: displaying the document must
   not make a browser fetch anything from another host. Counted are the URLs a
@@ -283,6 +283,19 @@ Where placeholders are substituted, and how:
   `tel:` and `sms:` links are followed by the reader and are not counted.
   Finding: every interface found, with the place (inline script, attribute or
   script URL).
+
+  `markup_errors: forbidden`: the document must conform to the HTML standard
+  as far as the Nu Html Checker (vnu, the checker behind validator.w3.org/nu)
+  can tell. The runner sends the document as received, with the media type
+  and charset of the response, to an instance of the checker that it runs
+  itself; it must not send it to a public instance. Counted are the messages
+  of type `error`, including errors the checker reports for CSS in `style`
+  elements and attributes; warnings and other `info` messages are not
+  counted. The checker runs no script and fetches nothing. If the runner has
+  no checker, the checker does not answer, or it reports that it could not
+  check the document (`non-document-error`), the criterion is `skipped`
+  (`not_evaluated`). Finding: every error, with its line and the message of
+  the checker.
 
   Result: `failed` if there is at least one finding (the message names up to
   10 of them), otherwise `passed`.
@@ -466,7 +479,7 @@ exactly one code:
 | `needs_credentials` | The check needs test credentials the runner does not have. | `method: automated-auth`; a step with `auth: token` |
 | `not_sent` | A read-only run (see below) does not send a step of the check. | a step with `POST` or `PATCH` |
 | `unreachable` | No TCP connection to the service (see "Requests and steps"). | name not resolvable, connection refused |
-| `not_evaluated` | The runner cannot evaluate the check as specified. | check type, or a part of a check, not implemented; self-declarations not evaluated; a placeholder without value; an unusable regular expression or JSONPath; a part the `tls` check cannot test; no shapes available; a criterion file that does not match the schema; an error in the runner |
+| `not_evaluated` | The runner cannot evaluate the check as specified. | check type, or a part of a check, not implemented; self-declarations not evaluated; a placeholder without value; an unusable regular expression or JSONPath; a part the `tls` check cannot test; no shapes available; `html` with `markup_errors` and no Nu Html Checker; a criterion file that does not match the schema; an error in the runner |
 
 `not_applicable` and `not_implemented` describe the service; `not_sent`,
 `needs_credentials`, `unreachable` and `not_evaluated` describe the run. The
