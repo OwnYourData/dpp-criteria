@@ -243,8 +243,12 @@
               "history": {
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["fail_after_consecutive_days"],
-                "properties": { "fail_after_consecutive_days": { "type": "integer", "minimum": 1 } }
+                "required": ["criterion", "period_days", "fail_after_consecutive_runs"],
+                "properties": {
+                  "criterion": { "$ref": "#/$defs/criterionId" },
+                  "period_days": { "type": "integer", "minimum": 1 },
+                  "fail_after_consecutive_runs": { "type": "integer", "minimum": 1 }
+                }
               }
             }
           }

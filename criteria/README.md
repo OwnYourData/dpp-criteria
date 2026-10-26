@@ -236,7 +236,7 @@ Catalogue rows: DPP-ID-001, DPP-CAR-004 · Source: [id/DPP-ID-001.yaml](id/DPP-I
 
 **Product identifier stays resolvable over time**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 2
+**MUST** · checked on: published passport · automated · status: proposed · version 3
 
 > The unique product identifier MUST keep resolving to its passport for as long as the passport has to be available.
 
@@ -246,11 +246,9 @@ Catalogue rows: DPP-ID-001, DPP-CAR-004 · Source: [id/DPP-ID-001.yaml](id/DPP-I
 - EN 18219:2026, 4.2.2 (2), (3) (harmonised standard)
 - EN 18221:2026, 4.1 (harmonised standard)
 
-**How it is checked** The product identifier is opened like a phone scanning the data carrier (plain HTTPS GET). Expected: a single passport object whose `uniqueProductIdentifier` equals the identifier.
+**How it is checked** Rated only by the validator, from the results of DPP-ID-001 for the same example passport in its stored runs of the last 30 days: failed if DPP-ID-001 failed in 3 consecutive runs, warning if it failed in single runs, passed if it passed in every run; not rated with fewer than 3 runs.
 
-Rated only from the validator's daily runs: fails after 3 consecutive days without success.
-
-**Notes** Rated only by the validator from its daily runs against the test data of a listed service; single failures appear in the history. A single linter run does not rate this criterion (see DPP-ID-001).
+**Notes** The validator keeps one run per day and entry, the last one of that day. Entries of operators are run daily, entries from our research weekly, so 3 consecutive runs are 3 days or 3 weeks. A run in which DPP-ID-001 has no result (skipped, or dpplint not reachable) is left out. A single linter run does not rate this criterion (see DPP-ID-001).
 
 Catalogue rows: DPP-ID-002, DPP-ID-022, DPP-BCK-012, DPP-BCK-003 · Source: [id/DPP-ID-002.yaml](id/DPP-ID-002.yaml)
 
@@ -377,7 +375,7 @@ Catalogue rows: DPP-ID-016 · Source: [id/DPP-ID-016.yaml](id/DPP-ID-016.yaml)
 
 **A product DID uses did:web, did:ethr or did:ebsi**
 
-**SHOULD** · checked on: published passport · automated · status: proposed · version 1
+**SHOULD** · checked on: published passport · automated · status: proposed · version 2
 
 > A unique product identifier that is a DID SHOULD use the DID method did:web, did:ethr or did:ebsi.
 
@@ -502,7 +500,7 @@ Catalogue rows: DPP-DAT-011, DPP-STO-031, DPP-STO-040 · Source: [dat/DPP-DAT-01
 
 **Passport header uses the EN 18223 attributes**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 1
+**MUST** · checked on: published passport · automated · status: proposed · version 2
 
 > A DPP MUST carry the attributes of the DigitalProductPassport class under their published names, including all mandatory ones (digitalProductPassportId, uniqueProductIdentifier, granularity, dppSchemaVersion, dppStatus, lastUpdated, economicOperatorId).
 
@@ -520,7 +518,7 @@ Catalogue rows: DPP-DAT-014, DPP-CRT-009, DPP-DAT-007, DPP-DAT-009, DPP-ID-025 �
 
 **Granularity uses the EN 18223 values**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 1
+**MUST** · checked on: published passport · automated · status: proposed · version 2
 
 > The attribute granularity MUST take one of the values model, batch or item.
 
@@ -1344,7 +1342,7 @@ Catalogue rows: DPP-STO-019, DPP-STO-024 · Source: [sto/DPP-STO-019.yaml](sto/D
 
 **Passport body follows the EN 18223 data model**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 1
+**MUST** · checked on: published passport · automated · status: proposed · version 2
 
 > The data elements of a DPP MUST follow the semantic model and the serialization of EN 18223.
 

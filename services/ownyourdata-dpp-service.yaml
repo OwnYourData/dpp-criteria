@@ -116,6 +116,8 @@ declarations:
       scraping spread over many addresses is not stopped; there is no bot detection;
       product identifiers that follow a predictable series can be enumerated at the
       rate limit; and passports held by a custodian are served from the custodian's
-      host under the custodian's protection, not this service's.
+      host under the custodian's protection, not this service's. When the service
+      cannot keep the count for the rate limit, it lets requests through without the
+      limit and logs a warning.
     evidence: https://github.com/OwnYourData/dpp-service-public/blob/32247c815043b67e0e487292958af4c339ec0ef0/docs/Standalone.md#3-configuration
 listed_since: 2026-10-08

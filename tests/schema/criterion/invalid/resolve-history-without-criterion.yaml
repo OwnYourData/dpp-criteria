@@ -1,0 +1,18 @@
+id: DPP-TST-001
+version: 1
+status: proposed
+title: Test vector
+statement: A test vector MUST validate.
+level: MUST
+basis:
+- source: EN 18216:2026
+  clause: 5 a), 5 c)
+  kind: harmonised-standard
+target: passport
+method: automated
+requires_features: []
+check:
+  type: resolve
+  history:
+    period_days: 30
+    fail_after_consecutive_runs: 3

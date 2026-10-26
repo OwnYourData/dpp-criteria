@@ -38,6 +38,10 @@ build without network.
 - **Messages carry the criterion.** Every validation message starts with the
   criterion ID in brackets, for example `[DPP-DAT-014]`. A tool that runs
   `soya validate` assigns results to criteria by this prefix.
+- **Warnings state the finding.** A warning is shown only when it fires, so its
+  message says what was found, for example that granularity is not exactly
+  model, batch or item. A violation message names the requirement that is not
+  met.
 - **Simple rules use `OverlayValidation`** (cardinality, pattern, message).
 - **Other SHACL Core rules use overlays of type `OverlayShacl`.** They are
   written as JSON-LD node shapes; `soya init` takes overlays of an unknown type
