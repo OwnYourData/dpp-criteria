@@ -399,7 +399,7 @@ Catalogue rows: DPP-ID-054 · Source: [id/DPP-ID-054.yaml](id/DPP-ID-054.yaml)
 
 **Product identifier follows an EN 18219 product scheme**
 
-**MUST** · checked on: published passport · automated · status: proposed · version 2
+**MUST** · checked on: published passport · automated · status: proposed · version 3
 
 > The unique product identifier MUST follow one of the product ID schemes of EN 18219, and a GS1 Digital Link SHOULD NOT carry a GTIN with the GS1 prefix 952, which GS1 sets aside for demonstrations and examples.
 
@@ -412,7 +412,7 @@ Catalogue rows: DPP-ID-054 · Source: [id/DPP-ID-054.yaml](id/DPP-ID-054.yaml)
 
 **How it is checked** The passport fetched via the product identifier is validated against the SHACL shapes of the SOyA structure [`DigitalProductPassport`](../soya/DigitalProductPassport.yml); only the results tagged with this criterion's ID count.
 
-**Notes** Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the identifier is checked; conformity of the physical data carrier (EN 18220) cannot be observed. Since version 2, a GS1 Digital Link whose GTIN after /01/ carries the GS1 prefix 952 (the first three digits of a GTIN-13, or the three digits after the indicator digit of a GTIN-14) gives a warning: GS1 uses this prefix for demonstrations and examples, so the GTIN is not assigned under a GS1 Company Prefix, and the global uniqueness that EN 18219 5.2.2.1 f) and g) expect for scheme 1 is not ensured. A demonstration passport gets this warning on purpose.
+**Notes** Checked in the SOyA structure DigitalProductPassport by syntax: HTTPS URL (schemes 1, 2 and 5), DID (scheme 3) or RFID/2D encoding (scheme 4). Only the identifier is checked; conformity of the physical data carrier (EN 18220) cannot be observed. A GS1 Digital Link whose GTIN after /01/ carries the GS1 prefix 952 gives a warning: GS1 uses this prefix for demonstrations and examples, so the GTIN is not assigned under a GS1 Company Prefix, and the global uniqueness that EN 18219 5.2.2.1 f) and g) expect for scheme 1 is not ensured. The GTIN is read in each of its lengths, padded with leading zeros or not: a GTIN-13 carries the prefix in its first three digits, a GTIN-14 in the three digits after the indicator digit, and a GTIN-8 as its GS1-8 prefix, its first three digits (also when padded to 12, 13 or 14 digits); a GTIN-12 cannot carry it, because read as a GTIN-13 it starts with 0. A demonstration passport gets this warning on purpose.
 
 Catalogue rows: DPP-CAR-002, DPP-ID-043, DPP-INT-007 · Source: [car/DPP-CAR-002.yaml](car/DPP-CAR-002.yaml)
 

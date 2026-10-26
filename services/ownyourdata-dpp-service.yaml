@@ -77,7 +77,7 @@ declarations:
       verified with DPP_AUTH_MODE=did, as on the hosted instance; a stand-alone
       instance in the default mode does not verify them. A DID proves control of a
       key, not the legal identity behind it.
-    evidence: https://github.com/OwnYourData/dpp-service-public/blob/0a534e63813e1068c27e28807316b8894016401f/README.md#hosted-instance
+    evidence: https://github.com/OwnYourData/dpp-service-public/blob/32247c815043b67e0e487292958af4c339ec0ef0/README.md#hosted-instance
   - criterion: DPP-DGA-001
     statement: >-
       The hosted instance of the service, operated by OwnYourData, keeps no passport
@@ -117,5 +117,5 @@ declarations:
       product identifiers that follow a predictable series can be enumerated at the
       rate limit; and passports held by a custodian are served from the custodian's
       host under the custodian's protection, not this service's.
-    evidence: https://github.com/OwnYourData/dpp-service-public/blob/0a534e63813e1068c27e28807316b8894016401f/docs/Standalone.md#3-configuration
+    evidence: https://github.com/OwnYourData/dpp-service-public/blob/32247c815043b67e0e487292958af4c339ec0ef0/docs/Standalone.md#3-configuration
 listed_since: 2026-10-08
