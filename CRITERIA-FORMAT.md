@@ -183,8 +183,15 @@ Where placeholders are substituted, and how:
   own `accept` and `expect` and an optional `severity: warning` that turns any
   failure of that request into a `warning`; they run after the first request
   and are evaluated independently of it.
-  `history.fail_after_consecutive_days` rates the criterion from the
-  validator's daily runs only.
+  With `history`, no request is sent for the criterion itself: the validator
+  rates it from the results of the criterion `history.criterion` for the same
+  example passport in its stored runs of the last `history.period_days` days,
+  today's run included. Runs in which that criterion has no result are left
+  out. The result is `failed` if that criterion failed in
+  `history.fail_after_consecutive_runs` consecutive runs within the period,
+  `warning` if it failed in single runs only, `passed` if it passed in every
+  run, and `skipped` (`not_evaluated`) with fewer runs than
+  `fail_after_consecutive_runs`. A single linter run skips such a criterion.
   Example (the first request must succeed; the header assertion and the second
   request only give warnings):
 

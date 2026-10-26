@@ -193,7 +193,8 @@ content:
       sh:pattern: '^[A-Za-z][A-Za-z0-9+.-]*:'
       sh:severity:
         '@id': sh:Warning
-      sh:message: '[DPP-DAT-014] digitalProductPassportId should be based on a URI (4.1.2.1).'
+      sh:message: '[DPP-DAT-014] digitalProductPassportId does not start with a URI scheme such as https:
+        or urn:; 4.1.2.1 recommends basing it on a URI.'
     - sh:path: dppStatus
       sh:pattern: ^(active|inactive|archived|invalid)$
       sh:flags: i
@@ -231,7 +232,8 @@ content:
         - item
       sh:severity:
         '@id': sh:Warning
-      sh:message: '[DPP-DAT-015] granularity uses other capitalisation than model, batch, item (4.1.2.2).'
+      sh:message: '[DPP-DAT-015] granularity is not exactly model, batch or item; 4.1.2.2 lists the values
+        in lower case.'
   - type: OverlayShacl
     base: DigitalProductPassport
     name: DppProductIdUrl
@@ -361,8 +363,8 @@ content:
         - sh:pattern: '^did:(web|ethr|ebsi):'
       sh:severity:
         '@id': sh:Warning
-      sh:message: '[DPP-ID-054] A product identifier that is a DID uses the DID method did:web, did:ethr
-        or did:ebsi (EN 18219 5.4.3).'
+      sh:message: '[DPP-ID-054] uniqueProductIdentifier is a DID whose method is not did:web, did:ethr
+        or did:ebsi, the methods EN 18219 5.4.3 recommends.'
   - type: OverlayShacl
     base: DigitalProductPassport
     name: DppGranularityMatchesIdentifier
@@ -1045,7 +1047,7 @@ content:
             - '@id': language
           sh:pattern: ^[a-z]{2}-[a-z]{2}$
           sh:flags: i
-    sh:message: '[DPP-INT-005] language has no country part; Table 6 describes a language code plus a
-      country code such as de-AT.'
+    sh:message: '[DPP-INT-005] language is not of the form xx-XX, a language code plus a country code
+      such as de-AT, which Table 6 describes.'
     sh:severity:
       '@id': sh:Warning

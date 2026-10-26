@@ -1,5 +1,5 @@
 id: DPP-ID-054
-version: 1
+version: 2
 status: proposed
 title: A product DID uses did:web, did:ethr or did:ebsi
 statement: >-

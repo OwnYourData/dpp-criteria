@@ -257,9 +257,13 @@ def describe_resolve(c):
     if len(lines) > 1:
         lines.insert(1, "")
     h = c.get("history") or {}
-    if "fail_after_consecutive_days" in h:
-        lines += ["", f"Rated only from the validator's daily runs: fails after "
-                      f"{h['fail_after_consecutive_days']} consecutive days without success."]
+    if h:
+        n = h["fail_after_consecutive_runs"]
+        lines = [f"Rated only by the validator, from the results of {h['criterion']} for the "
+                 f"same example passport in its stored runs of the last {h['period_days']} days: "
+                 f"failed if {h['criterion']} failed in {n} consecutive runs, warning if it failed "
+                 f"in single runs, passed if it passed in every run; not rated with fewer than "
+                 f"{n} runs."]
     return lines
 
 

@@ -1,5 +1,5 @@
 id: DPP-ID-002
-version: 2
+version: 3
 status: proposed
 title: Product identifier stays resolvable over time
 statement: >-
@@ -23,13 +23,17 @@ requires_features: []
 check:
   type: resolve
   history:
-    fail_after_consecutive_days: 3
+    criterion: DPP-ID-001
+    period_days: 30
+    fail_after_consecutive_runs: 3
 catalogue_ref:
 - DPP-ID-002
 - DPP-ID-022
 - DPP-BCK-012
 - DPP-BCK-003
 notes: >-
-  Rated only by the validator from its daily runs against the test data of a listed
-  service; single failures appear in the history. A single linter run does not rate
-  this criterion (see DPP-ID-001).
+  The validator keeps one run per day and entry, the last one of that day. Entries
+  of operators are run daily, entries from our research weekly, so 3 consecutive
+  runs are 3 days or 3 weeks. A run in which DPP-ID-001 has no result (skipped, or
+  dpplint not reachable) is left out. A single linter run does not rate this
+  criterion (see DPP-ID-001).
