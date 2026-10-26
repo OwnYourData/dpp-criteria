@@ -263,11 +263,12 @@ content:
     sh:property:
     - sh:path: uniqueProductIdentifier
       sh:not:
-        sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/[0-9]?952[0-9]{10}([/?#]|$)
+        sh:pattern: ^https://[^/\s]+(/[^\s?#]*)?/01/([0-9]?952[0-9]{10}|(0{4,6})?952[0-9]{5})([/?#]|$)
       sh:severity:
         '@id': sh:Warning
-      sh:message: '[DPP-CAR-002] The GTIN of the GS1 Digital Link does not carry the GS1 prefix 952,
-        which GS1 sets aside for demonstrations and examples (EN 18219 5.2.2.1 f), g)).'
+      sh:message: '[DPP-CAR-002] The GTIN of the GS1 Digital Link carries the GS1 prefix 952, which
+        GS1 sets aside for demonstrations and examples; it is not assigned under a GS1 Company Prefix
+        (EN 18219 5.2.2.1 f), g)).'
   - type: OverlayShacl
     base: DigitalProductPassport
     name: DppProductIdRegistryUrl
