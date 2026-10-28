@@ -7,16 +7,18 @@ operator:
   country: AT
 entry:
   source: operator
-  as_of: 2026-10-24
+  as_of: 2026-10-28
 licence:
   text: Apache-2.0
   spdx: [Apache-2.0]
 source_code: https://github.com/OwnYourData/dpp-service-public
 example_passports:
   - product_id: https://dpp.oydapp.eu/01/09520123456788/21/000001
-    label: reference passport
+    label: reference passport held in a pod
   - product_id: https://dpp.oydapp.eu/01/09520123456788/21/000002
-    label: reference passport with integrity proof
+    label: reference passport with integrity proof, held in a pod
+  - product_id: https://id.ownyourdata.eu/01/09520123456788/21/TEST-SIG-0002
+    label: signed reference passport held by the service itself, identifier on its own host
 check:
   mode: full-daily
 contact: office@ownyourdata.eu
