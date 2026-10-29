@@ -1,0 +1,30 @@
+id: virtual-vehicle-agentport
+name: AgentPORT
+url: https://agentport.v2c2.at/
+operator:
+  name: Virtual Vehicle Research GmbH
+  url: https://www.virtual-vehicle.at
+  country: AT
+entry:
+  source: operator
+  as_of: 2026-10-29
+licence:
+  text: not stated
+  spdx: []
+example_passports:
+  - product_id: https://agentport.v2c2.at/p/EVP75-2026-000123
+    label: battery passport, demonstration based on the EU battery passport guidance
+check:
+  mode: full-daily
+contact: office@v2c2.at
+api_base: https://agentport.v2c2.at/dpp-api
+features: []
+test_data:
+  productId: https://agentport.v2c2.at/p/EVP75-2026-000123
+  dppId: https://agentport.v2c2.at/dpp/dpp-eu-guidance-demo-ev-001
+credentials: none
+consent: Written consent of the operator to OwnYourData of 29 October 2026 to list the service and check it every day.
+notes: >-
+  Demonstration passport of an electric vehicle battery, based on the EU
+  battery passport guidance.
+listed_since: 2026-10-29
