@@ -1,0 +1,61 @@
+DPP criteria
+Copyright 2026 OwnYourData
+
+This repository is licensed under the Apache License, Version 2.0 (see
+LICENSE), except for the material listed below, which is reused from third
+parties under the terms named for it.
+
+Which licence applies where
+---------------------------
+
+criteria/, schema/, services/, soya/, scripts/, tests/, config/, .github/
+and the documentation in the repository root
+    Apache License 2.0.
+
+datapoints/espr/, datapoints/cpr/, datapoints/toy/, datapoints/eudr/
+and datapoints/README.md
+    Apache License 2.0, except the entries under `semantic_ids` and the
+    section of datapoints/README.md described below. These data points
+    paraphrase EU legal acts and cite the clauses they rest on; no text of
+    the acts is reproduced.
+
+datapoints/batt/ (DP-BATT-001 to DP-BATT-071) and the section on the
+Batteries Regulation in datapoints/README.md, which is generated from them
+    Creative Commons Attribution 4.0 International (CC BY 4.0),
+    https://creativecommons.org/licenses/by/4.0/
+    Source: European Commission, Guidance Document: Digital Batteries
+    Passport – data points by category, version 2.0 of 15 August 2026,
+    © European Union, 2026,
+    https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en
+    Changes: the numbering and the data points of the guidance are taken
+    over; names and descriptions are paraphrased, applicability per battery
+    category is expressed in a structured field, and access and granularity
+    are added from Regulation (EU) 2023/1542. The European Commission does
+    not endorse this repository or its use of the guidance.
+
+Entries under `semantic_ids` with `scheme: idta-cds`, in any file under
+datapoints/ (today DP-BATT-001, DP-BATT-014, DP-BATT-047, DP-BATT-048,
+DP-ESPR-001, DP-ESPR-030, DP-ESPR-032 and DP-TOY-003), as shown in
+datapoints/README.md, and the IDTA identifier in the example of
+DATAPOINT-FORMAT.md
+    Creative Commons Attribution 4.0 International (CC BY 4.0),
+    https://creativecommons.org/licenses/by/4.0/
+    Source: Industrial Digital Twin Association (IDTA), submodel templates,
+    https://github.com/admin-shell-io/submodel-templates. The field `source`
+    of each entry names the template and its version.
+    Changes: only the identifiers and their isCaseOf relations are taken
+    over, no names or definitions. The IDTA does not endorse this
+    repository.
+
+Entries under `semantic_ids` with `scheme: iec-cdd`
+    IRDIs of the IEC Common Data Dictionary (IEC 61360), source: IEC. They
+    are taken as the IDTA templates name them and are used as free
+    attributes under section 5 of the licence of the IEC CDD,
+    https://cdd.iec.ch/CDD/iec61360/iec61360.nsf/License
+
+Not in this repository
+----------------------
+
+No text of licensed standards (EN, ISO, IEC) is reproduced; criteria
+paraphrase their sources and cite the clauses. No ECLASS content is
+included; the schema rejects the scheme `eclass` until its use is cleared.
