@@ -320,6 +320,14 @@ We would be very glad to hear from operators:
 - **Remove it**: open an issue or write to office@ownyourdata.eu; we remove
   the entry.
 
+We answer every request within five working days. A removal takes effect
+within five working days at the latest: the entry is deleted from this
+directory, the service is no longer checked, and its page and latest results
+disappear from the result pages with the next published run. Results of
+earlier runs remain on the branch `results` of dpp-validator.
+How we handle requests for correction or removal is described in
+[dpp-validator](https://github.com/OwnYourData/dpp-validator#listing-correction-and-removal).
+
 ## 8. Questions
 
 Open an issue in this repository or write to office@ownyourdata.eu.
