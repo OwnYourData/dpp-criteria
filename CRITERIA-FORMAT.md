@@ -256,40 +256,62 @@ Where placeholders are substituted, and how:
   URLs of the document, and the scripts it loads from the host of the final
   response URL (`script src`, `link rel=modulepreload`; at most 10 scripts and
   the first 2 MB of each; a script that cannot be retrieved is not checked).
-  Counted is any occurrence of these interfaces:
-  - location: `.geolocation`, `getCurrentPosition`, `watchPosition`;
-  - camera, microphone or screen: `getUserMedia`, `getDisplayMedia`,
-    `.mediaDevices`;
-  - notifications: `Notification.requestPermission`, `new Notification(`,
-    `.showNotification(`, `PushManager`, `pushManager`;
-  - contacts: `navigator.contacts`;
-  - Bluetooth, USB, serial, HID or NFC: `navigator.bluetooth`, `navigator.usb`,
-    `navigator.serial`, `navigator.hid`, `NDEFReader`;
-  - motion and orientation sensors: the events `devicemotion`,
-    `deviceorientation` and `deviceorientationabsolute` (also as `on…`),
-    `DeviceMotionEvent.requestPermission`,
-    `DeviceOrientationEvent.requestPermission`, and `new` with `Accelerometer`,
-    `Gyroscope`, `Magnetometer`, `AbsoluteOrientationSensor`,
+  The scripts are read as JavaScript tokens: comments, string literals,
+  template literals and regular expressions are not code, and a name in them
+  does not count. A use is one of these in the code:
+  - location: a call of `getCurrentPosition` or `watchPosition`;
+  - camera, microphone or screen: a call of `getUserMedia` or
+    `getDisplayMedia`, or of a method of `mediaDevices`;
+  - notifications: `Notification.requestPermission()`, `new Notification(…)`,
+    a call of `showNotification` or of a method of `pushManager`;
+  - contacts: a call of a method of `navigator.contacts`;
+  - Bluetooth, USB, serial, HID or NFC: a call of a method of
+    `navigator.bluetooth`, `navigator.usb`, `navigator.serial` or
+    `navigator.hid`, `new NDEFReader(…)`;
+  - motion and orientation sensors: a listener for the events `devicemotion`,
+    `deviceorientation` or `deviceorientationabsolute`,
+    `DeviceMotionEvent.requestPermission()`,
+    `DeviceOrientationEvent.requestPermission()`, and `new` with
+    `Accelerometer`, `Gyroscope`, `Magnetometer`, `AbsoluteOrientationSensor`,
     `RelativeOrientationSensor`, `LinearAccelerationSensor`, `GravitySensor`
     or `AmbientLightSensor`;
-  - context or network information: `navigator.connection`, `getBattery(`,
-    `IdleDetector`;
-  - one-time codes from SMS: `OTPCredential`, or `transport: ['sms']`;
-  - app installation: `beforeinstallprompt`, `getInstalledRelatedApps`;
-  - device behaviour: `navigator.wakeLock`, `navigator.vibrate`.
+  - context or network information: reading a property of
+    `navigator.connection`, a call of `getBattery`, `new IdleDetector(…)`,
+    `IdleDetector.requestPermission()`;
+  - one-time codes from SMS: `transport: ['sms']`;
+  - app installation: a listener for `beforeinstallprompt`, a call of
+    `getInstalledRelatedApps`;
+  - device behaviour: a call of `navigator.vibrate` or of a method of
+    `navigator.wakeLock`.
 
-  In the markup, counted are an `iframe` whose `allow` grants `camera`,
-  `microphone`, `geolocation`, `display-capture`, `bluetooth`, `usb`,
-  `serial`, `hid`, `accelerometer`, `gyroscope`, `magnetometer`,
+  A call is `m(…)` on any object, also `obj["m"](…)`, `m?.(…)`, `m.call(…)` and
+  `m.apply(…)`. A listener is registered with `addEventListener` or `on` and
+  the event name as first argument, or by assigning the `on…` property (not
+  `null`). Hooking into an interface is not a use: testing whether it exists
+  (in the head of `if` or `while`, with `&&`, `?`, a comparison, `!`,
+  `typeof` or `in`), replacing its methods, or passing it to a function
+  together with the name of one of its members as a string, as polyfills such
+  as zone.js do.
+
+  A doubt is a reference after which a use may follow that only running the
+  script would show: a method named in the list above, a member of one of the
+  interfaces (of `geolocation` only the methods named above) or
+  `requestPermission` read without being called or replaced; one of the
+  interfaces stored or passed on in any other way; one of the event names
+  passed as an argument to another function than `addEventListener` or `on`. A script that cannot be read as JavaScript (for
+  example a string literal that runs into a line break) is searched for the
+  names of the interfaces as text, and every name found is a doubt.
+
+  In the markup, counted as a use are an `iframe` whose `allow` grants
+  `camera`, `microphone`, `geolocation`, `display-capture`, `bluetooth`,
+  `usb`, `serial`, `hid`, `accelerometer`, `gyroscope`, `magnetometer`,
   `ambient-light-sensor`, `idle-detection` or `screen-wake-lock`; an `input`
   with a `capture` attribute; and the elements `permission` and
-  `geolocation`. Interfaces are matched as written (property names, case as
-  in the browser APIs), so a name in a comment or string counts as use, while
-  code assembled at run time, obfuscated, or loaded by a script (dynamic
-  `import`, `fetch`, workers) and scripts from other hosts are not seen.
-  `tel:` and `sms:` links are followed by the reader and are not counted.
-  Finding: every interface found, with the place (inline script, attribute or
-  script URL).
+  `geolocation`. Code assembled at run time, obfuscated, or loaded by a
+  script (dynamic `import`, `fetch`, workers) and scripts from other hosts are
+  not seen. `tel:` and `sms:` links are followed by the reader and are not
+  counted. Finding: every use, with the place (inline script, attribute or
+  script URL); if there is none, every doubt.
 
   `markup_errors: forbidden`: the document must conform to the HTML standard
   as far as the Nu Html Checker (vnu, the checker behind validator.w3.org/nu)
@@ -305,7 +327,8 @@ Where placeholders are substituted, and how:
   the checker.
 
   Result: `failed` if there is at least one finding (the message names up to
-  10 of them), otherwise `passed`.
+  10 of them), except that doubts of `device_features` without any use give
+  a `warning`; otherwise `passed`.
 - **element_ids** — the elementIds of the passport fetched via `{productId}`
   (EN 18223 4.1.2.3). In the expanded full serialization (EN 18223 Annex A,
   recognised by an `elements` array at the top level) the data elements are

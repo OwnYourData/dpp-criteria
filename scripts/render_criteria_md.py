@@ -295,11 +295,14 @@ def describe_html(c):
               "passport's own.")
     if c.get("device_features") == "forbidden":
         s += (" Without running any script, the HTML view and the scripts it loads from its "
-              "own host are searched for browser interfaces that use functions of the "
-              "reader's device (location, camera, microphone, notifications, contacts, "
-              "sensors, network information and others), and the markup for frames granted "
-              "such permissions, file inputs with `capture` and permission elements; none "
-              "may be found. The list is in [CRITERIA-FORMAT.md](../CRITERIA-FORMAT.md) under `html`.")
+              "own host are searched for uses of functions of the reader's device (location, "
+              "camera, microphone, notifications, contacts, sensors, network information and "
+              "others): calls of their browser interfaces, permission requests and listeners "
+              "for device events, and in the markup frames granted such permissions, file "
+              "inputs with `capture` and permission elements; none may be found. Hooking into "
+              "an interface without calling it, as polyfills do, is not a use; a reference "
+              "after which a use may follow that only running the script would show gives a "
+              "warning. The list is in [CRITERIA-FORMAT.md](../CRITERIA-FORMAT.md) under `html`.")
     if c.get("markup_errors") == "forbidden":
         s += (" The HTML view is checked with the Nu Html Checker, run by the checking tool "
               "itself; every error it reports fails the criterion, warnings and other "
