@@ -1,5 +1,5 @@
 id: DPP-SEC-021
-version: 1
+version: 2
 status: proposed
 title: HTML view uses no device functions
 statement: >-
@@ -25,14 +25,19 @@ notes: >-
   messages, installing applications or changing settings. A web page reaches such
   functions only through browser interfaces that its scripts call or that its
   markup grants to embedded content. The check is static and runs no script: it
-  looks for these interfaces in the inline scripts, event handler attributes and
-  javascript: URLs of the HTML view and in the scripts the page loads from its
-  own host, and in the markup for frames granted device permissions, file inputs
-  with capture and permission elements (see html in CRITERIA-FORMAT.md). Its
-  limits: scripts from other hosts are not fetched, but DPP-SEC-014 fails for
-  them anyway; code that is put together at run time, obfuscated, or loaded by a
-  script (dynamic import, fetch, workers) is not seen; an interface name in a
-  comment or a string counts as use; and the check cannot tell whether a call
+  reads the inline scripts, event handler attributes and javascript: URLs of the
+  HTML view and the scripts the page loads from its own host as JavaScript, and
+  looks for calls of device interfaces, permission requests and listeners for
+  device events; in the markup it looks for frames granted device permissions,
+  file inputs with capture and permission elements (see html in
+  CRITERIA-FORMAT.md). Hooking into an interface without calling it, as
+  polyfills such as zone.js do, and testing whether it exists are not a use,
+  and names in comments and strings do not count. A reference after which a
+  use may follow that only running the script would show, for example an
+  interface stored under another name, gives a warning. Its limits: scripts
+  from other hosts are not fetched, but DPP-SEC-014 fails for them anyway; code
+  that is put together at run time, obfuscated, or loaded by a script (dynamic
+  import, fetch, workers) is not seen; and the check cannot tell whether a call
   would happen only after a user action. A tel: or sms: link that the reader
   follows is the reader's own action and does not count. Without an HTML view
   the result is skipped; DPP-DAT-016 rates whether it exists.
