@@ -18,7 +18,7 @@ import yaml
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "criteria", "README.md")
 
-# Areas (categories A to T) of the DPP System Requirements Catalogue v4.0, in
+# Areas (categories A to T) of the DPP System Requirements Catalogue v4.1, in
 # catalogue order.
 AREAS = [
     ("Scope and configuration", ["CFG"]),

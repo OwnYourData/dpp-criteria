@@ -17,6 +17,7 @@ requires_features: []
 check:
   type: shacl
   structure: DigitalProductPassport
+catalogue_ref: DPP-REG-024
 notes: >-
   Checked in the SOyA structure DigitalProductPassport: uniqueProductIdentifier
   starts with https:// and has at most 2000 characters. The user guide asks for the

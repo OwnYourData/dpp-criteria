@@ -18,7 +18,7 @@ method: self-declared
 requires_features: []
 check:
   type: declaration
-catalogue_ref: DPP-DGA-001
+catalogue_ref: DPP-DGA-004
 notes: >-
   The Data Governance Act lists the data intermediation services (Art. 10), has the
   Commission keep a public register of their providers (Art. 11(10)), and lets a
