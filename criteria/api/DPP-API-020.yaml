@@ -22,5 +22,7 @@ check:
     expect:
       status:
       - 200
-catalogue_ref: DPP-API-011
+catalogue_ref:
+- DPP-API-020
+- DPP-API-011
 notes: Later API versions replace the prefix accordingly.

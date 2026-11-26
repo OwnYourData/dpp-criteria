@@ -774,7 +774,7 @@ Requests to the API base of the service, in this order:
 
 **Notes** Later API versions replace the prefix accordingly.
 
-Catalogue rows: DPP-API-011 · Source: [api/DPP-API-020.yaml](api/DPP-API-020.yaml)
+Catalogue rows: DPP-API-020, DPP-API-011 · Source: [api/DPP-API-020.yaml](api/DPP-API-020.yaml)
 
 ### DPP-API-021
 
@@ -962,7 +962,7 @@ Catalogue rows: DPP-DEX-006 · Source: [dex/DPP-DEX-006.yaml](dex/DPP-DEX-006.ya
 
 **Notes** Checked in the SOyA structure DigitalProductPassport: uniqueProductIdentifier starts with https:// and has at most 2000 characters. The user guide asks for the identifier as a URL of at most 2000 characters, and its error text for file submissions requires https:// (6.2.1). It also names unsupported protocols, domains and ports and problems with redirects as reasons for rejection (6.2.2), without saying which domains and ports are allowed; these are not checked. Whether the identifier resolves to the passport is rated by DPP-ID-001. The user guide is not legally binding; it describes how the registry handles registrations.
 
-Source: [reg/DPP-REG-024.yaml](reg/DPP-REG-024.yaml)
+Catalogue rows: DPP-REG-024 · Source: [reg/DPP-REG-024.yaml](reg/DPP-REG-024.yaml)
 
 ## Access control
 
@@ -1461,4 +1461,4 @@ Catalogue rows: DPP-PCDS-008 · Source: [pcds/DPP-PCDS-008.yaml](pcds/DPP-PCDS-0
 
 **Notes** The Data Governance Act lists the data intermediation services (Art. 10), has the Commission keep a public register of their providers (Art. 11(10)), and lets a provider use the data only to make them available to data users and offer the service through a separate legal person (Art. 12, point (a)). Whether keeping passport data for an economic operator is a data intermediation service depends on the arrangement; a DPP service is not one by itself. The declaration describes the role of the intermediary, for example in the documentation of the service, and links its entry in the register.
 
-Catalogue rows: DPP-DGA-001 · Source: [dga/DPP-DGA-001.yaml](dga/DPP-DGA-001.yaml)
+Catalogue rows: DPP-DGA-004 · Source: [dga/DPP-DGA-001.yaml](dga/DPP-DGA-001.yaml)
