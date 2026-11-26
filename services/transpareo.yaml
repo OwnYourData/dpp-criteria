@@ -1,0 +1,24 @@
+id: transpareo
+name: Transpareo
+url: https://transpareo.com
+operator:
+  name: Transpareo AG
+  country: CH
+entry:
+  source: research
+  as_of: 2026-11-26
+licence:
+  text: commercial SaaS; renderer GPL-3.0-or-later, CLI MIT
+  spdx: [GPL-3.0-or-later]
+source_code: https://github.com/transpareo/transpareo-time-machine
+example_passports:
+  - product_id: https://demo.transpareo.com/01/04012345678901/10/BATCH-NW-2024-Q1-008
+    label: demo textile passport
+check:
+  mode: none
+  reason: no_en18222_paths
+notes: >-
+  Own API under its own paths (/api/dpps and others) with OAuth 2.0 client
+  credentials; no EN 18222 lifecycle paths found. The demo workspace is reset
+  every hour according to the website.
+listed_since: 2026-11-26
